@@ -1,0 +1,19 @@
+@startuml Database
+
+entity User {
+  * id
+  __
+  * name
+  * username
+  * status
+  * password
+  * role_id
+}
+
+entity Role {
+  * id
+  __
+  * name
+}
+
+User ||--|{ Role
