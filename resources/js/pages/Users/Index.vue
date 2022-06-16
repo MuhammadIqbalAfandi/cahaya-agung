@@ -3,6 +3,7 @@ import { watch } from 'vue'
 import { Inertia } from '@inertiajs/inertia'
 import { Head } from '@inertiajs/inertia-vue3'
 import { pickBy } from 'lodash'
+import { useConfirm } from 'primevue/useconfirm'
 import tableHeader from './tableHeader'
 import { useSearchText } from '@/components/useSearchText'
 import DashboardLayout from '@/layouts/DashboardLayout.vue'
@@ -21,12 +22,31 @@ watch(search, () => {
     preserveState: true,
   })
 })
+
+const resetConfirm = useConfirm()
+
+const onResetPassword = (data) => {
+  resetConfirm.require({
+    message: `Yakin mereset kata sandi (${data.name}) ?`,
+    header: 'Reset Kata Sandi',
+    acceptLabel: 'Iya',
+    rejectLabel: 'Tidak',
+    accept: () => {
+      Inertia.put(route('users.reset-password', data.id))
+    },
+    reject: () => {
+      resetConfirm.close()
+    },
+  })
+}
 </script>
 
 <template>
   <Head title="Daftar User" />
 
   <DashboardLayout>
+    <ConfirmDialog></ConfirmDialog>
+
     <DataTable
       responsiveLayout="scroll"
       columnResizeMode="expand"
@@ -73,7 +93,16 @@ watch(search, () => {
           <AppButtonLink
             icon="pi pi-pencil"
             class="p-button-icon-only p-button-rounded p-button-text"
+            v-tooltip.bottom="'Ubah User'"
             :href="route('users.edit', data.id)"
+          />
+
+          <Button
+            v-if="data.role_id !== 1"
+            icon="pi pi-key"
+            class="p-button-icon-only p-button-rounded p-button-text"
+            v-tooltip.bottom="'Reset Kata Sandi'"
+            @click="onResetPassword(data)"
           />
         </template>
       </Column>

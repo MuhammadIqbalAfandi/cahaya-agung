@@ -25,10 +25,15 @@ Route::middleware(['auth', 'verified'])->group(function () {
 
     Route::get('/dashboards', DashboardController::class);
 
+    Route::put('/users/reset-password/{user}', [UserController::class, 'resetPassword'])
+        ->name('users.reset-password');
+
     Route::delete('/users/block/{user}', [UserController::class, 'block'])
         ->name('users.block');
+
     Route::post('/users/change-password/{user}', [UserController::class, 'changePassword'])
         ->name('users.change-password');
+
     Route::resource('/users', UserController::class);
 
     Route::resource('/customers', CustomerController::class);

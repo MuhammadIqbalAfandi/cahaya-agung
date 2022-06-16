@@ -105,6 +105,7 @@ const onSubmit = () => {
                 class="col-12 md:col-6 flex flex-column md:flex-row justify-content-center md:justify-content-end"
               >
                 <AppButtonLink
+                  v-if="user.role_id !== 1"
                   label="Blokir"
                   icon="pi pi-ban"
                   method="delete"

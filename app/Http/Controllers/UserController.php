@@ -35,6 +35,7 @@ class UserController extends Controller
                     'name' => $user->name,
                     'username' => $user->username,
                     'role' => $user->role->name,
+                    'role_id' => $user->role_id,
                     'status' => $user->status
                 ])
         ]);
@@ -184,5 +185,12 @@ class UserController extends Controller
         $request->user()->update(['password' => bcrypt($request->new_password)]);
 
         return back()->with('success', __('messages.success.update.change_password'));
+    }
+
+    public function resetPassword(User $user)
+    {
+        $user->update(['password' => bcrypt('12345678')]);
+
+        return back()->with('success', __('passwords.reset'));
     }
 }
