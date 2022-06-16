@@ -2,8 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\Supplier\StoreSupplierRequest;
+use App\Http\Requests\Supplier\UpdateSupplierRequest;
 use App\Models\Supplier;
-use Illuminate\Http\Request;
 
 class SupplierController extends Controller
 {
@@ -19,7 +20,21 @@ class SupplierController extends Controller
      */
     public function index()
     {
-        return inertia('Suppliers/Index.vue');
+        return inertia('Suppliers/Index.vue', [
+            'initialSearch' => request('search'),
+            'suppliers' => Supplier::filter(request()->only('search'))
+                ->latest()
+                ->paginate(10)
+                ->withQueryString()
+                ->through(fn($customer) => [
+                    'id' => $customer->id,
+                    'name' => $customer->name,
+                    'address' => $customer->address,
+                    'email' => $customer->email,
+                    'phone' => $customer->phone,
+                    'npwp' => $customer->npwp
+                ])
+        ]);
     }
 
     /**
@@ -29,7 +44,7 @@ class SupplierController extends Controller
      */
     public function create()
     {
-        //
+        return inertia('Suppliers/Create');
     }
 
     /**
@@ -38,18 +53,20 @@ class SupplierController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreSupplierRequest $request)
     {
-        //
+        Supplier::create($request->validated());
+
+        return back()->with('success', __('messages.success.store.supplier'));
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param  Supplier $supplier
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Supplier $supplier)
     {
         //
     }
@@ -57,33 +74,35 @@ class SupplierController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param  Supplier $supplier
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Supplier $supplier)
     {
-        //
+        return inertia('Suppliers/Edit.vue', compact('supplier'));
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  Supplier $supplier
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(UpdateSupplierRequest $request, Supplier $supplier)
     {
-        //
+        $supplier->update($request->validated());
+
+        return back()->with('success', __('messages.success.update.supplier'));
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param  Supplier $supplier
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Supplier $supplier)
     {
         //
     }

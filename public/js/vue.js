@@ -58372,6 +58372,22 @@ var map = {
 		"./resources/js/pages/StockProducts/Index.vue",
 		"resources_js_pages_StockProducts_Index_vue"
 	],
+	"./Suppliers/Create": [
+		"./resources/js/pages/Suppliers/Create.vue",
+		"resources_js_pages_Suppliers_Create_vue"
+	],
+	"./Suppliers/Create.vue": [
+		"./resources/js/pages/Suppliers/Create.vue",
+		"resources_js_pages_Suppliers_Create_vue"
+	],
+	"./Suppliers/Edit": [
+		"./resources/js/pages/Suppliers/Edit.vue",
+		"resources_js_pages_Suppliers_Edit_vue"
+	],
+	"./Suppliers/Edit.vue": [
+		"./resources/js/pages/Suppliers/Edit.vue",
+		"resources_js_pages_Suppliers_Edit_vue"
+	],
 	"./Suppliers/Index": [
 		"./resources/js/pages/Suppliers/Index.vue",
 		"resources_js_pages_Suppliers_Index_vue"
@@ -58379,6 +58395,14 @@ var map = {
 	"./Suppliers/Index.vue": [
 		"./resources/js/pages/Suppliers/Index.vue",
 		"resources_js_pages_Suppliers_Index_vue"
+	],
+	"./Suppliers/tableHeader": [
+		"./resources/js/pages/Suppliers/tableHeader.js",
+		"resources_js_pages_Suppliers_tableHeader_js"
+	],
+	"./Suppliers/tableHeader.js": [
+		"./resources/js/pages/Suppliers/tableHeader.js",
+		"resources_js_pages_Suppliers_tableHeader_js"
 	],
 	"./Users/Create": [
 		"./resources/js/pages/Users/Create.vue",
@@ -58537,7 +58561,7 @@ module.exports = JSON.parse('{"name":"axios","version":"0.21.4","description":"P
 /******/ 		// This function allow to reference async chunks
 /******/ 		__webpack_require__.u = (chunkId) => {
 /******/ 			// return url for filenames based on template
-/******/ 			return "js/" + chunkId + ".js?id=" + {"node_modules_chart_js_auto_auto_esm_js":"9296b829a7757dee","resources_js_pages_Auth_Login_vue":"8e53429f130c83f5","resources_js_pages_Customers_Create_vue":"1ec93aefdbb7bac8","resources_js_pages_Customers_Edit_vue":"31ae025a81e11ec5","resources_js_pages_Customers_Index_vue":"e46ee9e1139b2c88","resources_js_pages_Customers_tableHeader_js":"7a40a3d5ad60171c","resources_js_pages_Dashboards_Index_vue":"7f4150c836fe81d8","resources_js_pages_Purchases_Index_vue":"41fddd7f79c7a85d","resources_js_pages_Sales_Index_vue":"1da65c4ce926abbc","resources_js_pages_StockProducts_Index_vue":"74a65be5ec079b3f","resources_js_pages_Suppliers_Index_vue":"0f2fb6e79fdbec94","resources_js_pages_Users_Create_vue":"290f8cea7ecbd8da","resources_js_pages_Users_Edit_vue":"4f8b3ff98efb4ef3","resources_js_pages_Users_Index_vue":"575b2403097c7e16","resources_js_pages_Users_Show_vue":"5561027a65c32ca4","resources_js_pages_Users_tableHeader_js":"48f19bd820caf015"}[chunkId] + "";
+/******/ 			return "js/" + chunkId + ".js?id=" + {"node_modules_chart_js_auto_auto_esm_js":"9296b829a7757dee","resources_js_pages_Auth_Login_vue":"8e53429f130c83f5","resources_js_pages_Customers_Create_vue":"1ec93aefdbb7bac8","resources_js_pages_Customers_Edit_vue":"31ae025a81e11ec5","resources_js_pages_Customers_Index_vue":"38b34ca5e7058678","resources_js_pages_Customers_tableHeader_js":"7a40a3d5ad60171c","resources_js_pages_Dashboards_Index_vue":"7f4150c836fe81d8","resources_js_pages_Purchases_Index_vue":"41fddd7f79c7a85d","resources_js_pages_Sales_Index_vue":"1da65c4ce926abbc","resources_js_pages_StockProducts_Index_vue":"74a65be5ec079b3f","resources_js_pages_Suppliers_Create_vue":"10b828cfed1d6462","resources_js_pages_Suppliers_Edit_vue":"97ca7516c6fa5b2e","resources_js_pages_Suppliers_Index_vue":"ac418f3dc1b81891","resources_js_pages_Suppliers_tableHeader_js":"500bc29ff0dbddce","resources_js_pages_Users_Create_vue":"290f8cea7ecbd8da","resources_js_pages_Users_Edit_vue":"4f8b3ff98efb4ef3","resources_js_pages_Users_Index_vue":"575b2403097c7e16","resources_js_pages_Users_Show_vue":"5561027a65c32ca4","resources_js_pages_Users_tableHeader_js":"48f19bd820caf015"}[chunkId] + "";
 /******/ 		};
 /******/ 	})();
 /******/ 	

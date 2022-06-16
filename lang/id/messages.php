@@ -32,7 +32,8 @@ return [
             'transaction' => 'Transaksi berhasil ditambahkan',
             'user' => 'Akun user berhasil ditambahkan',
             'reset_password' => 'Kata sandi berhasil di reset',
-            'customer' => 'Pelanggan berhasil ditambahkan'
+            'customer' => 'Pelanggan berhasil ditambahkan',
+            'supplier' => 'Supplier berhasil ditambahkan'
         ],
         'update' => [
             'type_vehicle' => 'Jenis kendaraan berhasil diubah',
@@ -42,7 +43,8 @@ return [
             'change_password' => 'Password berhasil diubah',
             'transaction_status' => 'Status transaksi berhasil diubah',
             'user' => 'Akun user berhasil diubah',
-            'customer' => 'Pelanggan berhasil diubah'
+            'customer' => 'Pelanggan berhasil diubah',
+            'supplier' => 'Supplier berhasil diubah'
         ],
         'destroy' => [
             'type_member' => 'Jenis member berhasil dihapus',

@@ -73,7 +73,7 @@ watch(search, () => {
           <AppButtonLink
             icon="pi pi-pencil"
             class="p-button-icon-only p-button-rounded p-button-text"
-            v-tooltip.bottom="'Ubah User'"
+            v-tooltip.bottom="'Ubah Pelanggan'"
             :href="route('customers.edit', data.id)"
           />
         </template>

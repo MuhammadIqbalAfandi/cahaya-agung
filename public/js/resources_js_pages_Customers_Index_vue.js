@@ -1039,7 +1039,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
                 href: _ctx.route('customers.edit', data.id)
               }, null, 8
               /* PROPS */
-              , ["href"]), [[_directive_tooltip, 'Ubah User', void 0, {
+              , ["href"]), [[_directive_tooltip, 'Ubah Pelanggan', void 0, {
                 bottom: true
               }]])];
             }),
