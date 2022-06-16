@@ -191,6 +191,6 @@ class UserController extends Controller
     {
         $user->update(['password' => bcrypt('12345678')]);
 
-        return back()->with('success', __('passwords.reset'));
+        return back()->with('success', __('messages.success.store.reset_password'));
     }
 }

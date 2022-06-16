@@ -14,12 +14,12 @@ return [
 
     'user' => [
         'active_user' => 'Sukses mengaktifkan user',
-        'no_active_user' => 'Sukses memblokir user',
+        'no_active_user' => 'Sukses memblokir user'
     ],
 
     'success' => [
         'email' => [
-            'verify_email' => 'Link verifikasi email berhasil terkirim',
+            'verify_email' => 'Link verifikasi email berhasil terkirim'
         ],
         'store' => [
             'parking_fee' => 'Tarif parkir berhasil ditambahkan',
@@ -31,6 +31,7 @@ return [
             'expense' => 'Pengeluaran berhasil ditambahkan',
             'transaction' => 'Transaksi berhasil ditambahkan',
             'user' => 'Akun user berhasil ditambahkan',
+            'reset_password' => 'Kata sandi berhasil di reset'
         ],
         'update' => [
             'type_vehicle' => 'Jenis kendaraan berhasil diubah',
@@ -39,15 +40,15 @@ return [
             'type_member' => 'Jenis member berhasil diubah',
             'change_password' => 'Password berhasil diubah',
             'transaction_status' => 'Status transaksi berhasil diubah',
-            'user' => 'Akun user berhasil diubah',
+            'user' => 'Akun user berhasil diubah'
         ],
         'destroy' => [
             'type_member' => 'Jenis member berhasil dihapus',
             'type_vehicle' => 'Jenis kendaraan berhasil dihapus',
             'top_up' => 'Top Up berhasil dihapus',
             'member' => 'Akun member berhasil dihapus',
-            'user' => 'Akun user berhasil dihapus',
-        ],
+            'user' => 'Akun user berhasil dihapus'
+        ]
     ],
 
     'error' => [
@@ -57,11 +58,11 @@ return [
             'member' => 'Member gagal ditambahkan',
             'change_password' => 'Password lama salah',
             'expense' => 'Pengeluaran gagal ditambahkan',
-            'transaction' => 'Transaksi gagal ditambahkan',
+            'transaction' => 'Transaksi gagal ditambahkan'
         ],
         'update' => [
             'type_member' => 'Jenis member gagal diubah',
-            'member' => 'Member gagal diubah',
-        ],
-    ],
+            'member' => 'Member gagal diubah'
+        ]
+    ]
 ];
