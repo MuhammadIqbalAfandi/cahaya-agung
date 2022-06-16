@@ -58513,7 +58513,7 @@ module.exports = JSON.parse('{"name":"axios","version":"0.21.4","description":"P
 /******/ 		// This function allow to reference async chunks
 /******/ 		__webpack_require__.u = (chunkId) => {
 /******/ 			// return url for filenames based on template
-/******/ 			return "js/" + chunkId + ".js?id=" + {"node_modules_chart_js_auto_auto_esm_js":"9296b829a7757dee","resources_js_pages_Auth_Login_vue":"cb7d9267c0b9275e","resources_js_pages_Customers_Index_vue":"460eeb2d5c669e80","resources_js_pages_Dashboards_Index_vue":"95055999a24bba58","resources_js_pages_Purchases_Index_vue":"437a388b23ba08c0","resources_js_pages_Sales_Index_vue":"91998e08f5f2d3f2","resources_js_pages_StockProducts_Index_vue":"8901c078d64fe4f8","resources_js_pages_Suppliers_Index_vue":"96768095c4560845","resources_js_pages_Users_Create_vue":"e626f3567b8e1e5d","resources_js_pages_Users_Edit_vue":"cf7a0b49693afbad","resources_js_pages_Users_Index_vue":"e3b532361ef35227","resources_js_pages_Users_Show_vue":"4d6678c6b68ba9bd","resources_js_pages_Users_tableHeader_js":"48f19bd820caf015"}[chunkId] + "";
+/******/ 			return "js/" + chunkId + ".js?id=" + {"node_modules_chart_js_auto_auto_esm_js":"9296b829a7757dee","resources_js_pages_Auth_Login_vue":"cb7d9267c0b9275e","resources_js_pages_Customers_Index_vue":"eb78407dfd08456f","resources_js_pages_Dashboards_Index_vue":"7f4150c836fe81d8","resources_js_pages_Purchases_Index_vue":"41fddd7f79c7a85d","resources_js_pages_Sales_Index_vue":"1da65c4ce926abbc","resources_js_pages_StockProducts_Index_vue":"74a65be5ec079b3f","resources_js_pages_Suppliers_Index_vue":"0f2fb6e79fdbec94","resources_js_pages_Users_Create_vue":"d77599e458334081","resources_js_pages_Users_Edit_vue":"e0eb01c3dc9f721f","resources_js_pages_Users_Index_vue":"575b2403097c7e16","resources_js_pages_Users_Show_vue":"5c32daddba0a1355","resources_js_pages_Users_tableHeader_js":"48f19bd820caf015"}[chunkId] + "";
 /******/ 		};
 /******/ 	})();
 /******/ 	
@@ -58788,7 +58788,7 @@ __webpack_require__.r(__webpack_exports__);
 
 (0,_inertiajs_inertia_vue3__WEBPACK_IMPORTED_MODULE_6__.createInertiaApp)({
   title: function title(_title) {
-    return "".concat(_title, " - Parkirin");
+    return "".concat(_title, " - Cahaya Aguh");
   },
   resolve: function resolve(name) {
     return __webpack_require__("./resources/js/pages lazy recursive ^\\.\\/.*$")("./".concat(name));

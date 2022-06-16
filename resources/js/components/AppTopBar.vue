@@ -8,7 +8,7 @@ defineEmits(['menu-toggle'])
   <div class="layout-topbar">
     <Link href="/" class="layout-topbar-logo">
       <img alt="Logo" src="/images/logo.svg" class="md:mr-3" />
-      <span>Parkirin</span>
+      <span>Cahaya Aguh</span>
     </Link>
 
     <button
