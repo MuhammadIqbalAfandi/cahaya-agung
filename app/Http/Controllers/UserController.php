@@ -80,12 +80,7 @@ class UserController extends Controller
     public function show(User $user)
     {
         return inertia('Users/Show', [
-            'user' => [
-                'id' => $user->id,
-                'name' => $user->name,
-                'username' => $user->username,
-                'role_id' => $user->role_id
-            ],
+            'user' => $user,
             'roles' => Role::whereNotIn('id', [1])
                 ->get()
                 ->transform(fn($role) => [
@@ -104,12 +99,7 @@ class UserController extends Controller
     public function edit(User $user)
     {
         return inertia('Users/Edit', [
-            'user' => [
-                'id' => $user->id,
-                'name' => $user->name,
-                'username' => $user->username,
-                'role_id' => $user->role_id
-            ],
+            'user' => $user,
             'roles' => Role::whereNotIn('id', [1])
                 ->get()
                 ->transform(fn($role) => [
@@ -128,11 +118,7 @@ class UserController extends Controller
      */
     public function update(UpdateUserRequest $request, User $user)
     {
-        $user->update([
-            'name' => $request->name,
-            'username' => $request->username,
-            'role_id' => $request->role_id
-        ]);
+        $user->update($request->validated());
 
         return back()->with('success', __('messages.success.update.user'));
     }

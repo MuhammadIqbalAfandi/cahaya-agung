@@ -24,7 +24,7 @@ watch(search, () => {
 </script>
 
 <template>
-  <Head title="Daftar User" />
+  <Head title="Daftar Pelanggan" />
 
   <DashboardLayout>
     <DataTable
@@ -52,7 +52,7 @@ watch(search, () => {
             class="col-12 md:col-4 flex flex-column md:flex-row justify-content-end"
           >
             <AppButtonLink
-              label="Tambah User"
+              label="Tambah Pelanggan"
               icon="pi pi-pencil"
               class="p-button-outlined"
               :href="route('customers.create')"

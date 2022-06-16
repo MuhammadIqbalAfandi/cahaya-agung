@@ -23,13 +23,13 @@ const onSubmit = () => {
 </script>
 
 <template>
-  <Head title="Tambah Pelanggan" />
+  <Head title="Ubah Pelanggan" />
 
   <DashboardLayout>
     <div class="grid">
       <div class="col-12 lg:col-8">
         <Card>
-          <template #title> Tambah Pelanggan </template>
+          <template #title> Ubah Pelanggan </template>
           <template #content>
             <div class="grid">
               <div class="col-12 md:col-6">
