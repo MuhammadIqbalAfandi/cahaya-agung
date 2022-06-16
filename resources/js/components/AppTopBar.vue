@@ -7,7 +7,7 @@ defineEmits(['menu-toggle'])
 <template>
   <div class="layout-topbar">
     <Link href="/" class="layout-topbar-logo">
-      <img alt="Logo" src="/images/logo.svg" class="md:mr-3" />
+      <img alt="Brand Logo" src="/images/logo.svg" class="md:mr-3" />
       <span>Cahaya Aguh</span>
     </Link>
 
