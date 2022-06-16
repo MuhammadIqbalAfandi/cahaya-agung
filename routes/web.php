@@ -4,7 +4,7 @@ use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\PurchaseController;
 use App\Http\Controllers\SalesController;
-use App\Http\Controllers\StocksController;
+use App\Http\Controllers\StockProductController;
 use App\Http\Controllers\SupplierController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
@@ -39,7 +39,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
 
     Route::resource('/suppliers', SupplierController::class);
 
-    Route::resource('/stocks', StocksController::class);
+    Route::resource('/stock-products', StockProductController::class);
 });
 
 require __DIR__ . '/auth.php';

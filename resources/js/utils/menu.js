@@ -92,8 +92,8 @@ export default {
         {
           label: 'Stok Barang',
           icon: 'pi pi-box',
-          to: '/stocks',
-          component: 'Stocks/Index',
+          to: '/stock-products',
+          component: 'StockProducts/Index',
         },
       ],
     },

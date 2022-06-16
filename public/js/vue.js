@@ -58340,13 +58340,13 @@ var map = {
 		"./resources/js/pages/Sales/Index.vue",
 		"resources_js_pages_Sales_Index_vue"
 	],
-	"./Stocks/Index": [
-		"./resources/js/pages/Stocks/Index.vue",
-		"resources_js_pages_Stocks_Index_vue"
+	"./StockProducts/Index": [
+		"./resources/js/pages/StockProducts/Index.vue",
+		"resources_js_pages_StockProducts_Index_vue"
 	],
-	"./Stocks/Index.vue": [
-		"./resources/js/pages/Stocks/Index.vue",
-		"resources_js_pages_Stocks_Index_vue"
+	"./StockProducts/Index.vue": [
+		"./resources/js/pages/StockProducts/Index.vue",
+		"resources_js_pages_StockProducts_Index_vue"
 	],
 	"./Suppliers/Index": [
 		"./resources/js/pages/Suppliers/Index.vue",
@@ -58513,7 +58513,7 @@ module.exports = JSON.parse('{"name":"axios","version":"0.21.4","description":"P
 /******/ 		// This function allow to reference async chunks
 /******/ 		__webpack_require__.u = (chunkId) => {
 /******/ 			// return url for filenames based on template
-/******/ 			return "js/" + chunkId + ".js?id=" + {"node_modules_chart_js_auto_auto_esm_js":"9296b829a7757dee","resources_js_pages_Auth_Login_vue":"cb7d9267c0b9275e","resources_js_pages_Customers_Index_vue":"898bc2426fcad027","resources_js_pages_Dashboards_Index_vue":"47d5f42a39d05f5f","resources_js_pages_Purchases_Index_vue":"2379d57d2dd2ccb4","resources_js_pages_Sales_Index_vue":"0daef78f7ef343a3","resources_js_pages_Stocks_Index_vue":"d2d773499e4a6eb5","resources_js_pages_Suppliers_Index_vue":"eb9e288ef1cbe92c","resources_js_pages_Users_Create_vue":"68c6eddf96b62d36","resources_js_pages_Users_Edit_vue":"2398820b004b6eb0","resources_js_pages_Users_Index_vue":"fcd3130414510571","resources_js_pages_Users_Show_vue":"6a40f301a420e7a4","resources_js_pages_Users_tableHeader_js":"48f19bd820caf015"}[chunkId] + "";
+/******/ 			return "js/" + chunkId + ".js?id=" + {"node_modules_chart_js_auto_auto_esm_js":"9296b829a7757dee","resources_js_pages_Auth_Login_vue":"cb7d9267c0b9275e","resources_js_pages_Customers_Index_vue":"efe10709977e56ba","resources_js_pages_Dashboards_Index_vue":"a565c1bfb1fb63b9","resources_js_pages_Purchases_Index_vue":"72cc6e7458a3c247","resources_js_pages_Sales_Index_vue":"bb75c1753cd4dfae","resources_js_pages_StockProducts_Index_vue":"8360688f3422c96f","resources_js_pages_Suppliers_Index_vue":"1c1d93b70b6e91ff","resources_js_pages_Users_Create_vue":"aff43d9484b673e5","resources_js_pages_Users_Edit_vue":"36baa4decc0ecd9c","resources_js_pages_Users_Index_vue":"91e95659c4fcc5be","resources_js_pages_Users_Show_vue":"f3f98d81ef28f6d1","resources_js_pages_Users_tableHeader_js":"48f19bd820caf015"}[chunkId] + "";
 /******/ 		};
 /******/ 	})();
 /******/ 	

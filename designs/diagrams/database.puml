@@ -7,6 +7,7 @@ entity User {
   * username
   * status
   * password
+  _
   * role_id
 }
 
@@ -16,4 +17,74 @@ entity Role {
   * name
 }
 
+entity Customer {
+  * id
+  __
+  * name
+  * address
+  * phone
+  * npwp
+}
+
+entity Product {
+  * id
+  __
+  * number
+  * name
+  * unit
+}
+
+entity Supplier {
+  * id
+  __
+  * name
+  * address
+  * phone
+  * email
+  * npwp
+}
+
+entity Purchase {
+  * id
+  __ 
+  * price
+  * ppn11
+  * qty
+  * product_number
+  __
+  * product_id
+  * supplier_id
+  * user_id
+}
+
+entity Sales {
+  * id
+  __
+    * price
+  * ppn11
+  * qty
+  * invoice_number
+  __
+  * product_id
+  * customer_id
+  * user_id
+}
+
+entity StockProduct {
+  * id
+  __
+  * product_number
+  * invoice_number
+  * amount
+  __
+  * product_id
+}
+
 User ||--|{ Role
+Purchase ||--|{ Product
+Purchase ||--|{ Supplier
+Purchase ||--|{ User
+Sales ||--|{ Product
+Sales ||--|{ Customer
+Sales ||--|{ User
+StockProduct ||--|| Product

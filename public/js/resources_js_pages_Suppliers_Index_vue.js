@@ -828,8 +828,8 @@ __webpack_require__.r(__webpack_exports__);
     }, {
       label: 'Stok Barang',
       icon: 'pi pi-box',
-      to: '/stocks',
-      component: 'Stocks/Index'
+      to: '/stock-products',
+      component: 'StockProducts/Index'
     }]
   }]
 });

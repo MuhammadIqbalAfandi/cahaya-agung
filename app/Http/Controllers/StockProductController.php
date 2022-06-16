@@ -2,14 +2,14 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Stock;
+use App\Models\StockProduct;
 use Illuminate\Http\Request;
 
-class StocksController extends Controller
+class StockProductController extends Controller
 {
     public function __construct()
     {
-        $this->authorizeResource(Stock::class);
+        $this->authorizeResource(StockProduct::class);
     }
 
     /**
@@ -19,7 +19,7 @@ class StocksController extends Controller
      */
     public function index()
     {
-        return inertia('Stocks/Index.vue');
+        return inertia('StockProducts/Index');
     }
 
     /**
