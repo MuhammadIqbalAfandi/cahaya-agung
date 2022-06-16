@@ -77,7 +77,7 @@ const onMenuToggle = (event) => {
   position: fixed;
   width: 300px;
   height: calc(100vh - 9rem);
-  z-index: 999;
+  z-index: 996;
   overflow-y: auto;
   user-select: none;
   top: 7rem;
@@ -144,7 +144,7 @@ const onMenuToggle = (event) => {
     }
 
     .layout-mask {
-      z-index: 998;
+      z-index: 995;
       background-color: var(--maskbg);
 
       &.layout-mask-enter-from,

@@ -106,6 +106,13 @@ p {
   }
 }
 
+/*
+  Component
+*/
 .p-message {
   margin-top: 0px;
+}
+
+.p-dialog-mask {
+  z-index: 997;
 }

@@ -81,7 +81,7 @@ $transition: 0.2s;
 .layout-topbar {
   position: fixed;
   height: 5rem;
-  z-index: 997;
+  z-index: 994;
   left: 0;
   top: 0;
   width: 100%;
