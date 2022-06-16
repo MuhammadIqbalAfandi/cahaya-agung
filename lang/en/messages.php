@@ -31,7 +31,8 @@ return [
             'expense' => 'Expense successfully added',
             'transaction' => 'Transaction successfully added',
             'user' => 'User Account successfully added',
-            'reset_password' => 'Password successfully reset'
+            'reset_password' => 'Password successfully reset',
+            'customer' => 'Customer successfully addedd'
         ],
         'update' => [
             'type_vehicle' => 'Type vehicle successfully changed',
@@ -40,7 +41,8 @@ return [
             'type_member' => 'Jenis member successfully changed',
             'change_password' => 'Password successfully changed',
             'transaction_status' => 'Transaction Status successfully changed',
-            'user' => 'User Account successfully changed'
+            'user' => 'User Account successfully changed',
+            'customer' => 'Customer successfully changed'
         ],
         'destroy' => [
             'type_member' => 'Jenis member successfully deleted',

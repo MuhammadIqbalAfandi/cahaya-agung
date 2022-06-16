@@ -2,8 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\Customer\StoreCustomerRequest;
+use App\Http\Requests\Customer\UpdateCustomerRequest;
 use App\Models\Customer;
-use Illuminate\Http\Request;
 
 class CustomerController extends Controller
 {
@@ -19,7 +20,20 @@ class CustomerController extends Controller
      */
     public function index()
     {
-        return inertia('Customers/Index.vue');
+        return inertia('Customers/Index.vue', [
+            'initialSearch' => request('search'),
+            'customers' => Customer::filter(request()->only('search'))
+                ->latest()
+                ->paginate(10)
+                ->withQueryString()
+                ->through(fn($customer) => [
+                    'id' => $customer->id,
+                    'name' => $customer->name,
+                    'address' => $customer->address,
+                    'phone' => $customer->phone,
+                    'npwp' => $customer->npwp
+                ])
+        ]);
     }
 
     /**
@@ -29,7 +43,7 @@ class CustomerController extends Controller
      */
     public function create()
     {
-        //
+        return inertia('Customers/Create');
     }
 
     /**
@@ -38,9 +52,11 @@ class CustomerController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreCustomerRequest $request)
     {
-        //
+        Customer::create($request->validated());
+
+        return back()->with('success', __('messages.success.store.customer'));
     }
 
     /**
@@ -57,24 +73,26 @@ class CustomerController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param  Customer  $customer
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Customer $customer)
     {
-        //
+        return inertia('Customers/Edit.vue', compact('customer'));
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  Customer  $customer
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(UpdateCustomerRequest $request, Customer $customer)
     {
-        //
+        $customer->update($request->validated());
+
+        return back()->with('success', __('messages.success.update.customer'));
     }
 
     /**
