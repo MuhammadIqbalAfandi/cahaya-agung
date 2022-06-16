@@ -134,6 +134,22 @@ __webpack_require__.r(__webpack_exports__);
       type: String,
       required: true
     },
+    promptLabel: {
+      type: String,
+      "default": 'Masukan kata sandi'
+    },
+    weakLabel: {
+      type: String,
+      "default": 'Ah Lemah'
+    },
+    mediumLabel: {
+      type: String,
+      "default": 'Lumayan'
+    },
+    strongLabel: {
+      type: String,
+      "default": 'Wow Kuat'
+    },
     error: {
       type: String,
       "default": null
@@ -626,10 +642,10 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
   , _hoisted_2), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_Password, {
     "class": "w-full",
     "input-class": "w-full",
-    promptLabel: "Masukan kata sandi",
-    weakLabel: "Ah Lemah",
-    mediumLabel: "Lumayan",
-    strongLabel: "Wow Kuat",
+    promptLabel: $props.promptLabel,
+    weakLabel: $props.weakLabel,
+    mediumLabel: $props.mediumLabel,
+    strongLabel: $props.strongLabel,
     disabled: $props.disabled,
     id: $setup.forLabel,
     placeholder: $props.placeholder,
@@ -642,7 +658,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     })
   }, null, 8
   /* PROPS */
-  , ["disabled", "id", "placeholder", "aria-describedby", "value", "model-value"]), $props.error ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("small", {
+  , ["promptLabel", "weakLabel", "mediumLabel", "strongLabel", "disabled", "id", "placeholder", "aria-describedby", "value", "model-value"]), $props.error ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("small", {
     key: 0,
     id: $setup.ariaDescribedbyLabel,
     "class": (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)({

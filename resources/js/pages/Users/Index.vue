@@ -62,7 +62,7 @@ const onResetPassword = (data) => {
             <div class="flex align-items-center">
               <InputText
                 class="w-full md:w-27rem"
-                placeholder="cari, contoh: tina, tina@xx.com"
+                placeholder="cari, contoh: tina"
                 v-model="search"
               />
             </div>

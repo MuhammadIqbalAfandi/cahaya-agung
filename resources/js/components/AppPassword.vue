@@ -14,6 +14,22 @@ const props = defineProps({
     type: String,
     required: true,
   },
+  promptLabel: {
+    type: String,
+    default: 'Masukan kata sandi',
+  },
+  weakLabel: {
+    type: String,
+    default: 'Ah Lemah',
+  },
+  mediumLabel: {
+    type: String,
+    default: 'Lumayan',
+  },
+  strongLabel: {
+    type: String,
+    default: 'Wow Kuat',
+  },
   error: {
     type: String,
     default: null,
@@ -39,10 +55,10 @@ const ariaDescribedbyLabel = computed(
     <Password
       class="w-full"
       input-class="w-full"
-      promptLabel="Masukan kata sandi"
-      weakLabel="Ah Lemah"
-      mediumLabel="Lumayan"
-      strongLabel="Wow Kuat"
+      :promptLabel="promptLabel"
+      :weakLabel="weakLabel"
+      :mediumLabel="mediumLabel"
+      :strongLabel="strongLabel"
       :disabled="disabled"
       :id="forLabel"
       :placeholder="placeholder"
