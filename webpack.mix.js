@@ -15,7 +15,7 @@ mix
   .js('resources/js/vue.js', 'public/js')
   .webpackConfig(require('./webpack.config'))
   .vue()
-  .browserSync('http://cahaya-aguh.test')
+  .browserSync('http://cahaya-agung.test')
   .disableNotifications()
 
 if (mix.inProduction()) {

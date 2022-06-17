@@ -34,7 +34,7 @@ import Textarea from 'primevue/textarea'
 import Tooltip from 'primevue/tooltip'
 
 createInertiaApp({
-  title: (title) => `${title} - Cahaya Aguh`,
+  title: (title) => `${title} - Cahaya Agung`,
   resolve: (name) => import(`./pages/${name}`),
   setup({ el, App, props, plugin }) {
     createApp({ render: () => h(App, props) })

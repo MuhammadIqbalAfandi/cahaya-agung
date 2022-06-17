@@ -58569,7 +58569,7 @@ module.exports = JSON.parse('{"name":"axios","version":"0.21.4","description":"P
 /******/ 		// This function allow to reference async chunks
 /******/ 		__webpack_require__.u = (chunkId) => {
 /******/ 			// return url for filenames based on template
-/******/ 			return "js/" + chunkId + ".js?id=" + {"node_modules_chart_js_auto_auto_esm_js":"9296b829a7757dee","resources_js_pages_Auth_Login_vue":"5bd7e7097d71fc44","resources_js_pages_Customers_Create_vue":"a211507b505ce817","resources_js_pages_Customers_Edit_vue":"371aaaf823f061aa","resources_js_pages_Customers_Index_vue":"9e252117c9e9c2cb","resources_js_pages_Customers_tableHeader_js":"7a40a3d5ad60171c","resources_js_pages_Dashboards_Index_vue":"b56d0bbf613c9adf","resources_js_pages_Error_Index_vue":"f0638cec18187cf1","resources_js_pages_Purchases_Index_vue":"da7339cba0a96ded","resources_js_pages_Sales_Index_vue":"18ffdbcef73f7946","resources_js_pages_StockProducts_Index_vue":"b49a534009ac5c43","resources_js_pages_Suppliers_Create_vue":"0b29fe6eb18f54c4","resources_js_pages_Suppliers_Edit_vue":"1a212b37037c80fa","resources_js_pages_Suppliers_Index_vue":"08b1edca68497b78","resources_js_pages_Suppliers_tableHeader_js":"500bc29ff0dbddce","resources_js_pages_Users_Create_vue":"0575e681aa1133bd","resources_js_pages_Users_Edit_vue":"e6a29c2f7e91240a","resources_js_pages_Users_Index_vue":"9453be37f6b522dd","resources_js_pages_Users_Show_vue":"0d821aab7062e840","resources_js_pages_Users_tableHeader_js":"48f19bd820caf015"}[chunkId] + "";
+/******/ 			return "js/" + chunkId + ".js?id=" + {"node_modules_chart_js_auto_auto_esm_js":"9296b829a7757dee","resources_js_pages_Auth_Login_vue":"3660adc6dce187d8","resources_js_pages_Customers_Create_vue":"a28f01f843162dc3","resources_js_pages_Customers_Edit_vue":"888355cbc87c499f","resources_js_pages_Customers_Index_vue":"8b937b36c08abd77","resources_js_pages_Customers_tableHeader_js":"7a40a3d5ad60171c","resources_js_pages_Dashboards_Index_vue":"c5d472522e3c56ea","resources_js_pages_Error_Index_vue":"4119ff1c60260652","resources_js_pages_Purchases_Index_vue":"78384af131366665","resources_js_pages_Sales_Index_vue":"8437f395f6c9a021","resources_js_pages_StockProducts_Index_vue":"fddc59b8e7d0e040","resources_js_pages_Suppliers_Create_vue":"d2de74a83347ac1a","resources_js_pages_Suppliers_Edit_vue":"5d6c8bf19ca55905","resources_js_pages_Suppliers_Index_vue":"fe5c7495dc6faf71","resources_js_pages_Suppliers_tableHeader_js":"500bc29ff0dbddce","resources_js_pages_Users_Create_vue":"e7a11c529b06b795","resources_js_pages_Users_Edit_vue":"b79f9b44dc4c7ab3","resources_js_pages_Users_Index_vue":"b55debdc9cbaf227","resources_js_pages_Users_Show_vue":"9ee8ea844b0d1b72","resources_js_pages_Users_tableHeader_js":"48f19bd820caf015"}[chunkId] + "";
 /******/ 		};
 /******/ 	})();
 /******/ 	
@@ -58844,7 +58844,7 @@ __webpack_require__.r(__webpack_exports__);
 
 (0,_inertiajs_inertia_vue3__WEBPACK_IMPORTED_MODULE_6__.createInertiaApp)({
   title: function title(_title) {
-    return "".concat(_title, " - Cahaya Aguh");
+    return "".concat(_title, " - Cahaya Agung");
   },
   resolve: function resolve(name) {
     return __webpack_require__("./resources/js/pages lazy recursive ^\\.\\/.*$")("./".concat(name));
