@@ -58364,6 +58364,14 @@ var map = {
 		"./resources/js/pages/Purchases/Index.vue",
 		"resources_js_pages_Purchases_Index_vue"
 	],
+	"./Sales/Create": [
+		"./resources/js/pages/Sales/Create.vue",
+		"resources_js_pages_Sales_Create_vue"
+	],
+	"./Sales/Create.vue": [
+		"./resources/js/pages/Sales/Create.vue",
+		"resources_js_pages_Sales_Create_vue"
+	],
 	"./Sales/Index": [
 		"./resources/js/pages/Sales/Index.vue",
 		"resources_js_pages_Sales_Index_vue"
@@ -58371,6 +58379,14 @@ var map = {
 	"./Sales/Index.vue": [
 		"./resources/js/pages/Sales/Index.vue",
 		"resources_js_pages_Sales_Index_vue"
+	],
+	"./Sales/tableHeader": [
+		"./resources/js/pages/Sales/tableHeader.js",
+		"resources_js_pages_Sales_tableHeader_js"
+	],
+	"./Sales/tableHeader.js": [
+		"./resources/js/pages/Sales/tableHeader.js",
+		"resources_js_pages_Sales_tableHeader_js"
 	],
 	"./StockProducts/Index": [
 		"./resources/js/pages/StockProducts/Index.vue",
@@ -58569,7 +58585,7 @@ module.exports = JSON.parse('{"name":"axios","version":"0.21.4","description":"P
 /******/ 		// This function allow to reference async chunks
 /******/ 		__webpack_require__.u = (chunkId) => {
 /******/ 			// return url for filenames based on template
-/******/ 			return "js/" + chunkId + ".js?id=" + {"node_modules_chart_js_auto_auto_esm_js":"9296b829a7757dee","resources_js_pages_Auth_Login_vue":"3660adc6dce187d8","resources_js_pages_Customers_Create_vue":"a28f01f843162dc3","resources_js_pages_Customers_Edit_vue":"888355cbc87c499f","resources_js_pages_Customers_Index_vue":"8b937b36c08abd77","resources_js_pages_Customers_tableHeader_js":"7a40a3d5ad60171c","resources_js_pages_Dashboards_Index_vue":"c5d472522e3c56ea","resources_js_pages_Error_Index_vue":"4119ff1c60260652","resources_js_pages_Purchases_Index_vue":"78384af131366665","resources_js_pages_Sales_Index_vue":"8437f395f6c9a021","resources_js_pages_StockProducts_Index_vue":"fddc59b8e7d0e040","resources_js_pages_Suppliers_Create_vue":"d2de74a83347ac1a","resources_js_pages_Suppliers_Edit_vue":"5d6c8bf19ca55905","resources_js_pages_Suppliers_Index_vue":"fe5c7495dc6faf71","resources_js_pages_Suppliers_tableHeader_js":"500bc29ff0dbddce","resources_js_pages_Users_Create_vue":"e7a11c529b06b795","resources_js_pages_Users_Edit_vue":"b79f9b44dc4c7ab3","resources_js_pages_Users_Index_vue":"b55debdc9cbaf227","resources_js_pages_Users_Show_vue":"9ee8ea844b0d1b72","resources_js_pages_Users_tableHeader_js":"48f19bd820caf015"}[chunkId] + "";
+/******/ 			return "js/" + chunkId + ".js?id=" + {"node_modules_chart_js_auto_auto_esm_js":"9296b829a7757dee","resources_js_pages_Auth_Login_vue":"3660adc6dce187d8","resources_js_pages_Customers_Create_vue":"a28f01f843162dc3","resources_js_pages_Customers_Edit_vue":"888355cbc87c499f","resources_js_pages_Customers_Index_vue":"8b937b36c08abd77","resources_js_pages_Customers_tableHeader_js":"7a40a3d5ad60171c","resources_js_pages_Dashboards_Index_vue":"c5d472522e3c56ea","resources_js_pages_Error_Index_vue":"4119ff1c60260652","resources_js_pages_Purchases_Index_vue":"78384af131366665","resources_js_pages_Sales_Create_vue":"0bac2c72f834d4f8","resources_js_pages_Sales_Index_vue":"47a48a9d387ea71b","resources_js_pages_Sales_tableHeader_js":"a7aefd03020f1bdf","resources_js_pages_StockProducts_Index_vue":"fddc59b8e7d0e040","resources_js_pages_Suppliers_Create_vue":"d2de74a83347ac1a","resources_js_pages_Suppliers_Edit_vue":"5d6c8bf19ca55905","resources_js_pages_Suppliers_Index_vue":"fe5c7495dc6faf71","resources_js_pages_Suppliers_tableHeader_js":"500bc29ff0dbddce","resources_js_pages_Users_Create_vue":"e7a11c529b06b795","resources_js_pages_Users_Edit_vue":"b79f9b44dc4c7ab3","resources_js_pages_Users_Index_vue":"b55debdc9cbaf227","resources_js_pages_Users_Show_vue":"9ee8ea844b0d1b72","resources_js_pages_Users_tableHeader_js":"48f19bd820caf015"}[chunkId] + "";
 /******/ 		};
 /******/ 	})();
 /******/ 	

@@ -19,7 +19,24 @@ class SalesController extends Controller
      */
     public function index()
     {
-        return inertia('Sales/Index.vue');
+        return inertia('Sales/Index', [
+            'initialSearch' => request('search'),
+            'sales' => Sale::filter(request()->only('search'))
+                ->latest()
+                ->paginate(10)
+                ->withQueryString()
+                ->through(fn($sale) => [
+                    'id' => $sale->id,
+                    'updatedAt' => $sale->updated_at,
+                    'number' => $sale->number,
+                    'status' => $sale->status,
+                    'price' => $sale->saleDetails->price,
+                    'ppn' => $sale->saleDetails->ppn,
+                    'qty' => $sale->saleDetails->qty,
+                    'productName' => $sale->product->name,
+                    'productNumber' => $sale->product->number
+                ])
+        ]);
     }
 
     /**
@@ -29,7 +46,11 @@ class SalesController extends Controller
      */
     public function create()
     {
-        //
+        // return inertia('Sales/Create', [
+        //     'customers' => fn () => [
+        //             'name' =>
+        //     ]
+        // ]);
     }
 
     /**

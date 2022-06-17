@@ -17,7 +17,7 @@ return new class extends Migration
             $table->id();
             $table->string('number');
             $table->enum('status', ['pending', 'success']);
-            $table->foreignId('customers_id')->constrained();
+            $table->foreignId('customer_id')->constrained();
             $table->foreignId('user_id')->constrained();
             $table->timestamps();
         });
