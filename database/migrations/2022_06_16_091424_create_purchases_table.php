@@ -15,11 +15,8 @@ return new class extends Migration
     {
         Schema::create('purchases', function (Blueprint $table) {
             $table->id();
-            $table->unsignedInteger('price');
-            $table->unsignedInteger('ppn11');
-            $table->unsignedInteger('qty');
-            $table->string('product_number')->unique();
-            $table->foreignId('product_id')->constrained();
+            $table->string('number');
+            $table->string('status');
             $table->foreignId('supplier_id')->constrained();
             $table->foreignId('user_id')->constrained();
             $table->timestamps();

@@ -47,12 +47,9 @@ entity Supplier {
 entity Purchase {
   * id
   __ 
-  * price
-  * ppn11
-  * qty
-  * product_number
+  * number
+  * status
   __
-  * product_id
   * supplier_id
   * user_id
 }
@@ -60,12 +57,9 @@ entity Purchase {
 entity Sales {
   * id
   __
-    * price
-  * ppn11
-  * qty
-  * invoice_number
+  * number
+  * status
   __
-  * product_id
   * customer_id
   * user_id
 }
@@ -73,18 +67,53 @@ entity Sales {
 entity StockProduct {
   * id
   __
-  * product_number
-  * invoice_number
+  * purchase_number
+  * sale_number
   * amount
   __
   * product_id
 }
 
+entity Price {
+  * id
+  __
+  * price
+  __
+  * product_id
+  * customer_id
+  * supplier_id
+}
+
+entity SaleDetail {
+  * id
+  __
+  * price
+  * ppn
+  * qty
+  __
+  * sale_id
+  * product_id
+}
+
+entity PurchaseDetail {
+  * id
+  __
+  * price
+  * ppn
+  * qty
+  __
+  * purchase_id
+  * product_id
+}
+
 User ||--|{ Role
-Purchase ||--|{ Product
 Purchase ||--|{ Supplier
 Purchase ||--|{ User
-Sales ||--|{ Product
 Sales ||--|{ Customer
 Sales ||--|{ User
-StockProduct ||--|| Product
+StockProduct ||--|{ Product
+PurchaseDetail ||--|{ Purchase
+PurchaseDetail ||--|{ Product
+SaleDetail ||--|{ Sales
+SaleDetail ||--|{ Product
+Product ||--|| Price

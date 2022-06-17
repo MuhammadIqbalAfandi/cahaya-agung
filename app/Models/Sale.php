@@ -10,11 +10,8 @@ class Sale extends Model
     use HasFactory;
 
     protected $fillable = [
-        'price',
-        'ppn11',
-        'qty',
-        'invoice_number',
-        'product_id',
+        'number',
+        'status',
         'customers_id',
         'user_id'
     ];
