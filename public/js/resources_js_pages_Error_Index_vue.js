@@ -102,10 +102,10 @@ var _hoisted_3 = /*#__PURE__*/_withScopeId(function () {
 });
 
 var _hoisted_4 = {
-  "class": "col-12 xl:col-6 bg-gradient-one"
+  "class": "col-12 xl:col-6 border-gradient"
 };
 var _hoisted_5 = {
-  "class": "h-full w-full m-0 py-7 px-4 bg-gradient-two"
+  "class": "h-full w-full m-0 py-7 px-4 bg-gradient"
 };
 var _hoisted_6 = {
   "class": "grid flex flex-column align-items-center"
@@ -190,7 +190,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, ".bg-gradient-one[data-v-3e08751c] {\n  border-radius: 56px;\n  padding: 0.3rem;\n  background: linear-gradient(180deg, rgba(233, 30, 99, 0.4) 10%, rgba(33, 150, 243, 0) 30%);\n}\n.bg-gradient-two[data-v-3e08751c] {\n  border-radius: 53px;\n  background: linear-gradient(180deg, var(--surface-50) 38.9%, var(--surface-0));\n}", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, ".border-gradient[data-v-3e08751c] {\n  border-radius: 4px;\n  padding: 0.3rem;\n  background: linear-gradient(180deg, rgba(233, 30, 99, 0.4) 10%, rgba(33, 150, 243, 0) 30%);\n}\n.bg-gradient[data-v-3e08751c] {\n  border-radius: 3px;\n  background: linear-gradient(180deg, var(--surface-50) 38.9%, var(--surface-0));\n}", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 

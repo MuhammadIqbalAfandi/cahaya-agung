@@ -40,8 +40,8 @@ const description = computed(() => {
           style="width: 81px; height: 60px"
         />
       </div>
-      <div class="col-12 xl:col-6 bg-gradient-one">
-        <div class="h-full w-full m-0 py-7 px-4 bg-gradient-two">
+      <div class="col-12 xl:col-6 border-gradient">
+        <div class="h-full w-full m-0 py-7 px-4 bg-gradient">
           <div class="grid flex flex-column align-items-center">
             <div
               class="flex justify-content-center align-items-center bg-pink-500 border-circle"
@@ -66,8 +66,8 @@ const description = computed(() => {
 </template>
 
 <style lang="scss" scoped>
-.bg-gradient-one {
-  border-radius: 56px;
+.border-gradient {
+  border-radius: 4px;
   padding: 0.3rem;
   background: linear-gradient(
     180deg,
@@ -75,8 +75,8 @@ const description = computed(() => {
     rgba(33, 150, 243, 0) 30%
   );
 }
-.bg-gradient-two {
-  border-radius: 53px;
+.bg-gradient {
+  border-radius: 3px;
   background: linear-gradient(
     180deg,
     var(--surface-50) 38.9%,
