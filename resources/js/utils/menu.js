@@ -63,6 +63,12 @@ export default {
           to: '/sales',
           component: 'Sales/Index',
         },
+        {
+          label: 'Produk',
+          icon: 'pi pi-th-large',
+          to: '/products',
+          component: 'Products/Index',
+        },
       ],
     },
   ],

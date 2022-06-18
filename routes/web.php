@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\ProductController;
 use App\Http\Controllers\PurchaseController;
 use App\Http\Controllers\SalesController;
 use App\Http\Controllers\StockProductController;
@@ -45,6 +46,8 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::resource('/suppliers', SupplierController::class);
 
     Route::resource('/stock-products', StockProductController::class);
+
+    Route::resource('/products', ProductController::class);
 });
 
 require __DIR__ . '/auth.php';

@@ -18,7 +18,8 @@ import Column from 'primevue/column'
 import ConfirmationService from 'primevue/confirmationservice'
 import ConfirmDialog from 'primevue/confirmdialog'
 import DataTable from 'primevue/datatable'
-import Dialog from 'primevue/dialog'
+import DialogService from 'primevue/dialogservice'
+import DynamicDialog from 'primevue/dynamicdialog'
 import Divider from 'primevue/divider'
 import Dropdown from 'primevue/dropdown'
 import Editor from 'primevue/editor'
@@ -41,6 +42,7 @@ createInertiaApp({
       .use(plugin)
       .use(PrimeVue, { ripple: true })
       .use(ConfirmationService)
+      .use(DialogService)
       .mixin({ methods: { route } })
       .directive('styleclass', StyleClass)
       .directive('ripple', Ripple)
@@ -54,8 +56,8 @@ createInertiaApp({
       .component('Column', Column)
       .component('ConfirmDialog', ConfirmDialog)
       .component('DataTable', DataTable)
-      .component('Dialog', Dialog)
       .component('Divider', Divider)
+      .component('DynamicDialog', DynamicDialog)
       .component('Dropdown', Dropdown)
       .component('Editor', Editor)
       .component('InputNumber', InputNumber)

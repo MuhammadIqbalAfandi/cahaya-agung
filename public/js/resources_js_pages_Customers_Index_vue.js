@@ -1177,6 +1177,11 @@ __webpack_require__.r(__webpack_exports__);
       icon: 'pi pi-tag',
       to: '/sales',
       component: 'Sales/Index'
+    }, {
+      label: 'Produk',
+      icon: 'pi pi-th-large',
+      to: '/products',
+      component: 'Products/Index'
     }]
   }],
   // Operator

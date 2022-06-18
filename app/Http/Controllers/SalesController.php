@@ -2,8 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Customer;
+use App\Models\Product;
 use App\Models\Sale;
 use Illuminate\Http\Request;
+use Inertia\Inertia;
 
 class SalesController extends Controller
 {
@@ -46,11 +49,26 @@ class SalesController extends Controller
      */
     public function create()
     {
-        // return inertia('Sales/Create', [
-        //     'customers' => fn () => [
-        //             'name' =>
-        //     ]
-        // ]);
+        return inertia('Sales/Create', [
+            'number' => 'PJN' . now()->format('YmdHis'),
+            'customers' => Inertia::lazy(
+                fn() => Customer::filter(request()->only('customer'))
+                    ->get()
+                    ->transform(fn($customer) => [
+                        'id' => $customer->id,
+                        'name' => $customer->name,
+                        'npwp' => $customer->npwp
+                    ])),
+            'products' => Inertia::lazy(
+                fn() => Product::filter(request()->only('product'))
+                    ->get()
+                    ->transform(fn($product) => [
+                        'id' => $product->id,
+                        'number' => $product->number,
+                        'name' => $product->name
+                    ])
+            )
+        ]);
     }
 
     /**
@@ -61,7 +79,7 @@ class SalesController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        dd($request);
     }
 
     /**
