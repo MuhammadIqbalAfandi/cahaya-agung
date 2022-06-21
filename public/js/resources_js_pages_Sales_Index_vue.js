@@ -322,7 +322,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _inertiajs_inertia_vue3__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @inertiajs/inertia-vue3 */ "./node_modules/@inertiajs/inertia-vue3/dist/index.js");
 /* harmony import */ var lodash__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! lodash */ "./node_modules/lodash/lodash.js");
 /* harmony import */ var lodash__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(lodash__WEBPACK_IMPORTED_MODULE_3__);
-/* harmony import */ var _tableHeader__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./tableHeader */ "./resources/js/pages/Sales/tableHeader.js");
+/* harmony import */ var _config__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./config */ "./resources/js/pages/Sales/config.js");
 /* harmony import */ var _components_useSearchText__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @/components/useSearchText */ "./resources/js/components/useSearchText.js");
 /* harmony import */ var _layouts_DashboardLayout_vue__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @/layouts/DashboardLayout.vue */ "./resources/js/layouts/DashboardLayout.vue");
 /* harmony import */ var _components_AppButtonLink_vue__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @/components/AppButtonLink.vue */ "./resources/js/components/AppButtonLink.vue");
@@ -364,7 +364,7 @@ __webpack_require__.r(__webpack_exports__);
       Inertia: _inertiajs_inertia__WEBPACK_IMPORTED_MODULE_1__.Inertia,
       Head: _inertiajs_inertia_vue3__WEBPACK_IMPORTED_MODULE_2__.Head,
       pickBy: lodash__WEBPACK_IMPORTED_MODULE_3__.pickBy,
-      tableHeader: _tableHeader__WEBPACK_IMPORTED_MODULE_4__["default"],
+      tableHeader: _config__WEBPACK_IMPORTED_MODULE_4__.tableHeader,
       useSearchText: _components_useSearchText__WEBPACK_IMPORTED_MODULE_5__.useSearchText,
       DashboardLayout: _layouts_DashboardLayout_vue__WEBPACK_IMPORTED_MODULE_6__["default"],
       AppButtonLink: _components_AppButtonLink_vue__WEBPACK_IMPORTED_MODULE_7__["default"],
@@ -1081,18 +1081,27 @@ function useSearchText(props) {
 
 /***/ }),
 
-/***/ "./resources/js/pages/Sales/tableHeader.js":
-/*!*************************************************!*\
-  !*** ./resources/js/pages/Sales/tableHeader.js ***!
-  \*************************************************/
+/***/ "./resources/js/pages/Sales/config.js":
+/*!********************************************!*\
+  !*** ./resources/js/pages/Sales/config.js ***!
+  \********************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */   "dialogStyle": () => (/* binding */ dialogStyle),
+/* harmony export */   "optionStatus": () => (/* binding */ optionStatus),
+/* harmony export */   "tableHeader": () => (/* binding */ tableHeader)
 /* harmony export */ });
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ([{
+var optionStatus = [{
+  label: 'Pending',
+  value: 'pending'
+}, {
+  label: 'Berhasil',
+  value: 'success'
+}];
+var tableHeader = [{
   field: 'updatedAt',
   header: 'Tanggal'
 }, {
@@ -1113,7 +1122,17 @@ __webpack_require__.r(__webpack_exports__);
 }, {
   field: 'productNumber',
   header: 'Nomor Produk'
-}]);
+}];
+var dialogStyle = {
+  style: {
+    width: '50vw'
+  },
+  breakpoints: {
+    '960px': '75vw',
+    '640px': '90vw'
+  },
+  modal: true
+};
 
 /***/ }),
 

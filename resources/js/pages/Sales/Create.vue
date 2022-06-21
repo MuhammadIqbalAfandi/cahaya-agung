@@ -1,19 +1,18 @@
 <script setup>
-import { Inertia } from '@inertiajs/inertia'
-import { useForm, Head } from '@inertiajs/inertia-vue3'
+import { useForm, Head, usePage } from '@inertiajs/inertia-vue3'
 import { useFormErrorReset } from '@/components/useFormErrorReset'
-import { useDialog } from 'primevue/usedialog'
+import { useProductAutoComplete } from './useProductAutoComplete'
+import { useCustomerAutoComplete } from './useCustomerAutoComplete'
+import { optionStatus } from './config'
+import SaleDetails from './Components/SaleDetails.vue'
 import AppInputText from '@/components/AppInputText.vue'
 import AppInputNumber from '@/components/AppInputNumber.vue'
 import AppDropdown from '@/components/AppDropdown.vue'
 import AppAutocompleteBasic from '@/components/AppAutocompleteBasic.vue'
 import DashboardLayout from '@/layouts/DashboardLayout.vue'
-import CustomerCreate from '@/pages/Customers/Components/Create.vue'
-import ProductCreate from '@/pages/Products/Components/Create.vue'
 
 const props = defineProps({
   number: String,
-  productNumber: String,
   customers: {
     type: Array,
     default: [],
@@ -24,86 +23,32 @@ const props = defineProps({
   },
 })
 
-const dialog = useDialog()
-const dialogStyle = {
-  style: {
-    width: '50vw',
-  },
-  breakpoints: {
-    '960px': '75vw',
-    '640px': '90vw',
-  },
-  modal: true,
-}
-
 const form = useForm({
   number: props.number,
   status: 'pending',
   price: null,
   qty: null,
-  customer_id: null,
-  product_id: null,
+  customer: null,
+  product: null,
 })
 
+const { customerOnComplete, customerOnSelected, showCreateCustomer } =
+  useCustomerAutoComplete(form)
+
+const { productOnComplete, productOnSelected, showCreateProduct } =
+  useProductAutoComplete(form)
+
 useFormErrorReset(form)
-
-const optionStatus = [
-  {
-    label: 'Pending',
-    value: 'pending',
-  },
-  {
-    label: 'Berhasil',
-    value: 'success',
-  },
-]
-
-const customerOnComplete = (event) => {
-  Inertia.reload({
-    data: { customer: event.query },
-    only: ['customers'],
-  })
-}
-
-const customerOnSelected = (event) => {
-  form.customer_id = event.value
-}
-
-const showCreateCustomer = () => {
-  dialog.open(CustomerCreate, {
-    props: {
-      header: 'Tambah Pelanggan',
-      ...dialogStyle,
-    },
-  })
-}
-
-const productOnComplete = (event) => {
-  Inertia.reload({
-    data: { product: event.query },
-    only: ['products'],
-  })
-}
-
-const productOnSelected = (event) => {
-  form.product_id = event.value
-}
-
-const showCreateProduct = () => {
-  dialog.open(ProductCreate, {
-    props: {
-      header: 'Tambah Produk',
-      ...dialogStyle,
-    },
-  })
-}
 
 const onSubmit = () => {
   form
     .transform((data) => ({
-      ...data,
-      customer_id: data.customer_id.id,
-      product_id: data.product_id.id,
+      number: data.number,
+      status: data.status,
+      price: data.price,
+      qty: data.qty,
+      customer_id: data.customer.id,
+      product_id: data.product.number,
     }))
     .post(route('sales.store'), { onSuccess: () => form.reset() })
 }
@@ -146,7 +91,7 @@ const onSubmit = () => {
                   label="Pelanggan"
                   placeholder="pelanggan"
                   field="name"
-                  v-model="form.customer_id"
+                  v-model="form.customer"
                   :error="form.errors.customer_id"
                   :suggestions="customers"
                   @complete="customerOnComplete"
@@ -178,7 +123,7 @@ const onSubmit = () => {
                   label="Produk"
                   placeholder="produk"
                   field="name"
-                  v-model="form.product_id"
+                  v-model="form.product"
                   :error="form.errors.product_id"
                   :suggestions="products"
                   @complete="productOnComplete"
@@ -238,6 +183,17 @@ const onSubmit = () => {
             </div>
           </template>
         </Card>
+      </div>
+
+      <div class="col-12 lg:col-4">
+        <SaleDetails
+          :sale-number="number"
+          :sale-price="form.price"
+          :sale-qty="form.qty"
+          :sale-status="form.status"
+          :customer="form.customer"
+          :product="form.product"
+        />
       </div>
     </div>
   </DashboardLayout>

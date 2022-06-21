@@ -34,7 +34,8 @@ return [
             'reset_password' => 'Password successfully reset',
             'customer' => 'Customer successfully addedd',
             'supplier' => 'Supplier successfully addedd',
-            'product' => 'Product successfully addedd'
+            'product' => 'Product successfully addedd',
+            'sale' => 'Penjualan successfully addedd'
         ],
         'update' => [
             'type_vehicle' => 'Type vehicle successfully changed',

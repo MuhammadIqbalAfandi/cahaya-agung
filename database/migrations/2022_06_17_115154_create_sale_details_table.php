@@ -18,8 +18,9 @@ return new class extends Migration
             $table->unsignedInteger('price');
             $table->unsignedInteger('ppn');
             $table->unsignedInteger('qty');
+            $table->string('product_id');
             $table->foreignId('sale_id')->constrained();
-            $table->foreignId('product_id')->constrained();
+            $table->foreign('product_id')->references('number')->on('products');
             $table->timestamps();
         });
     }

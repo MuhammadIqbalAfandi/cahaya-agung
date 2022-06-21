@@ -12,9 +12,19 @@ class Sale extends Model
     protected $fillable = [
         'number',
         'status',
-        'customers_id',
+        'customer_id',
         'user_id'
     ];
+
+    public function saleDetail()
+    {
+        return $this->hasOne(SaleDetail::class);
+    }
+
+    public function saleDetailProduct()
+    {
+        return $this->belongsToMany(Product::class, SaleDetail::class);
+    }
 
     public function scopeFilter($query, array $filters)
     {

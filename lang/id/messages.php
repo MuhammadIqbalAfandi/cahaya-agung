@@ -34,7 +34,8 @@ return [
             'reset_password' => 'Kata sandi berhasil di reset',
             'customer' => 'Pelanggan berhasil ditambahkan',
             'supplier' => 'Supplier berhasil ditambahkan',
-            'product' => 'Produk berhasil ditambahkan'
+            'product' => 'Produk berhasil ditambahkan',
+            'sale' => 'Penjualan berhasil ditambahkan'
         ],
         'update' => [
             'type_vehicle' => 'Jenis kendaraan berhasil diubah',

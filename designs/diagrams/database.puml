@@ -46,7 +46,7 @@ entity Supplier {
 
 entity Purchase {
   * id
-  __ 
+  __
   * number
   * status
   __
@@ -114,6 +114,6 @@ Sales ||--|{ User
 StockProduct ||--|{ Product
 PurchaseDetail ||--|{ Purchase
 PurchaseDetail ||--|{ Product
-SaleDetail ||--|{ Sales
+SaleDetail ||--|| Sales
 SaleDetail ||--|{ Product
 Product ||--|| Price

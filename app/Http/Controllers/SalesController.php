@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\Sales\StoreSaleRequest;
 use App\Models\Customer;
 use App\Models\Product;
 use App\Models\Sale;
@@ -33,11 +34,11 @@ class SalesController extends Controller
                     'updatedAt' => $sale->updated_at,
                     'number' => $sale->number,
                     'status' => $sale->status,
-                    'price' => $sale->saleDetails->price,
-                    'ppn' => $sale->saleDetails->ppn,
-                    'qty' => $sale->saleDetails->qty,
-                    'productName' => $sale->product->name,
-                    'productNumber' => $sale->product->number
+                    'price' => $sale->saleDetail->price,
+                    'ppn' => $sale->saleDetail->ppn,
+                    'qty' => $sale->saleDetail->qty,
+                    'productName' => $sale->saleDetailProduct,
+                    'productNumber' => $sale->saleDetailProduct
                 ])
         ]);
     }
@@ -51,21 +52,26 @@ class SalesController extends Controller
     {
         return inertia('Sales/Create', [
             'number' => 'PJN' . now()->format('YmdHis'),
+            'productNumber' => Inertia::lazy(
+                fn() => 'PDK' . now()->format('YmdHis')
+            ),
             'customers' => Inertia::lazy(
-                fn() => Customer::filter(request()->only('customer'))
+                fn() => Customer::filter(['search' => request('customer')])
                     ->get()
                     ->transform(fn($customer) => [
                         'id' => $customer->id,
                         'name' => $customer->name,
+                        'address' => $customer->address,
                         'npwp' => $customer->npwp
                     ])),
             'products' => Inertia::lazy(
-                fn() => Product::filter(request()->only('product'))
+                fn() => Product::filter(['search' => request('product')])
                     ->get()
                     ->transform(fn($product) => [
                         'id' => $product->id,
                         'number' => $product->number,
-                        'name' => $product->name
+                        'name' => $product->name,
+                        'unit' => $product->unit
                     ])
             )
         ]);
@@ -77,18 +83,27 @@ class SalesController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreSaleRequest $request)
     {
-        dd($request);
+        $validated = $request->safe()->merge([
+            'user_id' => auth()->user()->id,
+            'ppn' => 11
+        ])->all();
+
+        $sale = Sale::create($validated);
+
+        $sale->saleDetail()->create($validated);
+
+        return back()->with('success', __('messages.success.store.sale'));
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param  Sale $sale
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Sale $sale)
     {
         //
     }
@@ -96,10 +111,10 @@ class SalesController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param  Sale $sale
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Sale $sale)
     {
         //
     }
@@ -108,10 +123,10 @@ class SalesController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  Sale $sale
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Sale $sale)
     {
         //
     }
@@ -119,10 +134,10 @@ class SalesController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param  Sale $sale
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Sale $sale)
     {
         //
     }

@@ -13,7 +13,9 @@ const form = useForm({
 useFormErrorReset(form)
 
 const onSubmit = () => {
-  form.post(route('customers.store'), { onSuccess: () => form.reset() })
+  form.post(route('customers.store'), {
+    onSuccess: () => form.reset(),
+  })
 }
 </script>
 

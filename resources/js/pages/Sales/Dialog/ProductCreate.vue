@@ -1,14 +1,21 @@
 <script setup>
-import { useForm } from '@inertiajs/inertia-vue3'
+import { onMounted, watch } from 'vue'
+import { Inertia } from '@inertiajs/inertia'
+import { useForm, usePage } from '@inertiajs/inertia-vue3'
 import { useFormErrorReset } from '@/components/useFormErrorReset'
 import AppInputText from '@/components/AppInputText.vue'
 
-const props = defineProps({
-  number: String,
+onMounted(() => {
+  Inertia.reload({ only: ['productNumber'] })
 })
 
+watch(
+  () => usePage().props.value.productNumber,
+  (val) => (form.number = val)
+)
+
 const form = useForm({
-  number: props.number,
+  number: null,
   name: null,
   unit: null,
 })
