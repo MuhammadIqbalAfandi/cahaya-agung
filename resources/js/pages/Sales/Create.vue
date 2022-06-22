@@ -8,7 +8,7 @@ import SaleDetails from './Components/SaleDetails.vue'
 import AppInputText from '@/components/AppInputText.vue'
 import AppInputNumber from '@/components/AppInputNumber.vue'
 import AppDropdown from '@/components/AppDropdown.vue'
-import AppAutocompleteBasic from '@/components/AppAutocompleteBasic.vue'
+import AppAutoComplete from '@/components/AutoComplete.vue'
 import DashboardLayout from '@/layouts/DashboardLayout.vue'
 
 const props = defineProps({
@@ -52,6 +52,16 @@ const onSubmit = () => {
     }))
     .post(route('sales.store'), { onSuccess: () => form.reset() })
 }
+
+useFormErrorReset(form)
+
+const checkSales = () => {
+  if (form.price && form.qty && form.customer && form.product) {
+    return false
+  } else {
+    return true
+  }
+}
 </script>
 
 <template>
@@ -87,7 +97,7 @@ const onSubmit = () => {
               </div>
 
               <div class="col-12 md:col-6">
-                <AppAutocompleteBasic
+                <AppAutoComplete
                   label="Pelanggan"
                   placeholder="pelanggan"
                   field="name"
@@ -115,11 +125,11 @@ const onSubmit = () => {
                       Tambah Pelanggan
                     </span>
                   </template>
-                </AppAutocompleteBasic>
+                </AppAutoComplete>
               </div>
 
               <div class="col-12 md:col-6">
-                <AppAutocompleteBasic
+                <AppAutoComplete
                   label="Produk"
                   placeholder="produk"
                   field="name"
@@ -147,7 +157,7 @@ const onSubmit = () => {
                       Tambah Produk
                     </span>
                   </template>
-                </AppAutocompleteBasic>
+                </AppAutoComplete>
               </div>
 
               <div class="col-12 md:col-6">
@@ -177,7 +187,7 @@ const onSubmit = () => {
                 label="Simpan"
                 icon="pi pi-check"
                 class="p-button-outlined"
-                :disabled="form.processing"
+                :disabled="form.processing || checkSales()"
                 @click="onSubmit"
               />
             </div>
