@@ -1,5 +1,5 @@
 <script setup>
-import { useForm, Head, usePage } from '@inertiajs/inertia-vue3'
+import { useForm, Head } from '@inertiajs/inertia-vue3'
 import { useFormErrorReset } from '@/components/useFormErrorReset'
 import { useProductAutoComplete } from './useProductAutoComplete'
 import { useCustomerAutoComplete } from './useCustomerAutoComplete'

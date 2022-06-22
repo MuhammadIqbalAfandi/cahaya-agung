@@ -702,7 +702,6 @@ __webpack_require__.r(__webpack_exports__);
       onSubmit: onSubmit,
       useForm: _inertiajs_inertia_vue3__WEBPACK_IMPORTED_MODULE_0__.useForm,
       Head: _inertiajs_inertia_vue3__WEBPACK_IMPORTED_MODULE_0__.Head,
-      usePage: _inertiajs_inertia_vue3__WEBPACK_IMPORTED_MODULE_0__.usePage,
       useFormErrorReset: _components_useFormErrorReset__WEBPACK_IMPORTED_MODULE_1__.useFormErrorReset,
       useProductAutoComplete: _useProductAutoComplete__WEBPACK_IMPORTED_MODULE_2__.useProductAutoComplete,
       useCustomerAutoComplete: _useCustomerAutoComplete__WEBPACK_IMPORTED_MODULE_3__.useCustomerAutoComplete,
@@ -793,6 +792,12 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _inertiajs_inertia_vue3__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @inertiajs/inertia-vue3 */ "./node_modules/@inertiajs/inertia-vue3/dist/index.js");
 /* harmony import */ var _components_useFormErrorReset__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @/components/useFormErrorReset */ "./resources/js/components/useFormErrorReset.js");
 /* harmony import */ var _components_AppInputText_vue__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @/components/AppInputText.vue */ "./resources/js/components/AppInputText.vue");
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); enumerableOnly && (symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; })), keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = null != arguments[i] ? arguments[i] : {}; i % 2 ? ownKeys(Object(source), !0).forEach(function (key) { _defineProperty(target, key, source[key]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)) : ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
 
 
 
@@ -803,36 +808,42 @@ __webpack_require__.r(__webpack_exports__);
   setup: function setup(__props, _ref) {
     var expose = _ref.expose;
     expose();
-    (0,vue__WEBPACK_IMPORTED_MODULE_0__.onMounted)(function () {
+
+    var getProductNumber = function getProductNumber() {
       _inertiajs_inertia__WEBPACK_IMPORTED_MODULE_1__.Inertia.reload({
         only: ['productNumber']
       });
-    });
-    (0,vue__WEBPACK_IMPORTED_MODULE_0__.watch)(function () {
-      return (0,_inertiajs_inertia_vue3__WEBPACK_IMPORTED_MODULE_2__.usePage)().props.value.productNumber;
-    }, function (val) {
-      return form.number = val;
+    };
+
+    (0,vue__WEBPACK_IMPORTED_MODULE_0__.onMounted)(function () {
+      return getProductNumber();
     });
     var form = (0,_inertiajs_inertia_vue3__WEBPACK_IMPORTED_MODULE_2__.useForm)({
-      number: null,
       name: null,
       unit: null
     });
     (0,_components_useFormErrorReset__WEBPACK_IMPORTED_MODULE_3__.useFormErrorReset)(form);
 
     var onSubmit = function onSubmit() {
-      form.post(route('products.store'), {
+      form.transform(function (data) {
+        return _objectSpread({
+          number: (0,_inertiajs_inertia_vue3__WEBPACK_IMPORTED_MODULE_2__.usePage)().props.value.productNumber
+        }, data);
+      }).post(route('products.store'), {
         onSuccess: function onSuccess() {
           return form.reset();
+        },
+        onFinish: function onFinish() {
+          return getProductNumber();
         }
       });
     };
 
     var __returned__ = {
+      getProductNumber: getProductNumber,
       form: form,
       onSubmit: onSubmit,
       onMounted: vue__WEBPACK_IMPORTED_MODULE_0__.onMounted,
-      watch: vue__WEBPACK_IMPORTED_MODULE_0__.watch,
       Inertia: _inertiajs_inertia__WEBPACK_IMPORTED_MODULE_1__.Inertia,
       useForm: _inertiajs_inertia_vue3__WEBPACK_IMPORTED_MODULE_2__.useForm,
       usePage: _inertiajs_inertia_vue3__WEBPACK_IMPORTED_MODULE_2__.usePage,
@@ -2118,14 +2129,13 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     disabled: "",
     label: "Nomor Produk",
     placeholder: "nomor produk",
-    error: $setup.form.errors.number,
-    modelValue: $setup.form.number,
+    modelValue: _ctx.$page.props.productNumber,
     "onUpdate:modelValue": _cache[0] || (_cache[0] = function ($event) {
-      return $setup.form.number = $event;
+      return _ctx.$page.props.productNumber = $event;
     })
   }, null, 8
   /* PROPS */
-  , ["error", "modelValue"])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_3, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)($setup["AppInputText"], {
+  , ["modelValue"])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_3, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)($setup["AppInputText"], {
     label: "Nama",
     placeholder: "nama",
     error: $setup.form.errors.name,

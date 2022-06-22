@@ -1,21 +1,17 @@
 <script setup>
-import { onMounted, watch } from 'vue'
+import { onMounted } from 'vue'
 import { Inertia } from '@inertiajs/inertia'
 import { useForm, usePage } from '@inertiajs/inertia-vue3'
 import { useFormErrorReset } from '@/components/useFormErrorReset'
 import AppInputText from '@/components/AppInputText.vue'
 
-onMounted(() => {
+const getProductNumber = () => {
   Inertia.reload({ only: ['productNumber'] })
-})
+}
 
-watch(
-  () => usePage().props.value.productNumber,
-  (val) => (form.number = val)
-)
+onMounted(() => getProductNumber())
 
 const form = useForm({
-  number: null,
   name: null,
   unit: null,
 })
@@ -23,7 +19,15 @@ const form = useForm({
 useFormErrorReset(form)
 
 const onSubmit = () => {
-  form.post(route('products.store'), { onSuccess: () => form.reset() })
+  form
+    .transform((data) => ({
+      number: usePage().props.value.productNumber,
+      ...data,
+    }))
+    .post(route('products.store'), {
+      onSuccess: () => form.reset(),
+      onFinish: () => getProductNumber(),
+    })
 }
 </script>
 
@@ -34,8 +38,7 @@ const onSubmit = () => {
         disabled
         label="Nomor Produk"
         placeholder="nomor produk"
-        :error="form.errors.number"
-        v-model="form.number"
+        v-model="$page.props.productNumber"
       />
     </div>
 
