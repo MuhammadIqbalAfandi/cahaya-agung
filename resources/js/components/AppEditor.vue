@@ -30,8 +30,8 @@ const forLabel = computed(() =>
   props.label ? props.label.toLowerCase().replace(/\s+/g, '-') : null
 )
 
-const ariaDescribedbyLabel = computed(() =>
-  props.label ? props.label.toLowerCase().replace(/\s+/g, '-') + '-help' : null
+const ariaDescribedbyLabel = computed(
+  () => props.label.toLowerCase().replace(/\s+/g, '-') + '-error'
 )
 </script>
 

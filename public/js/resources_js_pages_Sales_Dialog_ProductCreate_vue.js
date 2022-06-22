@@ -50,7 +50,7 @@ __webpack_require__.r(__webpack_exports__);
       return props.label.toLowerCase().replace(/\s+/g, '-');
     });
     var ariaDescribedbyLabel = (0,vue__WEBPACK_IMPORTED_MODULE_0__.computed)(function () {
-      return props.label.toLowerCase().replace(/\s+/g, '-') + '-help';
+      return props.label.toLowerCase().replace(/\s+/g, '-') + '-error';
     });
     var __returned__ = {
       props: props,
@@ -182,7 +182,6 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     }]),
     type: $props.type,
     id: $setup.forLabel,
-    "aria-describedby": $setup.ariaDescribedbyLabel,
     "model-value": $props.modelValue,
     placeholder: $props.placeholder,
     value: $props.modelValue,
@@ -192,7 +191,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     })
   }, null, 8
   /* PROPS */
-  , ["type", "class", "id", "aria-describedby", "model-value", "placeholder", "value", "disabled"]), $props.error ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("small", {
+  , ["type", "class", "id", "model-value", "placeholder", "value", "disabled"]), $props.error ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("small", {
     key: 0,
     id: $setup.ariaDescribedbyLabel,
     "class": (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)({

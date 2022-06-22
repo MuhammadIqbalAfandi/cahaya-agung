@@ -44,7 +44,7 @@ const isError = computed(() => (props.error ? true : false))
 const forLabel = computed(() => props.label.toLowerCase().replace(/\s+/g, '-'))
 
 const ariaDescribedbyLabel = computed(
-  () => props.label.toLowerCase().replace(/\s+/g, '-') + '-help'
+  () => props.label.toLowerCase().replace(/\s+/g, '-') + '-error'
 )
 </script>
 
@@ -62,7 +62,6 @@ const ariaDescribedbyLabel = computed(
       :disabled="disabled"
       :id="forLabel"
       :placeholder="placeholder"
-      :aria-describedby="ariaDescribedbyLabel"
       :toggleMask="true"
       :value="modelValue"
       :model-value="modelValue"

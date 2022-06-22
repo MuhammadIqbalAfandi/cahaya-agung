@@ -2,7 +2,6 @@
 import { ref, computed } from 'vue'
 import AppTopBar from '@/components/AppTopBar.vue'
 import AppSidebar from '@/components/AppSidebar.vue'
-import AppFooter from '@/components/AppFooter.vue'
 import AppMessage from '@/components/AppMessage.vue'
 import menu from '@/utils/menu'
 
@@ -60,7 +59,15 @@ const onMenuToggle = (event) => {
         <slot />
       </div>
 
-      <AppFooter />
+      <div class="layout-footer">
+        Developed by
+        <a
+          href="https://dijitalcode.com"
+          target="_blank"
+          class="font-medium ml-2"
+          >DijitalCODE</a
+        >
+      </div>
     </div>
 
     <Transition name="layout-mask">
@@ -101,6 +108,15 @@ const onMenuToggle = (event) => {
 
 .layout-main {
   flex: 1 1 auto;
+}
+
+.layout-footer {
+  transition: margin-left 0.2s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-top: 1rem;
+  border-top: 1px solid var(--surface-border);
 }
 
 @media (min-width: 992px) {

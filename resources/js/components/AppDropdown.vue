@@ -53,8 +53,8 @@ const forLabel = computed(() =>
   props.label ? props.label.toLowerCase().replace(/\s+/g, '-') : null
 )
 
-const ariaDescribedbyLabel = computed(() =>
-  props.label ? props.label.toLowerCase().replace(/\s+/g, '-') + '-help' : null
+const ariaDescribedbyLabel = computed(
+  () => props.label.toLowerCase().replace(/\s+/g, '-') + '-error'
 )
 
 const selectedDropdownLabel = (value) => {
@@ -75,7 +75,6 @@ const selectedDropdownLabel = (value) => {
       class="w-full"
       :class="{ 'p-invalid': isError }"
       :id="forLabel"
-      :aria-describedby="ariaDescribedbyLabel"
       :option-disabled="optionDisabled"
       :option-group-children="optionGroupChildren"
       :option-group-label="optionGroupLabel"

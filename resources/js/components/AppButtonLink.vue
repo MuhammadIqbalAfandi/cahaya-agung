@@ -6,9 +6,11 @@ defineProps({
     type: Boolean,
     default: true,
   },
-  icon: String,
+  icon: {
+    type: String,
+    required: true,
+  },
   label: String,
-  classButton: String,
 })
 </script>
 
@@ -26,14 +28,13 @@ defineProps({
     ></span>
     <span v-if="label" class="p-button-label">{{ label }}</span>
   </Link>
-  <template v-else>
-    <a :class="classButton" class="p-button p-component">
-      <span
-        v-if="icon"
-        class="p-button-icon p-button-icon-left"
-        :class="icon"
-      ></span>
-      <span v-if="label" class="p-button-label">{{ label }}</span>
-    </a>
-  </template>
+
+  <a v-else class="p-button p-component">
+    <span
+      v-if="icon"
+      class="p-button-icon p-button-icon-left"
+      :class="icon"
+    ></span>
+    <span v-if="label" class="p-button-label">{{ label }}</span>
+  </a>
 </template>

@@ -26,6 +26,7 @@ defineProps([
               <h3 class="text-base">Status Penjualan</h3>
               <span>{{ saleStatus }}</span>
             </div>
+            <div class="col"></div>
           </div>
         </div>
         <div

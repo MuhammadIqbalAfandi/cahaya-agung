@@ -32,7 +32,7 @@ const isError = computed(() => (props.error ? true : false))
 const forLabel = computed(() => props.label.toLowerCase().replace(/\s+/g, '-'))
 
 const ariaDescribedbyLabel = computed(
-  () => props.label.toLowerCase().replace(/\s+/g, '-') + '-help'
+  () => props.label.toLowerCase().replace(/\s+/g, '-') + '-error'
 )
 </script>
 
@@ -45,7 +45,6 @@ const ariaDescribedbyLabel = computed(
       :type="type"
       :class="{ 'p-invalid': isError }"
       :id="forLabel"
-      :aria-describedby="ariaDescribedbyLabel"
       :model-value="modelValue"
       :placeholder="placeholder"
       :value="modelValue"
