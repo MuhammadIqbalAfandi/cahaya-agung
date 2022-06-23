@@ -1,6 +1,5 @@
 <script setup>
-import { useForm } from '@inertiajs/inertia-vue3'
-import { useFormErrorReset } from '@/components/useFormErrorReset'
+import { useForm } from '@/components/useForm'
 import AppInputText from '@/components/AppInputText.vue'
 
 const form = useForm({
@@ -9,8 +8,6 @@ const form = useForm({
   phone: null,
   npwp: null,
 })
-
-useFormErrorReset(form)
 
 const onSubmit = () => {
   form.post(route('customers.store'), {

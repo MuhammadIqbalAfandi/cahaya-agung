@@ -1,8 +1,15 @@
 <script setup>
+import { Head } from '@inertiajs/inertia-vue3'
 import AppMessage from '@/components/AppMessage.vue'
+
+defineProps({
+  title: String,
+})
 </script>
 
 <template>
+  <Head :title="title" />
+
   <div
     class="surface-0 flex align-items-center justify-content-center min-h-screen min-w-screen overflow-hidden"
   >

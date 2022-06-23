@@ -1,10 +1,9 @@
 <script setup>
 import { watch } from 'vue'
 import { Inertia } from '@inertiajs/inertia'
-import { Head } from '@inertiajs/inertia-vue3'
 import { pickBy } from 'lodash'
 import { useConfirm } from 'primevue/useconfirm'
-import tableHeader from './tableHeader'
+import { indexTable } from './config'
 import { useSearchText } from '@/components/useSearchText'
 import DashboardLayout from '@/layouts/DashboardLayout.vue'
 import AppButtonLink from '@/components/AppButtonLink.vue'
@@ -42,10 +41,8 @@ const onResetPassword = (data) => {
 </script>
 
 <template>
-  <Head title="Daftar User" />
-
-  <DashboardLayout>
-    <ConfirmDialog></ConfirmDialog>
+  <DashboardLayout title="Daftar User">
+    <ConfirmDialog />
 
     <DataTable
       responsiveLayout="scroll"
@@ -82,7 +79,7 @@ const onResetPassword = (data) => {
       </template>
 
       <Column
-        v-for="value in tableHeader"
+        v-for="value in indexTable"
         :field="value.field"
         :header="value.header"
         :key="value.field"

@@ -1,6 +1,5 @@
 <script setup>
-import { useForm, Head } from '@inertiajs/inertia-vue3'
-import { useFormErrorReset } from '@/components/useFormErrorReset'
+import { useForm } from '@/components/useForm'
 import AppInputText from '@/components/AppInputText.vue'
 import DashboardLayout from '@/layouts/DashboardLayout.vue'
 
@@ -16,17 +15,13 @@ const form = useForm({
   npwp: props.supplier.npwp,
 })
 
-useFormErrorReset(form)
-
 const onSubmit = () => {
   form.put(route('suppliers.update', props.supplier.id))
 }
 </script>
 
 <template>
-  <Head title="Ubah Supplier" />
-
-  <DashboardLayout>
+  <DashboardLayout title="Ubah Supplier">
     <div class="grid">
       <div class="col-12 lg:col-8">
         <Card>

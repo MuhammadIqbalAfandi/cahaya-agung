@@ -1,9 +1,8 @@
 <script setup>
-import { Head, useForm } from '@inertiajs/inertia-vue3'
-import { useFormErrorReset } from '@/components/useFormErrorReset'
-import DashboardLayout from '@/layouts/DashboardLayout.vue'
+import { useForm } from '@/components/useForm'
 import AppInputText from '@/components/AppInputText.vue'
 import AppPassword from '@/components/AppPassword.vue'
+import DashboardLayout from '@/layouts/DashboardLayout.vue'
 
 const props = defineProps({
   user: Object,
@@ -16,8 +15,6 @@ const form = useForm({
   role_id: props.user.role_id,
 })
 
-useFormErrorReset(form)
-
 const onSubmit = () => {
   form.put(route('users.update', props.user.id))
 }
@@ -28,8 +25,6 @@ const formChangePassword = useForm({
   new_password_confirmation: '',
 })
 
-useFormErrorReset(formChangePassword)
-
 const onChangePassword = () => {
   formChangePassword.post(route('users.change-password', props.user.id), {
     onSuccess: () => formChangePassword.reset(),
@@ -38,9 +33,7 @@ const onChangePassword = () => {
 </script>
 
 <template>
-  <Head title="Profil Saya" />
-
-  <DashboardLayout>
+  <DashboardLayout title="Profil Saya">
     <div class="grid">
       <div class="col-12 md:col-8">
         <Card>

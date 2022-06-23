@@ -202,7 +202,6 @@ __webpack_require__.r(__webpack_exports__);
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   __name: 'AppTopBar',
-  emits: ['menu-toggle'],
   setup: function setup(__props, _ref) {
     var expose = _ref.expose;
     expose();
@@ -231,10 +230,12 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 /* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm-bundler.js");
-/* harmony import */ var _components_AppTopBar_vue__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @/components/AppTopBar.vue */ "./resources/js/components/AppTopBar.vue");
-/* harmony import */ var _components_AppSidebar_vue__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @/components/AppSidebar.vue */ "./resources/js/components/AppSidebar.vue");
-/* harmony import */ var _components_AppMessage_vue__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @/components/AppMessage.vue */ "./resources/js/components/AppMessage.vue");
-/* harmony import */ var _utils_menu__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @/utils/menu */ "./resources/js/utils/menu.js");
+/* harmony import */ var _inertiajs_inertia_vue3__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @inertiajs/inertia-vue3 */ "./node_modules/@inertiajs/inertia-vue3/dist/index.js");
+/* harmony import */ var _components_AppTopBar_vue__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @/components/AppTopBar.vue */ "./resources/js/components/AppTopBar.vue");
+/* harmony import */ var _components_AppSidebar_vue__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @/components/AppSidebar.vue */ "./resources/js/components/AppSidebar.vue");
+/* harmony import */ var _components_AppMessage_vue__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @/components/AppMessage.vue */ "./resources/js/components/AppMessage.vue");
+/* harmony import */ var _utils_menu__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @/utils/menu */ "./resources/js/utils/menu.js");
+
 
 
 
@@ -242,6 +243,9 @@ __webpack_require__.r(__webpack_exports__);
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   __name: 'DashboardLayout',
+  props: {
+    title: String
+  },
   setup: function setup(__props, _ref) {
     var expose = _ref.expose;
     expose();
@@ -290,10 +294,11 @@ __webpack_require__.r(__webpack_exports__);
       onMenuToggle: onMenuToggle,
       ref: vue__WEBPACK_IMPORTED_MODULE_0__.ref,
       computed: vue__WEBPACK_IMPORTED_MODULE_0__.computed,
-      AppTopBar: _components_AppTopBar_vue__WEBPACK_IMPORTED_MODULE_1__["default"],
-      AppSidebar: _components_AppSidebar_vue__WEBPACK_IMPORTED_MODULE_2__["default"],
-      AppMessage: _components_AppMessage_vue__WEBPACK_IMPORTED_MODULE_3__["default"],
-      menu: _utils_menu__WEBPACK_IMPORTED_MODULE_4__["default"]
+      Head: _inertiajs_inertia_vue3__WEBPACK_IMPORTED_MODULE_1__.Head,
+      AppTopBar: _components_AppTopBar_vue__WEBPACK_IMPORTED_MODULE_2__["default"],
+      AppSidebar: _components_AppSidebar_vue__WEBPACK_IMPORTED_MODULE_3__["default"],
+      AppMessage: _components_AppMessage_vue__WEBPACK_IMPORTED_MODULE_4__["default"],
+      menu: _utils_menu__WEBPACK_IMPORTED_MODULE_5__["default"]
     };
     Object.defineProperty(__returned__, '__isScriptSetup', {
       enumerable: false,
@@ -318,16 +323,14 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm-bundler.js");
 /* harmony import */ var _inertiajs_inertia__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @inertiajs/inertia */ "./node_modules/@inertiajs/inertia/dist/index.js");
-/* harmony import */ var _inertiajs_inertia_vue3__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @inertiajs/inertia-vue3 */ "./node_modules/@inertiajs/inertia-vue3/dist/index.js");
-/* harmony import */ var lodash__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! lodash */ "./node_modules/lodash/lodash.js");
-/* harmony import */ var lodash__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(lodash__WEBPACK_IMPORTED_MODULE_3__);
-/* harmony import */ var primevue_useconfirm__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! primevue/useconfirm */ "./node_modules/primevue/useconfirm/useconfirm.esm.js");
-/* harmony import */ var _tableHeader__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./tableHeader */ "./resources/js/pages/Users/tableHeader.js");
-/* harmony import */ var _components_useSearchText__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @/components/useSearchText */ "./resources/js/components/useSearchText.js");
-/* harmony import */ var _layouts_DashboardLayout_vue__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @/layouts/DashboardLayout.vue */ "./resources/js/layouts/DashboardLayout.vue");
-/* harmony import */ var _components_AppButtonLink_vue__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! @/components/AppButtonLink.vue */ "./resources/js/components/AppButtonLink.vue");
-/* harmony import */ var _components_AppPagination_vue__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! @/components/AppPagination.vue */ "./resources/js/components/AppPagination.vue");
-
+/* harmony import */ var lodash__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! lodash */ "./node_modules/lodash/lodash.js");
+/* harmony import */ var lodash__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(lodash__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var primevue_useconfirm__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! primevue/useconfirm */ "./node_modules/primevue/useconfirm/useconfirm.esm.js");
+/* harmony import */ var _config__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./config */ "./resources/js/pages/Users/config.js");
+/* harmony import */ var _components_useSearchText__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @/components/useSearchText */ "./resources/js/components/useSearchText.js");
+/* harmony import */ var _layouts_DashboardLayout_vue__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @/layouts/DashboardLayout.vue */ "./resources/js/layouts/DashboardLayout.vue");
+/* harmony import */ var _components_AppButtonLink_vue__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @/components/AppButtonLink.vue */ "./resources/js/components/AppButtonLink.vue");
+/* harmony import */ var _components_AppPagination_vue__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! @/components/AppPagination.vue */ "./resources/js/components/AppPagination.vue");
 
 
 
@@ -348,17 +351,17 @@ __webpack_require__.r(__webpack_exports__);
     expose();
     var props = __props;
 
-    var _useSearchText = (0,_components_useSearchText__WEBPACK_IMPORTED_MODULE_6__.useSearchText)(props),
+    var _useSearchText = (0,_components_useSearchText__WEBPACK_IMPORTED_MODULE_5__.useSearchText)(props),
         search = _useSearchText.search;
 
     (0,vue__WEBPACK_IMPORTED_MODULE_0__.watch)(search, function () {
-      _inertiajs_inertia__WEBPACK_IMPORTED_MODULE_1__.Inertia.get('/users', (0,lodash__WEBPACK_IMPORTED_MODULE_3__.pickBy)({
+      _inertiajs_inertia__WEBPACK_IMPORTED_MODULE_1__.Inertia.get('/users', (0,lodash__WEBPACK_IMPORTED_MODULE_2__.pickBy)({
         search: search.value
       }), {
         preserveState: true
       });
     });
-    var resetConfirm = (0,primevue_useconfirm__WEBPACK_IMPORTED_MODULE_4__.useConfirm)();
+    var resetConfirm = (0,primevue_useconfirm__WEBPACK_IMPORTED_MODULE_3__.useConfirm)();
 
     var onResetPassword = function onResetPassword(data) {
       resetConfirm.require({
@@ -382,14 +385,13 @@ __webpack_require__.r(__webpack_exports__);
       onResetPassword: onResetPassword,
       watch: vue__WEBPACK_IMPORTED_MODULE_0__.watch,
       Inertia: _inertiajs_inertia__WEBPACK_IMPORTED_MODULE_1__.Inertia,
-      Head: _inertiajs_inertia_vue3__WEBPACK_IMPORTED_MODULE_2__.Head,
-      pickBy: lodash__WEBPACK_IMPORTED_MODULE_3__.pickBy,
-      useConfirm: primevue_useconfirm__WEBPACK_IMPORTED_MODULE_4__.useConfirm,
-      tableHeader: _tableHeader__WEBPACK_IMPORTED_MODULE_5__["default"],
-      useSearchText: _components_useSearchText__WEBPACK_IMPORTED_MODULE_6__.useSearchText,
-      DashboardLayout: _layouts_DashboardLayout_vue__WEBPACK_IMPORTED_MODULE_7__["default"],
-      AppButtonLink: _components_AppButtonLink_vue__WEBPACK_IMPORTED_MODULE_8__["default"],
-      AppPagination: _components_AppPagination_vue__WEBPACK_IMPORTED_MODULE_9__["default"]
+      pickBy: lodash__WEBPACK_IMPORTED_MODULE_2__.pickBy,
+      useConfirm: primevue_useconfirm__WEBPACK_IMPORTED_MODULE_3__.useConfirm,
+      indexTable: _config__WEBPACK_IMPORTED_MODULE_4__.indexTable,
+      useSearchText: _components_useSearchText__WEBPACK_IMPORTED_MODULE_5__.useSearchText,
+      DashboardLayout: _layouts_DashboardLayout_vue__WEBPACK_IMPORTED_MODULE_6__["default"],
+      AppButtonLink: _components_AppButtonLink_vue__WEBPACK_IMPORTED_MODULE_7__["default"],
+      AppPagination: _components_AppPagination_vue__WEBPACK_IMPORTED_MODULE_8__["default"]
     };
     Object.defineProperty(__returned__, '__isScriptSetup', {
       enumerable: false,
@@ -917,7 +919,11 @@ var _hoisted_5 = {
   "class": "layout-mask p-component-overlay"
 };
 function render(_ctx, _cache, $props, $setup, $data, $options) {
-  return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", {
+  return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)($setup["Head"], {
+    title: $props.title
+  }, null, 8
+  /* PROPS */
+  , ["title"]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
     "class": (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)($setup.containerClass),
     onClick: $setup.onWrapperClick
   }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)($setup["AppTopBar"], {
@@ -937,6 +943,8 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
 
   })], 2
   /* CLASS */
+  )], 64
+  /* STABLE_FRAGMENT */
   );
 }
 
@@ -985,9 +993,9 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
 
   var _directive_tooltip = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveDirective)("tooltip");
 
-  return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)($setup["Head"], {
+  return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)($setup["DashboardLayout"], {
     title: "Daftar User"
-  }), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)($setup["DashboardLayout"], null, {
+  }, {
     "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
       return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_ConfirmDialog), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_DataTable, {
         responsiveLayout: "scroll",
@@ -1016,7 +1024,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
           , ["href"])])])];
         }),
         "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
-          return [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($setup.tableHeader, function (value) {
+          return [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($setup.indexTable, function (value) {
             return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(_component_Column, {
               field: value.field,
               header: value.header,
@@ -1069,9 +1077,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     _: 1
     /* STABLE */
 
-  })], 64
-  /* STABLE_FRAGMENT */
-  );
+  });
 }
 
 /***/ }),
@@ -1098,18 +1104,18 @@ function useSearchText(props) {
 
 /***/ }),
 
-/***/ "./resources/js/pages/Users/tableHeader.js":
-/*!*************************************************!*\
-  !*** ./resources/js/pages/Users/tableHeader.js ***!
-  \*************************************************/
+/***/ "./resources/js/pages/Users/config.js":
+/*!********************************************!*\
+  !*** ./resources/js/pages/Users/config.js ***!
+  \********************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */   "indexTable": () => (/* binding */ indexTable)
 /* harmony export */ });
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ([{
+var indexTable = [{
   field: 'name',
   header: 'Nama'
 }, {
@@ -1121,7 +1127,7 @@ __webpack_require__.r(__webpack_exports__);
 }, {
   field: 'status',
   header: 'Status'
-}]);
+}];
 
 /***/ }),
 

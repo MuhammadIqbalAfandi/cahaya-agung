@@ -1,8 +1,7 @@
 <script setup>
 import { Inertia } from '@inertiajs/inertia'
-import { useForm, Head } from '@inertiajs/inertia-vue3'
-import { useFormErrorReset } from '@/components/useFormErrorReset'
 import { useConfirm } from 'primevue/useconfirm'
+import { useForm } from '@/components/useForm'
 import AppInputText from '@/components/AppInputText.vue'
 import DashboardLayout from '@/layouts/DashboardLayout.vue'
 
@@ -16,8 +15,6 @@ const form = useForm({
   phone: props.customer.phone,
   npwp: props.customer.npwp,
 })
-
-useFormErrorReset(form)
 
 const deleteConfirm = useConfirm()
 
@@ -42,10 +39,8 @@ const onSubmit = () => {
 </script>
 
 <template>
-  <Head title="Ubah Pelanggan" />
-
-  <DashboardLayout>
-    <ConfirmDialog></ConfirmDialog>
+  <DashboardLayout title="Ubah Pelanggan">
+    <ConfirmDialog />
 
     <div class="grid">
       <div class="col-12 lg:col-8">

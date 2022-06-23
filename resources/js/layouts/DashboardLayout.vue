@@ -1,9 +1,14 @@
 <script setup>
 import { ref, computed } from 'vue'
+import { Head } from '@inertiajs/inertia-vue3'
 import AppTopBar from '@/components/AppTopBar.vue'
 import AppSidebar from '@/components/AppSidebar.vue'
 import AppMessage from '@/components/AppMessage.vue'
 import menu from '@/utils/menu'
+
+defineProps({
+  title: String,
+})
 
 const mobileMenuActive = ref(false)
 
@@ -45,6 +50,8 @@ const onMenuToggle = (event) => {
 </script>
 
 <template>
+  <Head :title="title" />
+
   <div :class="containerClass" @click="onWrapperClick">
     <AppTopBar @menu-toggle="onMenuToggle" />
 

@@ -1,10 +1,10 @@
 "use strict";
-(self["webpackChunk"] = self["webpackChunk"] || []).push([["resources_js_pages_Products_tableHeader_js"],{
+(self["webpackChunk"] = self["webpackChunk"] || []).push([["resources_js_pages_Products_config_js"],{
 
-/***/ "./resources/js/pages/Products/tableHeader.js":
-/*!****************************************************!*\
-  !*** ./resources/js/pages/Products/tableHeader.js ***!
-  \****************************************************/
+/***/ "./resources/js/pages/Products/config.js":
+/*!***********************************************!*\
+  !*** ./resources/js/pages/Products/config.js ***!
+  \***********************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 __webpack_require__.r(__webpack_exports__);

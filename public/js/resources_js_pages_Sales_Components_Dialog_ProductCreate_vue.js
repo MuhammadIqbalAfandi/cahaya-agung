@@ -38,7 +38,6 @@ __webpack_require__.r(__webpack_exports__);
     },
     modelValue: null
   },
-  emits: ['update:modelValue'],
   setup: function setup(__props, _ref) {
     var expose = _ref.expose;
     expose();
@@ -82,7 +81,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm-bundler.js");
 /* harmony import */ var _inertiajs_inertia__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @inertiajs/inertia */ "./node_modules/@inertiajs/inertia/dist/index.js");
 /* harmony import */ var _inertiajs_inertia_vue3__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @inertiajs/inertia-vue3 */ "./node_modules/@inertiajs/inertia-vue3/dist/index.js");
-/* harmony import */ var _components_useFormErrorReset__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @/components/useFormErrorReset */ "./resources/js/components/useFormErrorReset.js");
+/* harmony import */ var _components_useForm__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @/components/useForm */ "./resources/js/components/useForm.js");
 /* harmony import */ var _components_AppInputText_vue__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @/components/AppInputText.vue */ "./resources/js/components/AppInputText.vue");
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); enumerableOnly && (symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; })), keys.push.apply(keys, symbols); } return keys; }
 
@@ -110,11 +109,10 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     (0,vue__WEBPACK_IMPORTED_MODULE_0__.onMounted)(function () {
       return getProductNumber();
     });
-    var form = (0,_inertiajs_inertia_vue3__WEBPACK_IMPORTED_MODULE_2__.useForm)({
+    var form = (0,_components_useForm__WEBPACK_IMPORTED_MODULE_3__.useForm)({
       name: null,
       unit: null
     });
-    (0,_components_useFormErrorReset__WEBPACK_IMPORTED_MODULE_3__.useFormErrorReset)(form);
 
     var onSubmit = function onSubmit() {
       form.transform(function (data) {
@@ -137,9 +135,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       onSubmit: onSubmit,
       onMounted: vue__WEBPACK_IMPORTED_MODULE_0__.onMounted,
       Inertia: _inertiajs_inertia__WEBPACK_IMPORTED_MODULE_1__.Inertia,
-      useForm: _inertiajs_inertia_vue3__WEBPACK_IMPORTED_MODULE_2__.useForm,
       usePage: _inertiajs_inertia_vue3__WEBPACK_IMPORTED_MODULE_2__.usePage,
-      useFormErrorReset: _components_useFormErrorReset__WEBPACK_IMPORTED_MODULE_3__.useFormErrorReset,
+      useForm: _components_useForm__WEBPACK_IMPORTED_MODULE_3__.useForm,
       AppInputText: _components_AppInputText_vue__WEBPACK_IMPORTED_MODULE_4__["default"]
     };
     Object.defineProperty(__returned__, '__isScriptSetup', {
@@ -184,14 +181,13 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     id: $setup.forLabel,
     "model-value": $props.modelValue,
     placeholder: $props.placeholder,
-    value: $props.modelValue,
     disabled: $props.disabled,
     onInput: _cache[0] || (_cache[0] = function ($event) {
       return _ctx.$emit('update:modelValue', $event.target.value);
     })
   }, null, 8
   /* PROPS */
-  , ["type", "class", "id", "model-value", "placeholder", "value", "disabled"]), $props.error ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("small", {
+  , ["type", "class", "id", "model-value", "placeholder", "disabled"]), $props.error ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("small", {
     key: 0,
     id: $setup.ariaDescribedbyLabel,
     "class": (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)({
@@ -279,27 +275,29 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
 
 /***/ }),
 
-/***/ "./resources/js/components/useFormErrorReset.js":
-/*!******************************************************!*\
-  !*** ./resources/js/components/useFormErrorReset.js ***!
-  \******************************************************/
+/***/ "./resources/js/components/useForm.js":
+/*!********************************************!*\
+  !*** ./resources/js/components/useForm.js ***!
+  \********************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "useFormErrorReset": () => (/* binding */ useFormErrorReset)
+/* harmony export */   "useForm": () => (/* binding */ useForm)
 /* harmony export */ });
 /* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm-bundler.js");
 /* harmony import */ var _inertiajs_inertia_vue3__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @inertiajs/inertia-vue3 */ "./node_modules/@inertiajs/inertia-vue3/dist/index.js");
 
 
-function useFormErrorReset(form) {
+function useForm(obj) {
+  var form = (0,_inertiajs_inertia_vue3__WEBPACK_IMPORTED_MODULE_1__.useForm)(obj);
   var errors = (0,vue__WEBPACK_IMPORTED_MODULE_0__.computed)(function () {
     return (0,_inertiajs_inertia_vue3__WEBPACK_IMPORTED_MODULE_1__.usePage)().props.value.errors;
   });
   (0,vue__WEBPACK_IMPORTED_MODULE_0__.watch)(errors, function () {
     form.clearErrors();
   });
+  return form;
 }
 
 /***/ }),

@@ -38,7 +38,6 @@ __webpack_require__.r(__webpack_exports__);
     },
     modelValue: null
   },
-  emits: ['update:modelValue'],
   setup: function setup(__props, _ref) {
     var expose = _ref.expose;
     expose();

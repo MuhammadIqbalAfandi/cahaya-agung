@@ -38,7 +38,6 @@ __webpack_require__.r(__webpack_exports__);
     },
     modelValue: null
   },
-  emits: ['update:modelValue'],
   setup: function setup(__props, _ref) {
     var expose = _ref.expose;
     expose();
@@ -358,12 +357,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var primevue_usedialog__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! primevue/usedialog */ "./node_modules/primevue/usedialog/usedialog.esm.js");
 /* harmony import */ var _config__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./config */ "./resources/js/pages/Sales/config.js");
 /* harmony import */ var _Components_Dialog_CustomerCreate_vue__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./Components/Dialog/CustomerCreate.vue */ "./resources/js/pages/Sales/Components/Dialog/CustomerCreate.vue");
-function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); enumerableOnly && (symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; })), keys.push.apply(keys, symbols); } return keys; }
-
-function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = null != arguments[i] ? arguments[i] : {}; i % 2 ? ownKeys(Object(source), !0).forEach(function (key) { _defineProperty(target, key, source[key]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)) : ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } return target; }
-
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-
 
 
 
@@ -382,14 +375,6 @@ function useCustomerAutoComplete(form) {
 
   var customerOnSelected = function customerOnSelected(event) {
     form.customer = event.value;
-  };
-
-  var showCreateCustomer = function showCreateCustomer() {
-    dialog.open(_Components_Dialog_CustomerCreate_vue__WEBPACK_IMPORTED_MODULE_3__["default"], {
-      props: _objectSpread({
-        header: 'Tambah Pelanggan'
-      }, _config__WEBPACK_IMPORTED_MODULE_2__.dialogStyle)
-    });
   };
 
   return {

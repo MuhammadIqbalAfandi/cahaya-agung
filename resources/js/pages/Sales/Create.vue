@@ -1,14 +1,14 @@
 <script setup>
-import { useForm, Head } from '@inertiajs/inertia-vue3'
-import { useFormErrorReset } from '@/components/useFormErrorReset'
-import { useProductAutoComplete } from './useProductAutoComplete'
-import { useCustomerAutoComplete } from './useCustomerAutoComplete'
-import { optionStatus } from './config'
+import { useDialog } from 'primevue/usedialog'
+import { optionStatus, dialogStyle } from './config'
+import CustomerCreate from './Components/Dialog/CustomerCreate.vue'
+import ProductCreate from './Components/Dialog/ProductCreate.vue'
 import SaleDetails from './Components/SaleDetails.vue'
+import { useForm } from '@/components/useForm'
 import AppInputText from '@/components/AppInputText.vue'
 import AppInputNumber from '@/components/AppInputNumber.vue'
 import AppDropdown from '@/components/AppDropdown.vue'
-import AppAutoComplete from '@/components/AutoComplete.vue'
+import AppAutoComplete from '@/components/AppAutoComplete.vue'
 import DashboardLayout from '@/layouts/DashboardLayout.vue'
 
 const props = defineProps({
@@ -32,14 +32,6 @@ const form = useForm({
   product: null,
 })
 
-const { customerOnComplete, customerOnSelected, showCreateCustomer } =
-  useCustomerAutoComplete(form)
-
-const { productOnComplete, productOnSelected, showCreateProduct } =
-  useProductAutoComplete(form)
-
-useFormErrorReset(form)
-
 const onSubmit = () => {
   form
     .transform((data) => ({
@@ -50,10 +42,30 @@ const onSubmit = () => {
       customer_id: data.customer.id,
       product_id: data.product.number,
     }))
-    .post(route('sales.store'), { onSuccess: () => form.reset() })
+    .post(route('sales.store'), {
+      onSuccess: () => form.reset(),
+    })
 }
 
-useFormErrorReset(form)
+const dialog = useDialog()
+
+const showCreateCustomer = () => {
+  dialog.open(CustomerCreate, {
+    props: {
+      header: 'Tambah Pelanggan',
+      ...dialogStyle,
+    },
+  })
+}
+
+const showCreateProduct = () => {
+  dialog.open(ProductCreate, {
+    props: {
+      header: 'Tambah Produk',
+      ...dialogStyle,
+    },
+  })
+}
 
 const checkSales = () => {
   if (form.price && form.qty && form.customer && form.product) {
@@ -65,9 +77,7 @@ const checkSales = () => {
 </script>
 
 <template>
-  <Head title="Tambah Penjualan" />
-
-  <DashboardLayout>
+  <DashboardLayout title="Tambah Penjualan">
     <DynamicDialog />
 
     <div class="grid">
@@ -101,11 +111,10 @@ const checkSales = () => {
                   label="Pelanggan"
                   placeholder="pelanggan"
                   field="name"
+                  refresh-data="customers"
                   v-model="form.customer"
                   :error="form.errors.customer_id"
                   :suggestions="customers"
-                  @complete="customerOnComplete"
-                  @item-select="customerOnSelected"
                 >
                   <template #item="slotProps">
                     <template v-if="slotProps.item">
@@ -133,11 +142,10 @@ const checkSales = () => {
                   label="Produk"
                   placeholder="produk"
                   field="name"
+                  refresh-data="products"
                   v-model="form.product"
                   :error="form.errors.product_id"
                   :suggestions="products"
-                  @complete="productOnComplete"
-                  @item-select="productOnSelected"
                 >
                   <template #item="slotProps">
                     <template v-if="slotProps.item">

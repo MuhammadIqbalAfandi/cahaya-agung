@@ -1,8 +1,8 @@
 <script setup>
 import { onMounted } from 'vue'
 import { Inertia } from '@inertiajs/inertia'
-import { useForm, usePage } from '@inertiajs/inertia-vue3'
-import { useFormErrorReset } from '@/components/useFormErrorReset'
+import { usePage } from '@inertiajs/inertia-vue3'
+import { useForm } from '@/components/useForm'
 import AppInputText from '@/components/AppInputText.vue'
 
 const getProductNumber = () => {
@@ -15,8 +15,6 @@ const form = useForm({
   name: null,
   unit: null,
 })
-
-useFormErrorReset(form)
 
 const onSubmit = () => {
   form

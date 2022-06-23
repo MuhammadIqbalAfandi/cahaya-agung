@@ -10,8 +10,8 @@
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "dialogStyle": () => (/* binding */ dialogStyle),
-/* harmony export */   "optionStatus": () => (/* binding */ optionStatus),
-/* harmony export */   "tableHeader": () => (/* binding */ tableHeader)
+/* harmony export */   "indexTable": () => (/* binding */ indexTable),
+/* harmony export */   "optionStatus": () => (/* binding */ optionStatus)
 /* harmony export */ });
 var optionStatus = [{
   label: 'Pending',
@@ -20,7 +20,7 @@ var optionStatus = [{
   label: 'Berhasil',
   value: 'success'
 }];
-var tableHeader = [{
+var indexTable = [{
   field: 'updatedAt',
   header: 'Tanggal'
 }, {

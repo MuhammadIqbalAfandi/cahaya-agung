@@ -1,4 +1,4 @@
-export default [
+export const indexTable = [
   { field: 'name', header: 'Nama' },
   { field: 'username', header: 'Nama Pengguna' },
   { field: 'role', header: 'Hak Akses' },

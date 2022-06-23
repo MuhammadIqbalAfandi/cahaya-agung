@@ -1,6 +1,4 @@
 <script setup>
-import { useForm } from '@inertiajs/inertia-vue3'
-import { useFormErrorReset } from '@/components/useFormErrorReset'
 import AppInputText from '@/components/AppInputText.vue'
 import DashboardLayout from '@/layouts/DashboardLayout.vue'
 
@@ -14,17 +12,13 @@ const form = useForm({
   unit: null,
 })
 
-useFormErrorReset(form)
-
 const onSubmit = () => {
   form.post(route('products.store'), { onSuccess: () => form.reset() })
 }
 </script>
 
 <template>
-  <Head title="Tambah Produk" />
-
-  <DashboardLayout>
+  <DashboardLayout title="Tambah Produk">
     <div class="grid">
       <div class="col-12 lg:col-8">
         <Card>

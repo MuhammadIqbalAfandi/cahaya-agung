@@ -1,6 +1,5 @@
 <script setup>
-import { Head, useForm } from '@inertiajs/inertia-vue3'
-import { useFormErrorReset } from '@/components/useFormErrorReset'
+import { useForm } from '@/components/useForm'
 import AppInputText from '@/components/AppInputText.vue'
 import AppPassword from '@/components/AppPassword.vue'
 import AuthLayout from '@/layouts/AuthLayout.vue'
@@ -11,8 +10,6 @@ const form = useForm({
   remember: false,
 })
 
-useFormErrorReset(form)
-
 const onSubmit = () => {
   form.post(route('login'), {
     onFinish: () => form.reset('password'),
@@ -21,9 +18,7 @@ const onSubmit = () => {
 </script>
 
 <template>
-  <Head title="Sign In" />
-
-  <AuthLayout>
+  <AuthLayout title="Sign In">
     <template #header> Masuk untuk melanjutkan </template>
 
     <AppInputText

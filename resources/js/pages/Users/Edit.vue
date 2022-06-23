@@ -1,8 +1,7 @@
 <script setup>
 import { Inertia } from '@inertiajs/inertia'
-import { useForm, Head } from '@inertiajs/inertia-vue3'
 import { useConfirm } from 'primevue/useconfirm'
-import { useFormErrorReset } from '@/components/useFormErrorReset'
+import { useForm } from '@/components/useForm'
 import AppInputText from '@/components/AppInputText.vue'
 import AppDropdown from '@/components/AppDropdown.vue'
 import AppButtonLink from '@/components/AppButtonLink.vue'
@@ -36,18 +35,14 @@ const form = useForm({
   role_id: props.user.role_id,
 })
 
-useFormErrorReset(form)
-
 const onSubmit = () => {
   form.put(route('users.update', props.user.id))
 }
 </script>
 
 <template>
-  <Head title="Ubah User" />
-
-  <DashboardLayout>
-    <ConfirmDialog></ConfirmDialog>
+  <DashboardLayout title="Ubah User">
+    <ConfirmDialog />
 
     <div class="grid">
       <div class="col-12 lg:col-8">

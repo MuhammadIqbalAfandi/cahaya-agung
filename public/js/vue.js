@@ -58581,13 +58581,13 @@ var map = {
 		"./resources/js/pages/Customers/Index.vue",
 		"resources_js_pages_Customers_Index_vue"
 	],
-	"./Customers/tableHeader": [
-		"./resources/js/pages/Customers/tableHeader.js",
-		"resources_js_pages_Customers_tableHeader_js"
+	"./Customers/config": [
+		"./resources/js/pages/Customers/config.js",
+		"resources_js_pages_Customers_config_js"
 	],
-	"./Customers/tableHeader.js": [
-		"./resources/js/pages/Customers/tableHeader.js",
-		"resources_js_pages_Customers_tableHeader_js"
+	"./Customers/config.js": [
+		"./resources/js/pages/Customers/config.js",
+		"resources_js_pages_Customers_config_js"
 	],
 	"./Dashboards/Index": [
 		"./resources/js/pages/Dashboards/Index.vue",
@@ -58629,13 +58629,13 @@ var map = {
 		"./resources/js/pages/Products/Index.vue",
 		"resources_js_pages_Products_Index_vue"
 	],
-	"./Products/tableHeader": [
-		"./resources/js/pages/Products/tableHeader.js",
-		"resources_js_pages_Products_tableHeader_js"
+	"./Products/config": [
+		"./resources/js/pages/Products/config.js",
+		"resources_js_pages_Products_config_js"
 	],
-	"./Products/tableHeader.js": [
-		"./resources/js/pages/Products/tableHeader.js",
-		"resources_js_pages_Products_tableHeader_js"
+	"./Products/config.js": [
+		"./resources/js/pages/Products/config.js",
+		"resources_js_pages_Products_config_js"
 	],
 	"./Purchases/Index": [
 		"./resources/js/pages/Purchases/Index.vue",
@@ -58693,22 +58693,6 @@ var map = {
 		"./resources/js/pages/Sales/config.js",
 		"resources_js_pages_Sales_config_js"
 	],
-	"./Sales/useCustomerAutoComplete": [
-		"./resources/js/pages/Sales/useCustomerAutoComplete.js",
-		"resources_js_pages_Sales_useCustomerAutoComplete_js"
-	],
-	"./Sales/useCustomerAutoComplete.js": [
-		"./resources/js/pages/Sales/useCustomerAutoComplete.js",
-		"resources_js_pages_Sales_useCustomerAutoComplete_js"
-	],
-	"./Sales/useProductAutoComplete": [
-		"./resources/js/pages/Sales/useProductAutoComplete.js",
-		"resources_js_pages_Sales_useProductAutoComplete_js"
-	],
-	"./Sales/useProductAutoComplete.js": [
-		"./resources/js/pages/Sales/useProductAutoComplete.js",
-		"resources_js_pages_Sales_useProductAutoComplete_js"
-	],
 	"./StockProducts/Index": [
 		"./resources/js/pages/StockProducts/Index.vue",
 		"resources_js_pages_StockProducts_Index_vue"
@@ -58741,13 +58725,13 @@ var map = {
 		"./resources/js/pages/Suppliers/Index.vue",
 		"resources_js_pages_Suppliers_Index_vue"
 	],
-	"./Suppliers/tableHeader": [
-		"./resources/js/pages/Suppliers/tableHeader.js",
-		"resources_js_pages_Suppliers_tableHeader_js"
+	"./Suppliers/config": [
+		"./resources/js/pages/Suppliers/config.js",
+		"resources_js_pages_Suppliers_config_js"
 	],
-	"./Suppliers/tableHeader.js": [
-		"./resources/js/pages/Suppliers/tableHeader.js",
-		"resources_js_pages_Suppliers_tableHeader_js"
+	"./Suppliers/config.js": [
+		"./resources/js/pages/Suppliers/config.js",
+		"resources_js_pages_Suppliers_config_js"
 	],
 	"./Users/Create": [
 		"./resources/js/pages/Users/Create.vue",
@@ -58781,13 +58765,13 @@ var map = {
 		"./resources/js/pages/Users/Show.vue",
 		"resources_js_pages_Users_Show_vue"
 	],
-	"./Users/tableHeader": [
-		"./resources/js/pages/Users/tableHeader.js",
-		"resources_js_pages_Users_tableHeader_js"
+	"./Users/config": [
+		"./resources/js/pages/Users/config.js",
+		"resources_js_pages_Users_config_js"
 	],
-	"./Users/tableHeader.js": [
-		"./resources/js/pages/Users/tableHeader.js",
-		"resources_js_pages_Users_tableHeader_js"
+	"./Users/config.js": [
+		"./resources/js/pages/Users/config.js",
+		"resources_js_pages_Users_config_js"
 	]
 };
 function webpackAsyncContext(req) {
@@ -58906,7 +58890,7 @@ module.exports = JSON.parse('{"name":"axios","version":"0.21.4","description":"P
 /******/ 		// This function allow to reference async chunks
 /******/ 		__webpack_require__.u = (chunkId) => {
 /******/ 			// return url for filenames based on template
-/******/ 			return "js/" + chunkId + ".js?id=" + {"node_modules_chart_js_auto_auto_esm_js":"9296b829a7757dee","resources_js_pages_Auth_Login_vue":"abebf9cef2af3768","resources_js_pages_Customers_Create_vue":"9f07d1899bc0ff11","resources_js_pages_Customers_Edit_vue":"d9cb46c05b8515d2","resources_js_pages_Customers_Index_vue":"61a127ac488a7170","resources_js_pages_Customers_tableHeader_js":"7a40a3d5ad60171c","resources_js_pages_Dashboards_Index_vue":"422b13ab86c7fd04","resources_js_pages_Error_Index_vue":"4119ff1c60260652","resources_js_pages_Products_Create_vue":"5cb1e0c3c8963303","resources_js_pages_Products_Edit_vue":"4e0d8abe3e3eb5bb","resources_js_pages_Products_Index_vue":"1dad15f4c14aa968","resources_js_pages_Products_tableHeader_js":"951f590b1402bd34","resources_js_pages_Purchases_Index_vue":"02a6d344279e6aac","resources_js_pages_Sales_Components_Dialog_CustomerCreate_vue":"9541fc14add2ff0a","resources_js_pages_Sales_Components_Dialog_ProductCreate_vue":"096537b45ff0b933","resources_js_pages_Sales_Components_SaleDetails_vue":"b0aacea6649cd1d1","resources_js_pages_Sales_Create_vue":"5543244ad4006011","resources_js_pages_Sales_Index_vue":"6a2638576d068663","resources_js_pages_Sales_config_js":"31265026d1001cfb","resources_js_pages_Sales_useCustomerAutoComplete_js":"d6c5b9a9a6329f8b","resources_js_pages_Sales_useProductAutoComplete_js":"5971088a704f1408","resources_js_pages_StockProducts_Index_vue":"0d44303fd657ff54","resources_js_pages_Suppliers_Create_vue":"18caa8c4e08c1c43","resources_js_pages_Suppliers_Edit_vue":"db12150cad2bb214","resources_js_pages_Suppliers_Index_vue":"9b81de9fe3189907","resources_js_pages_Suppliers_tableHeader_js":"500bc29ff0dbddce","resources_js_pages_Users_Create_vue":"9f08a0eca7b86f78","resources_js_pages_Users_Edit_vue":"1d761679a82b91d3","resources_js_pages_Users_Index_vue":"3a800e77beaa2c6a","resources_js_pages_Users_Show_vue":"196798c0a8a9e706","resources_js_pages_Users_tableHeader_js":"48f19bd820caf015"}[chunkId] + "";
+/******/ 			return "js/" + chunkId + ".js?id=" + {"node_modules_chart_js_auto_auto_esm_js":"9296b829a7757dee","resources_js_pages_Auth_Login_vue":"0427939393ab0532","resources_js_pages_Customers_Create_vue":"064dab0230ea520e","resources_js_pages_Customers_Edit_vue":"59bd76b04d62623f","resources_js_pages_Customers_Index_vue":"c33caf4ccc707c81","resources_js_pages_Customers_config_js":"3e69b9c9add806c6","resources_js_pages_Dashboards_Index_vue":"c3a93eb2f2b34e98","resources_js_pages_Error_Index_vue":"4119ff1c60260652","resources_js_pages_Products_Create_vue":"98e2159f6c29d288","resources_js_pages_Products_Edit_vue":"3fb44b859a60ae54","resources_js_pages_Products_Index_vue":"c1b03eff763068a0","resources_js_pages_Products_config_js":"885a5522b0477687","resources_js_pages_Purchases_Index_vue":"968034f4a75e4910","resources_js_pages_Sales_Components_Dialog_CustomerCreate_vue":"0e45b005d2175423","resources_js_pages_Sales_Components_Dialog_ProductCreate_vue":"26ef1d3355ba7e47","resources_js_pages_Sales_Components_SaleDetails_vue":"b0aacea6649cd1d1","resources_js_pages_Sales_Create_vue":"421dca3f3e773520","resources_js_pages_Sales_Index_vue":"4c39cc6c6cbbd8dc","resources_js_pages_Sales_config_js":"130f88fd092690ee","resources_js_pages_StockProducts_Index_vue":"75951f4a4696fe2d","resources_js_pages_Suppliers_Create_vue":"73551ad2b7113183","resources_js_pages_Suppliers_Edit_vue":"d403d36f260e0c81","resources_js_pages_Suppliers_Index_vue":"d7aa4f88ff722b27","resources_js_pages_Suppliers_config_js":"52e8d25c6bfab54b","resources_js_pages_Users_Create_vue":"410672102b4e9884","resources_js_pages_Users_Edit_vue":"48711ec179d6981c","resources_js_pages_Users_Index_vue":"5855b5952cb199b1","resources_js_pages_Users_Show_vue":"cf9f1e600346cf9a","resources_js_pages_Users_config_js":"92384d78612abc88"}[chunkId] + "";
 /******/ 		};
 /******/ 	})();
 /******/ 	

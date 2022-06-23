@@ -9,7 +9,7 @@ export const optionStatus = [
   },
 ]
 
-export const tableHeader = [
+export const indexTable = [
   { field: 'updatedAt', header: 'Tanggal' },
   { field: 'number', header: 'Nomor Penjualan' },
   { field: 'status', header: 'Status' },

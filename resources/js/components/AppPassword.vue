@@ -37,8 +37,6 @@ const props = defineProps({
   modelValue: null,
 })
 
-defineEmits(['update:modelValue'])
-
 const isError = computed(() => (props.error ? true : false))
 
 const forLabel = computed(() => props.label.toLowerCase().replace(/\s+/g, '-'))
@@ -63,7 +61,6 @@ const ariaDescribedbyLabel = computed(
       :id="forLabel"
       :placeholder="placeholder"
       :toggleMask="true"
-      :value="modelValue"
       :model-value="modelValue"
       @input="$emit('update:modelValue', $event.target.value)"
     />

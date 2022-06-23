@@ -22,8 +22,6 @@ const props = defineProps({
   modelValue: null,
 })
 
-defineEmits(['update:modelValue'])
-
 const isError = computed(() => (props.error ? true : false))
 
 const forLabel = computed(() =>
