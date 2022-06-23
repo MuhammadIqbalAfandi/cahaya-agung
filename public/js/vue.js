@@ -58645,6 +58645,22 @@ var map = {
 		"./resources/js/pages/Purchases/Index.vue",
 		"resources_js_pages_Purchases_Index_vue"
 	],
+	"./Sales/Components/Dialog/CustomerCreate": [
+		"./resources/js/pages/Sales/Components/Dialog/CustomerCreate.vue",
+		"resources_js_pages_Sales_Components_Dialog_CustomerCreate_vue"
+	],
+	"./Sales/Components/Dialog/CustomerCreate.vue": [
+		"./resources/js/pages/Sales/Components/Dialog/CustomerCreate.vue",
+		"resources_js_pages_Sales_Components_Dialog_CustomerCreate_vue"
+	],
+	"./Sales/Components/Dialog/ProductCreate": [
+		"./resources/js/pages/Sales/Components/Dialog/ProductCreate.vue",
+		"resources_js_pages_Sales_Components_Dialog_ProductCreate_vue"
+	],
+	"./Sales/Components/Dialog/ProductCreate.vue": [
+		"./resources/js/pages/Sales/Components/Dialog/ProductCreate.vue",
+		"resources_js_pages_Sales_Components_Dialog_ProductCreate_vue"
+	],
 	"./Sales/Components/SaleDetails": [
 		"./resources/js/pages/Sales/Components/SaleDetails.vue",
 		"resources_js_pages_Sales_Components_SaleDetails_vue"
@@ -58660,22 +58676,6 @@ var map = {
 	"./Sales/Create.vue": [
 		"./resources/js/pages/Sales/Create.vue",
 		"resources_js_pages_Sales_Create_vue"
-	],
-	"./Sales/Dialog/CustomerCreate": [
-		"./resources/js/pages/Sales/Dialog/CustomerCreate.vue",
-		"resources_js_pages_Sales_Dialog_CustomerCreate_vue"
-	],
-	"./Sales/Dialog/CustomerCreate.vue": [
-		"./resources/js/pages/Sales/Dialog/CustomerCreate.vue",
-		"resources_js_pages_Sales_Dialog_CustomerCreate_vue"
-	],
-	"./Sales/Dialog/ProductCreate": [
-		"./resources/js/pages/Sales/Dialog/ProductCreate.vue",
-		"resources_js_pages_Sales_Dialog_ProductCreate_vue"
-	],
-	"./Sales/Dialog/ProductCreate.vue": [
-		"./resources/js/pages/Sales/Dialog/ProductCreate.vue",
-		"resources_js_pages_Sales_Dialog_ProductCreate_vue"
 	],
 	"./Sales/Index": [
 		"./resources/js/pages/Sales/Index.vue",
@@ -58906,7 +58906,7 @@ module.exports = JSON.parse('{"name":"axios","version":"0.21.4","description":"P
 /******/ 		// This function allow to reference async chunks
 /******/ 		__webpack_require__.u = (chunkId) => {
 /******/ 			// return url for filenames based on template
-/******/ 			return "js/" + chunkId + ".js?id=" + {"node_modules_chart_js_auto_auto_esm_js":"9296b829a7757dee","resources_js_pages_Auth_Login_vue":"abebf9cef2af3768","resources_js_pages_Customers_Create_vue":"9f07d1899bc0ff11","resources_js_pages_Customers_Edit_vue":"d9cb46c05b8515d2","resources_js_pages_Customers_Index_vue":"61a127ac488a7170","resources_js_pages_Customers_tableHeader_js":"7a40a3d5ad60171c","resources_js_pages_Dashboards_Index_vue":"422b13ab86c7fd04","resources_js_pages_Error_Index_vue":"4119ff1c60260652","resources_js_pages_Products_Create_vue":"5cb1e0c3c8963303","resources_js_pages_Products_Edit_vue":"4e0d8abe3e3eb5bb","resources_js_pages_Products_Index_vue":"1dad15f4c14aa968","resources_js_pages_Products_tableHeader_js":"951f590b1402bd34","resources_js_pages_Purchases_Index_vue":"02a6d344279e6aac","resources_js_pages_Sales_Components_SaleDetails_vue":"b0aacea6649cd1d1","resources_js_pages_Sales_Create_vue":"419650f219d0d049","resources_js_pages_Sales_Dialog_CustomerCreate_vue":"21abe4ce18dd848d","resources_js_pages_Sales_Dialog_ProductCreate_vue":"d5c6bf32f3f567b9","resources_js_pages_Sales_Index_vue":"6a2638576d068663","resources_js_pages_Sales_config_js":"31265026d1001cfb","resources_js_pages_Sales_useCustomerAutoComplete_js":"66a5795fa5922ae3","resources_js_pages_Sales_useProductAutoComplete_js":"d36b77341ed5d663","resources_js_pages_StockProducts_Index_vue":"0d44303fd657ff54","resources_js_pages_Suppliers_Create_vue":"18caa8c4e08c1c43","resources_js_pages_Suppliers_Edit_vue":"db12150cad2bb214","resources_js_pages_Suppliers_Index_vue":"9b81de9fe3189907","resources_js_pages_Suppliers_tableHeader_js":"500bc29ff0dbddce","resources_js_pages_Users_Create_vue":"9f08a0eca7b86f78","resources_js_pages_Users_Edit_vue":"1d761679a82b91d3","resources_js_pages_Users_Index_vue":"3a800e77beaa2c6a","resources_js_pages_Users_Show_vue":"196798c0a8a9e706","resources_js_pages_Users_tableHeader_js":"48f19bd820caf015"}[chunkId] + "";
+/******/ 			return "js/" + chunkId + ".js?id=" + {"node_modules_chart_js_auto_auto_esm_js":"9296b829a7757dee","resources_js_pages_Auth_Login_vue":"abebf9cef2af3768","resources_js_pages_Customers_Create_vue":"9f07d1899bc0ff11","resources_js_pages_Customers_Edit_vue":"d9cb46c05b8515d2","resources_js_pages_Customers_Index_vue":"61a127ac488a7170","resources_js_pages_Customers_tableHeader_js":"7a40a3d5ad60171c","resources_js_pages_Dashboards_Index_vue":"422b13ab86c7fd04","resources_js_pages_Error_Index_vue":"4119ff1c60260652","resources_js_pages_Products_Create_vue":"5cb1e0c3c8963303","resources_js_pages_Products_Edit_vue":"4e0d8abe3e3eb5bb","resources_js_pages_Products_Index_vue":"1dad15f4c14aa968","resources_js_pages_Products_tableHeader_js":"951f590b1402bd34","resources_js_pages_Purchases_Index_vue":"02a6d344279e6aac","resources_js_pages_Sales_Components_Dialog_CustomerCreate_vue":"9541fc14add2ff0a","resources_js_pages_Sales_Components_Dialog_ProductCreate_vue":"096537b45ff0b933","resources_js_pages_Sales_Components_SaleDetails_vue":"b0aacea6649cd1d1","resources_js_pages_Sales_Create_vue":"5543244ad4006011","resources_js_pages_Sales_Index_vue":"6a2638576d068663","resources_js_pages_Sales_config_js":"31265026d1001cfb","resources_js_pages_Sales_useCustomerAutoComplete_js":"d6c5b9a9a6329f8b","resources_js_pages_Sales_useProductAutoComplete_js":"5971088a704f1408","resources_js_pages_StockProducts_Index_vue":"0d44303fd657ff54","resources_js_pages_Suppliers_Create_vue":"18caa8c4e08c1c43","resources_js_pages_Suppliers_Edit_vue":"db12150cad2bb214","resources_js_pages_Suppliers_Index_vue":"9b81de9fe3189907","resources_js_pages_Suppliers_tableHeader_js":"500bc29ff0dbddce","resources_js_pages_Users_Create_vue":"9f08a0eca7b86f78","resources_js_pages_Users_Edit_vue":"1d761679a82b91d3","resources_js_pages_Users_Index_vue":"3a800e77beaa2c6a","resources_js_pages_Users_Show_vue":"196798c0a8a9e706","resources_js_pages_Users_tableHeader_js":"48f19bd820caf015"}[chunkId] + "";
 /******/ 		};
 /******/ 	})();
 /******/ 	

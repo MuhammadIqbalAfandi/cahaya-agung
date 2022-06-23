@@ -1,5 +1,5 @@
 "use strict";
-(self["webpackChunk"] = self["webpackChunk"] || []).push([["resources_js_pages_Sales_useCustomerAutoComplete_js"],{
+(self["webpackChunk"] = self["webpackChunk"] || []).push([["resources_js_pages_Sales_Components_Dialog_CustomerCreate_vue"],{
 
 /***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/components/AppInputText.vue?vue&type=script&setup=true&lang=js":
 /*!*****************************************************************************************************************************************************************************************************************!*\
@@ -286,117 +286,6 @@ function useFormErrorReset(form) {
   (0,vue__WEBPACK_IMPORTED_MODULE_0__.watch)(errors, function () {
     form.clearErrors();
   });
-}
-
-/***/ }),
-
-/***/ "./resources/js/pages/Sales/config.js":
-/*!********************************************!*\
-  !*** ./resources/js/pages/Sales/config.js ***!
-  \********************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "dialogStyle": () => (/* binding */ dialogStyle),
-/* harmony export */   "optionStatus": () => (/* binding */ optionStatus),
-/* harmony export */   "tableHeader": () => (/* binding */ tableHeader)
-/* harmony export */ });
-var optionStatus = [{
-  label: 'Pending',
-  value: 'pending'
-}, {
-  label: 'Berhasil',
-  value: 'success'
-}];
-var tableHeader = [{
-  field: 'updatedAt',
-  header: 'Tanggal'
-}, {
-  field: 'number',
-  header: 'Nomor Penjualan'
-}, {
-  field: 'status',
-  header: 'Status'
-}, {
-  field: 'price',
-  header: 'Harga'
-}, {
-  field: 'qty',
-  header: 'Kuantitas'
-}, {
-  field: 'productName',
-  header: 'Nama Produk'
-}, {
-  field: 'productNumber',
-  header: 'Nomor Produk'
-}];
-var dialogStyle = {
-  style: {
-    width: '50vw'
-  },
-  breakpoints: {
-    '960px': '75vw',
-    '640px': '90vw'
-  },
-  modal: true
-};
-
-/***/ }),
-
-/***/ "./resources/js/pages/Sales/useCustomerAutoComplete.js":
-/*!*************************************************************!*\
-  !*** ./resources/js/pages/Sales/useCustomerAutoComplete.js ***!
-  \*************************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "useCustomerAutoComplete": () => (/* binding */ useCustomerAutoComplete)
-/* harmony export */ });
-/* harmony import */ var _inertiajs_inertia__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @inertiajs/inertia */ "./node_modules/@inertiajs/inertia/dist/index.js");
-/* harmony import */ var primevue_usedialog__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! primevue/usedialog */ "./node_modules/primevue/usedialog/usedialog.esm.js");
-/* harmony import */ var _config__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./config */ "./resources/js/pages/Sales/config.js");
-/* harmony import */ var _Components_Dialog_CustomerCreate_vue__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./Components/Dialog/CustomerCreate.vue */ "./resources/js/pages/Sales/Components/Dialog/CustomerCreate.vue");
-function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); enumerableOnly && (symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; })), keys.push.apply(keys, symbols); } return keys; }
-
-function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = null != arguments[i] ? arguments[i] : {}; i % 2 ? ownKeys(Object(source), !0).forEach(function (key) { _defineProperty(target, key, source[key]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)) : ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } return target; }
-
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-
-
-
-
-
-function useCustomerAutoComplete(form) {
-  var dialog = (0,primevue_usedialog__WEBPACK_IMPORTED_MODULE_1__.useDialog)();
-
-  var customerOnComplete = function customerOnComplete(event) {
-    _inertiajs_inertia__WEBPACK_IMPORTED_MODULE_0__.Inertia.reload({
-      data: {
-        customer: event.query
-      },
-      only: ['customers']
-    });
-  };
-
-  var customerOnSelected = function customerOnSelected(event) {
-    form.customer = event.value;
-  };
-
-  var showCreateCustomer = function showCreateCustomer() {
-    dialog.open(_Components_Dialog_CustomerCreate_vue__WEBPACK_IMPORTED_MODULE_3__["default"], {
-      props: _objectSpread({
-        header: 'Tambah Pelanggan'
-      }, _config__WEBPACK_IMPORTED_MODULE_2__.dialogStyle)
-    });
-  };
-
-  return {
-    customerOnComplete: customerOnComplete,
-    customerOnSelected: customerOnSelected,
-    showCreateCustomer: showCreateCustomer
-  };
 }
 
 /***/ }),

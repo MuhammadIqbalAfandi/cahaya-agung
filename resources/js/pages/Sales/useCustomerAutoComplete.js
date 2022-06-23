@@ -1,7 +1,7 @@
 import { Inertia } from '@inertiajs/inertia'
 import { useDialog } from 'primevue/usedialog'
 import { dialogStyle } from './config'
-import CustomerCreate from './Dialog/CustomerCreate.vue'
+import CustomerCreate from './Components/Dialog/CustomerCreate.vue'
 
 export function useCustomerAutoComplete(form) {
   const dialog = useDialog()
