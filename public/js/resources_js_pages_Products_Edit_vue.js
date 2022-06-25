@@ -310,8 +310,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony import */ var _components_AppInputText_vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @/components/AppInputText.vue */ "./resources/js/components/AppInputText.vue");
-/* harmony import */ var _layouts_Dashboard_DashboardLayout_vue__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @/layouts/Dashboard/DashboardLayout.vue */ "./resources/js/layouts/Dashboard/DashboardLayout.vue");
+/* harmony import */ var _components_useForm__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @/components/useForm */ "./resources/js/components/useForm.js");
+/* harmony import */ var _components_AppInputText_vue__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @/components/AppInputText.vue */ "./resources/js/components/AppInputText.vue");
+/* harmony import */ var _layouts_Dashboard_DashboardLayout_vue__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @/layouts/Dashboard/DashboardLayout.vue */ "./resources/js/layouts/Dashboard/DashboardLayout.vue");
+
 
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
@@ -323,7 +325,7 @@ __webpack_require__.r(__webpack_exports__);
     var expose = _ref.expose;
     expose();
     var props = __props;
-    var form = useForm({
+    var form = (0,_components_useForm__WEBPACK_IMPORTED_MODULE_0__.useForm)({
       number: props.product.number,
       name: props.product.name,
       unit: props.product.unit
@@ -337,8 +339,9 @@ __webpack_require__.r(__webpack_exports__);
       props: props,
       form: form,
       onSubmit: onSubmit,
-      AppInputText: _components_AppInputText_vue__WEBPACK_IMPORTED_MODULE_0__["default"],
-      DashboardLayout: _layouts_Dashboard_DashboardLayout_vue__WEBPACK_IMPORTED_MODULE_1__["default"]
+      useForm: _components_useForm__WEBPACK_IMPORTED_MODULE_0__.useForm,
+      AppInputText: _components_AppInputText_vue__WEBPACK_IMPORTED_MODULE_1__["default"],
+      DashboardLayout: _layouts_Dashboard_DashboardLayout_vue__WEBPACK_IMPORTED_MODULE_2__["default"]
     };
     Object.defineProperty(__returned__, '__isScriptSetup', {
       enumerable: false,
@@ -959,6 +962,33 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     /* STABLE */
 
   });
+}
+
+/***/ }),
+
+/***/ "./resources/js/components/useForm.js":
+/*!********************************************!*\
+  !*** ./resources/js/components/useForm.js ***!
+  \********************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "useForm": () => (/* binding */ useForm)
+/* harmony export */ });
+/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm-bundler.js");
+/* harmony import */ var _inertiajs_inertia_vue3__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @inertiajs/inertia-vue3 */ "./node_modules/@inertiajs/inertia-vue3/dist/index.js");
+
+
+function useForm(obj) {
+  var form = (0,_inertiajs_inertia_vue3__WEBPACK_IMPORTED_MODULE_1__.useForm)(obj);
+  var errors = (0,vue__WEBPACK_IMPORTED_MODULE_0__.computed)(function () {
+    return (0,_inertiajs_inertia_vue3__WEBPACK_IMPORTED_MODULE_1__.usePage)().props.value.errors;
+  });
+  (0,vue__WEBPACK_IMPORTED_MODULE_0__.watch)(errors, function () {
+    form.clearErrors();
+  });
+  return form;
 }
 
 /***/ }),

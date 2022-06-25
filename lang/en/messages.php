@@ -47,7 +47,8 @@ return [
             'user' => 'User Account successfully changed',
             'customer' => 'Customer successfully changed',
             'supplier' => 'Supplier successfully changed',
-            'product' => 'Product successfully changed'
+            'product' => 'Product successfully changed',
+            'sale' => 'Sale successfully changed'
         ],
         'destroy' => [
             'type_member' => 'Jenis member successfully deleted',
@@ -56,7 +57,8 @@ return [
             'member' => 'Member Account successfully deleted',
             'user' => 'User Account successfully deleted',
             'customer' => 'Customer successfully deleted',
-            'product' => 'Product successfully deleted'
+            'product' => 'Product successfully deleted',
+            'supplier' => 'Supplier successfully deleted'
         ]
     ],
 
@@ -67,11 +69,13 @@ return [
             'member' => 'member failed to be added',
             'change_password' => 'Password invalid',
             'expense' => 'Expense failed to be added',
-            'transaction' => 'Transaction failed to be added'
+            'transaction' => 'Transaction failed to be added',
+            'sale' => 'Sale failed to be added'
         ],
         'update' => [
             'type_member' => 'Type member failed to be changed',
-            'member' => 'Member failed to be changed'
+            'member' => 'Member failed to be changed',
+            'sale' => 'Sale failed to be changed'
         ]
     ]
 ];

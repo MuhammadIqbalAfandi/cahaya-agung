@@ -56,7 +56,14 @@ defineProps({
       />
 
       <Column>
-        <template #body="{ data }"> </template>
+        <template #body="{ data }">
+          <AppButtonLink
+            icon="pi pi-pencil"
+            class="p-button-icon-only p-button-rounded p-button-text"
+            v-tooltip.bottom="'Ubah Penjualan'"
+            :href="route('sales.edit', data.id)"
+          />
+        </template>
       </Column>
     </DataTable>
 

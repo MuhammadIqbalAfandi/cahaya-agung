@@ -27,7 +27,7 @@ class Sale extends Model
 
     public function saleDetail()
     {
-        return $this->hasOne(SaleDetail::class);
+        return $this->hasOne(SaleDetail::class, 'sale_number', 'number');
     }
 
     public function product()
@@ -35,11 +35,16 @@ class Sale extends Model
         return $this->hasOneThrough(
             Product::class,
             SaleDetail::class,
-            'sale_id',
+            'sale_number',
             'number',
-            'id',
-            'product_id'
+            'number',
+            'product_number'
         );
+    }
+
+    public function customer()
+    {
+        return $this->belongsTo(Customer::class);
     }
 
     public function scopeFilter($query, array $filters)

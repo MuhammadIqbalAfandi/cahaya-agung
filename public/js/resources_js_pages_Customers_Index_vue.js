@@ -383,11 +383,15 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony import */ var _config__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./config */ "./resources/js/pages/Customers/config.js");
-/* harmony import */ var _components_AppSearch_vue__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @/components/AppSearch.vue */ "./resources/js/components/AppSearch.vue");
-/* harmony import */ var _components_AppButtonLink_vue__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @/components/AppButtonLink.vue */ "./resources/js/components/AppButtonLink.vue");
-/* harmony import */ var _components_AppPagination_vue__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @/components/AppPagination.vue */ "./resources/js/components/AppPagination.vue");
-/* harmony import */ var _layouts_Dashboard_DashboardLayout_vue__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @/layouts/Dashboard/DashboardLayout.vue */ "./resources/js/layouts/Dashboard/DashboardLayout.vue");
+/* harmony import */ var _inertiajs_inertia__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @inertiajs/inertia */ "./node_modules/@inertiajs/inertia/dist/index.js");
+/* harmony import */ var primevue_useconfirm__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! primevue/useconfirm */ "./node_modules/primevue/useconfirm/useconfirm.esm.js");
+/* harmony import */ var _config__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./config */ "./resources/js/pages/Customers/config.js");
+/* harmony import */ var _components_AppSearch_vue__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @/components/AppSearch.vue */ "./resources/js/components/AppSearch.vue");
+/* harmony import */ var _components_AppButtonLink_vue__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @/components/AppButtonLink.vue */ "./resources/js/components/AppButtonLink.vue");
+/* harmony import */ var _components_AppPagination_vue__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @/components/AppPagination.vue */ "./resources/js/components/AppPagination.vue");
+/* harmony import */ var _layouts_Dashboard_DashboardLayout_vue__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @/layouts/Dashboard/DashboardLayout.vue */ "./resources/js/layouts/Dashboard/DashboardLayout.vue");
+
+
 
 
 
@@ -402,12 +406,33 @@ __webpack_require__.r(__webpack_exports__);
   setup: function setup(__props, _ref) {
     var expose = _ref.expose;
     expose();
+    var deleteConfirm = (0,primevue_useconfirm__WEBPACK_IMPORTED_MODULE_1__.useConfirm)();
+
+    var onDelete = function onDelete(data) {
+      deleteConfirm.require({
+        message: "Yakin akan menghapus data (".concat(data.name, ") ?"),
+        header: 'Hapus Pelanggan',
+        acceptLabel: 'Iya',
+        rejectLabel: 'Tidak',
+        accept: function accept() {
+          _inertiajs_inertia__WEBPACK_IMPORTED_MODULE_0__.Inertia["delete"](route('customers.destroy', data.id));
+        },
+        reject: function reject() {
+          deleteConfirm.close();
+        }
+      });
+    };
+
     var __returned__ = {
-      indexTable: _config__WEBPACK_IMPORTED_MODULE_0__.indexTable,
-      AppSearch: _components_AppSearch_vue__WEBPACK_IMPORTED_MODULE_1__["default"],
-      AppButtonLink: _components_AppButtonLink_vue__WEBPACK_IMPORTED_MODULE_2__["default"],
-      AppPagination: _components_AppPagination_vue__WEBPACK_IMPORTED_MODULE_3__["default"],
-      DashboardLayout: _layouts_Dashboard_DashboardLayout_vue__WEBPACK_IMPORTED_MODULE_4__["default"]
+      deleteConfirm: deleteConfirm,
+      onDelete: onDelete,
+      Inertia: _inertiajs_inertia__WEBPACK_IMPORTED_MODULE_0__.Inertia,
+      useConfirm: primevue_useconfirm__WEBPACK_IMPORTED_MODULE_1__.useConfirm,
+      indexTable: _config__WEBPACK_IMPORTED_MODULE_2__.indexTable,
+      AppSearch: _components_AppSearch_vue__WEBPACK_IMPORTED_MODULE_3__["default"],
+      AppButtonLink: _components_AppButtonLink_vue__WEBPACK_IMPORTED_MODULE_4__["default"],
+      AppPagination: _components_AppPagination_vue__WEBPACK_IMPORTED_MODULE_5__["default"],
+      DashboardLayout: _layouts_Dashboard_DashboardLayout_vue__WEBPACK_IMPORTED_MODULE_6__["default"]
     };
     Object.defineProperty(__returned__, '__isScriptSetup', {
       enumerable: false,
@@ -1046,13 +1071,17 @@ var _hoisted_5 = {
   "class": "col-12 md:col-4 flex flex-column md:flex-row justify-content-end"
 };
 function render(_ctx, _cache, $props, $setup, $data, $options) {
+  var _component_ConfirmDialog = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("ConfirmDialog");
+
   var _component_Column = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("Column");
+
+  var _component_Button = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("Button");
 
   var _component_DataTable = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("DataTable");
 
   var _directive_tooltip = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveDirective)("tooltip");
 
-  return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)($setup["DashboardLayout"], {
+  return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_ConfirmDialog), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)($setup["DashboardLayout"], {
     title: "Daftar Pelanggan"
   }, {
     "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
@@ -1107,6 +1136,25 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
             _: 1
             /* STABLE */
 
+          }), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_Column, null, {
+            body: (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function (_ref2) {
+              var data = _ref2.data;
+              return [!data.isUsed ? (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)(((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(_component_Button, {
+                key: 0,
+                icon: "pi pi-trash",
+                "class": "p-button-icon-only p-button-rounded p-button-text",
+                onClick: function onClick($event) {
+                  return $setup.onDelete(data);
+                }
+              }, null, 8
+              /* PROPS */
+              , ["onClick"])), [[_directive_tooltip, 'Hapus Pelanggan', void 0, {
+                bottom: true
+              }]]) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)];
+            }),
+            _: 1
+            /* STABLE */
+
           })];
         }),
         _: 1
@@ -1123,7 +1171,9 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     _: 1
     /* STABLE */
 
-  });
+  })], 64
+  /* STABLE_FRAGMENT */
+  );
 }
 
 /***/ }),

@@ -310,13 +310,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony import */ var _inertiajs_inertia__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @inertiajs/inertia */ "./node_modules/@inertiajs/inertia/dist/index.js");
-/* harmony import */ var primevue_useconfirm__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! primevue/useconfirm */ "./node_modules/primevue/useconfirm/useconfirm.esm.js");
-/* harmony import */ var _components_useForm__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @/components/useForm */ "./resources/js/components/useForm.js");
-/* harmony import */ var _components_AppInputText_vue__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @/components/AppInputText.vue */ "./resources/js/components/AppInputText.vue");
-/* harmony import */ var _layouts_Dashboard_DashboardLayout_vue__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @/layouts/Dashboard/DashboardLayout.vue */ "./resources/js/layouts/Dashboard/DashboardLayout.vue");
-
-
+/* harmony import */ var _components_useForm__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @/components/useForm */ "./resources/js/components/useForm.js");
+/* harmony import */ var _components_AppInputText_vue__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @/components/AppInputText.vue */ "./resources/js/components/AppInputText.vue");
+/* harmony import */ var _layouts_Dashboard_DashboardLayout_vue__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @/layouts/Dashboard/DashboardLayout.vue */ "./resources/js/layouts/Dashboard/DashboardLayout.vue");
 
 
 
@@ -329,28 +325,12 @@ __webpack_require__.r(__webpack_exports__);
     var expose = _ref.expose;
     expose();
     var props = __props;
-    var form = (0,_components_useForm__WEBPACK_IMPORTED_MODULE_2__.useForm)({
+    var form = (0,_components_useForm__WEBPACK_IMPORTED_MODULE_0__.useForm)({
       name: props.customer.name,
       address: props.customer.address,
       phone: props.customer.phone,
       npwp: props.customer.npwp
     });
-    var deleteConfirm = (0,primevue_useconfirm__WEBPACK_IMPORTED_MODULE_1__.useConfirm)();
-
-    var onDelete = function onDelete() {
-      deleteConfirm.require({
-        message: "Yakin akan menghapus (".concat(props.customer.name, ") ?"),
-        header: 'Hapus Pelanggan',
-        acceptLabel: 'Hapus',
-        rejectLabel: 'Batalkan',
-        accept: function accept() {
-          _inertiajs_inertia__WEBPACK_IMPORTED_MODULE_0__.Inertia["delete"](route('customers.destroy', props.customer.id));
-        },
-        reject: function reject() {
-          deleteConfirm.close();
-        }
-      });
-    };
 
     var onSubmit = function onSubmit() {
       form.put(route('customers.update', props.customer.id));
@@ -359,14 +339,10 @@ __webpack_require__.r(__webpack_exports__);
     var __returned__ = {
       props: props,
       form: form,
-      deleteConfirm: deleteConfirm,
-      onDelete: onDelete,
       onSubmit: onSubmit,
-      Inertia: _inertiajs_inertia__WEBPACK_IMPORTED_MODULE_0__.Inertia,
-      useConfirm: primevue_useconfirm__WEBPACK_IMPORTED_MODULE_1__.useConfirm,
-      useForm: _components_useForm__WEBPACK_IMPORTED_MODULE_2__.useForm,
-      AppInputText: _components_AppInputText_vue__WEBPACK_IMPORTED_MODULE_3__["default"],
-      DashboardLayout: _layouts_Dashboard_DashboardLayout_vue__WEBPACK_IMPORTED_MODULE_4__["default"]
+      useForm: _components_useForm__WEBPACK_IMPORTED_MODULE_0__.useForm,
+      AppInputText: _components_AppInputText_vue__WEBPACK_IMPORTED_MODULE_1__["default"],
+      DashboardLayout: _layouts_Dashboard_DashboardLayout_vue__WEBPACK_IMPORTED_MODULE_2__["default"]
     };
     Object.defineProperty(__returned__, '__isScriptSetup', {
       enumerable: false,
@@ -924,14 +900,9 @@ var _hoisted_9 = {
   "class": "grid"
 };
 var _hoisted_10 = {
-  "class": "col-12 md:col-6 flex flex-column md:flex-row justify-content-center md:justify-content-start"
-};
-var _hoisted_11 = {
-  "class": "col-12 md:col-6 flex flex-column md:flex-row justify-content-center md:justify-content-end"
+  "class": "col-12 flex flex-column md:flex-row justify-content-end"
 };
 function render(_ctx, _cache, $props, $setup, $data, $options) {
-  var _component_ConfirmDialog = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("ConfirmDialog");
-
   var _component_Button = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("Button");
 
   var _component_Card = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("Card");
@@ -940,7 +911,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     title: "Ubah Pelanggan"
   }, {
     "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
-      return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_ConfirmDialog), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_1, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_2, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_Card, null, {
+      return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_1, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_2, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_Card, null, {
         title: (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
           return [_hoisted_3];
         }),
@@ -991,11 +962,6 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
         }),
         footer: (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
           return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_9, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_10, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_Button, {
-            label: "Hapus",
-            icon: "pi pi-trash",
-            "class": "p-button-outlined p-button-danger",
-            onClick: $setup.onDelete
-          })]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_11, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_Button, {
             label: "Simpan",
             icon: "pi pi-check",
             "class": "p-button-outlined",

@@ -1,6 +1,4 @@
 <script setup>
-import { Inertia } from '@inertiajs/inertia'
-import { useConfirm } from 'primevue/useconfirm'
 import { useForm } from '@/components/useForm'
 import AppInputText from '@/components/AppInputText.vue'
 import DashboardLayout from '@/layouts/Dashboard/DashboardLayout.vue'
@@ -16,23 +14,6 @@ const form = useForm({
   npwp: props.customer.npwp,
 })
 
-const deleteConfirm = useConfirm()
-
-const onDelete = () => {
-  deleteConfirm.require({
-    message: `Yakin akan menghapus (${props.customer.name}) ?`,
-    header: 'Hapus Pelanggan',
-    acceptLabel: 'Hapus',
-    rejectLabel: 'Batalkan',
-    accept: () => {
-      Inertia.delete(route('customers.destroy', props.customer.id))
-    },
-    reject: () => {
-      deleteConfirm.close()
-    },
-  })
-}
-
 const onSubmit = () => {
   form.put(route('customers.update', props.customer.id))
 }
@@ -40,8 +21,6 @@ const onSubmit = () => {
 
 <template>
   <DashboardLayout title="Ubah Pelanggan">
-    <ConfirmDialog />
-
     <div class="grid">
       <div class="col-12 lg:col-8">
         <Card>
@@ -91,18 +70,7 @@ const onSubmit = () => {
           <template #footer>
             <div class="grid">
               <div
-                class="col-12 md:col-6 flex flex-column md:flex-row justify-content-center md:justify-content-start"
-              >
-                <Button
-                  label="Hapus"
-                  icon="pi pi-trash"
-                  class="p-button-outlined p-button-danger"
-                  @click="onDelete"
-                />
-              </div>
-
-              <div
-                class="col-12 md:col-6 flex flex-column md:flex-row justify-content-center md:justify-content-end"
+                class="col-12 flex flex-column md:flex-row justify-content-end"
               >
                 <Button
                   label="Simpan"

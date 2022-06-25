@@ -833,7 +833,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
           price: data.price,
           qty: data.qty,
           customer_id: data.customer.id,
-          product_id: data.product.number
+          product_number: data.product.number
         };
       }).post(route('sales.store'), {
         onSuccess: function onSuccess() {
@@ -2117,7 +2117,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
             "onUpdate:modelValue": _cache[3] || (_cache[3] = function ($event) {
               return $setup.form.product = $event;
             }),
-            error: $setup.form.errors.product_id,
+            error: $setup.form.errors.product_number,
             suggestions: $props.products
           }, {
             item: (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function (slotProps) {
@@ -2240,7 +2240,7 @@ var optionStatus = [{
   label: 'Pending',
   value: 'pending'
 }, {
-  label: 'Berhasil',
+  label: 'Success',
   value: 'success'
 }];
 var indexTable = [{

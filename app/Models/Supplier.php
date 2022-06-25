@@ -19,6 +19,11 @@ class Supplier extends Model
 
     protected $hidden = ['created_at', 'updated_at'];
 
+    public function purchases()
+    {
+        return $this->hasMany(Purchase::class);
+    }
+
     public function scopeFilter($query, array $filters)
     {
         $query->when($filters['search'] ?? null, function ($query, $search) {

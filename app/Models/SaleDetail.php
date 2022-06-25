@@ -2,6 +2,8 @@
 
 namespace App\Models;
 
+use App\Services\HelperService;
+use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -13,7 +15,14 @@ class SaleDetail extends Model
         'price',
         'ppn',
         'qty',
-        'sale_id',
-        'product_id'
+        'sale_number',
+        'product_number'
     ];
+
+    public function price(): Attribute
+    {
+        return Attribute::make(
+            get:fn($value) => HelperService::setRupiahFormat($value, true)
+        );
+    }
 }

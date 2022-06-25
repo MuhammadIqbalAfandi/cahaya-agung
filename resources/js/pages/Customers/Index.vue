@@ -1,4 +1,6 @@
 <script setup>
+import { Inertia } from '@inertiajs/inertia'
+import { useConfirm } from 'primevue/useconfirm'
 import { indexTable } from './config'
 import AppSearch from '@/components/AppSearch.vue'
 import AppButtonLink from '@/components/AppButtonLink.vue'
@@ -9,9 +11,28 @@ defineProps({
   customers: Object,
   initialSearch: String,
 })
+
+const deleteConfirm = useConfirm()
+
+const onDelete = (data) => {
+  deleteConfirm.require({
+    message: `Yakin akan menghapus data (${data.name}) ?`,
+    header: 'Hapus Pelanggan',
+    acceptLabel: 'Iya',
+    rejectLabel: 'Tidak',
+    accept: () => {
+      Inertia.delete(route('customers.destroy', data.id))
+    },
+    reject: () => {
+      deleteConfirm.close()
+    },
+  })
+}
 </script>
 
 <template>
+  <ConfirmDialog />
+
   <DashboardLayout title="Daftar Pelanggan">
     <DataTable
       responsiveLayout="scroll"
@@ -62,6 +83,18 @@ defineProps({
             class="p-button-icon-only p-button-rounded p-button-text"
             v-tooltip.bottom="'Ubah Pelanggan'"
             :href="route('customers.edit', data.id)"
+          />
+        </template>
+      </Column>
+
+      <Column>
+        <template #body="{ data }">
+          <Button
+            v-if="!data.isUsed"
+            icon="pi pi-trash"
+            class="p-button-icon-only p-button-rounded p-button-text"
+            v-tooltip.bottom="'Hapus Pelanggan'"
+            @click="onDelete(data)"
           />
         </template>
       </Column>

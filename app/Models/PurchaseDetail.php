@@ -13,7 +13,7 @@ class PurchaseDetail extends Model
         'price',
         'ppn',
         'qty',
-        'purchase_id',
-        'product_id'
+        'purchase_number',
+        'product_number'
     ];
 }

@@ -31,7 +31,8 @@ class CustomerController extends Controller
                     'name' => $customer->name,
                     'address' => $customer->address,
                     'phone' => $customer->phone,
-                    'npwp' => $customer->npwp
+                    'npwp' => $customer->npwp,
+                    'isUsed' => $customer->sales()->exists()
                 ])
         ]);
     }
@@ -105,6 +106,6 @@ class CustomerController extends Controller
     {
         $customer->delete();
 
-        return to_route('customers.index')->with('success', __('messages.success.destroy.customer'));
+        return back()->with('success', __('messages.success.destroy.customer'));
     }
 }

@@ -26,13 +26,14 @@ class SupplierController extends Controller
                 ->latest()
                 ->paginate(10)
                 ->withQueryString()
-                ->through(fn($customer) => [
-                    'id' => $customer->id,
-                    'name' => $customer->name,
-                    'address' => $customer->address,
-                    'email' => $customer->email,
-                    'phone' => $customer->phone,
-                    'npwp' => $customer->npwp
+                ->through(fn($supplier) => [
+                    'id' => $supplier->id,
+                    'name' => $supplier->name,
+                    'address' => $supplier->address,
+                    'email' => $supplier->email,
+                    'phone' => $supplier->phone,
+                    'npwp' => $supplier->npwp,
+                    'isUsed' => $supplier->purchases()->exists()
                 ])
         ]);
     }
@@ -104,6 +105,8 @@ class SupplierController extends Controller
      */
     public function destroy(Supplier $supplier)
     {
-        //
+        $supplier->delete();
+
+        return back()->with('success', __('messages.success.destroy.supplier'));
     }
 }

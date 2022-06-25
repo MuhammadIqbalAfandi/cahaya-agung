@@ -40,7 +40,7 @@ const onSubmit = () => {
       price: data.price,
       qty: data.qty,
       customer_id: data.customer.id,
-      product_id: data.product.number,
+      product_number: data.product.number,
     }))
     .post(route('sales.store'), {
       onSuccess: () => form.reset(),
@@ -144,7 +144,7 @@ const checkSales = () => {
                   field="name"
                   refresh-data="products"
                   v-model="form.product"
-                  :error="form.errors.product_id"
+                  :error="form.errors.product_number"
                   :suggestions="products"
                 >
                   <template #item="slotProps">

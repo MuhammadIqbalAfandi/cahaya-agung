@@ -47,7 +47,8 @@ return [
             'user' => 'Akun user berhasil diubah',
             'customer' => 'Pelanggan berhasil diubah',
             'supplier' => 'Supplier berhasil diubah',
-            'product' => 'Produk berhasil diubah'
+            'product' => 'Produk berhasil diubah',
+            'sale' => 'Penjualan berhasil diubah'
         ],
         'destroy' => [
             'type_member' => 'Jenis member berhasil dihapus',
@@ -56,7 +57,8 @@ return [
             'member' => 'Akun member berhasil dihapus',
             'user' => 'Akun user berhasil dihapus',
             'customer' => 'Pelanggan berhasil dihapus',
-            'product' => 'Product berhasil dihapus'
+            'product' => 'Product berhasil dihapus',
+            'supplier' => 'Supplier berhasil dihapus'
         ]
     ],
 
@@ -67,11 +69,13 @@ return [
             'member' => 'Member gagal ditambahkan',
             'change_password' => 'Password lama salah',
             'expense' => 'Pengeluaran gagal ditambahkan',
-            'transaction' => 'Transaksi gagal ditambahkan'
+            'transaction' => 'Transaksi gagal ditambahkan',
+            'sale' => 'Penjualan gagal ditambahkan'
         ],
         'update' => [
             'type_member' => 'Jenis member gagal diubah',
-            'member' => 'Member gagal diubah'
+            'member' => 'Member gagal diubah',
+            'sale' => 'Penjualan gagal dibuah'
         ]
     ]
 ];

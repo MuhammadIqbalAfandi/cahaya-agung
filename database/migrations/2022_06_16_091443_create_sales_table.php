@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('sales', function (Blueprint $table) {
             $table->id();
-            $table->string('number');
+            $table->string('number')->unique();
             $table->enum('status', ['pending', 'success']);
             $table->foreignId('customer_id')->constrained();
             $table->foreignId('user_id')->constrained();

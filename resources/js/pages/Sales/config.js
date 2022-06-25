@@ -4,7 +4,7 @@ export const optionStatus = [
     value: 'pending',
   },
   {
-    label: 'Berhasil',
+    label: 'Success',
     value: 'success',
   },
 ]

@@ -1,4 +1,5 @@
 <script setup>
+import { useForm } from '@/components/useForm'
 import AppInputText from '@/components/AppInputText.vue'
 import DashboardLayout from '@/layouts/Dashboard/DashboardLayout.vue'
 
@@ -53,6 +54,7 @@ const onSubmit = () => {
                 />
               </div>
             </div>
+
             <div class="flex flex-column md:flex-row justify-content-end">
               <Button
                 label="Simpan"

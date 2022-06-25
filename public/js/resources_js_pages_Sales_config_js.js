@@ -17,7 +17,7 @@ var optionStatus = [{
   label: 'Pending',
   value: 'pending'
 }, {
-  label: 'Berhasil',
+  label: 'Success',
   value: 'success'
 }];
 var indexTable = [{

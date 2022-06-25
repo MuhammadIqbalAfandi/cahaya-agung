@@ -1050,6 +1050,8 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
 
   var _component_DataTable = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("DataTable");
 
+  var _directive_tooltip = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveDirective)("tooltip");
+
   return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)($setup["DashboardLayout"], {
     title: "Daftar Penjualan"
   }, {
@@ -1092,7 +1094,15 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
           )), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_Column, null, {
             body: (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function (_ref) {
               var data = _ref.data;
-              return [];
+              return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)($setup["AppButtonLink"], {
+                icon: "pi pi-pencil",
+                "class": "p-button-icon-only p-button-rounded p-button-text",
+                href: _ctx.route('sales.edit', data.id)
+              }, null, 8
+              /* PROPS */
+              , ["href"]), [[_directive_tooltip, 'Ubah Penjualan', void 0, {
+                bottom: true
+              }]])];
             }),
             _: 1
             /* STABLE */
@@ -1135,7 +1145,7 @@ var optionStatus = [{
   label: 'Pending',
   value: 'pending'
 }, {
-  label: 'Berhasil',
+  label: 'Success',
   value: 'success'
 }];
 var indexTable = [{

@@ -3,10 +3,12 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\Sales\StoreSaleRequest;
+use App\Http\Requests\Sales\UpdateSaleRequest;
 use App\Models\Customer;
 use App\Models\Product;
 use App\Models\Sale;
-use Illuminate\Http\Request;
+use Illuminate\Database\QueryException;
+use Illuminate\Support\Facades\DB;
 use Inertia\Inertia;
 
 class SalesController extends Controller
@@ -85,16 +87,26 @@ class SalesController extends Controller
      */
     public function store(StoreSaleRequest $request)
     {
-        $validated = $request->safe()->merge([
-            'user_id' => auth()->user()->id,
-            'ppn' => 11
-        ])->all();
+        DB::beginTransaction();
 
-        $sale = Sale::create($validated);
+        try {
+            $validated = $request->safe()->merge([
+                'user_id' => auth()->user()->id,
+                'ppn' => 11
+            ])->all();
 
-        $sale->saleDetail()->create($validated);
+            $sale = Sale::create($validated);
 
-        return back()->with('success', __('messages.success.store.sale'));
+            $sale->saleDetail()->create($validated);
+
+            DB::commit();
+
+            return back()->with('success', __('messages.success.store.sale'));
+        } catch (QueryException $e) {
+            DB::rollBack();
+
+            return back()->with('error', __('messages.error.store.sale'));
+        }
     }
 
     /**
@@ -116,7 +128,19 @@ class SalesController extends Controller
      */
     public function edit(Sale $sale)
     {
-        //
+        return inertia('Sales/Edit', [
+            'sale' => [
+                'id' => $sale->id,
+                'number' => $sale->number,
+                'status' => [
+                    'value' => $sale->status
+                ],
+                'price' => $sale->saleDetail->getRawOriginal('price'),
+                'qty' => $sale->saleDetail->qty,
+                'customer' => $sale->customer,
+                'product' => $sale->product
+            ]
+        ]);
     }
 
     /**
@@ -126,9 +150,21 @@ class SalesController extends Controller
      * @param  Sale $sale
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Sale $sale)
+    public function update(UpdateSaleRequest $request, Sale $sale)
     {
-        //
+        dd($request->validated());
+
+        DB::beginTransaction();
+
+        try {
+            DB::commit();
+
+            return back()->with('succes', __('messages.success.update.sale'));
+        } catch (QueryException $e) {
+            DB::rollBack();
+
+            return back()->with('error', __('messages.error.update.sale'));
+        }
     }
 
     /**

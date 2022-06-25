@@ -59,6 +59,7 @@ const selectedDropdownLabel = (value) => {
   const result = props.options.find(
     (option) => option[props.optionValue] == value
   )
+
   if (result) {
     return result[props.optionLabel]
   }

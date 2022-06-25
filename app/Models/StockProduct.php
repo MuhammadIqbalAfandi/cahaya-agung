@@ -13,6 +13,6 @@ class StockProduct extends Model
         'purchase_number',
         'sale_number',
         'amount',
-        'product_id'
+        'product_number'
     ];
 }

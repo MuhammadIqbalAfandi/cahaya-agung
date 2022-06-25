@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\Product\StoreProductRequest;
 use App\Http\Requests\Product\UpdateProductRequest;
 use App\Models\Product;
+use App\Services\ProductService;
 use Inertia\Inertia;
 
 class ProductController extends Controller
@@ -26,7 +27,8 @@ class ProductController extends Controller
                     'id' => $product->id,
                     'number' => $product->number,
                     'name' => $product->name,
-                    'unit' => $product->unit
+                    'unit' => $product->unit,
+                    'isUsed' => ProductService::isUsed($product)
                 ])
         ]);
     }
@@ -102,6 +104,6 @@ class ProductController extends Controller
     {
         $product->delete();
 
-        return to_route('products.index')->with('success', __('messages.success.destroy.product'));
+        return back()->with('success', __('messages.success.destroy.product'));
     }
 }
