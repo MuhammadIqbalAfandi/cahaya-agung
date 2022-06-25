@@ -91,7 +91,7 @@ entity SaleDetail {
   * ppn
   * qty
   __
-  * sale_id
+  * sale_number
   * product_number
 }
 

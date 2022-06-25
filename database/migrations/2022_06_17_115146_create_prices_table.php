@@ -16,7 +16,8 @@ return new class extends Migration
         Schema::create('prices', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('price');
-            $table->foreignId('product_id')->constrained();
+            $table->string('product_number');
+            $table->foreign('product_number')->references('number')->on('products');
             $table->foreignId('customer_id')->constrained();
             $table->foreignId('supplier_id')->constrained();
             $table->timestamps();

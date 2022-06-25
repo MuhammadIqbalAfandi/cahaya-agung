@@ -18,7 +18,8 @@ return new class extends Migration
             $table->string('purchase_number');
             $table->string('sale_number');
             $table->integer('amount');
-            $table->foreignId('product_id')->constrained();
+            $table->string('product_number');
+            $table->foreign('product_number')->references('number')->on('products');
             $table->timestamps();
         });
     }
