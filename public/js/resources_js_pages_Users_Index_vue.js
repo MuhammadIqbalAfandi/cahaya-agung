@@ -1097,13 +1097,10 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
             "class": "w-full md:w-27rem",
             placeholder: "cari, contoh: tina",
             url: "/users",
-            modelValue: _ctx.search,
-            "onUpdate:modelValue": _cache[0] || (_cache[0] = function ($event) {
-              return _ctx.search = $event;
-            })
+            initialSearch: $props.initialSearch
           }, null, 8
           /* PROPS */
-          , ["modelValue"])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_5, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)($setup["AppButtonLink"], {
+          , ["initialSearch"])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_5, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)($setup["AppButtonLink"], {
             label: "Tambah User",
             icon: "pi pi-pencil",
             "class": "p-button-outlined",

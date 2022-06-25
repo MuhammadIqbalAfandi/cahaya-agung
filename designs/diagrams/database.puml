@@ -71,7 +71,7 @@ entity StockProduct {
   * sale_number
   * amount
   __
-  * product_id
+  * product_number
 }
 
 entity Price {
@@ -79,7 +79,7 @@ entity Price {
   __
   * price
   __
-  * product_id
+  * product_number
   * customer_id
   * supplier_id
 }
@@ -92,7 +92,7 @@ entity SaleDetail {
   * qty
   __
   * sale_id
-  * product_id
+  * product_number
 }
 
 entity PurchaseDetail {
@@ -102,8 +102,8 @@ entity PurchaseDetail {
   * ppn
   * qty
   __
-  * purchase_id
-  * product_id
+  * purchase_number
+  * product_number
 }
 
 User ||--|{ Role

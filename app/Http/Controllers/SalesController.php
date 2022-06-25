@@ -37,8 +37,8 @@ class SalesController extends Controller
                     'price' => $sale->saleDetail->price,
                     'ppn' => $sale->saleDetail->ppn,
                     'qty' => $sale->saleDetail->qty,
-                    'productName' => $sale->saleDetailProduct,
-                    'productNumber' => $sale->saleDetailProduct
+                    'productName' => $sale->product->name,
+                    'productNumber' => $sale->product->number
                 ])
         ]);
     }

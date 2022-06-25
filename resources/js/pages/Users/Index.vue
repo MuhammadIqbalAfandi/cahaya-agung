@@ -51,7 +51,7 @@ const onResetPassword = (data) => {
                 class="w-full md:w-27rem"
                 placeholder="cari, contoh: tina"
                 url="/users"
-                v-model="search"
+                :initialSearch="initialSearch"
               />
             </div>
           </div>
