@@ -3,7 +3,7 @@ import { indexTable } from './config'
 import AppSearch from '@/components/AppSearch.vue'
 import AppButtonLink from '@/components/AppButtonLink.vue'
 import AppPagination from '@/components/AppPagination.vue'
-import DashboardLayout from '@/layouts/DashboardLayout.vue'
+import DashboardLayout from '@/layouts/Dashboard/DashboardLayout.vue'
 
 defineProps({
   sales: Object,

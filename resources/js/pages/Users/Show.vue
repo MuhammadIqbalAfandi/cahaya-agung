@@ -2,7 +2,7 @@
 import { useForm } from '@/components/useForm'
 import AppInputText from '@/components/AppInputText.vue'
 import AppPassword from '@/components/AppPassword.vue'
-import DashboardLayout from '@/layouts/DashboardLayout.vue'
+import DashboardLayout from '@/layouts/Dashboard/DashboardLayout.vue'
 
 const props = defineProps({
   user: Object,

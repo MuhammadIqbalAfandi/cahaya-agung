@@ -2,7 +2,7 @@
 import { useForm } from '@/components/useForm'
 import AppInputText from '@/components/AppInputText.vue'
 import AppPassword from '@/components/AppPassword.vue'
-import AuthLayout from '@/layouts/AuthLayout.vue'
+import AuthLayout from '@/layouts/Auth/AuthLayout.vue'
 
 const form = useForm({
   username: '',

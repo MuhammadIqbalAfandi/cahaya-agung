@@ -24,7 +24,7 @@ defineProps({
             {{ item.label }}
           </div>
 
-          <AppSubSidebar :items="item.items"></AppSubSidebar>
+          <SubSidebar :items="item.items"></SubSidebar>
         </template>
         <template v-else>
           <Link
@@ -52,7 +52,7 @@ defineProps({
             <span>{{ item.label }}</span>
           </a>
 
-          <AppSubSidebar :items="item.items"></AppSubSidebar>
+          <SubSidebar :items="item.items"></SubSidebar>
         </template>
       </li>
     </template>

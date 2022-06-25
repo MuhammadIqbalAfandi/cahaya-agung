@@ -1,25 +1,15 @@
 <script setup>
-import { watch } from 'vue'
 import { Inertia } from '@inertiajs/inertia'
-import { pickBy } from 'lodash'
 import { useConfirm } from 'primevue/useconfirm'
 import { indexTable } from './config'
-import { useSearchText } from '@/components/useSearchText'
-import DashboardLayout from '@/layouts/DashboardLayout.vue'
+import AppSearch from '@/components/AppSearch.vue'
 import AppButtonLink from '@/components/AppButtonLink.vue'
 import AppPagination from '@/components/AppPagination.vue'
+import DashboardLayout from '@/layouts/Dashboard/DashboardLayout.vue'
 
-const props = defineProps({
+defineProps({
   users: Object,
   initialSearch: String,
-})
-
-const { search } = useSearchText(props)
-
-watch(search, () => {
-  Inertia.get('/users', pickBy({ search: search.value }), {
-    preserveState: true,
-  })
 })
 
 const resetConfirm = useConfirm()
@@ -57,9 +47,10 @@ const onResetPassword = (data) => {
         <div class="grid">
           <div class="col-12 md:col-8">
             <div class="flex align-items-center">
-              <InputText
+              <AppSearch
                 class="w-full md:w-27rem"
                 placeholder="cari, contoh: tina"
+                url="/users"
                 v-model="search"
               />
             </div>

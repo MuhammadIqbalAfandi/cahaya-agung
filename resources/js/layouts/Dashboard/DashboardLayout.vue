@@ -1,10 +1,11 @@
 <script setup>
 import { ref, computed } from 'vue'
 import { Head } from '@inertiajs/inertia-vue3'
-import AppTopBar from '@/components/AppTopBar.vue'
-import AppSidebar from '@/components/AppSidebar.vue'
-import AppMessage from '@/components/AppMessage.vue'
 import menu from '@/utils/menu'
+import AppMessage from '@/components/AppMessage.vue'
+import TopBar from './Components/TopBar.vue'
+import Sidebar from './Components/Sidebar.vue'
+import Footer from './Components/Footer.vue'
 
 defineProps({
   title: String,
@@ -53,28 +54,20 @@ const onMenuToggle = (event) => {
   <Head :title="title" />
 
   <div :class="containerClass" @click="onWrapperClick">
-    <AppTopBar @menu-toggle="onMenuToggle" />
+    <TopBar @menu-toggle="onMenuToggle" />
 
-    <div class="layout-sidebar">
-      <AppSidebar :menu="menu[$page.props.auth.user.role_id]" />
-    </div>
+    <nav class="layout-sidebar">
+      <Sidebar :menu="menu[$page.props.auth.user.role_id]" />
+    </nav>
 
     <div class="layout-main-container">
-      <div class="layout-main">
+      <main class="layout-main">
         <AppMessage />
 
         <slot />
-      </div>
+      </main>
 
-      <div class="layout-footer">
-        Developed by
-        <a
-          href="https://dijitalcode.com"
-          target="_blank"
-          class="font-medium ml-2"
-          >DijitalCODE</a
-        >
-      </div>
+      <Footer />
     </div>
 
     <Transition name="layout-mask">

@@ -2,7 +2,7 @@
 import { useForm } from '@/components/useForm'
 import AppInputText from '@/components/AppInputText.vue'
 import AppDropdown from '@/components/AppDropdown.vue'
-import DashboardLayout from '@/layouts/DashboardLayout.vue'
+import DashboardLayout from '@/layouts/Dashboard/DashboardLayout.vue'
 
 defineProps({
   roles: Array,

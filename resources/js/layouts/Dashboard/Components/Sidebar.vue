@@ -1,5 +1,5 @@
 <script setup>
-import AppSubSidebar from '@/components/AppSubSidebar.vue'
+import SubSidebar from './SubSidebar.vue'
 
 defineProps({
   menu: Array,
@@ -8,7 +8,7 @@ defineProps({
 
 <template>
   <div>
-    <AppSubSidebar class="layout-menu" :items="menu" :root="true" />
+    <SubSidebar class="layout-menu" :items="menu" :root="true" />
   </div>
 </template>
 

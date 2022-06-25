@@ -9,7 +9,7 @@ import AppInputText from '@/components/AppInputText.vue'
 import AppInputNumber from '@/components/AppInputNumber.vue'
 import AppDropdown from '@/components/AppDropdown.vue'
 import AppAutoComplete from '@/components/AppAutoComplete.vue'
-import DashboardLayout from '@/layouts/DashboardLayout.vue'
+import DashboardLayout from '@/layouts/Dashboard/DashboardLayout.vue'
 
 const props = defineProps({
   number: String,

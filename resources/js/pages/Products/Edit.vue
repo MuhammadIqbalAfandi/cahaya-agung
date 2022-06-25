@@ -1,6 +1,6 @@
 <script setup>
 import AppInputText from '@/components/AppInputText.vue'
-import DashboardLayout from '@/layouts/DashboardLayout.vue'
+import DashboardLayout from '@/layouts/Dashboard/DashboardLayout.vue'
 
 const props = defineProps({
   product: Object,

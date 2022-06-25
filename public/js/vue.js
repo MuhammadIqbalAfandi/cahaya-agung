@@ -21553,40 +21553,10 @@ if ($defineProperty) {
 
 /***/ }),
 
-/***/ "./node_modules/css-loader/dist/cjs.js??clonedRuleSet-11.use[1]!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-11.use[2]!./node_modules/sass-loader/dist/cjs.js??clonedRuleSet-11.use[3]!./resources/js/assets/styles/sass/style.scss":
-/*!******************************************************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/css-loader/dist/cjs.js??clonedRuleSet-11.use[1]!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-11.use[2]!./node_modules/sass-loader/dist/cjs.js??clonedRuleSet-11.use[3]!./resources/js/assets/styles/sass/style.scss ***!
-  \******************************************************************************************************************************************************************************************************************************************************/
-/***/ ((module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
-/* harmony export */ });
-/* harmony import */ var _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../../../../node_modules/css-loader/dist/runtime/api.js */ "./node_modules/css-loader/dist/runtime/api.js");
-/* harmony import */ var _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _node_modules_css_loader_dist_cjs_js_clonedRuleSet_11_use_1_variable_scss__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! -!../../../../../node_modules/css-loader/dist/cjs.js??clonedRuleSet-11.use[1]!./variable.scss */ "./node_modules/css-loader/dist/cjs.js??clonedRuleSet-11.use[1]!./resources/js/assets/styles/sass/variable.scss");
-/* harmony import */ var _node_modules_css_loader_dist_cjs_js_clonedRuleSet_11_use_1_global_scss__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! -!../../../../../node_modules/css-loader/dist/cjs.js??clonedRuleSet-11.use[1]!./global.scss */ "./node_modules/css-loader/dist/cjs.js??clonedRuleSet-11.use[1]!./resources/js/assets/styles/sass/global.scss");
-// Imports
-
-
-
-var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
-___CSS_LOADER_EXPORT___.i(_node_modules_css_loader_dist_cjs_js_clonedRuleSet_11_use_1_variable_scss__WEBPACK_IMPORTED_MODULE_1__["default"]);
-___CSS_LOADER_EXPORT___.i(_node_modules_css_loader_dist_cjs_js_clonedRuleSet_11_use_1_global_scss__WEBPACK_IMPORTED_MODULE_2__["default"]);
-// Module
-___CSS_LOADER_EXPORT___.push([module.id, "", ""]);
-// Exports
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
-
-
-/***/ }),
-
-/***/ "./node_modules/css-loader/dist/cjs.js??clonedRuleSet-11.use[1]!./resources/js/assets/styles/sass/global.scss":
-/*!********************************************************************************************************************!*\
-  !*** ./node_modules/css-loader/dist/cjs.js??clonedRuleSet-11.use[1]!./resources/js/assets/styles/sass/global.scss ***!
-  \********************************************************************************************************************/
+/***/ "./node_modules/css-loader/dist/cjs.js??clonedRuleSet-11.use[1]!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-11.use[2]!./node_modules/sass-loader/dist/cjs.js??clonedRuleSet-11.use[3]!./resources/js/assets/styles/sass/global.scss":
+/*!*******************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/css-loader/dist/cjs.js??clonedRuleSet-11.use[1]!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-11.use[2]!./node_modules/sass-loader/dist/cjs.js??clonedRuleSet-11.use[3]!./resources/js/assets/styles/sass/global.scss ***!
+  \*******************************************************************************************************************************************************************************************************************************************************/
 /***/ ((module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -21600,31 +21570,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "/*\n  Default style\n*/\n* {\n  box-sizing: border-box;\n}\n\nhtml {\n  height: 100%;\n  font-size: 14px;\n}\n\nbody {\n  font-family: var(--font-family);\n  color: var(--text-color);\n  background-color: var(--surface-ground);\n  margin: 0;\n  padding: 0;\n  min-height: 100%;\n  -webkit-font-smoothing: antialiased;\n  -moz-osx-font-smoothing: grayscale;\n}\n\n.layout-topbar-menu-tooltip.p-tooltip {\n  position: absolute;\n  z-index: 997;\n  display: none;\n  padding: 0.25em 0.5rem;\n  max-width: 12.5rem;\n}\n\n/*\n  Typography\n*/\na {\n  text-decoration: none;\n  color: var(--primary-color);\n}\n\nh1,\nh2,\nh3,\nh4,\nh5,\nh6 {\n  margin: 0.5rem 0 0.5rem 0;\n  font-family: inherit;\n  font-weight: 500;\n  line-height: 1.2;\n  color: inherit;\n\n  &:first-child {\n    margin-top: 0;\n  }\n}\n\nh1 {\n  font-size: 2.5rem;\n}\n\nh2 {\n  font-size: 2rem;\n}\n\nh3 {\n  font-size: 1.75rem;\n}\n\nh4 {\n  font-size: 1.5rem;\n}\n\nh5 {\n  font-size: 1.25rem;\n}\n\nh6 {\n  font-size: 1rem;\n}\n\nmark {\n  background: #fff8e1;\n  padding: 0.25rem 0.4rem;\n  border-radius: 12px;\n  font-family: monospace;\n}\n\nblockquote {\n  margin: 1rem 0;\n  padding: 0 2rem;\n  border-left: 4px solid #90a4ae;\n}\n\nhr {\n  border-top: solid var(--surface-border);\n  border-width: 1px 0 0 0;\n  margin: 1rem 0;\n}\n\np {\n  margin: 0 0 1rem 0;\n  line-height: 1.5;\n\n  &:last-child {\n    margin-bottom: 0;\n  }\n}\n\n/*\n  Component\n*/\n.p-message {\n  margin-top: 0px;\n}\n\n.p-component-overlay {\n  z-index: 997;\n}\n", ""]);
-// Exports
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
-
-
-/***/ }),
-
-/***/ "./node_modules/css-loader/dist/cjs.js??clonedRuleSet-11.use[1]!./resources/js/assets/styles/sass/variable.scss":
-/*!**********************************************************************************************************************!*\
-  !*** ./node_modules/css-loader/dist/cjs.js??clonedRuleSet-11.use[1]!./resources/js/assets/styles/sass/variable.scss ***!
-  \**********************************************************************************************************************/
-/***/ ((module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
-/* harmony export */ });
-/* harmony import */ var _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../../../../node_modules/css-loader/dist/runtime/api.js */ "./node_modules/css-loader/dist/runtime/api.js");
-/* harmony import */ var _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0__);
-// Imports
-
-var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
-// Module
-___CSS_LOADER_EXPORT___.push([module.id, "", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "* {\n  box-sizing: border-box;\n}\n\nhtml {\n  height: 100%;\n  font-size: 14px;\n}\n\nbody {\n  font-family: var(--font-family);\n  color: var(--text-color);\n  background-color: var(--surface-ground);\n  margin: 0;\n  padding: 0;\n  min-height: 100%;\n  -webkit-font-smoothing: antialiased;\n  -moz-osx-font-smoothing: grayscale;\n}\n\n/*\n  Typography\n*/\na {\n  text-decoration: none;\n  color: var(--primary-color);\n}\n\nh1,\nh2,\nh3,\nh4,\nh5,\nh6 {\n  margin: 0.5rem 0 0.5rem 0;\n  font-family: inherit;\n  font-weight: 500;\n  line-height: 1.2;\n  color: inherit;\n}\nh1:first-child,\nh2:first-child,\nh3:first-child,\nh4:first-child,\nh5:first-child,\nh6:first-child {\n  margin-top: 0;\n}\n\nh1 {\n  font-size: 2.5rem;\n}\n\nh2 {\n  font-size: 2rem;\n}\n\nh3 {\n  font-size: 1.75rem;\n}\n\nh4 {\n  font-size: 1.5rem;\n}\n\nh5 {\n  font-size: 1.25rem;\n}\n\nh6 {\n  font-size: 1rem;\n}\n\nmark {\n  background: #fff8e1;\n  padding: 0.25rem 0.4rem;\n  border-radius: 12px;\n  font-family: monospace;\n}\n\nblockquote {\n  margin: 1rem 0;\n  padding: 0 2rem;\n  border-left: 4px solid #90a4ae;\n}\n\nhr {\n  border-top: solid var(--surface-border);\n  border-width: 1px 0 0 0;\n  margin: 1rem 0;\n}\n\np {\n  margin: 0 0 1rem 0;\n  line-height: 1.5;\n}\np:last-child {\n  margin-bottom: 0;\n}\n\n/*\n  Component\n*/\n.layout-topbar-menu-tooltip.p-tooltip {\n  position: absolute;\n  z-index: 997;\n  display: none;\n  padding: 0.25em 0.5rem;\n  max-width: 12.5rem;\n}\n\n.p-message {\n  margin-top: 0px;\n}\n\n.p-component-overlay {\n  z-index: 997;\n}", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -57883,10 +57829,10 @@ module.exports = function getSideChannel() {
 
 /***/ }),
 
-/***/ "./resources/js/assets/styles/sass/style.scss":
-/*!****************************************************!*\
-  !*** ./resources/js/assets/styles/sass/style.scss ***!
-  \****************************************************/
+/***/ "./resources/js/assets/styles/sass/global.scss":
+/*!*****************************************************!*\
+  !*** ./resources/js/assets/styles/sass/global.scss ***!
+  \*****************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -57896,7 +57842,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! !../../../../../node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js */ "./node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js");
 /* harmony import */ var _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _node_modules_css_loader_dist_cjs_js_clonedRuleSet_11_use_1_node_modules_postcss_loader_dist_cjs_js_clonedRuleSet_11_use_2_node_modules_sass_loader_dist_cjs_js_clonedRuleSet_11_use_3_style_scss__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! !!../../../../../node_modules/css-loader/dist/cjs.js??clonedRuleSet-11.use[1]!../../../../../node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-11.use[2]!../../../../../node_modules/sass-loader/dist/cjs.js??clonedRuleSet-11.use[3]!./style.scss */ "./node_modules/css-loader/dist/cjs.js??clonedRuleSet-11.use[1]!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-11.use[2]!./node_modules/sass-loader/dist/cjs.js??clonedRuleSet-11.use[3]!./resources/js/assets/styles/sass/style.scss");
+/* harmony import */ var _node_modules_css_loader_dist_cjs_js_clonedRuleSet_11_use_1_node_modules_postcss_loader_dist_cjs_js_clonedRuleSet_11_use_2_node_modules_sass_loader_dist_cjs_js_clonedRuleSet_11_use_3_global_scss__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! !!../../../../../node_modules/css-loader/dist/cjs.js??clonedRuleSet-11.use[1]!../../../../../node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-11.use[2]!../../../../../node_modules/sass-loader/dist/cjs.js??clonedRuleSet-11.use[3]!./global.scss */ "./node_modules/css-loader/dist/cjs.js??clonedRuleSet-11.use[1]!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-11.use[2]!./node_modules/sass-loader/dist/cjs.js??clonedRuleSet-11.use[3]!./resources/js/assets/styles/sass/global.scss");
 
             
 
@@ -57905,11 +57851,11 @@ var options = {};
 options.insert = "head";
 options.singleton = false;
 
-var update = _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0___default()(_node_modules_css_loader_dist_cjs_js_clonedRuleSet_11_use_1_node_modules_postcss_loader_dist_cjs_js_clonedRuleSet_11_use_2_node_modules_sass_loader_dist_cjs_js_clonedRuleSet_11_use_3_style_scss__WEBPACK_IMPORTED_MODULE_1__["default"], options);
+var update = _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0___default()(_node_modules_css_loader_dist_cjs_js_clonedRuleSet_11_use_1_node_modules_postcss_loader_dist_cjs_js_clonedRuleSet_11_use_2_node_modules_sass_loader_dist_cjs_js_clonedRuleSet_11_use_3_global_scss__WEBPACK_IMPORTED_MODULE_1__["default"], options);
 
 
 
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_node_modules_css_loader_dist_cjs_js_clonedRuleSet_11_use_1_node_modules_postcss_loader_dist_cjs_js_clonedRuleSet_11_use_2_node_modules_sass_loader_dist_cjs_js_clonedRuleSet_11_use_3_style_scss__WEBPACK_IMPORTED_MODULE_1__["default"].locals || {});
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_node_modules_css_loader_dist_cjs_js_clonedRuleSet_11_use_1_node_modules_postcss_loader_dist_cjs_js_clonedRuleSet_11_use_2_node_modules_sass_loader_dist_cjs_js_clonedRuleSet_11_use_3_global_scss__WEBPACK_IMPORTED_MODULE_1__["default"].locals || {});
 
 /***/ }),
 
@@ -58890,7 +58836,7 @@ module.exports = JSON.parse('{"name":"axios","version":"0.21.4","description":"P
 /******/ 		// This function allow to reference async chunks
 /******/ 		__webpack_require__.u = (chunkId) => {
 /******/ 			// return url for filenames based on template
-/******/ 			return "js/" + chunkId + ".js?id=" + {"node_modules_chart_js_auto_auto_esm_js":"9296b829a7757dee","resources_js_pages_Auth_Login_vue":"0427939393ab0532","resources_js_pages_Customers_Create_vue":"064dab0230ea520e","resources_js_pages_Customers_Edit_vue":"59bd76b04d62623f","resources_js_pages_Customers_Index_vue":"c33caf4ccc707c81","resources_js_pages_Customers_config_js":"3e69b9c9add806c6","resources_js_pages_Dashboards_Index_vue":"c3a93eb2f2b34e98","resources_js_pages_Error_Index_vue":"4119ff1c60260652","resources_js_pages_Products_Create_vue":"98e2159f6c29d288","resources_js_pages_Products_Edit_vue":"3fb44b859a60ae54","resources_js_pages_Products_Index_vue":"c1b03eff763068a0","resources_js_pages_Products_config_js":"885a5522b0477687","resources_js_pages_Purchases_Index_vue":"968034f4a75e4910","resources_js_pages_Sales_Components_Dialog_CustomerCreate_vue":"0e45b005d2175423","resources_js_pages_Sales_Components_Dialog_ProductCreate_vue":"26ef1d3355ba7e47","resources_js_pages_Sales_Components_SaleDetails_vue":"b0aacea6649cd1d1","resources_js_pages_Sales_Create_vue":"421dca3f3e773520","resources_js_pages_Sales_Index_vue":"4c39cc6c6cbbd8dc","resources_js_pages_Sales_config_js":"130f88fd092690ee","resources_js_pages_StockProducts_Index_vue":"75951f4a4696fe2d","resources_js_pages_Suppliers_Create_vue":"73551ad2b7113183","resources_js_pages_Suppliers_Edit_vue":"d403d36f260e0c81","resources_js_pages_Suppliers_Index_vue":"d7aa4f88ff722b27","resources_js_pages_Suppliers_config_js":"52e8d25c6bfab54b","resources_js_pages_Users_Create_vue":"410672102b4e9884","resources_js_pages_Users_Edit_vue":"48711ec179d6981c","resources_js_pages_Users_Index_vue":"5855b5952cb199b1","resources_js_pages_Users_Show_vue":"cf9f1e600346cf9a","resources_js_pages_Users_config_js":"92384d78612abc88"}[chunkId] + "";
+/******/ 			return "js/" + chunkId + ".js?id=" + {"node_modules_chart_js_auto_auto_esm_js":"9296b829a7757dee","resources_js_pages_Auth_Login_vue":"be578e085a239e29","resources_js_pages_Customers_Create_vue":"3f071508eabc668b","resources_js_pages_Customers_Edit_vue":"aebd0864e4ad3e68","resources_js_pages_Customers_Index_vue":"1e494ee438fa9df6","resources_js_pages_Customers_config_js":"3e69b9c9add806c6","resources_js_pages_Dashboards_Index_vue":"d3d4e8305b123375","resources_js_pages_Error_Index_vue":"4119ff1c60260652","resources_js_pages_Products_Create_vue":"654f3597a7f836a8","resources_js_pages_Products_Edit_vue":"92630d22ca001222","resources_js_pages_Products_Index_vue":"f21347c772e5a78b","resources_js_pages_Products_config_js":"885a5522b0477687","resources_js_pages_Purchases_Index_vue":"b4137df9a769fdf3","resources_js_pages_Sales_Components_Dialog_CustomerCreate_vue":"0e45b005d2175423","resources_js_pages_Sales_Components_Dialog_ProductCreate_vue":"26ef1d3355ba7e47","resources_js_pages_Sales_Components_SaleDetails_vue":"b0aacea6649cd1d1","resources_js_pages_Sales_Create_vue":"e90f4bf66d9a6f95","resources_js_pages_Sales_Index_vue":"ea504c94494d14bb","resources_js_pages_Sales_config_js":"130f88fd092690ee","resources_js_pages_StockProducts_Index_vue":"7f6b33a4fbab582d","resources_js_pages_Suppliers_Create_vue":"c013262c0e5fb7ee","resources_js_pages_Suppliers_Edit_vue":"c026816d9eff6a88","resources_js_pages_Suppliers_Index_vue":"96c102e92f653886","resources_js_pages_Suppliers_config_js":"52e8d25c6bfab54b","resources_js_pages_Users_Create_vue":"efad98f9f2b8dba6","resources_js_pages_Users_Edit_vue":"a5c8a2cdddf14020","resources_js_pages_Users_Index_vue":"12226586ae7d59c0","resources_js_pages_Users_Show_vue":"1e641b8d61834507","resources_js_pages_Users_config_js":"92384d78612abc88"}[chunkId] + "";
 /******/ 		};
 /******/ 	})();
 /******/ 	
@@ -59099,7 +59045,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var primevue_resources_primevue_min_css__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! primevue/resources/primevue.min.css */ "./node_modules/primevue/resources/primevue.min.css");
 /* harmony import */ var primeflex_primeflex_css__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! primeflex/primeflex.css */ "./node_modules/primeflex/primeflex.css");
 /* harmony import */ var primeicons_primeicons_css__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! primeicons/primeicons.css */ "./node_modules/primeicons/primeicons.css");
-/* harmony import */ var _assets_styles_sass_style_scss__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @/assets/styles/sass/style.scss */ "./resources/js/assets/styles/sass/style.scss");
+/* harmony import */ var _assets_styles_sass_global_scss__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @/assets/styles/sass/global.scss */ "./resources/js/assets/styles/sass/global.scss");
 /* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm-bundler.js");
 /* harmony import */ var _inertiajs_inertia_vue3__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @inertiajs/inertia-vue3 */ "./node_modules/@inertiajs/inertia-vue3/dist/index.js");
 /* harmony import */ var _inertiajs_progress__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @inertiajs/progress */ "./node_modules/@inertiajs/progress/dist/index.js");
