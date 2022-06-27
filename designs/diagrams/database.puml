@@ -7,7 +7,7 @@ entity User {
   * username
   * status
   * password
-  _
+  __
   * role_id
 }
 
@@ -54,7 +54,7 @@ entity Purchase {
   * user_id
 }
 
-entity Sales {
+entity Sale {
   * id
   __
   * number
@@ -69,7 +69,7 @@ entity StockProduct {
   __
   * purchase_number
   * sale_number
-  * amount
+  * qty
   __
   * product_number
 }
@@ -106,14 +106,26 @@ entity PurchaseDetail {
   * product_number
 }
 
-User ||--|{ Role
-Purchase ||--|{ Supplier
-Purchase ||--|{ User
-Sales ||--|{ Customer
-Sales ||--|{ User
-StockProduct ||--|{ Product
-PurchaseDetail ||--|{ Purchase
-PurchaseDetail ||--|{ Product
-SaleDetail ||--|| Sales
+entity Ppn {
+  * id
+  __
+  * ppn
+}
+
+Role }|--|| User
+User }|--|| Purchase
+User }|--|| Sale
+Supplier }|--|| Purchase
+Supplier ||--|| Price
+Customer ||--|{ Sale
+Customer ||--|| Price
+Sale }|--|| SaleDetail
+Sale ||--|| Price
+Purchase }|--|| PurchaseDetail
+Purchase ||--|| Price
+PurchaseDetail ||--|{ StockProduct
 SaleDetail ||--|{ Product
+SaleDetail ||--|{ StockProduct
+PurchaseDetail ||--|{ Product
+StockProduct ||--|{ Product
 Product ||--|| Price
