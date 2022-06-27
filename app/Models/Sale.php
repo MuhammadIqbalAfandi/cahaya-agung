@@ -21,7 +21,7 @@ class Sale extends Model
     protected function updatedAt(): Attribute
     {
         return Attribute::make(
-            get:fn($value) => Carbon::parse($value)->translatedFormat('l d/m/Y H:i:s')
+            get:fn($value) => Carbon::parse($value)->translatedFormat('l d/m/Y')
         );
     }
 

@@ -12,7 +12,7 @@ const props = defineProps({
 })
 
 const form = useForm({
-  status: props.sale.status.value,
+  status: props.sale.status,
   price: props.sale.price,
   qty: props.sale.qty,
 })
@@ -80,6 +80,7 @@ const onSubmit = () => {
           :sale-number="sale.number"
           :sale-price="form.price"
           :sale-qty="form.qty"
+          :sale-ppn="sale.ppn"
           :sale-status="form.status"
           :customer="sale.customer"
           :product="sale.product"

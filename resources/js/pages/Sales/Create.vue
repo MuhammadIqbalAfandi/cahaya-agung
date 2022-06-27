@@ -13,6 +13,7 @@ import DashboardLayout from '@/layouts/Dashboard/DashboardLayout.vue'
 
 const props = defineProps({
   number: String,
+  ppn: Number,
   customers: {
     type: Array,
     default: [],
@@ -208,6 +209,7 @@ const checkSales = () => {
           :sale-number="number"
           :sale-price="form.price"
           :sale-qty="form.qty"
+          :sale-ppn="ppn"
           :sale-status="form.status"
           :customer="form.customer"
           :product="form.product"

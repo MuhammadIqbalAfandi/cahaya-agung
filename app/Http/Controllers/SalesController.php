@@ -37,7 +37,7 @@ class SalesController extends Controller
                     'number' => $sale->number,
                     'status' => $sale->status,
                     'price' => $sale->saleDetail->price,
-                    'ppn' => $sale->saleDetail->ppn,
+                    'ppn' => $sale->saleDetail->ppn . '%',
                     'qty' => $sale->saleDetail->qty,
                     'productName' => $sale->product->name,
                     'productNumber' => $sale->product->number
@@ -132,11 +132,10 @@ class SalesController extends Controller
             'sale' => [
                 'id' => $sale->id,
                 'number' => $sale->number,
-                'status' => [
-                    'value' => $sale->status
-                ],
+                'status' => $sale->status,
                 'price' => $sale->saleDetail->getRawOriginal('price'),
                 'qty' => $sale->saleDetail->qty,
+                'ppn' => $sale->saleDetail->ppn,
                 'customer' => $sale->customer,
                 'product' => $sale->product
             ]
@@ -152,11 +151,13 @@ class SalesController extends Controller
      */
     public function update(UpdateSaleRequest $request, Sale $sale)
     {
-        dd($request->validated());
-
         DB::beginTransaction();
 
         try {
+            $sale->create($request->validated());
+
+            $sale->saleDetail()->create($request->validated());
+
             DB::commit();
 
             return back()->with('succes', __('messages.success.update.sale'));

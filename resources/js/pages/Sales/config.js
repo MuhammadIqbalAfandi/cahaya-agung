@@ -1,10 +1,10 @@
 export const optionStatus = [
   {
-    label: 'Pending',
+    label: 'pending',
     value: 'pending',
   },
   {
-    label: 'Success',
+    label: 'success',
     value: 'success',
   },
 ]
@@ -15,6 +15,7 @@ export const indexTable = [
   { field: 'status', header: 'Status' },
   { field: 'price', header: 'Harga' },
   { field: 'qty', header: 'Kuantitas' },
+  { field: 'ppn', header: 'PPN' },
   { field: 'productName', header: 'Nama Produk' },
   { field: 'productNumber', header: 'Nomor Produk' },
 ]

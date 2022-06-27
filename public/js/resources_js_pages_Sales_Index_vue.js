@@ -1142,10 +1142,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "optionStatus": () => (/* binding */ optionStatus)
 /* harmony export */ });
 var optionStatus = [{
-  label: 'Pending',
+  label: 'pending',
   value: 'pending'
 }, {
-  label: 'Success',
+  label: 'success',
   value: 'success'
 }];
 var indexTable = [{
@@ -1163,6 +1163,9 @@ var indexTable = [{
 }, {
   field: 'qty',
   header: 'Kuantitas'
+}, {
+  field: 'ppn',
+  header: 'PPN'
 }, {
   field: 'productName',
   header: 'Nama Produk'
