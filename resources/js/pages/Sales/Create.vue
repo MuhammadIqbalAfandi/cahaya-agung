@@ -13,7 +13,7 @@ import DashboardLayout from '@/layouts/Dashboard/DashboardLayout.vue'
 
 const props = defineProps({
   number: String,
-  ppn: Number,
+  ppn: String,
   customers: {
     type: Array,
     default: [],

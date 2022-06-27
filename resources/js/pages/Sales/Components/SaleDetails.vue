@@ -100,7 +100,7 @@ defineProps([
 
             <div class="col">
               <h3 class="text-base">PPN</h3>
-              <span>{{ salePpn }} %</span>
+              <span>{{ salePpn }}</span>
             </div>
           </div>
         </div>

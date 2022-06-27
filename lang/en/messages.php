@@ -48,7 +48,8 @@ return [
             'customer' => 'Customer successfully changed',
             'supplier' => 'Supplier successfully changed',
             'product' => 'Product successfully changed',
-            'sale' => 'Sale successfully changed'
+            'sale' => 'Sale successfully changed',
+            'ppn' => 'Tax successfully changed'
         ],
         'destroy' => [
             'type_member' => 'Jenis member successfully deleted',

@@ -803,7 +803,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
   __name: 'Create',
   props: {
     number: String,
-    ppn: Number,
+    ppn: String,
     customers: {
       type: Array,
       "default": []
@@ -1986,7 +1986,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
       /* TEXT */
       )]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_30, [_hoisted_31, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($props.saleQty), 1
       /* TEXT */
-      )]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_32, [_hoisted_33, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($props.salePpn) + " %", 1
+      )]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_32, [_hoisted_33, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($props.salePpn), 1
       /* TEXT */
       )])])])])];
     }),
@@ -2329,6 +2329,14 @@ __webpack_require__.r(__webpack_exports__);
       icon: 'pi pi-user',
       to: '/users',
       component: 'Users/Index'
+    }]
+  }, {
+    label: 'Pengaturan',
+    items: [{
+      label: 'PPN',
+      icon: 'pi pi-percentage',
+      to: '/ppn',
+      component: 'PPN/Index'
     }]
   }],
   // Supervisor

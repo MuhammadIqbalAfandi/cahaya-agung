@@ -1024,6 +1024,14 @@ __webpack_require__.r(__webpack_exports__);
       to: '/users',
       component: 'Users/Index'
     }]
+  }, {
+    label: 'Pengaturan',
+    items: [{
+      label: 'PPN',
+      icon: 'pi pi-percentage',
+      to: '/ppn',
+      component: 'PPN/Index'
+    }]
   }],
   // Supervisor
   2: [{

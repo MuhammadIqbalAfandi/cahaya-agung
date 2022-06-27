@@ -58551,6 +58551,14 @@ var map = {
 		"./resources/js/pages/Error/Index.vue",
 		"resources_js_pages_Error_Index_vue"
 	],
+	"./PPN/Index": [
+		"./resources/js/pages/PPN/Index.vue",
+		"resources_js_pages_PPN_Index_vue"
+	],
+	"./PPN/Index.vue": [
+		"./resources/js/pages/PPN/Index.vue",
+		"resources_js_pages_PPN_Index_vue"
+	],
 	"./Products/Create": [
 		"./resources/js/pages/Products/Create.vue",
 		"resources_js_pages_Products_Create_vue"
@@ -58844,7 +58852,7 @@ module.exports = JSON.parse('{"name":"axios","version":"0.21.4","description":"P
 /******/ 		// This function allow to reference async chunks
 /******/ 		__webpack_require__.u = (chunkId) => {
 /******/ 			// return url for filenames based on template
-/******/ 			return "js/" + chunkId + ".js?id=" + {"node_modules_chart_js_auto_auto_esm_js":"9296b829a7757dee","resources_js_pages_Auth_Login_vue":"be578e085a239e29","resources_js_pages_Customers_Create_vue":"3f071508eabc668b","resources_js_pages_Customers_Edit_vue":"b195d54357f43a2d","resources_js_pages_Customers_Index_vue":"6882e2ddc4f886c0","resources_js_pages_Customers_config_js":"3e69b9c9add806c6","resources_js_pages_Dashboards_Index_vue":"d3d4e8305b123375","resources_js_pages_Error_Index_vue":"4119ff1c60260652","resources_js_pages_Products_Create_vue":"9a60a13d33678f2b","resources_js_pages_Products_Edit_vue":"213fbd014f856c8f","resources_js_pages_Products_Index_vue":"e5eb059406afbe3f","resources_js_pages_Products_config_js":"885a5522b0477687","resources_js_pages_Purchases_Index_vue":"b4137df9a769fdf3","resources_js_pages_Sales_Components_Dialog_CustomerCreate_vue":"0e45b005d2175423","resources_js_pages_Sales_Components_Dialog_ProductCreate_vue":"26ef1d3355ba7e47","resources_js_pages_Sales_Components_SaleDetails_vue":"519573a03ccc0914","resources_js_pages_Sales_Create_vue":"bf2ce49cdf44a49d","resources_js_pages_Sales_Edit_vue":"fa702f86b501dff1","resources_js_pages_Sales_Index_vue":"25a934a710820848","resources_js_pages_Sales_config_js":"b0e1bf081e7ceb77","resources_js_pages_StockProducts_Index_vue":"7f6b33a4fbab582d","resources_js_pages_Suppliers_Create_vue":"c013262c0e5fb7ee","resources_js_pages_Suppliers_Edit_vue":"c026816d9eff6a88","resources_js_pages_Suppliers_Index_vue":"ecce1594ff033787","resources_js_pages_Suppliers_config_js":"52e8d25c6bfab54b","resources_js_pages_Users_Create_vue":"efad98f9f2b8dba6","resources_js_pages_Users_Edit_vue":"a5c8a2cdddf14020","resources_js_pages_Users_Index_vue":"bcd25543a8cc6f19","resources_js_pages_Users_Show_vue":"1e641b8d61834507","resources_js_pages_Users_config_js":"92384d78612abc88"}[chunkId] + "";
+/******/ 			return "js/" + chunkId + ".js?id=" + {"node_modules_chart_js_auto_auto_esm_js":"9296b829a7757dee","resources_js_pages_Auth_Login_vue":"be578e085a239e29","resources_js_pages_Customers_Create_vue":"428527a917f50554","resources_js_pages_Customers_Edit_vue":"32ffafab75951abe","resources_js_pages_Customers_Index_vue":"3668c39177503d88","resources_js_pages_Customers_config_js":"3e69b9c9add806c6","resources_js_pages_Dashboards_Index_vue":"5c49ade06eeb52d6","resources_js_pages_Error_Index_vue":"4119ff1c60260652","resources_js_pages_PPN_Index_vue":"bfdaac9a6c8c3511","resources_js_pages_Products_Create_vue":"755335b11512b9bc","resources_js_pages_Products_Edit_vue":"2657ac7238f1582b","resources_js_pages_Products_Index_vue":"86739bbe67b2ec67","resources_js_pages_Products_config_js":"885a5522b0477687","resources_js_pages_Purchases_Index_vue":"5a84735d97fc1941","resources_js_pages_Sales_Components_Dialog_CustomerCreate_vue":"0e45b005d2175423","resources_js_pages_Sales_Components_Dialog_ProductCreate_vue":"26ef1d3355ba7e47","resources_js_pages_Sales_Components_SaleDetails_vue":"c01d5e4048e57180","resources_js_pages_Sales_Create_vue":"9454a262bef33d8b","resources_js_pages_Sales_Edit_vue":"49f0e6c6c41ff841","resources_js_pages_Sales_Index_vue":"390e6b47fa950a8f","resources_js_pages_Sales_config_js":"b0e1bf081e7ceb77","resources_js_pages_StockProducts_Index_vue":"c8afcd10237e603e","resources_js_pages_Suppliers_Create_vue":"24bb6d613439e22c","resources_js_pages_Suppliers_Edit_vue":"586487497def0b57","resources_js_pages_Suppliers_Index_vue":"a6ec9af9e7816f11","resources_js_pages_Suppliers_config_js":"52e8d25c6bfab54b","resources_js_pages_Users_Create_vue":"099acfcc3f679d55","resources_js_pages_Users_Edit_vue":"a8582300f340ce92","resources_js_pages_Users_Index_vue":"0dd41f9a92b3ab57","resources_js_pages_Users_Show_vue":"5ee9041c0c5280b7","resources_js_pages_Users_config_js":"92384d78612abc88"}[chunkId] + "";
 /******/ 		};
 /******/ 	})();
 /******/ 	

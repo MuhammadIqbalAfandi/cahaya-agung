@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\Sales\StoreSaleRequest;
 use App\Http\Requests\Sales\UpdateSaleRequest;
 use App\Models\Customer;
+use App\Models\Ppn;
 use App\Models\Product;
 use App\Models\Sale;
 use Illuminate\Database\QueryException;
@@ -37,7 +38,7 @@ class SalesController extends Controller
                     'number' => $sale->number,
                     'status' => $sale->status,
                     'price' => $sale->saleDetail->price,
-                    'ppn' => $sale->saleDetail->ppn . '%',
+                    'ppn' => $sale->saleDetail->ppn,
                     'qty' => $sale->saleDetail->qty,
                     'productName' => $sale->product->name,
                     'productNumber' => $sale->product->number
@@ -54,6 +55,7 @@ class SalesController extends Controller
     {
         return inertia('Sales/Create', [
             'number' => 'PJN' . now()->format('YmdHis'),
+            'ppn' => Ppn::first()->ppn,
             'productNumber' => Inertia::lazy(
                 fn() => 'PDK' . now()->format('YmdHis')
             ),
@@ -92,7 +94,7 @@ class SalesController extends Controller
         try {
             $validated = $request->safe()->merge([
                 'user_id' => auth()->user()->id,
-                'ppn' => 11
+                'ppn' => Ppn::first()->getRawOriginal('ppn')
             ])->all();
 
             $sale = Sale::create($validated);

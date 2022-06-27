@@ -27,6 +27,17 @@ export default {
         },
       ],
     },
+    {
+      label: 'Pengaturan',
+      items: [
+        {
+          label: 'PPN',
+          icon: 'pi pi-percentage',
+          to: '/ppn',
+          component: 'PPN/Index',
+        },
+      ],
+    },
   ],
 
   // Supervisor

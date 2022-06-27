@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\PpnController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\PurchaseController;
 use App\Http\Controllers\SalesController;
@@ -36,6 +37,8 @@ Route::middleware(['auth', 'verified'])->group(function () {
         ->name('users.change-password');
 
     Route::resource('/users', UserController::class);
+
+    Route::resource('/ppn', PpnController::class);
 
     Route::resource('/customers', CustomerController::class);
 

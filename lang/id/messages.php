@@ -48,7 +48,8 @@ return [
             'customer' => 'Pelanggan berhasil diubah',
             'supplier' => 'Supplier berhasil diubah',
             'product' => 'Produk berhasil diubah',
-            'sale' => 'Penjualan berhasil diubah'
+            'sale' => 'Penjualan berhasil diubah',
+            'ppn' => 'Pajak pertambahan nilai berhasil diubah'
         ],
         'destroy' => [
             'type_member' => 'Jenis member berhasil dihapus',
