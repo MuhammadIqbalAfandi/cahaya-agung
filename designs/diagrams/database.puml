@@ -112,20 +112,20 @@ entity Ppn {
   * ppn
 }
 
-Role }|--|| User
+User ||--|{ Role
 User }|--|| Purchase
 User }|--|| Sale
 Supplier }|--|| Purchase
 Supplier ||--|| Price
 Customer ||--|{ Sale
 Customer ||--|| Price
-Sale }|--|| SaleDetail
+Sale ||--|| SaleDetail
 Sale ||--|| Price
-Purchase }|--|| PurchaseDetail
+Purchase ||--|| PurchaseDetail
 Purchase ||--|| Price
-PurchaseDetail ||--|{ StockProduct
+Purchase ||--|{ StockProduct
 SaleDetail ||--|{ Product
-SaleDetail ||--|{ StockProduct
+Sale ||--|{ StockProduct
 PurchaseDetail ||--|{ Product
 StockProduct ||--|{ Product
 Product ||--|| Price

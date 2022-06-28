@@ -28,7 +28,7 @@ defineProps({
             <div class="flex align-items-center">
               <AppSearch
                 class="w-full md:w-27rem"
-                placeholder="cari, contoh: P0xx, Pending, Success"
+                placeholder="cari, contoh: PJNxxx, Pending, Success"
                 url="/sales"
                 :initial-search="initialSearch"
               />

@@ -32,10 +32,11 @@ return [
             'transaction' => 'Transaction successfully added',
             'user' => 'User Account successfully added',
             'reset_password' => 'Password successfully reset',
-            'customer' => 'Customer successfully addedd',
-            'supplier' => 'Supplier successfully addedd',
-            'product' => 'Product successfully addedd',
-            'sale' => 'Penjualan successfully addedd'
+            'customer' => 'Customer successfully added',
+            'supplier' => 'Supplier successfully added',
+            'product' => 'Product successfully added',
+            'sale' => 'Sale successfully added',
+            'purchase' => 'Purchase successfully added'
         ],
         'update' => [
             'type_vehicle' => 'Type vehicle successfully changed',
@@ -49,7 +50,8 @@ return [
             'supplier' => 'Supplier successfully changed',
             'product' => 'Product successfully changed',
             'sale' => 'Sale successfully changed',
-            'ppn' => 'Tax successfully changed'
+            'ppn' => 'Tax successfully changed',
+            'purchase' => 'Purchase successfully added'
         ],
         'destroy' => [
             'type_member' => 'Jenis member successfully deleted',
@@ -71,12 +73,14 @@ return [
             'change_password' => 'Password invalid',
             'expense' => 'Expense failed to be added',
             'transaction' => 'Transaction failed to be added',
-            'sale' => 'Sale failed to be added'
+            'sale' => 'Sale failed to be added',
+            'purchase' => 'Purchase failed to be added'
         ],
         'update' => [
             'type_member' => 'Type member failed to be changed',
             'member' => 'Member failed to be changed',
-            'sale' => 'Sale failed to be changed'
+            'sale' => 'Sale failed to be changed',
+            'purchase' => 'Purchase failed to be changed'
         ]
     ]
 ];

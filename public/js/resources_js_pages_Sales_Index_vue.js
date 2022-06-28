@@ -1066,7 +1066,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
         header: (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
           return [_hoisted_1, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_2, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_3, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_4, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)($setup["AppSearch"], {
             "class": "w-full md:w-27rem",
-            placeholder: "cari, contoh: P0xx, Pending, Success",
+            placeholder: "cari, contoh: PJNxxx, Pending, Success",
             url: "/sales",
             "initial-search": $props.initialSearch
           }, null, 8
@@ -1244,20 +1244,15 @@ __webpack_require__.r(__webpack_exports__);
       to: '/customers',
       component: 'Customers/Index'
     }, {
-      label: 'Pembelian',
-      icon: 'pi pi-shopping-cart',
-      to: '/purchases',
-      component: 'Purchases/Index'
-    }, {
       label: 'Penjualan',
       icon: 'pi pi-tag',
       to: '/sales',
       component: 'Sales/Index'
     }, {
-      label: 'Produk',
-      icon: 'pi pi-th-large',
-      to: '/products',
-      component: 'Products/Index'
+      label: 'Stok Barang',
+      icon: 'pi pi-box',
+      to: '/stock-products',
+      component: 'StockProducts/Index'
     }]
   }],
   // Operator
@@ -1276,6 +1271,16 @@ __webpack_require__.r(__webpack_exports__);
       icon: 'pi pi-shopping-cart',
       to: '/suppliers',
       component: 'Suppliers/Index'
+    }, {
+      label: 'Produk',
+      icon: 'pi pi-th-large',
+      to: '/products',
+      component: 'Products/Index'
+    }, {
+      label: 'Pembelian',
+      icon: 'pi pi-shopping-cart',
+      to: '/purchases',
+      component: 'Purchases/Index'
     }, {
       label: 'Stok Barang',
       icon: 'pi pi-box',

@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Requests;
+namespace App\Http\Requests\Purchase;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class StorePpnrequest extends FormRequest
+class UpdatePurchaseRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,7 +24,9 @@ class StorePpnrequest extends FormRequest
     public function rules()
     {
         return [
-            'ppn' => 'required|numeric'
+            'status' => 'required|string',
+            'price' => 'required|numeric',
+            'qty' => 'required|numeric'
         ];
     }
 }

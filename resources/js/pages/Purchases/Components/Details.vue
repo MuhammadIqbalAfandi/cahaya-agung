@@ -1,11 +1,12 @@
 <script setup>
 defineProps([
-  'saleNumber',
-  'salePrice',
-  'saleQty',
-  'salePpn',
-  'saleStatus',
-  'customer',
+  'title',
+  'number',
+  'price',
+  'qty',
+  'ppn',
+  'status',
+  'person',
   'product',
 ])
 </script>
@@ -13,7 +14,7 @@ defineProps([
 <template>
   <Card>
     <template #title>
-      <h2 class="text-2xl font-bold">Detail Penjualan</h2>
+      <h2 class="text-2xl font-bold">{{ title }}</h2>
     </template>
     <template #content>
       <div class="grid">
@@ -21,12 +22,12 @@ defineProps([
           <div class="grid">
             <div class="col">
               <h3 class="text-base">Nomor Penjualan</h3>
-              <span>{{ saleNumber }}</span>
+              <span>{{ number }}</span>
             </div>
 
             <div class="col">
               <h3 class="text-base">Status Penjualan</h3>
-              <span>{{ saleStatus }}</span>
+              <span>{{ status }}</span>
             </div>
 
             <div class="col"></div>
@@ -35,26 +36,31 @@ defineProps([
 
         <div
           v-if="
-            customer !== null &&
-            typeof customer === 'object' &&
-            Object.keys(customer).length
+            person !== null &&
+            typeof person === 'object' &&
+            Object.keys(person).length
           "
           class="col-12"
         >
           <div class="grid">
             <div class="col">
               <h3 class="text-base">Nama</h3>
-              <span>{{ customer.name }}</span>
+              <span>{{ person.name }}</span>
             </div>
 
             <div class="col">
-              <h3 class="text-base">Alamat</h3>
-              <span>{{ customer.address }}</span>
+              <h3 class="text-base">No Hp</h3>
+              <span>{{ person.phone }}</span>
             </div>
 
             <div class="col">
               <h3 class="text-base">NPWP</h3>
-              <span>{{ customer.npwp }}</span>
+              <span>{{ person.npwp }}</span>
+            </div>
+
+            <div class="col">
+              <h3 class="text-base">Surel</h3>
+              <span>{{ person.email }}</span>
             </div>
           </div>
         </div>
@@ -90,17 +96,17 @@ defineProps([
           <div class="grid">
             <div class="col">
               <h3 class="text-base">Harga</h3>
-              <span>{{ salePrice }}</span>
+              <span>{{ price }}</span>
             </div>
 
             <div class="col">
               <h3 class="text-base">Kuantitas</h3>
-              <span>{{ saleQty }}</span>
+              <span>{{ qty }}</span>
             </div>
 
             <div class="col">
               <h3 class="text-base">PPN</h3>
-              <span>{{ salePpn }}</span>
+              <span>{{ ppn }}</span>
             </div>
           </div>
         </div>

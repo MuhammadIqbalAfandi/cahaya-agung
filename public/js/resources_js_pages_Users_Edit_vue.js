@@ -1386,20 +1386,15 @@ __webpack_require__.r(__webpack_exports__);
       to: '/customers',
       component: 'Customers/Index'
     }, {
-      label: 'Pembelian',
-      icon: 'pi pi-shopping-cart',
-      to: '/purchases',
-      component: 'Purchases/Index'
-    }, {
       label: 'Penjualan',
       icon: 'pi pi-tag',
       to: '/sales',
       component: 'Sales/Index'
     }, {
-      label: 'Produk',
-      icon: 'pi pi-th-large',
-      to: '/products',
-      component: 'Products/Index'
+      label: 'Stok Barang',
+      icon: 'pi pi-box',
+      to: '/stock-products',
+      component: 'StockProducts/Index'
     }]
   }],
   // Operator
@@ -1418,6 +1413,16 @@ __webpack_require__.r(__webpack_exports__);
       icon: 'pi pi-shopping-cart',
       to: '/suppliers',
       component: 'Suppliers/Index'
+    }, {
+      label: 'Produk',
+      icon: 'pi pi-th-large',
+      to: '/products',
+      component: 'Products/Index'
+    }, {
+      label: 'Pembelian',
+      icon: 'pi pi-shopping-cart',
+      to: '/purchases',
+      component: 'Purchases/Index'
     }, {
       label: 'Stok Barang',
       icon: 'pi pi-box',

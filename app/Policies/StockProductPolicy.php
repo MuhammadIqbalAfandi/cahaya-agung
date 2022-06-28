@@ -18,7 +18,7 @@ class StockProductPolicy
      */
     public function viewAny(User $user)
     {
-        return $user->role_id === 3;
+        return $user->role_id !== 1;
     }
 
     /**
@@ -30,7 +30,7 @@ class StockProductPolicy
      */
     public function view(User $user, StockProduct $stockProduct)
     {
-        return $user->role_id === 3;
+        return $user->role_id !== 1;
     }
 
     /**
@@ -41,7 +41,7 @@ class StockProductPolicy
      */
     public function create(User $user)
     {
-        return $user->role_id === 3;
+        return $user->role_id !== 1;
     }
 
     /**
@@ -53,7 +53,7 @@ class StockProductPolicy
      */
     public function update(User $user, StockProduct $stockProduct)
     {
-        return $user->role_id === 3;
+        return $user->role_id !== 1;
     }
 
     /**

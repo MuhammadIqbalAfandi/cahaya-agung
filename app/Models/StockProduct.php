@@ -12,7 +12,7 @@ class StockProduct extends Model
     protected $fillable = [
         'purchase_number',
         'sale_number',
-        'amount',
+        'qty',
         'product_number'
     ];
 }

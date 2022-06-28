@@ -8,26 +8,26 @@ import Details from './Components/Details.vue'
 import DashboardLayout from '@/layouts/Dashboard/DashboardLayout.vue'
 
 const props = defineProps({
-  sale: Object,
+  purchase: Object,
 })
 
 const form = useForm({
-  status: props.sale.status,
-  price: props.sale.price,
-  qty: props.sale.qty,
+  status: props.purchase.status,
+  price: props.purchase.price,
+  qty: props.purchase.qty,
 })
 
 const onSubmit = () => {
-  form.put(route('sales.update', props.sale.id))
+  form.put(route('purchases.update', props.purchase.id))
 }
 </script>
 
 <template>
-  <DashboardLayout title="Ubah Penjualan">
+  <DashboardLayout title="Ubah Pembelian">
     <div class="grid">
       <div class="col-12 lg:col-8">
         <Card>
-          <template #title> Ubah Penjualan </template>
+          <template #title> Ubah Pembelian </template>
           <template #content>
             <div class="grid">
               <div class="col-12 md:col-6">
@@ -77,14 +77,14 @@ const onSubmit = () => {
 
       <div class="col-12 lg:col-4">
         <Details
-          title="Detail Penjualan"
-          :number="sale.number"
+          title="Detail Pembelian"
+          :number="purchase.number"
           :price="form.price"
           :qty="form.qty"
-          :ppn="sale.ppn"
+          :ppn="purchase.ppn"
           :status="form.status"
-          :person="sale.customer"
-          :product="sale.product"
+          :person="purchase.supplier"
+          :product="purchase.product"
         />
       </div>
     </div>

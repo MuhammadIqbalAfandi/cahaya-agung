@@ -1,7 +1,8 @@
 <script setup>
 import { useDialog } from 'primevue/usedialog'
 import { optionStatus, dialogStyle } from './config'
-import CustomerCreate from './Components/Dialog/CustomerCreate.vue'
+import SupplierCreate from './Components/Dialog/SupplierCreate.vue'
+import ProductCreate from './Components/Dialog/ProductCreate.vue'
 import Details from './Components/Details.vue'
 import { useForm } from '@/components/useForm'
 import AppInputText from '@/components/AppInputText.vue'
@@ -13,7 +14,7 @@ import DashboardLayout from '@/layouts/Dashboard/DashboardLayout.vue'
 const props = defineProps({
   number: String,
   ppn: String,
-  customers: {
+  suppliers: {
     type: Array,
     default: [],
   },
@@ -28,7 +29,7 @@ const form = useForm({
   status: 'pending',
   price: null,
   qty: null,
-  customer: null,
+  supplier: null,
   product: null,
 })
 
@@ -39,20 +40,20 @@ const onSubmit = () => {
       status: data.status,
       price: data.price,
       qty: data.qty,
-      customer_id: data.customer.id,
+      supplier_id: data.supplier.id,
       product_number: data.product.number,
     }))
-    .post(route('sales.store'), {
+    .post(route('purchases.store'), {
       onSuccess: () => form.reset(),
     })
 }
 
 const dialog = useDialog()
 
-const showCreateCustomer = () => {
-  dialog.open(CustomerCreate, {
+const showCreateSupplier = () => {
+  dialog.open(SupplierCreate, {
     props: {
-      header: 'Tambah Pelanggan',
+      header: 'Tambah Supplier',
       ...dialogStyle,
     },
   })
@@ -68,7 +69,7 @@ const showCreateProduct = () => {
 }
 
 const checkBtnSubmit = () => {
-  if (form.price && form.qty && form.customer && form.product) {
+  if (form.price && form.qty && form.supplier && form.product) {
     return false
   } else {
     return true
@@ -77,20 +78,20 @@ const checkBtnSubmit = () => {
 </script>
 
 <template>
-  <DashboardLayout title="Tambah Penjualan">
+  <DashboardLayout title="Tambah Pembelian">
     <DynamicDialog />
 
     <div class="grid">
       <div class="col-12 lg:col-8">
         <Card>
-          <template #title> Tambah Penjualan </template>
+          <template #title> Tambah Pembelian </template>
           <template #content>
             <div class="grid">
               <div class="col-12 md:col-6">
                 <AppInputText
                   disabled
-                  label="Nomor Penjualan"
-                  placeholder="nomor penjualan"
+                  label="Nomor Pembelian"
+                  placeholder="nomor pembelian"
                   :error="form.errors.number"
                   v-model="form.number"
                 />
@@ -108,13 +109,13 @@ const checkBtnSubmit = () => {
 
               <div class="col-12 md:col-6">
                 <AppAutoComplete
-                  label="Pelanggan"
-                  placeholder="pelanggan"
+                  label="Supplier"
+                  placeholder="supplier"
                   field="name"
-                  refresh-data="customers"
-                  v-model="form.customer"
-                  :error="form.errors.customer_id"
-                  :suggestions="customers"
+                  refresh-data="suppliers"
+                  v-model="form.supplier"
+                  :error="form.errors.suppliers_id"
+                  :suggestions="suppliers"
                 >
                   <template #item="slotProps">
                     <template v-if="slotProps.item">
@@ -129,9 +130,9 @@ const checkBtnSubmit = () => {
                     <span
                       class="cursor-pointer"
                       style="color: var(--primary-color)"
-                      @click="showCreateCustomer"
+                      @click="showCreateSupplier"
                     >
-                      Tambah Pelanggan
+                      Tambah Supplier
                     </span>
                   </template>
                 </AppAutoComplete>
@@ -146,7 +147,26 @@ const checkBtnSubmit = () => {
                   v-model="form.product"
                   :error="form.errors.product_number"
                   :suggestions="products"
-                />
+                >
+                  <template #item="slotProps">
+                    <template v-if="slotProps.item">
+                      <div class="flex flex-column">
+                        <span>{{ slotProps.item.number }}</span>
+                        <span>{{ slotProps.item.name }}</span>
+                      </div>
+                    </template>
+                  </template>
+
+                  <template #empty>
+                    <span
+                      class="cursor-pointer"
+                      style="color: var(--primary-color)"
+                      @click="showCreateProduct"
+                    >
+                      Tambah Produk
+                    </span>
+                  </template>
+                </AppAutoComplete>
               </div>
 
               <div class="col-12 md:col-6">
@@ -186,13 +206,13 @@ const checkBtnSubmit = () => {
 
       <div class="col-12 lg:col-4">
         <Details
-          title="Detail Penjualan"
+          title="Detail Pembelian"
           :number="number"
           :price="form.price"
           :qty="form.qty"
           :ppn="ppn"
           :status="form.status"
-          :person="form.customer"
+          :person="form.supplier"
           :product="form.product"
         />
       </div>

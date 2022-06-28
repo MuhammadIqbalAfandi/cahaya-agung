@@ -2,11 +2,11 @@
 
 namespace App\Policies;
 
-use App\Models\Purchase;
+use App\Models\product;
 use App\Models\User;
 use Illuminate\Auth\Access\HandlesAuthorization;
 
-class PurchasePolicy
+class ProductPolicy
 {
     use HandlesAuthorization;
 
@@ -25,10 +25,10 @@ class PurchasePolicy
      * Determine whether the user can view the model.
      *
      * @param  \App\Models\User  $user
-     * @param  \App\Models\Purchase  $purchase
+     * @param  \App\Models\product  $product
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function view(User $user, Purchase $purchase)
+    public function view(User $user, product $product)
     {
         return $user->role_id === 3;
     }
@@ -48,10 +48,10 @@ class PurchasePolicy
      * Determine whether the user can update the model.
      *
      * @param  \App\Models\User  $user
-     * @param  \App\Models\Purchase  $purchase
+     * @param  \App\Models\product  $product
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function update(User $user, Purchase $purchase)
+    public function update(User $user, product $product)
     {
         return $user->role_id === 3;
     }
@@ -60,10 +60,10 @@ class PurchasePolicy
      * Determine whether the user can delete the model.
      *
      * @param  \App\Models\User  $user
-     * @param  \App\Models\Purchase  $purchase
+     * @param  \App\Models\product  $product
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function delete(User $user, Purchase $purchase)
+    public function delete(User $user, product $product)
     {
         return $user->role_id === 3;
     }
@@ -72,10 +72,10 @@ class PurchasePolicy
      * Determine whether the user can restore the model.
      *
      * @param  \App\Models\User  $user
-     * @param  \App\Models\Purchase  $purchase
+     * @param  \App\Models\product  $product
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function restore(User $user, Purchase $purchase)
+    public function restore(User $user, product $product)
     {
         //
     }
@@ -84,10 +84,10 @@ class PurchasePolicy
      * Determine whether the user can permanently delete the model.
      *
      * @param  \App\Models\User  $user
-     * @param  \App\Models\Purchase  $purchase
+     * @param  \App\Models\product  $product
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function forceDelete(User $user, Purchase $purchase)
+    public function forceDelete(User $user, product $product)
     {
         //
     }

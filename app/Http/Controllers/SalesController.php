@@ -8,6 +8,7 @@ use App\Models\Customer;
 use App\Models\Ppn;
 use App\Models\Product;
 use App\Models\Sale;
+use App\Models\StockProduct;
 use Illuminate\Database\QueryException;
 use Illuminate\Support\Facades\DB;
 use Inertia\Inertia;
@@ -62,21 +63,10 @@ class SalesController extends Controller
             'customers' => Inertia::lazy(
                 fn() => Customer::filter(['search' => request('customer')])
                     ->get()
-                    ->transform(fn($customer) => [
-                        'id' => $customer->id,
-                        'name' => $customer->name,
-                        'address' => $customer->address,
-                        'npwp' => $customer->npwp
-                    ])),
+            ),
             'products' => Inertia::lazy(
                 fn() => Product::filter(['search' => request('product')])
                     ->get()
-                    ->transform(fn($product) => [
-                        'id' => $product->id,
-                        'number' => $product->number,
-                        'name' => $product->name,
-                        'unit' => $product->unit
-                    ])
             )
         ]);
     }
@@ -156,13 +146,21 @@ class SalesController extends Controller
         DB::beginTransaction();
 
         try {
-            $sale->create($request->validated());
+            $sale->update($request->validated());
 
-            $sale->saleDetail()->create($request->validated());
+            $sale->saleDetail()->update($request->safe()->except('status'));
+
+            if ($request->status === 'success') {
+                StockProduct::create([
+                    'sale_number' => $sale->number,
+                    'qty' => -$request->qty,
+                    'product_number' => $sale->saleDetail->product_number
+                ]);
+            }
 
             DB::commit();
 
-            return back()->with('succes', __('messages.success.update.sale'));
+            return back()->with('success', __('messages.success.update.sale'));
         } catch (QueryException $e) {
             DB::rollBack();
 

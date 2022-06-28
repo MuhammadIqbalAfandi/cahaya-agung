@@ -35,7 +35,8 @@ return [
             'customer' => 'Pelanggan berhasil ditambahkan',
             'supplier' => 'Supplier berhasil ditambahkan',
             'product' => 'Produk berhasil ditambahkan',
-            'sale' => 'Penjualan berhasil ditambahkan'
+            'sale' => 'Penjualan berhasil ditambahkan',
+            'purchase' => 'Pembelian berhasil ditambahkan'
         ],
         'update' => [
             'type_vehicle' => 'Jenis kendaraan berhasil diubah',
@@ -49,7 +50,8 @@ return [
             'supplier' => 'Supplier berhasil diubah',
             'product' => 'Produk berhasil diubah',
             'sale' => 'Penjualan berhasil diubah',
-            'ppn' => 'Pajak pertambahan nilai berhasil diubah'
+            'ppn' => 'Pajak pertambahan nilai berhasil diubah',
+            'purchase' => 'Pembelian berhasil diubah'
         ],
         'destroy' => [
             'type_member' => 'Jenis member berhasil dihapus',
@@ -71,12 +73,14 @@ return [
             'change_password' => 'Password lama salah',
             'expense' => 'Pengeluaran gagal ditambahkan',
             'transaction' => 'Transaksi gagal ditambahkan',
-            'sale' => 'Penjualan gagal ditambahkan'
+            'sale' => 'Penjualan gagal ditambahkan',
+            'purchase' => 'Pembelian gagal ditambahkan'
         ],
         'update' => [
             'type_member' => 'Jenis member gagal diubah',
             'member' => 'Member gagal diubah',
-            'sale' => 'Penjualan gagal dibuah'
+            'sale' => 'Penjualan gagal dibuah',
+            'purchase' => 'Pembelian gagal dibuah'
         ]
     ]
 ];

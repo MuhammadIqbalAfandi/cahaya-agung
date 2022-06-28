@@ -58591,6 +58591,46 @@ var map = {
 		"./resources/js/pages/Products/config.js",
 		"resources_js_pages_Products_config_js"
 	],
+	"./Purchases/Components/Details": [
+		"./resources/js/pages/Purchases/Components/Details.vue",
+		"resources_js_pages_Purchases_Components_Details_vue"
+	],
+	"./Purchases/Components/Details.vue": [
+		"./resources/js/pages/Purchases/Components/Details.vue",
+		"resources_js_pages_Purchases_Components_Details_vue"
+	],
+	"./Purchases/Components/Dialog/ProductCreate": [
+		"./resources/js/pages/Purchases/Components/Dialog/ProductCreate.vue",
+		"resources_js_pages_Purchases_Components_Dialog_ProductCreate_vue"
+	],
+	"./Purchases/Components/Dialog/ProductCreate.vue": [
+		"./resources/js/pages/Purchases/Components/Dialog/ProductCreate.vue",
+		"resources_js_pages_Purchases_Components_Dialog_ProductCreate_vue"
+	],
+	"./Purchases/Components/Dialog/SupplierCreate": [
+		"./resources/js/pages/Purchases/Components/Dialog/SupplierCreate.vue",
+		"resources_js_pages_Purchases_Components_Dialog_SupplierCreate_vue"
+	],
+	"./Purchases/Components/Dialog/SupplierCreate.vue": [
+		"./resources/js/pages/Purchases/Components/Dialog/SupplierCreate.vue",
+		"resources_js_pages_Purchases_Components_Dialog_SupplierCreate_vue"
+	],
+	"./Purchases/Create": [
+		"./resources/js/pages/Purchases/Create.vue",
+		"resources_js_pages_Purchases_Create_vue"
+	],
+	"./Purchases/Create.vue": [
+		"./resources/js/pages/Purchases/Create.vue",
+		"resources_js_pages_Purchases_Create_vue"
+	],
+	"./Purchases/Edit": [
+		"./resources/js/pages/Purchases/Edit.vue",
+		"resources_js_pages_Purchases_Edit_vue"
+	],
+	"./Purchases/Edit.vue": [
+		"./resources/js/pages/Purchases/Edit.vue",
+		"resources_js_pages_Purchases_Edit_vue"
+	],
 	"./Purchases/Index": [
 		"./resources/js/pages/Purchases/Index.vue",
 		"resources_js_pages_Purchases_Index_vue"
@@ -58599,6 +58639,22 @@ var map = {
 		"./resources/js/pages/Purchases/Index.vue",
 		"resources_js_pages_Purchases_Index_vue"
 	],
+	"./Purchases/config": [
+		"./resources/js/pages/Purchases/config.js",
+		"resources_js_pages_Purchases_config_js"
+	],
+	"./Purchases/config.js": [
+		"./resources/js/pages/Purchases/config.js",
+		"resources_js_pages_Purchases_config_js"
+	],
+	"./Sales/Components/Details": [
+		"./resources/js/pages/Sales/Components/Details.vue",
+		"resources_js_pages_Sales_Components_Details_vue"
+	],
+	"./Sales/Components/Details.vue": [
+		"./resources/js/pages/Sales/Components/Details.vue",
+		"resources_js_pages_Sales_Components_Details_vue"
+	],
 	"./Sales/Components/Dialog/CustomerCreate": [
 		"./resources/js/pages/Sales/Components/Dialog/CustomerCreate.vue",
 		"resources_js_pages_Sales_Components_Dialog_CustomerCreate_vue"
@@ -58606,22 +58662,6 @@ var map = {
 	"./Sales/Components/Dialog/CustomerCreate.vue": [
 		"./resources/js/pages/Sales/Components/Dialog/CustomerCreate.vue",
 		"resources_js_pages_Sales_Components_Dialog_CustomerCreate_vue"
-	],
-	"./Sales/Components/Dialog/ProductCreate": [
-		"./resources/js/pages/Sales/Components/Dialog/ProductCreate.vue",
-		"resources_js_pages_Sales_Components_Dialog_ProductCreate_vue"
-	],
-	"./Sales/Components/Dialog/ProductCreate.vue": [
-		"./resources/js/pages/Sales/Components/Dialog/ProductCreate.vue",
-		"resources_js_pages_Sales_Components_Dialog_ProductCreate_vue"
-	],
-	"./Sales/Components/SaleDetails": [
-		"./resources/js/pages/Sales/Components/SaleDetails.vue",
-		"resources_js_pages_Sales_Components_SaleDetails_vue"
-	],
-	"./Sales/Components/SaleDetails.vue": [
-		"./resources/js/pages/Sales/Components/SaleDetails.vue",
-		"resources_js_pages_Sales_Components_SaleDetails_vue"
 	],
 	"./Sales/Create": [
 		"./resources/js/pages/Sales/Create.vue",
@@ -58852,7 +58892,7 @@ module.exports = JSON.parse('{"name":"axios","version":"0.21.4","description":"P
 /******/ 		// This function allow to reference async chunks
 /******/ 		__webpack_require__.u = (chunkId) => {
 /******/ 			// return url for filenames based on template
-/******/ 			return "js/" + chunkId + ".js?id=" + {"node_modules_chart_js_auto_auto_esm_js":"9296b829a7757dee","resources_js_pages_Auth_Login_vue":"be578e085a239e29","resources_js_pages_Customers_Create_vue":"428527a917f50554","resources_js_pages_Customers_Edit_vue":"32ffafab75951abe","resources_js_pages_Customers_Index_vue":"3668c39177503d88","resources_js_pages_Customers_config_js":"3e69b9c9add806c6","resources_js_pages_Dashboards_Index_vue":"5c49ade06eeb52d6","resources_js_pages_Error_Index_vue":"4119ff1c60260652","resources_js_pages_PPN_Index_vue":"bfdaac9a6c8c3511","resources_js_pages_Products_Create_vue":"755335b11512b9bc","resources_js_pages_Products_Edit_vue":"2657ac7238f1582b","resources_js_pages_Products_Index_vue":"86739bbe67b2ec67","resources_js_pages_Products_config_js":"885a5522b0477687","resources_js_pages_Purchases_Index_vue":"5a84735d97fc1941","resources_js_pages_Sales_Components_Dialog_CustomerCreate_vue":"0e45b005d2175423","resources_js_pages_Sales_Components_Dialog_ProductCreate_vue":"26ef1d3355ba7e47","resources_js_pages_Sales_Components_SaleDetails_vue":"c01d5e4048e57180","resources_js_pages_Sales_Create_vue":"9454a262bef33d8b","resources_js_pages_Sales_Edit_vue":"49f0e6c6c41ff841","resources_js_pages_Sales_Index_vue":"390e6b47fa950a8f","resources_js_pages_Sales_config_js":"b0e1bf081e7ceb77","resources_js_pages_StockProducts_Index_vue":"c8afcd10237e603e","resources_js_pages_Suppliers_Create_vue":"24bb6d613439e22c","resources_js_pages_Suppliers_Edit_vue":"586487497def0b57","resources_js_pages_Suppliers_Index_vue":"a6ec9af9e7816f11","resources_js_pages_Suppliers_config_js":"52e8d25c6bfab54b","resources_js_pages_Users_Create_vue":"099acfcc3f679d55","resources_js_pages_Users_Edit_vue":"a8582300f340ce92","resources_js_pages_Users_Index_vue":"0dd41f9a92b3ab57","resources_js_pages_Users_Show_vue":"5ee9041c0c5280b7","resources_js_pages_Users_config_js":"92384d78612abc88"}[chunkId] + "";
+/******/ 			return "js/" + chunkId + ".js?id=" + {"node_modules_chart_js_auto_auto_esm_js":"9296b829a7757dee","resources_js_pages_Auth_Login_vue":"be578e085a239e29","resources_js_pages_Customers_Create_vue":"abaff1c86032fcae","resources_js_pages_Customers_Edit_vue":"f1a4e333a99c31c9","resources_js_pages_Customers_Index_vue":"c0c3f38312c2d2c9","resources_js_pages_Customers_config_js":"3e69b9c9add806c6","resources_js_pages_Dashboards_Index_vue":"169709cb2487d435","resources_js_pages_Error_Index_vue":"4119ff1c60260652","resources_js_pages_PPN_Index_vue":"2f8e2992ec6659f2","resources_js_pages_Products_Create_vue":"8ccf815689cc3e57","resources_js_pages_Products_Edit_vue":"beff000cbc64de7a","resources_js_pages_Products_Index_vue":"0cdaeead21afa302","resources_js_pages_Products_config_js":"885a5522b0477687","resources_js_pages_Purchases_Components_Details_vue":"555481fa9ad2bb55","resources_js_pages_Purchases_Components_Dialog_ProductCreate_vue":"817a7620a7ed339e","resources_js_pages_Purchases_Components_Dialog_SupplierCreate_vue":"47234f8cf23670bd","resources_js_pages_Purchases_Create_vue":"2f2cb3769cdb38c7","resources_js_pages_Purchases_Edit_vue":"fc65461b74c755fb","resources_js_pages_Purchases_Index_vue":"023de8bce59a7f62","resources_js_pages_Purchases_config_js":"1231ca1a86b64fe0","resources_js_pages_Sales_Components_Details_vue":"ab6208d2dfc40d03","resources_js_pages_Sales_Components_Dialog_CustomerCreate_vue":"0e45b005d2175423","resources_js_pages_Sales_Create_vue":"493bd3b1567e3832","resources_js_pages_Sales_Edit_vue":"8feb19293450be1a","resources_js_pages_Sales_Index_vue":"1c64f3da4b2cf3bd","resources_js_pages_Sales_config_js":"b0e1bf081e7ceb77","resources_js_pages_StockProducts_Index_vue":"adab1491dd4bbdc3","resources_js_pages_Suppliers_Create_vue":"cc4cadba106e4d6f","resources_js_pages_Suppliers_Edit_vue":"b3e685e95f8c88aa","resources_js_pages_Suppliers_Index_vue":"8164a3c7fed7a6bb","resources_js_pages_Suppliers_config_js":"52e8d25c6bfab54b","resources_js_pages_Users_Create_vue":"3dba09b22200339d","resources_js_pages_Users_Edit_vue":"4872b69d62eda692","resources_js_pages_Users_Index_vue":"befb159bdb05f5db","resources_js_pages_Users_Show_vue":"d36db8c57efef81d","resources_js_pages_Users_config_js":"92384d78612abc88"}[chunkId] + "";
 /******/ 		};
 /******/ 	})();
 /******/ 	

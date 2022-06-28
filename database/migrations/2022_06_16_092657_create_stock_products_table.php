@@ -15,8 +15,8 @@ return new class extends Migration
     {
         Schema::create('stock_products', function (Blueprint $table) {
             $table->id();
-            $table->string('purchase_number')->nullable();
-            $table->string('sale_number')->nullable();
+            $table->string('purchase_number')->nullable()->default(null);
+            $table->string('sale_number')->nullable()->default(null);
             $table->integer('qty');
             $table->string('product_number');
             $table->foreign('product_number')->references('number')->on('products');
