@@ -7,7 +7,7 @@
     <link rel="icon" type="image/x-icon" href="{{ asset('images/favicon.ico') }}">
 
     @routes
-    <script defer src="{{ mix('/js/vue.js') }}"></script>
+    @vite(['resources/js/vue.js'])
     @inertiaHead
 </head>
 
