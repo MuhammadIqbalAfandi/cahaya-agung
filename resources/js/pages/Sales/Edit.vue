@@ -1,5 +1,5 @@
 <script setup>
-import { useForm } from '@/components/useForm'
+import { useForm } from '@/composables/useForm'
 import { optionStatus } from './config'
 import AppDropdown from '@/components/AppDropdown.vue'
 import AppInputNumber from '@/components/AppInputNumber.vue'

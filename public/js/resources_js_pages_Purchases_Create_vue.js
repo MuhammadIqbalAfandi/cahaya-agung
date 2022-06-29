@@ -521,7 +521,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm-bundler.js");
 /* harmony import */ var _inertiajs_inertia_vue3__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @inertiajs/inertia-vue3 */ "./node_modules/@inertiajs/inertia-vue3/dist/index.js");
-/* harmony import */ var _utils_menu__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @/utils/menu */ "./resources/js/utils/menu.js");
+/* harmony import */ var _menu__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./menu */ "./resources/js/layouts/Dashboard/menu.js");
 /* harmony import */ var _components_AppMessage_vue__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @/components/AppMessage.vue */ "./resources/js/components/AppMessage.vue");
 /* harmony import */ var _Components_TopBar_vue__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./Components/TopBar.vue */ "./resources/js/layouts/Dashboard/Components/TopBar.vue");
 /* harmony import */ var _Components_Sidebar_vue__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./Components/Sidebar.vue */ "./resources/js/layouts/Dashboard/Components/Sidebar.vue");
@@ -587,7 +587,7 @@ __webpack_require__.r(__webpack_exports__);
       ref: vue__WEBPACK_IMPORTED_MODULE_0__.ref,
       computed: vue__WEBPACK_IMPORTED_MODULE_0__.computed,
       Head: _inertiajs_inertia_vue3__WEBPACK_IMPORTED_MODULE_1__.Head,
-      menu: _utils_menu__WEBPACK_IMPORTED_MODULE_2__["default"],
+      menu: _menu__WEBPACK_IMPORTED_MODULE_2__["default"],
       AppMessage: _components_AppMessage_vue__WEBPACK_IMPORTED_MODULE_3__["default"],
       TopBar: _Components_TopBar_vue__WEBPACK_IMPORTED_MODULE_4__["default"],
       Sidebar: _Components_Sidebar_vue__WEBPACK_IMPORTED_MODULE_5__["default"],
@@ -613,13 +613,17 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
+/* harmony import */ var _utils_currencyFormat__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @/utils/currencyFormat */ "./resources/js/utils/currencyFormat.js");
+
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   __name: 'Details',
   props: ['title', 'number', 'price', 'qty', 'ppn', 'status', 'person', 'product'],
   setup: function setup(__props, _ref) {
     var expose = _ref.expose;
     expose();
-    var __returned__ = {};
+    var __returned__ = {
+      IDRCurrencyFormat: _utils_currencyFormat__WEBPACK_IMPORTED_MODULE_0__.IDRCurrencyFormat
+    };
     Object.defineProperty(__returned__, '__isScriptSetup', {
       enumerable: false,
       value: true
@@ -643,7 +647,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm-bundler.js");
 /* harmony import */ var _inertiajs_inertia__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @inertiajs/inertia */ "./node_modules/@inertiajs/inertia/dist/index.js");
 /* harmony import */ var _inertiajs_inertia_vue3__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @inertiajs/inertia-vue3 */ "./node_modules/@inertiajs/inertia-vue3/dist/index.js");
-/* harmony import */ var _components_useForm__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @/components/useForm */ "./resources/js/components/useForm.js");
+/* harmony import */ var _composables_useForm__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @/composables/useForm */ "./resources/js/composables/useForm.js");
 /* harmony import */ var _components_AppInputText_vue__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @/components/AppInputText.vue */ "./resources/js/components/AppInputText.vue");
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); enumerableOnly && (symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; })), keys.push.apply(keys, symbols); } return keys; }
 
@@ -671,7 +675,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     (0,vue__WEBPACK_IMPORTED_MODULE_0__.onMounted)(function () {
       return getProductNumber();
     });
-    var form = (0,_components_useForm__WEBPACK_IMPORTED_MODULE_3__.useForm)({
+    var form = (0,_composables_useForm__WEBPACK_IMPORTED_MODULE_3__.useForm)({
       name: null,
       unit: null
     });
@@ -698,7 +702,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       onMounted: vue__WEBPACK_IMPORTED_MODULE_0__.onMounted,
       Inertia: _inertiajs_inertia__WEBPACK_IMPORTED_MODULE_1__.Inertia,
       usePage: _inertiajs_inertia_vue3__WEBPACK_IMPORTED_MODULE_2__.usePage,
-      useForm: _components_useForm__WEBPACK_IMPORTED_MODULE_3__.useForm,
+      useForm: _composables_useForm__WEBPACK_IMPORTED_MODULE_3__.useForm,
       AppInputText: _components_AppInputText_vue__WEBPACK_IMPORTED_MODULE_4__["default"]
     };
     Object.defineProperty(__returned__, '__isScriptSetup', {
@@ -721,7 +725,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony import */ var _components_useForm__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @/components/useForm */ "./resources/js/components/useForm.js");
+/* harmony import */ var _composables_useForm__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @/composables/useForm */ "./resources/js/composables/useForm.js");
 /* harmony import */ var _components_AppInputText_vue__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @/components/AppInputText.vue */ "./resources/js/components/AppInputText.vue");
 
 
@@ -730,7 +734,7 @@ __webpack_require__.r(__webpack_exports__);
   setup: function setup(__props, _ref) {
     var expose = _ref.expose;
     expose();
-    var form = (0,_components_useForm__WEBPACK_IMPORTED_MODULE_0__.useForm)({
+    var form = (0,_composables_useForm__WEBPACK_IMPORTED_MODULE_0__.useForm)({
       name: null,
       address: null,
       phone: null,
@@ -749,7 +753,7 @@ __webpack_require__.r(__webpack_exports__);
     var __returned__ = {
       form: form,
       onSubmit: onSubmit,
-      useForm: _components_useForm__WEBPACK_IMPORTED_MODULE_0__.useForm,
+      useForm: _composables_useForm__WEBPACK_IMPORTED_MODULE_0__.useForm,
       AppInputText: _components_AppInputText_vue__WEBPACK_IMPORTED_MODULE_1__["default"]
     };
     Object.defineProperty(__returned__, '__isScriptSetup', {
@@ -777,7 +781,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _Components_Dialog_SupplierCreate_vue__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./Components/Dialog/SupplierCreate.vue */ "./resources/js/pages/Purchases/Components/Dialog/SupplierCreate.vue");
 /* harmony import */ var _Components_Dialog_ProductCreate_vue__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./Components/Dialog/ProductCreate.vue */ "./resources/js/pages/Purchases/Components/Dialog/ProductCreate.vue");
 /* harmony import */ var _Components_Details_vue__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./Components/Details.vue */ "./resources/js/pages/Purchases/Components/Details.vue");
-/* harmony import */ var _components_useForm__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @/components/useForm */ "./resources/js/components/useForm.js");
+/* harmony import */ var _composables_useForm__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @/composables/useForm */ "./resources/js/composables/useForm.js");
 /* harmony import */ var _components_AppInputText_vue__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @/components/AppInputText.vue */ "./resources/js/components/AppInputText.vue");
 /* harmony import */ var _components_AppInputNumber_vue__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @/components/AppInputNumber.vue */ "./resources/js/components/AppInputNumber.vue");
 /* harmony import */ var _components_AppDropdown_vue__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! @/components/AppDropdown.vue */ "./resources/js/components/AppDropdown.vue");
@@ -818,7 +822,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     var expose = _ref.expose;
     expose();
     var props = __props;
-    var form = (0,_components_useForm__WEBPACK_IMPORTED_MODULE_5__.useForm)({
+    var form = (0,_composables_useForm__WEBPACK_IMPORTED_MODULE_5__.useForm)({
       number: props.number,
       status: 'pending',
       price: null,
@@ -884,7 +888,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       SupplierCreate: _Components_Dialog_SupplierCreate_vue__WEBPACK_IMPORTED_MODULE_2__["default"],
       ProductCreate: _Components_Dialog_ProductCreate_vue__WEBPACK_IMPORTED_MODULE_3__["default"],
       Details: _Components_Details_vue__WEBPACK_IMPORTED_MODULE_4__["default"],
-      useForm: _components_useForm__WEBPACK_IMPORTED_MODULE_5__.useForm,
+      useForm: _composables_useForm__WEBPACK_IMPORTED_MODULE_5__.useForm,
       AppInputText: _components_AppInputText_vue__WEBPACK_IMPORTED_MODULE_6__["default"],
       AppInputNumber: _components_AppInputNumber_vue__WEBPACK_IMPORTED_MODULE_7__["default"],
       AppDropdown: _components_AppDropdown_vue__WEBPACK_IMPORTED_MODULE_8__["default"],
@@ -1828,7 +1832,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
       /* TEXT */
       )])])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_Divider, {
         type: "dashed"
-      }), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_28, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_29, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_30, [_hoisted_31, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($props.price), 1
+      }), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_28, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_29, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_30, [_hoisted_31, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($setup.IDRCurrencyFormat($props.price)), 1
       /* TEXT */
       )]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_32, [_hoisted_33, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($props.qty), 1
       /* TEXT */
@@ -2240,10 +2244,10 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
 
 /***/ }),
 
-/***/ "./resources/js/components/useForm.js":
-/*!********************************************!*\
-  !*** ./resources/js/components/useForm.js ***!
-  \********************************************/
+/***/ "./resources/js/composables/useForm.js":
+/*!*********************************************!*\
+  !*** ./resources/js/composables/useForm.js ***!
+  \*********************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 __webpack_require__.r(__webpack_exports__);
@@ -2267,67 +2271,10 @@ function useForm(obj) {
 
 /***/ }),
 
-/***/ "./resources/js/pages/Purchases/config.js":
+/***/ "./resources/js/layouts/Dashboard/menu.js":
 /*!************************************************!*\
-  !*** ./resources/js/pages/Purchases/config.js ***!
+  !*** ./resources/js/layouts/Dashboard/menu.js ***!
   \************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "dialogStyle": () => (/* binding */ dialogStyle),
-/* harmony export */   "indexTable": () => (/* binding */ indexTable),
-/* harmony export */   "optionStatus": () => (/* binding */ optionStatus)
-/* harmony export */ });
-var optionStatus = [{
-  label: 'pending',
-  value: 'pending'
-}, {
-  label: 'success',
-  value: 'success'
-}];
-var indexTable = [{
-  field: 'updatedAt',
-  header: 'Tanggal'
-}, {
-  field: 'number',
-  header: 'Nomor Penjualan'
-}, {
-  field: 'status',
-  header: 'Status'
-}, {
-  field: 'price',
-  header: 'Harga'
-}, {
-  field: 'qty',
-  header: 'Kuantitas'
-}, {
-  field: 'ppn',
-  header: 'PPN'
-}, {
-  field: 'productName',
-  header: 'Nama Produk'
-}, {
-  field: 'productNumber',
-  header: 'Nomor Produk'
-}];
-var dialogStyle = {
-  style: {
-    width: '50vw'
-  },
-  breakpoints: {
-    '960px': '75vw',
-    '640px': '90vw'
-  },
-  modal: true
-};
-
-/***/ }),
-
-/***/ "./resources/js/utils/menu.js":
-/*!************************************!*\
-  !*** ./resources/js/utils/menu.js ***!
-  \************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 __webpack_require__.r(__webpack_exports__);
@@ -2426,6 +2373,89 @@ __webpack_require__.r(__webpack_exports__);
     }]
   }]
 });
+
+/***/ }),
+
+/***/ "./resources/js/pages/Purchases/config.js":
+/*!************************************************!*\
+  !*** ./resources/js/pages/Purchases/config.js ***!
+  \************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "dialogStyle": () => (/* binding */ dialogStyle),
+/* harmony export */   "indexTable": () => (/* binding */ indexTable),
+/* harmony export */   "optionStatus": () => (/* binding */ optionStatus)
+/* harmony export */ });
+var optionStatus = [{
+  label: 'pending',
+  value: 'pending'
+}, {
+  label: 'success',
+  value: 'success'
+}];
+var indexTable = [{
+  field: 'updatedAt',
+  header: 'Tanggal'
+}, {
+  field: 'number',
+  header: 'Nomor Penjualan'
+}, {
+  field: 'status',
+  header: 'Status'
+}, {
+  field: 'price',
+  header: 'Harga'
+}, {
+  field: 'qty',
+  header: 'Kuantitas'
+}, {
+  field: 'ppn',
+  header: 'PPN'
+}, {
+  field: 'productName',
+  header: 'Nama Produk'
+}, {
+  field: 'productNumber',
+  header: 'Nomor Produk'
+}];
+var dialogStyle = {
+  style: {
+    width: '50vw'
+  },
+  breakpoints: {
+    '960px': '75vw',
+    '640px': '90vw'
+  },
+  modal: true
+};
+
+/***/ }),
+
+/***/ "./resources/js/utils/currencyFormat.js":
+/*!**********************************************!*\
+  !*** ./resources/js/utils/currencyFormat.js ***!
+  \**********************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "IDRCurrencyFormat": () => (/* binding */ IDRCurrencyFormat)
+/* harmony export */ });
+var IDRCurrencyFormat = function IDRCurrencyFormat(number) {
+  var decimal = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : false;
+
+  if (number === null) {
+    return;
+  }
+
+  if (decimal) {
+    return 'Rp' + number.toLocaleString('id') + ',00';
+  } else {
+    return 'Rp' + number.toLocaleString('id');
+  }
+};
 
 /***/ }),
 

@@ -1,7 +1,7 @@
 <script setup>
 import { Inertia } from '@inertiajs/inertia'
 import { useConfirm } from 'primevue/useconfirm'
-import { useForm } from '@/components/useForm'
+import { useForm } from '@/composables/useForm'
 import AppInputText from '@/components/AppInputText.vue'
 import AppDropdown from '@/components/AppDropdown.vue'
 import AppButtonLink from '@/components/AppButtonLink.vue'

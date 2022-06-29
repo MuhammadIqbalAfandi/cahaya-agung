@@ -218,7 +218,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm-bundler.js");
 /* harmony import */ var _inertiajs_inertia_vue3__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @inertiajs/inertia-vue3 */ "./node_modules/@inertiajs/inertia-vue3/dist/index.js");
-/* harmony import */ var _utils_menu__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @/utils/menu */ "./resources/js/utils/menu.js");
+/* harmony import */ var _menu__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./menu */ "./resources/js/layouts/Dashboard/menu.js");
 /* harmony import */ var _components_AppMessage_vue__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @/components/AppMessage.vue */ "./resources/js/components/AppMessage.vue");
 /* harmony import */ var _Components_TopBar_vue__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./Components/TopBar.vue */ "./resources/js/layouts/Dashboard/Components/TopBar.vue");
 /* harmony import */ var _Components_Sidebar_vue__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./Components/Sidebar.vue */ "./resources/js/layouts/Dashboard/Components/Sidebar.vue");
@@ -284,7 +284,7 @@ __webpack_require__.r(__webpack_exports__);
       ref: vue__WEBPACK_IMPORTED_MODULE_0__.ref,
       computed: vue__WEBPACK_IMPORTED_MODULE_0__.computed,
       Head: _inertiajs_inertia_vue3__WEBPACK_IMPORTED_MODULE_1__.Head,
-      menu: _utils_menu__WEBPACK_IMPORTED_MODULE_2__["default"],
+      menu: _menu__WEBPACK_IMPORTED_MODULE_2__["default"],
       AppMessage: _components_AppMessage_vue__WEBPACK_IMPORTED_MODULE_3__["default"],
       TopBar: _Components_TopBar_vue__WEBPACK_IMPORTED_MODULE_4__["default"],
       Sidebar: _Components_Sidebar_vue__WEBPACK_IMPORTED_MODULE_5__["default"],
@@ -310,7 +310,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony import */ var _components_useForm__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @/components/useForm */ "./resources/js/components/useForm.js");
+/* harmony import */ var _composables_useForm__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @/composables/useForm */ "./resources/js/composables/useForm.js");
 /* harmony import */ var _components_AppInputText_vue__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @/components/AppInputText.vue */ "./resources/js/components/AppInputText.vue");
 /* harmony import */ var _layouts_Dashboard_DashboardLayout_vue__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @/layouts/Dashboard/DashboardLayout.vue */ "./resources/js/layouts/Dashboard/DashboardLayout.vue");
 
@@ -321,7 +321,7 @@ __webpack_require__.r(__webpack_exports__);
   setup: function setup(__props, _ref) {
     var expose = _ref.expose;
     expose();
-    var form = (0,_components_useForm__WEBPACK_IMPORTED_MODULE_0__.useForm)({
+    var form = (0,_composables_useForm__WEBPACK_IMPORTED_MODULE_0__.useForm)({
       name: null,
       address: null,
       phone: null,
@@ -339,7 +339,7 @@ __webpack_require__.r(__webpack_exports__);
     var __returned__ = {
       form: form,
       onSubmit: onSubmit,
-      useForm: _components_useForm__WEBPACK_IMPORTED_MODULE_0__.useForm,
+      useForm: _composables_useForm__WEBPACK_IMPORTED_MODULE_0__.useForm,
       AppInputText: _components_AppInputText_vue__WEBPACK_IMPORTED_MODULE_1__["default"],
       DashboardLayout: _layouts_Dashboard_DashboardLayout_vue__WEBPACK_IMPORTED_MODULE_2__["default"]
     };
@@ -977,10 +977,10 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
 
 /***/ }),
 
-/***/ "./resources/js/components/useForm.js":
-/*!********************************************!*\
-  !*** ./resources/js/components/useForm.js ***!
-  \********************************************/
+/***/ "./resources/js/composables/useForm.js":
+/*!*********************************************!*\
+  !*** ./resources/js/composables/useForm.js ***!
+  \*********************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 __webpack_require__.r(__webpack_exports__);
@@ -1004,10 +1004,10 @@ function useForm(obj) {
 
 /***/ }),
 
-/***/ "./resources/js/utils/menu.js":
-/*!************************************!*\
-  !*** ./resources/js/utils/menu.js ***!
-  \************************************/
+/***/ "./resources/js/layouts/Dashboard/menu.js":
+/*!************************************************!*\
+  !*** ./resources/js/layouts/Dashboard/menu.js ***!
+  \************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 __webpack_require__.r(__webpack_exports__);

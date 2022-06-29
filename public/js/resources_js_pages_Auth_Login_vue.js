@@ -231,7 +231,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony import */ var _components_useForm__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @/components/useForm */ "./resources/js/components/useForm.js");
+/* harmony import */ var _composables_useForm__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @/composables/useForm */ "./resources/js/composables/useForm.js");
 /* harmony import */ var _components_AppInputText_vue__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @/components/AppInputText.vue */ "./resources/js/components/AppInputText.vue");
 /* harmony import */ var _components_AppPassword_vue__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @/components/AppPassword.vue */ "./resources/js/components/AppPassword.vue");
 /* harmony import */ var _layouts_Auth_AuthLayout_vue__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @/layouts/Auth/AuthLayout.vue */ "./resources/js/layouts/Auth/AuthLayout.vue");
@@ -244,7 +244,7 @@ __webpack_require__.r(__webpack_exports__);
   setup: function setup(__props, _ref) {
     var expose = _ref.expose;
     expose();
-    var form = (0,_components_useForm__WEBPACK_IMPORTED_MODULE_0__.useForm)({
+    var form = (0,_composables_useForm__WEBPACK_IMPORTED_MODULE_0__.useForm)({
       username: '',
       password: '',
       remember: false
@@ -261,7 +261,7 @@ __webpack_require__.r(__webpack_exports__);
     var __returned__ = {
       form: form,
       onSubmit: onSubmit,
-      useForm: _components_useForm__WEBPACK_IMPORTED_MODULE_0__.useForm,
+      useForm: _composables_useForm__WEBPACK_IMPORTED_MODULE_0__.useForm,
       AppInputText: _components_AppInputText_vue__WEBPACK_IMPORTED_MODULE_1__["default"],
       AppPassword: _components_AppPassword_vue__WEBPACK_IMPORTED_MODULE_2__["default"],
       AuthLayout: _layouts_Auth_AuthLayout_vue__WEBPACK_IMPORTED_MODULE_3__["default"]
@@ -560,10 +560,10 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
 
 /***/ }),
 
-/***/ "./resources/js/components/useForm.js":
-/*!********************************************!*\
-  !*** ./resources/js/components/useForm.js ***!
-  \********************************************/
+/***/ "./resources/js/composables/useForm.js":
+/*!*********************************************!*\
+  !*** ./resources/js/composables/useForm.js ***!
+  \*********************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 __webpack_require__.r(__webpack_exports__);

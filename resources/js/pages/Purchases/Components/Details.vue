@@ -1,4 +1,6 @@
 <script setup>
+import { IDRCurrencyFormat } from '@/utils/currencyFormat'
+
 defineProps([
   'title',
   'number',
@@ -96,7 +98,7 @@ defineProps([
           <div class="grid">
             <div class="col">
               <h3 class="text-base">Harga</h3>
-              <span>{{ price }}</span>
+              <span>{{ IDRCurrencyFormat(price) }}</span>
             </div>
 
             <div class="col">

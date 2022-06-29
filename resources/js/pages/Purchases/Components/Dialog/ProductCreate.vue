@@ -2,7 +2,7 @@
 import { onMounted } from 'vue'
 import { Inertia } from '@inertiajs/inertia'
 import { usePage } from '@inertiajs/inertia-vue3'
-import { useForm } from '@/components/useForm'
+import { useForm } from '@/composables/useForm'
 import AppInputText from '@/components/AppInputText.vue'
 
 const getProductNumber = () => {

@@ -1,6 +1,6 @@
 <script setup>
 import { ref } from 'vue'
-import { useForm } from '@/components/useForm'
+import { useForm } from '@/composables/useForm'
 import AppInputText from '@/components/AppInputText.vue'
 import DashboardLayout from '@/layouts/Dashboard/DashboardLayout.vue'
 

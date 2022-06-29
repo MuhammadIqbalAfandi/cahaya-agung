@@ -290,7 +290,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm-bundler.js");
 /* harmony import */ var _inertiajs_inertia_vue3__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @inertiajs/inertia-vue3 */ "./node_modules/@inertiajs/inertia-vue3/dist/index.js");
-/* harmony import */ var _utils_menu__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @/utils/menu */ "./resources/js/utils/menu.js");
+/* harmony import */ var _menu__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./menu */ "./resources/js/layouts/Dashboard/menu.js");
 /* harmony import */ var _components_AppMessage_vue__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @/components/AppMessage.vue */ "./resources/js/components/AppMessage.vue");
 /* harmony import */ var _Components_TopBar_vue__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./Components/TopBar.vue */ "./resources/js/layouts/Dashboard/Components/TopBar.vue");
 /* harmony import */ var _Components_Sidebar_vue__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./Components/Sidebar.vue */ "./resources/js/layouts/Dashboard/Components/Sidebar.vue");
@@ -356,7 +356,7 @@ __webpack_require__.r(__webpack_exports__);
       ref: vue__WEBPACK_IMPORTED_MODULE_0__.ref,
       computed: vue__WEBPACK_IMPORTED_MODULE_0__.computed,
       Head: _inertiajs_inertia_vue3__WEBPACK_IMPORTED_MODULE_1__.Head,
-      menu: _utils_menu__WEBPACK_IMPORTED_MODULE_2__["default"],
+      menu: _menu__WEBPACK_IMPORTED_MODULE_2__["default"],
       AppMessage: _components_AppMessage_vue__WEBPACK_IMPORTED_MODULE_3__["default"],
       TopBar: _Components_TopBar_vue__WEBPACK_IMPORTED_MODULE_4__["default"],
       Sidebar: _Components_Sidebar_vue__WEBPACK_IMPORTED_MODULE_5__["default"],
@@ -1128,68 +1128,10 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
 
 /***/ }),
 
-/***/ "./resources/js/pages/Purchases/config.js":
+/***/ "./resources/js/layouts/Dashboard/menu.js":
 /*!************************************************!*\
-  !*** ./resources/js/pages/Purchases/config.js ***!
+  !*** ./resources/js/layouts/Dashboard/menu.js ***!
   \************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "dialogStyle": () => (/* binding */ dialogStyle),
-/* harmony export */   "indexTable": () => (/* binding */ indexTable),
-/* harmony export */   "optionStatus": () => (/* binding */ optionStatus)
-/* harmony export */ });
-var optionStatus = [{
-  label: 'pending',
-  value: 'pending'
-}, {
-  label: 'success',
-  value: 'success'
-}];
-var indexTable = [{
-  field: 'updatedAt',
-  header: 'Tanggal'
-}, {
-  field: 'number',
-  header: 'Nomor Penjualan'
-}, {
-  field: 'status',
-  header: 'Status'
-}, {
-  field: 'price',
-  header: 'Harga'
-}, {
-  field: 'qty',
-  header: 'Kuantitas'
-}, {
-  field: 'ppn',
-  header: 'PPN'
-}, {
-  field: 'productName',
-  header: 'Nama Produk'
-}, {
-  field: 'productNumber',
-  header: 'Nomor Produk'
-}];
-var dialogStyle = {
-  style: {
-    width: '50vw'
-  },
-  breakpoints: {
-    '960px': '75vw',
-    '640px': '90vw'
-  },
-  modal: true
-};
-
-/***/ }),
-
-/***/ "./resources/js/utils/menu.js":
-/*!************************************!*\
-  !*** ./resources/js/utils/menu.js ***!
-  \************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -1289,6 +1231,64 @@ __webpack_require__.r(__webpack_exports__);
     }]
   }]
 });
+
+/***/ }),
+
+/***/ "./resources/js/pages/Purchases/config.js":
+/*!************************************************!*\
+  !*** ./resources/js/pages/Purchases/config.js ***!
+  \************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "dialogStyle": () => (/* binding */ dialogStyle),
+/* harmony export */   "indexTable": () => (/* binding */ indexTable),
+/* harmony export */   "optionStatus": () => (/* binding */ optionStatus)
+/* harmony export */ });
+var optionStatus = [{
+  label: 'pending',
+  value: 'pending'
+}, {
+  label: 'success',
+  value: 'success'
+}];
+var indexTable = [{
+  field: 'updatedAt',
+  header: 'Tanggal'
+}, {
+  field: 'number',
+  header: 'Nomor Penjualan'
+}, {
+  field: 'status',
+  header: 'Status'
+}, {
+  field: 'price',
+  header: 'Harga'
+}, {
+  field: 'qty',
+  header: 'Kuantitas'
+}, {
+  field: 'ppn',
+  header: 'PPN'
+}, {
+  field: 'productName',
+  header: 'Nama Produk'
+}, {
+  field: 'productNumber',
+  header: 'Nomor Produk'
+}];
+var dialogStyle = {
+  style: {
+    width: '50vw'
+  },
+  breakpoints: {
+    '960px': '75vw',
+    '640px': '90vw'
+  },
+  modal: true
+};
 
 /***/ }),
 

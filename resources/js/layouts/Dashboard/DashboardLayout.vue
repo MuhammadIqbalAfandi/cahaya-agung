@@ -1,7 +1,7 @@
 <script setup>
 import { ref, computed } from 'vue'
 import { Head } from '@inertiajs/inertia-vue3'
-import menu from '@/utils/menu'
+import menu from './menu'
 import AppMessage from '@/components/AppMessage.vue'
 import TopBar from './Components/TopBar.vue'
 import Sidebar from './Components/Sidebar.vue'
