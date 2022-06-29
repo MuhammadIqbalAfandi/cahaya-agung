@@ -17,7 +17,7 @@ const props = defineProps({
     type: Array,
     default: [],
   },
-  products: {
+  stockProducts: {
     type: Array,
     default: [],
   },
@@ -142,10 +142,10 @@ const checkBtnSubmit = () => {
                   label="Produk"
                   placeholder="produk"
                   field="name"
-                  refresh-data="products"
+                  refresh-data="stockProducts"
                   v-model="form.product"
                   :error="form.errors.product_number"
-                  :suggestions="products"
+                  :suggestions="stockProducts"
                 />
               </div>
 

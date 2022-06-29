@@ -6,7 +6,6 @@ use App\Http\Requests\Sales\StoreSaleRequest;
 use App\Http\Requests\Sales\UpdateSaleRequest;
 use App\Models\Customer;
 use App\Models\Ppn;
-use App\Models\Product;
 use App\Models\Sale;
 use App\Models\StockProduct;
 use Illuminate\Database\QueryException;
@@ -64,9 +63,15 @@ class SalesController extends Controller
                 fn() => Customer::filter(['search' => request('customer')])
                     ->get()
             ),
-            'products' => Inertia::lazy(
-                fn() => Product::filter(['search' => request('product')])
+            'stockProducts' => Inertia::lazy(
+                fn() => StockProduct::filter(['search' => request('stockProduct')])
                     ->get()
+                    ->transform(fn($stockProduct) => [
+                        'number' => $stockProduct->product_number,
+                        'name' => $stockProduct->product->name,
+                        'qty' => $stockProduct->qty,
+                        'unit' => $stockProduct->product->unit
+                    ])
             )
         ]);
     }

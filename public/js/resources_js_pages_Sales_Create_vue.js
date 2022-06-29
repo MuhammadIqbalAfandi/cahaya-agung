@@ -725,7 +725,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       type: Array,
       "default": []
     },
-    products: {
+    stockProducts: {
       type: Array,
       "default": []
     }
@@ -1964,13 +1964,13 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
             label: "Produk",
             placeholder: "produk",
             field: "name",
-            "refresh-data": "products",
+            "refresh-data": "stockProducts",
             modelValue: $setup.form.product,
             "onUpdate:modelValue": _cache[3] || (_cache[3] = function ($event) {
               return $setup.form.product = $event;
             }),
             error: $setup.form.errors.product_number,
-            suggestions: $props.products
+            suggestions: $props.stockProducts
           }, null, 8
           /* PROPS */
           , ["modelValue", "error", "suggestions"])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_10, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)($setup["AppInputNumber"], {
