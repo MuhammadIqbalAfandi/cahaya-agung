@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('ppns', function (Blueprint $table) {
             $table->id();
-            $table->unsignedInteger('ppn');
+            $table->unsignedTinyInteger('ppn');
             $table->timestamps();
         });
     }

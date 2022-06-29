@@ -16,7 +16,7 @@ return new class extends Migration
         Schema::create('purchase_details', function (Blueprint $table) {
             $table->id();
             $table->unsignedInteger('price');
-            $table->unsignedInteger('ppn');
+            $table->unsignedTinyInteger('ppn');
             $table->unsignedInteger('qty');
             $table->string('purchase_number');
             $table->string('product_number');

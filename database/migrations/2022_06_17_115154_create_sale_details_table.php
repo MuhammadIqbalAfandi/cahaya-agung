@@ -16,7 +16,7 @@ return new class extends Migration
         Schema::create('sale_details', function (Blueprint $table) {
             $table->id();
             $table->unsignedInteger('price');
-            $table->unsignedInteger('ppn');
+            $table->unsignedTinyInteger('ppn');
             $table->unsignedInteger('qty');
             $table->string('product_number');
             $table->string('sale_number');
