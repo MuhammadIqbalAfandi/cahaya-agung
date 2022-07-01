@@ -1,9 +1,12 @@
 <script setup>
 import { useDialog } from 'primevue/usedialog'
 import { optionStatus, dialogStyle } from './config'
-import SupplierCreate from './Components/Dialog/SupplierCreate.vue'
-import ProductCreate from './Components/Dialog/ProductCreate.vue'
+import { cartTable } from './config'
+import SupplierCreate from './Components/SupplierCreate.vue'
+import ProductCreate from './Components/ProductCreate.vue'
 import Details from './Components/Details.vue'
+import Cart from './Components/Cart.vue'
+import { useProductCart } from './Composables/useProductCart'
 import { useForm } from '@/composables/useForm'
 import AppInputText from '@/components/AppInputText.vue'
 import AppInputNumber from '@/components/AppInputNumber.vue'
@@ -13,7 +16,7 @@ import DashboardLayout from '@/layouts/Dashboard/DashboardLayout.vue'
 
 const props = defineProps({
   number: String,
-  ppn: String,
+  ppn: Number,
   suppliers: {
     type: Array,
     default: [],
@@ -48,9 +51,12 @@ const onSubmit = () => {
     })
 }
 
+const { cartProduct, onAddProduct, onDeleteProduct, onClearProduct } =
+  useProductCart(form)
+
 const dialog = useDialog()
 
-const showCreateSupplier = () => {
+const onShowCreateSupplier = () => {
   dialog.open(SupplierCreate, {
     props: {
       header: 'Tambah Supplier',
@@ -59,21 +65,13 @@ const showCreateSupplier = () => {
   })
 }
 
-const showCreateProduct = () => {
+const onShowCreateProduct = () => {
   dialog.open(ProductCreate, {
     props: {
       header: 'Tambah Produk',
       ...dialogStyle,
     },
   })
-}
-
-const checkBtnSubmit = () => {
-  if (form.price && form.qty && form.supplier && form.product) {
-    return false
-  } else {
-    return true
-  }
 }
 </script>
 
@@ -82,9 +80,9 @@ const checkBtnSubmit = () => {
     <DynamicDialog />
 
     <div class="grid">
-      <div class="col-12 lg:col-8">
+      <div class="col-12 md:col-8 flex-order-1 md:flex-order-0">
         <Card>
-          <template #title> Tambah Pembelian </template>
+          <template #title> Pembeli </template>
           <template #content>
             <div class="grid">
               <div class="col-12 md:col-6">
@@ -130,14 +128,36 @@ const checkBtnSubmit = () => {
                     <span
                       class="cursor-pointer"
                       style="color: var(--primary-color)"
-                      @click="showCreateSupplier"
+                      @click="onShowCreateSupplier"
                     >
                       Tambah Supplier
                     </span>
                   </template>
                 </AppAutoComplete>
               </div>
+            </div>
+          </template>
+        </Card>
+      </div>
 
+      <div class="col-12 md:col-4 flex-order-4 md:flex-order-0">
+        <Details
+          title="Detail Pembelian"
+          :number="number"
+          :ppn="ppn"
+          :status="form.status"
+          :person="form.supplier"
+          :product="form.product"
+          :disabled="form.processing"
+          @click="onSubmit"
+        />
+      </div>
+
+      <div class="col-12 md:col-8 flex-order-2 md:flex-order-0">
+        <Card>
+          <template #title>Produk</template>
+          <template #content>
+            <div class="grid">
               <div class="col-12 md:col-6">
                 <AppAutoComplete
                   label="Produk"
@@ -161,7 +181,7 @@ const checkBtnSubmit = () => {
                     <span
                       class="cursor-pointer"
                       style="color: var(--primary-color)"
-                      @click="showCreateProduct"
+                      @click="onShowCreateProduct"
                     >
                       Tambah Produk
                     </span>
@@ -189,31 +209,27 @@ const checkBtnSubmit = () => {
               </div>
             </div>
           </template>
-
           <template #footer>
             <div class="flex flex-column md:flex-row justify-content-end">
               <Button
-                label="Simpan"
+                label="Tambah Produk"
                 icon="pi pi-check"
                 class="p-button-outlined"
-                :disabled="form.processing || checkBtnSubmit()"
-                @click="onSubmit"
+                :disabled="form.processing"
+                @click="onAddProduct"
               />
             </div>
           </template>
         </Card>
       </div>
 
-      <div class="col-12 lg:col-4">
-        <Details
-          title="Detail Pembelian"
-          :number="number"
-          :price="form.price"
-          :qty="form.qty"
-          :ppn="ppn"
-          :status="form.status"
-          :person="form.supplier"
-          :product="form.product"
+      <div class="col-12 md:col-8 flex-order-3 md:flex-order-0">
+        <Cart
+          title="Keranjang Produk"
+          :header-table="cartTable"
+          :form="form"
+          :value="cartProduct"
+          @delete="onDeleteProduct"
         />
       </div>
     </div>

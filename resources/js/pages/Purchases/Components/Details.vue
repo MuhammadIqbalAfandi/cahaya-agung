@@ -1,16 +1,16 @@
 <script setup>
 import { IDRCurrencyFormat } from '@/utils/currencyFormat'
 
-defineProps([
-  'title',
-  'number',
-  'price',
-  'qty',
-  'ppn',
-  'status',
-  'person',
-  'product',
-])
+defineProps({
+  title: String,
+  number: String,
+  price: Number,
+  qty: String,
+  ppn: Number,
+  status: String,
+  person: Object,
+  disabled: Boolean,
+})
 </script>
 
 <template>
@@ -67,38 +67,12 @@ defineProps([
           </div>
         </div>
 
-        <div class="col-12">
-          <div
-            v-if="
-              product !== null &&
-              typeof product === 'object' &&
-              Object.keys(product).length
-            "
-            class="grid"
-          >
-            <div class="col">
-              <h3 class="text-base">Nomor Produk</h3>
-              <span>{{ product.number }}</span>
-            </div>
-
-            <div class="col">
-              <h3 class="text-base">Nama Produk</h3>
-              <span>{{ product.name }}</span>
-            </div>
-
-            <div class="col">
-              <h3 class="text-base">Satuan</h3>
-              <span>{{ product.unit }}</span>
-            </div>
-          </div>
-        </div>
-
         <Divider type="dashed" />
         <div class="col-12">
           <div class="grid">
             <div class="col">
               <h3 class="text-base">Harga</h3>
-              <span>{{ IDRCurrencyFormat(price) }}</span>
+              <span v-if="price">{{ IDRCurrencyFormat(price) }}</span>
             </div>
 
             <div class="col">
@@ -108,10 +82,22 @@ defineProps([
 
             <div class="col">
               <h3 class="text-base">PPN</h3>
-              <span>{{ ppn }}</span>
+              <span>{{ ppn }} %</span>
             </div>
           </div>
         </div>
+      </div>
+    </template>
+
+    <template #footer>
+      <div class="flex flex-column md:flex-row justify-content-end">
+        <Button
+          label="Simpan"
+          icon="pi pi-check"
+          class="p-button-outlined"
+          :disabled="disabled"
+          @click="$emit('click')"
+        />
       </div>
     </template>
   </Card>

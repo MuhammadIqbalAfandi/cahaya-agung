@@ -18,7 +18,7 @@ return new class extends Migration
             $table->string('number')->unique();
             $table->string('name');
             $table->string('unit');
-            $table->unsignedTinyInteger('profit');
+            $table->unsignedTinyInteger('profit')->default(0);
             $table->timestamps();
         });
     }

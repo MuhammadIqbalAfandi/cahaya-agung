@@ -20,6 +20,13 @@ export const indexTable = [
   { field: 'productNumber', header: 'Nomor Produk' },
 ]
 
+export const cartTable = [
+  { field: 'number', header: 'Nomor Produk' },
+  { field: 'name', header: 'Produk' },
+  { field: 'price', header: 'Harga' },
+  { field: 'quantity', header: 'Kuantitas' },
+]
+
 export const dialogStyle = {
   style: {
     width: '50vw',
