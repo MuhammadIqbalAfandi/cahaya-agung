@@ -20,7 +20,7 @@ class CustomerController extends Controller
      */
     public function index()
     {
-        return inertia('Customers/Index.vue', [
+        return inertia('Customers/Index', [
             'initialSearch' => request('search'),
             'customers' => Customer::filter(request()->only('search'))
                 ->latest()
@@ -79,7 +79,7 @@ class CustomerController extends Controller
      */
     public function edit(Customer $customer)
     {
-        return inertia('Customers/Edit.vue', compact('customer'));
+        return inertia('Customers/Edit', compact('customer'));
     }
 
     /**

@@ -27,7 +27,7 @@ class PurchaseController extends Controller
      */
     public function index()
     {
-        return inertia('Purchases/Index.vue', [
+        return inertia('Purchases/Index', [
             'initialSearch' => request('search'),
             'purchases' => Purchase::filter(request()->only('search'))
                 ->latest()

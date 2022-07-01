@@ -1,6 +1,8 @@
+import './bootstrap'
 import { createApp, h } from 'vue'
 import { createInertiaApp } from '@inertiajs/inertia-vue3'
 import { InertiaProgress } from '@inertiajs/progress'
+import { resolvePageComponent } from 'laravel-vite-plugin/inertia-helpers'
 
 import 'primevue/resources/themes/mdc-light-indigo/theme.css'
 import 'primevue/resources/primevue.min.css'
@@ -37,7 +39,11 @@ import Tooltip from 'primevue/tooltip'
 
 createInertiaApp({
   title: (title) => `${title} - Cahaya Agung`,
-  resolve: (name) => import(`./pages/${name}`),
+  resolve: (name) =>
+    resolvePageComponent(
+      `./pages/${name}.vue`,
+      import.meta.glob('./pages/**/*.vue')
+    ),
   setup({ el, App, props, plugin }) {
     createApp({ render: () => h(App, props) })
       .use(plugin)

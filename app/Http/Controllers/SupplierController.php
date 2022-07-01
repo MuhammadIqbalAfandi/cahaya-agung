@@ -20,7 +20,7 @@ class SupplierController extends Controller
      */
     public function index()
     {
-        return inertia('Suppliers/Index.vue', [
+        return inertia('Suppliers/Index', [
             'initialSearch' => request('search'),
             'suppliers' => Supplier::filter(request()->only('search'))
                 ->latest()
@@ -80,7 +80,7 @@ class SupplierController extends Controller
      */
     public function edit(Supplier $supplier)
     {
-        return inertia('Suppliers/Edit.vue', compact('supplier'));
+        return inertia('Suppliers/Edit', compact('supplier'));
     }
 
     /**
