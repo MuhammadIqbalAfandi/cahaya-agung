@@ -27,7 +27,7 @@ class Purchase extends Model
 
     public function purchaseDetail()
     {
-        return $this->hasOne(PurchaseDetail::class, 'purchase_number', 'number');
+        return $this->hasMany(PurchaseDetail::class, 'purchase_number', 'number');
     }
 
     public function product()
@@ -51,9 +51,16 @@ class Purchase extends Model
     {
         $query->when($filters['search'] ?? null, function ($query, $search) {
             $query->where(function ($query) use ($search) {
-                $query->where('number', 'like', '%' . $search . '%')
+                $query->where('name', 'like', '%' . $search . '%')
+                    ->orWhere('phone', 'like', '%' . $search . '%')
+                    ->orWhere('email', 'like', '%' . $search . '%')
                     ->orWhere('status', 'like', '%' . $search . '%');
             });
         });
+    }
+
+    public function totalPrice()
+    {
+        return $this->purchaseDetail();
     }
 }

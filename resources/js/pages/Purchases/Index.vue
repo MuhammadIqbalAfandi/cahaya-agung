@@ -25,14 +25,12 @@ defineProps({
 
         <div class="grid">
           <div class="col-12 md:col-8">
-            <div class="flex align-items-center">
-              <AppSearch
-                class="w-full md:w-27rem"
-                placeholder="cari, contoh: PBNxx, Pending, Success"
-                url="/purchases"
-                :initial-search="initialSearch"
-              />
-            </div>
+            <AppSearch
+              class="w-full md:w-27rem"
+              placeholder="nama, email, phone, status"
+              url="/purchases"
+              :initial-search="initialSearch"
+            />
           </div>
 
           <div

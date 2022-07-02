@@ -23,6 +23,10 @@ const props = defineProps({
     type: String,
     required: true,
   },
+  empty: {
+    type: Boolean,
+    default: false,
+  },
   refreshData: {
     type: String,
     required: true,
@@ -87,7 +91,7 @@ const onSelect = (event) => {
         v-if="error"
         class="mt-1"
         :class="{
-          'mb-2': suggestions.length === 0 || modelValue.length === 0,
+          'mb-2': empty,
           'p-error': isError,
         }"
         :id="ariaDescribedbyLabel"
@@ -95,10 +99,7 @@ const onSelect = (event) => {
         {{ error }}
       </small>
 
-      <small
-        v-if="suggestions.length === 0 || modelValue.length === 0"
-        class="mt-1"
-      >
+      <small v-if="empty" class="mt-1">
         <slot name="empty" />
       </small>
     </div>

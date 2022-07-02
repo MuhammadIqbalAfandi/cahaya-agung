@@ -26,10 +26,8 @@ class StorePurchaseRequest extends FormRequest
         return [
             'number' => 'required|string|unique:sales,number',
             'status' => 'required|string',
-            'price' => 'required|numeric',
-            'qty' => 'required|numeric',
             'supplier_id' => 'required|numeric',
-            'product_number' => 'required|string'
+            'products' => 'required'
         ];
     }
 }

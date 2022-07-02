@@ -1,4 +1,6 @@
 <script setup>
+import { IDRCurrencyFormat } from '@/utils/currencyFormat'
+
 defineProps({
   title: String,
   headerTable: {
@@ -29,7 +31,17 @@ defineProps({
       :field="value.field"
       :header="value.header"
       :key="value.field"
-    />
+    >
+      <template #body="{ data, field }">
+        <template v-if="field === 'price'">
+          {{ IDRCurrencyFormat(data[field]) }}
+        </template>
+
+        <template v-else-if="field === 'ppn'"> {{ data[field] }}% </template>
+
+        <template v-else> {{ data[field] }} </template>
+      </template>
+    </Column>
 
     <Column>
       <template #body="{ index }">

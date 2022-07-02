@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\Purchase\StorePurchaseRequest;
 use App\Http\Requests\Purchase\UpdatePurchaseRequest;
 use App\Models\Ppn;
+use App\Models\Price;
 use App\Models\Product;
 use App\Models\Purchase;
 use App\Models\StockProduct;
@@ -36,13 +37,11 @@ class PurchaseController extends Controller
                 ->through(fn($purchase) => [
                     'id' => $purchase->id,
                     'updatedAt' => $purchase->updated_at,
-                    'number' => $purchase->number,
-                    'status' => $purchase->status,
-                    'price' => $purchase->purchaseDetail->price,
-                    'ppn' => $purchase->purchaseDetail->ppn,
-                    'qty' => $purchase->purchaseDetail->qty,
-                    'productName' => $purchase->product->name,
-                    'productNumber' => $purchase->product->number
+                    'email' => $purchase->supplier->email,
+                    'name' => $purchase->supplier->name,
+                    'phone' => $purchase->supplier->phone,
+                    'price' => $purchase->totalPrice,
+                    'status' => $purchase->status
                 ])
         ]);
     }
@@ -82,14 +81,32 @@ class PurchaseController extends Controller
         DB::beginTransaction();
 
         try {
+            $ppn = Ppn::first()->getRawOriginal('ppn');
+
             $validated = $request->safe()->merge([
-                'user_id' => auth()->user()->id,
-                'ppn' => Ppn::first()->getRawOriginal('ppn')
+                'user_id' => auth()->user()->id
             ])->all();
 
             $purchase = Purchase::create($validated);
 
-            $purchase->purchaseDetail()->create($validated);
+            foreach ($request->products as $product) {
+                $validated = $request->safe()->merge([
+                    'product_number' => $product['number'],
+                    'name' => $product['name'],
+                    'price' => $product['price'],
+                    'qty' => $product['qty'],
+                    'ppn' => $ppn
+                ])->all();
+
+                $purchase->purchaseDetail()->create($validated);
+
+                $validated = $request->safe()->merge([
+                    'product_number' => $product['number'],
+                    'price' => $product['price'] + $product['price'] * ($ppn / 100)
+                ])->all();
+
+                Price::create($validated);
+            }
 
             DB::commit();
 
