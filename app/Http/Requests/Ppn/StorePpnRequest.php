@@ -24,7 +24,7 @@ class StorePpnRequest extends FormRequest
     public function rules()
     {
         return [
-            'ppn' => 'required|numeric'
+            "ppn" => "required|numeric|digits_between:0,100",
         ];
     }
 }

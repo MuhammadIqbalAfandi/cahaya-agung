@@ -24,9 +24,9 @@ class UpdatePurchaseRequest extends FormRequest
     public function rules()
     {
         return [
-            'status' => 'required|string',
-            'price' => 'required|numeric',
-            'qty' => 'required|numeric'
+            "status" => "required|string",
+            "price" => "required|numeric",
+            "qty" => "required|numeric",
         ];
     }
 }

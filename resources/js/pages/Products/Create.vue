@@ -11,6 +11,7 @@ const form = useForm({
   number: props.number,
   name: null,
   unit: null,
+  profit: 0,
 })
 
 const onSubmit = () => {
@@ -51,6 +52,16 @@ const onSubmit = () => {
                   placeholder="satuan"
                   :error="form.errors.unit"
                   v-model="form.unit"
+                />
+              </div>
+
+              <div class="col-12 md:col-6">
+                <AppInputText
+                  label="Profit"
+                  placeholder="profit"
+                  type="number"
+                  :error="form.errors.profit"
+                  v-model="form.profit"
                 />
               </div>
             </div>

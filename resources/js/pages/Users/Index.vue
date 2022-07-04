@@ -49,7 +49,7 @@ const onResetPassword = (data) => {
             <div class="flex align-items-center">
               <AppSearch
                 class="w-full md:w-27rem"
-                placeholder="cari, contoh: tina"
+                placeholder="nama, nama pengguna"
                 url="/users"
                 :initialSearch="initialSearch"
               />

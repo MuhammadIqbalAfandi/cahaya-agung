@@ -24,20 +24,22 @@ class UserController extends Controller
      */
     public function index()
     {
-        return inertia('Users/Index', [
-            'initialSearch' => request('search'),
-            'users' => User::filter(request()->only('search'))
+        return inertia("Users/Index", [
+            "initialSearch" => request("search"),
+            "users" => User::filter(request()->only("search"))
                 ->latest()
                 ->paginate(10)
                 ->withQueryString()
-                ->through(fn($user) => [
-                    'id' => $user->id,
-                    'name' => $user->name,
-                    'username' => $user->username,
-                    'role' => $user->role->name,
-                    'role_id' => $user->role_id,
-                    'status' => $user->status
-                ])
+                ->through(
+                    fn($user) => [
+                        "id" => $user->id,
+                        "name" => $user->name,
+                        "username" => $user->username,
+                        "role" => $user->role->name,
+                        "role_id" => $user->role_id,
+                        "status" => $user->status,
+                    ]
+                ),
         ]);
     }
 
@@ -48,13 +50,15 @@ class UserController extends Controller
      */
     public function create()
     {
-        return inertia('Users/Create', [
-            'roles' => Role::whereNotIn('id', [1])
+        return inertia("Users/Create", [
+            "roles" => Role::whereNotIn("id", [1])
                 ->get()
-                ->transform(fn($role) => [
-                    'label' => $role->name,
-                    'value' => $role->id
-                ])
+                ->transform(
+                    fn($role) => [
+                        "label" => $role->name,
+                        "value" => $role->id,
+                    ]
+                ),
         ]);
     }
 
@@ -68,7 +72,7 @@ class UserController extends Controller
     {
         User::create($request->validated());
 
-        return back()->with('success', __('messages.success.store.user'));
+        return back()->with("success", __("messages.success.store.user"));
     }
 
     /**
@@ -79,14 +83,16 @@ class UserController extends Controller
      */
     public function show(User $user)
     {
-        return inertia('Users/Show', [
-            'user' => $user,
-            'roles' => Role::whereNotIn('id', [1])
+        return inertia("Users/Show", [
+            "user" => $user,
+            "roles" => Role::whereNotIn("id", [1])
                 ->get()
-                ->transform(fn($role) => [
-                    'label' => $role->name,
-                    'value' => $role->id
-                ])
+                ->transform(
+                    fn($role) => [
+                        "label" => $role->name,
+                        "value" => $role->id,
+                    ]
+                ),
         ]);
     }
 
@@ -98,14 +104,16 @@ class UserController extends Controller
      */
     public function edit(User $user)
     {
-        return inertia('Users/Edit', [
-            'user' => $user,
-            'roles' => Role::whereNotIn('id', [1])
+        return inertia("Users/Edit", [
+            "user" => $user,
+            "roles" => Role::whereNotIn("id", [1])
                 ->get()
-                ->transform(fn($role) => [
-                    'label' => $role->name,
-                    'value' => $role->id
-                ])
+                ->transform(
+                    fn($role) => [
+                        "label" => $role->name,
+                        "value" => $role->id,
+                    ]
+                ),
         ]);
     }
 
@@ -120,7 +128,7 @@ class UserController extends Controller
     {
         $user->update($request->validated());
 
-        return back()->with('success', __('messages.success.update.user'));
+        return back()->with("success", __("messages.success.update.user"));
     }
 
     /**
@@ -133,7 +141,10 @@ class UserController extends Controller
     {
         $user->delete();
 
-        return to_route('users.index')->with('success', __('messages.success.destroy.user'));
+        return to_route("users.index")->with(
+            "success",
+            __("messages.success.destroy.user")
+        );
     }
 
     /**
@@ -144,16 +155,16 @@ class UserController extends Controller
      */
     public function block(User $user)
     {
-        $user->status = !$user->getRawOriginal('status');
+        $user->status = !$user->getRawOriginal("status");
         $user->update();
 
-        if ($user->getRawOriginal('status')) {
-            $msg = __('messages.user.active_user');
+        if ($user->getRawOriginal("status")) {
+            $msg = __("messages.user.active_user");
         } else {
-            $msg = __('messages.user.no_active_user');
+            $msg = __("messages.user.no_active_user");
         }
 
-        return back()->with('success', $msg);
+        return back()->with("success", $msg);
     }
 
     /**
@@ -165,18 +176,29 @@ class UserController extends Controller
     public function changePassword(ChangePasswordRequest $request)
     {
         if (!Hash::check($request->old_password, $request->user()->password)) {
-            return back()->with('error', __('messages.error.store.change_password'));
+            return back()->with(
+                "error",
+                __("messages.error.store.change_password")
+            );
         }
 
-        $request->user()->update(['password' => bcrypt($request->new_password)]);
+        $request
+            ->user()
+            ->update(["password" => bcrypt($request->new_password)]);
 
-        return back()->with('success', __('messages.success.update.change_password'));
+        return back()->with(
+            "success",
+            __("messages.success.update.change_password")
+        );
     }
 
     public function resetPassword(User $user)
     {
-        $user->update(['password' => bcrypt('12345678')]);
+        $user->update(["password" => bcrypt("12345678")]);
 
-        return back()->with('success', __('messages.success.store.reset_password'));
+        return back()->with(
+            "success",
+            __("messages.success.store.reset_password")
+        );
     }
 }

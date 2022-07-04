@@ -15,9 +15,9 @@ class PpnController extends Controller
      */
     public function index()
     {
-        $ppn = Ppn::first()->getRawOriginal('ppn');
+        $ppn = Ppn::first()->ppn;
 
-        return inertia('PPN/Index', compact('ppn'));
+        return inertia("PPN/Index", compact("ppn"));
     }
 
     /**
@@ -42,7 +42,7 @@ class PpnController extends Controller
 
         Ppn::create($request->validated());
 
-        return back()->with('success', __('messages.success.update.ppn'));
+        return back()->with("success", __("messages.success.update.ppn"));
     }
 
     /**

@@ -21,19 +21,22 @@ class ProductController extends Controller
      */
     public function index()
     {
-        return inertia('Products/Index', [
-            'initialSearch' => request('search'),
-            'products' => Product::filter(request()->only('search'))
+        return inertia("Products/Index", [
+            "initialSearch" => request("search"),
+            "products" => Product::filter(request()->only("search"))
                 ->latest()
                 ->paginate(10)
                 ->withQueryString()
-                ->through(fn($product) => [
-                    'id' => $product->id,
-                    'number' => $product->number,
-                    'name' => $product->name,
-                    'unit' => $product->unit,
-                    'isUsed' => ProductService::isUsed($product)
-                ])
+                ->through(
+                    fn($product) => [
+                        "id" => $product->id,
+                        "number" => $product->number,
+                        "name" => $product->name,
+                        "unit" => $product->unit,
+                        "profit" => $product->profit . "%",
+                        "isUsed" => ProductService::isUsed($product),
+                    ]
+                ),
         ]);
     }
 
@@ -44,8 +47,8 @@ class ProductController extends Controller
      */
     public function create()
     {
-        return inertia('Products/Create', [
-            'number' => 'PDK' . now()->format('YmdHis')
+        return inertia("Products/Create", [
+            "number" => "PDK" . now()->format("YmdHis"),
         ]);
     }
 
@@ -59,7 +62,7 @@ class ProductController extends Controller
     {
         Product::create($request->validated());
 
-        return back()->with('success', __('messages.success.store.product'));
+        return back()->with("success", __("messages.success.store.product"));
     }
 
     /**
@@ -81,7 +84,7 @@ class ProductController extends Controller
      */
     public function edit(Product $product)
     {
-        return inertia('Products/Edit', compact('product'));
+        return inertia("Products/Edit", compact("product"));
     }
 
     /**
@@ -95,7 +98,7 @@ class ProductController extends Controller
     {
         $product->update($request->validated());
 
-        return back()->with('success', __('messages.success.update.product'));
+        return back()->with("success", __("messages.success.update.product"));
     }
 
     /**
@@ -108,6 +111,6 @@ class ProductController extends Controller
     {
         $product->delete();
 
-        return back()->with('success', __('messages.success.destroy.product'));
+        return back()->with("success", __("messages.success.destroy.product"));
     }
 }

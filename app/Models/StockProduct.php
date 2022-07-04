@@ -10,23 +10,24 @@ class StockProduct extends Model
     use HasFactory;
 
     protected $fillable = [
-        'purchase_number',
-        'sale_number',
-        'qty',
-        'product_number'
+        "purchase_number",
+        "sale_number",
+        "qty",
+        "product_number",
     ];
 
     public function product()
     {
-        return $this->belongsTo(Product::class, 'product_number', 'number');
+        return $this->belongsTo(Product::class, "product_number", "number");
     }
 
     public function scopeFilter($query, array $filters)
     {
-        $query->when($filters['search'] ?? null, function ($query, $search) {
-            $query->whereHas('product', function ($query) use ($search) {
-                $query->where('number', 'like', '%' . $search . '%')
-                    ->orWhere('name', 'like', '%' . $search . '%');
+        $query->when($filters["search"] ?? null, function ($query, $search) {
+            $query->whereHas("product", function ($query) use ($search) {
+                $query
+                    ->where("number", "like", "%" . $search . "%")
+                    ->orWhere("name", "like", "%" . $search . "%");
             });
         });
     }

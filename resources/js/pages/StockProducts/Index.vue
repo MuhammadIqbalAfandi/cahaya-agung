@@ -3,7 +3,7 @@ import DashboardLayout from '@/layouts/Dashboard/DashboardLayout.vue'
 </script>
 
 <template>
-  <DashboardLayout title="Halaman Stok Barang">
-    Halaman Stok Barang
+  <DashboardLayout title="Daftar Stok Barang">
+    <h1>Soon</h1>
   </DashboardLayout>
 </template>

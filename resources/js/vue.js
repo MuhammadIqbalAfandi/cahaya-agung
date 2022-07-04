@@ -46,12 +46,6 @@ createInertiaApp({
       .use(plugin)
       .use(PrimeVue, {
         ripple: true,
-        zIndex: {
-          modal: 1100,
-          overlay: 1000,
-          menu: 1000,
-          tooltip: 1100,
-        },
       })
       .use(ConfirmationService)
       .use(DialogService)

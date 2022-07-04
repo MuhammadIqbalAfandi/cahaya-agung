@@ -1,18 +1,20 @@
 <script setup>
-defineProps([
-  'title',
-  'number',
-  'price',
-  'qty',
-  'ppn',
-  'status',
-  'person',
-  'product',
-])
+import { IDRCurrencyFormat } from '@/utils/currencyFormat'
+
+defineProps({
+  title: String,
+  number: String,
+  price: Number,
+  ppn: Number,
+  status: String,
+  person: null,
+  message: String,
+  disabled: Boolean,
+})
 </script>
 
 <template>
-  <Card>
+  <Card class="bg-primary">
     <template #title>
       <h2 class="text-2xl font-bold">{{ title }}</h2>
     </template>
@@ -34,14 +36,7 @@ defineProps([
           </div>
         </div>
 
-        <div
-          v-if="
-            person !== null &&
-            typeof person === 'object' &&
-            Object.keys(person).length
-          "
-          class="col-12"
-        >
+        <div v-if="person?.id" class="col-12">
           <div class="grid">
             <div class="col">
               <h3 class="text-base">Nama</h3>
@@ -49,39 +44,18 @@ defineProps([
             </div>
 
             <div class="col">
-              <h3 class="text-base">Alamat</h3>
-              <span>{{ person.address }}</span>
+              <h3 class="text-base">No Hp</h3>
+              <span>{{ person.phone }}</span>
             </div>
 
             <div class="col">
               <h3 class="text-base">NPWP</h3>
               <span>{{ person.npwp }}</span>
             </div>
-          </div>
-        </div>
-
-        <div class="col-12">
-          <div
-            v-if="
-              product !== null &&
-              typeof product === 'object' &&
-              Object.keys(product).length
-            "
-            class="grid"
-          >
-            <div class="col">
-              <h3 class="text-base">Nomor Produk</h3>
-              <span>{{ product.number }}</span>
-            </div>
 
             <div class="col">
-              <h3 class="text-base">Nama Produk</h3>
-              <span>{{ product.name }}</span>
-            </div>
-
-            <div class="col">
-              <h3 class="text-base">Satuan</h3>
-              <span>{{ product.unit }}</span>
+              <h3 class="text-base">Surel</h3>
+              <span>{{ person.email }}</span>
             </div>
           </div>
         </div>
@@ -89,22 +63,28 @@ defineProps([
         <Divider type="dashed" />
         <div class="col-12">
           <div class="grid">
-            <div class="col">
+            <div v-if="price" class="col">
               <h3 class="text-base">Harga</h3>
-              <span>{{ price }}</span>
-            </div>
-
-            <div class="col">
-              <h3 class="text-base">Kuantitas</h3>
-              <span>{{ qty }}</span>
-            </div>
-
-            <div class="col">
-              <h3 class="text-base">PPN</h3>
-              <span>{{ ppn }}</span>
+              <span>{{ IDRCurrencyFormat(price) }}</span>
             </div>
           </div>
         </div>
+      </div>
+    </template>
+
+    <template #footer>
+      <div
+        class="flex flex-column md:flex-row gap-2 md:gap-0 md:justify-content-between md:align-items-center"
+      >
+        <small>{{ message }}</small>
+
+        <Button
+          label="Simpan"
+          icon="pi pi-check"
+          class="p-button-outlined bg-primary-reverse"
+          :disabled="disabled"
+          @click="$emit('submit')"
+        />
       </div>
     </template>
   </Card>

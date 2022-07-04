@@ -20,20 +20,22 @@ class CustomerController extends Controller
      */
     public function index()
     {
-        return inertia('Customers/Index', [
-            'initialSearch' => request('search'),
-            'customers' => Customer::filter(request()->only('search'))
+        return inertia("Customers/Index", [
+            "initialSearch" => request("search"),
+            "customers" => Customer::filter(request()->only("search"))
                 ->latest()
                 ->paginate(10)
                 ->withQueryString()
-                ->through(fn($customer) => [
-                    'id' => $customer->id,
-                    'name' => $customer->name,
-                    'address' => $customer->address,
-                    'phone' => $customer->phone,
-                    'npwp' => $customer->npwp,
-                    'isUsed' => $customer->sales()->exists()
-                ])
+                ->through(
+                    fn($customer) => [
+                        "id" => $customer->id,
+                        "name" => $customer->name,
+                        "address" => $customer->address,
+                        "phone" => $customer->phone,
+                        "npwp" => $customer->npwp,
+                        "isUsed" => $customer->sales()->exists(),
+                    ]
+                ),
         ]);
     }
 
@@ -44,7 +46,7 @@ class CustomerController extends Controller
      */
     public function create()
     {
-        return inertia('Customers/Create');
+        return inertia("Customers/Create");
     }
 
     /**
@@ -57,7 +59,7 @@ class CustomerController extends Controller
     {
         Customer::create($request->validated());
 
-        return back()->with('success', __('messages.success.store.customer'));
+        return back()->with("success", __("messages.success.store.customer"));
     }
 
     /**
@@ -79,7 +81,7 @@ class CustomerController extends Controller
      */
     public function edit(Customer $customer)
     {
-        return inertia('Customers/Edit', compact('customer'));
+        return inertia("Customers/Edit", compact("customer"));
     }
 
     /**
@@ -93,7 +95,7 @@ class CustomerController extends Controller
     {
         $customer->update($request->validated());
 
-        return back()->with('success', __('messages.success.update.customer'));
+        return back()->with("success", __("messages.success.update.customer"));
     }
 
     /**
@@ -106,6 +108,6 @@ class CustomerController extends Controller
     {
         $customer->delete();
 
-        return back()->with('success', __('messages.success.destroy.customer'));
+        return back()->with("success", __("messages.success.destroy.customer"));
     }
 }

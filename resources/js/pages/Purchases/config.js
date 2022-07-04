@@ -21,7 +21,6 @@ export const indexTable = [
 export const cartTable = [
   { field: 'number', header: 'Nomor Produk' },
   { field: 'name', header: 'Produk' },
-  { field: 'ppn', header: 'PPN' },
   { field: 'price', header: 'Harga' },
   { field: 'qty', header: 'Kuantitas' },
   { field: 'unit', header: 'Satuan' },

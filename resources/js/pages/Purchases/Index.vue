@@ -27,7 +27,7 @@ defineProps({
           <div class="col-12 md:col-8">
             <AppSearch
               class="w-full md:w-27rem"
-              placeholder="nama, email, phone, status"
+              placeholder="nama, email, no hp, status"
               url="/purchases"
               :initial-search="initialSearch"
             />

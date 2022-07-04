@@ -10,9 +10,9 @@ class Price extends Model
     use HasFactory;
 
     protected $fillable = [
-        'price',
-        'product_number',
-        'customer_id',
-        'supplier_id'
+        "price",
+        "product_number",
+        "customer_id",
+        "supplier_id",
     ];
 }

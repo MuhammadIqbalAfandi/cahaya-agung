@@ -29,8 +29,8 @@ class StoreLoginRequest extends FormRequest
     public function rules()
     {
         return [
-            'username' => ['required', 'string', 'min:5'],
-            'password' => ['required', 'string']
+            "username" => ["required", "string", "min:5"],
+            "password" => ["required", "string"],
         ];
     }
 
@@ -45,11 +45,16 @@ class StoreLoginRequest extends FormRequest
     {
         $this->ensureIsNotRateLimited();
 
-        if (!Auth::attempt($this->only('username', 'password'), $this->boolean('remember'))) {
+        if (
+            !Auth::attempt(
+                $this->only("username", "password"),
+                $this->boolean("remember")
+            )
+        ) {
             RateLimiter::hit($this->throttleKey());
 
             throw ValidationException::withMessages([
-                'username' => __('auth.failed')
+                "username" => __("auth.failed"),
             ]);
         }
 
@@ -74,10 +79,10 @@ class StoreLoginRequest extends FormRequest
         $seconds = RateLimiter::availableIn($this->throttleKey());
 
         throw ValidationException::withMessages([
-            'email' => trans('auth.throttle', [
-                'seconds' => $seconds,
-                'minutes' => ceil($seconds / 60)
-            ])
+            "email" => trans("auth.throttle", [
+                "seconds" => $seconds,
+                "minutes" => ceil($seconds / 60),
+            ]),
         ]);
     }
 
@@ -88,6 +93,6 @@ class StoreLoginRequest extends FormRequest
      */
     public function throttleKey()
     {
-        return Str::lower($this->input('email')) . '|' . $this->ip();
+        return Str::lower($this->input("email")) . "|" . $this->ip();
     }
 }

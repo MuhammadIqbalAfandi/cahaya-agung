@@ -4,7 +4,7 @@ namespace App\Services;
 
 class HelperService
 {
-    public static function addPrevValue($array)
+    public static function addPrevValue(array $array)
     {
         $i = [];
 
@@ -19,19 +19,19 @@ class HelperService
         return $i;
     }
 
-    public static function setRupiahFormat($num, $sign = false)
+    public static function setRupiahFormat(int $num, bool $sign = true)
     {
         if ($sign) {
             if ($num < 0) {
-                return '-Rp' . number_format(abs($num), 0, ',', '.');
+                return "-Rp" . number_format(abs($num), 0, ",", ".");
             } else {
-                return 'Rp' . number_format($num, 0, ',', '.');
+                return "Rp" . number_format($num, 0, ",", ".");
             }
         } else {
             if ($num < 0) {
-                return '-' . number_format(abs($num), 0, ',', '.');
+                return "-" . number_format(abs($num), 0, ",", ".");
             } else {
-                return number_format($num, 0, ',', '.');
+                return number_format($num, 0, ",", ".");
             }
         }
     }

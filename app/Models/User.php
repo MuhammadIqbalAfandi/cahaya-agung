@@ -17,13 +17,7 @@ class User extends Authenticatable
      *
      * @var array<int, string>
      */
-    protected $fillable = [
-        'name',
-        'username',
-        'status',
-        'password',
-        'role_id'
-    ];
+    protected $fillable = ["name", "username", "status", "password", "role_id"];
 
     /**
      * The attributes that should be hidden for serialization.
@@ -31,16 +25,18 @@ class User extends Authenticatable
      * @var array<int, string>
      */
     protected $hidden = [
-        'created_at',
-        'updated_at',
-        'password',
-        'remember_token'
+        "created_at",
+        "updated_at",
+        "password",
+        "remember_token",
     ];
 
     protected function status(): Attribute
     {
         return Attribute::make(
-            get:fn($value) => $value ? __('words.active') : __('words.not_active'),
+            get: fn($value) => $value
+                ? __("words.active")
+                : __("words.not_active")
         );
     }
 
@@ -51,10 +47,11 @@ class User extends Authenticatable
 
     public function scopeFilter($query, array $filters)
     {
-        $query->when($filters['search'] ?? null, function ($query, $search) {
+        $query->when($filters["search"] ?? null, function ($query, $search) {
             $query->where(function ($query) use ($search) {
-                $query->where('name', 'like', '%' . $search . '%')
-                    ->orWhere('username', 'like', '%' . $search . '%');
+                $query
+                    ->where("name", "like", "%" . $search . "%")
+                    ->orWhere("username", "like", "%" . $search . "%");
             });
         });
     }

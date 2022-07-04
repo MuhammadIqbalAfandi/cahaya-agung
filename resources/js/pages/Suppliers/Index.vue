@@ -49,7 +49,7 @@ const onDelete = (data) => {
             <div class="flex align-items-center">
               <AppSearch
                 class="w-full md:w-27rem"
-                placeholder="cari, contoh: tina, 08xx, 0x"
+                placeholder="nama, no hp, npwp"
                 url="/suppliers"
                 :initial-search="initialSearch"
               />

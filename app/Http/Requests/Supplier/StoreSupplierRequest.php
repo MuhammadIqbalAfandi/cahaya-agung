@@ -24,11 +24,13 @@ class StoreSupplierRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => 'required|string|max:50',
-            'address' => 'required|string',
-            'email' => 'required|string|email|unique:suppliers,email',
-            'phone' => 'required|numeric|digits_between:12,15|unique:suppliers,phone',
-            'npwp' => 'required|numeric|digits_between:15,20|unique:suppliers,npwp'
+            "name" => "required|string|max:50",
+            "address" => "required|string",
+            "email" => "required|string|email|unique:suppliers,email",
+            "phone" =>
+                "required|numeric|digits_between:12,15|unique:suppliers,phone",
+            "npwp" =>
+                "required|numeric|digits_between:15,20|unique:suppliers,npwp",
         ];
     }
 }

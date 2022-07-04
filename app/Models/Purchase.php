@@ -11,23 +11,24 @@ class Purchase extends Model
 {
     use HasFactory;
 
-    protected $fillable = [
-        'number',
-        'status',
-        'supplier_id',
-        'user_id'
-    ];
+    protected $fillable = ["number", "status", "supplier_id", "user_id"];
 
     protected function updatedAt(): Attribute
     {
         return Attribute::make(
-            get:fn($value) => Carbon::parse($value)->translatedFormat('l d/m/y')
+            get: fn($value) => Carbon::parse($value)->translatedFormat(
+                "l d/m/y"
+            )
         );
     }
 
     public function purchaseDetail()
     {
-        return $this->hasMany(PurchaseDetail::class, 'purchase_number', 'number');
+        return $this->hasMany(
+            PurchaseDetail::class,
+            "purchase_number",
+            "number"
+        );
     }
 
     public function product()
@@ -35,10 +36,10 @@ class Purchase extends Model
         return $this->hasOneThrough(
             Product::class,
             PurchaseDetail::class,
-            'purchase_number',
-            'number',
-            'number',
-            'product_number'
+            "purchase_number",
+            "number",
+            "number",
+            "product_number"
         );
     }
 
@@ -49,18 +50,17 @@ class Purchase extends Model
 
     public function scopeFilter($query, array $filters)
     {
-        $query->when($filters['search'] ?? null, function ($query, $search) {
-            $query->where(function ($query) use ($search) {
-                $query->where('name', 'like', '%' . $search . '%')
-                    ->orWhere('phone', 'like', '%' . $search . '%')
-                    ->orWhere('email', 'like', '%' . $search . '%')
-                    ->orWhere('status', 'like', '%' . $search . '%');
-            });
+        $query->when($filters["search"] ?? null, function ($query, $search) {
+            $query
+                ->whereHas("supplier", function ($query) use ($search) {
+                    $query
+                        ->where("name", "like", "%" . $search . "%")
+                        ->orWhere("phone", "like", "%" . $search . "%")
+                        ->orWhere("email", "like", "%" . $search . "%");
+                })
+                ->orWhere(function ($query) use ($search) {
+                    $query->where("status", "like", "%" . $search . "%");
+                });
         });
-    }
-
-    public function totalPrice()
-    {
-        return $this->purchaseDetail();
     }
 }

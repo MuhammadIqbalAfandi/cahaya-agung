@@ -20,21 +20,23 @@ class SupplierController extends Controller
      */
     public function index()
     {
-        return inertia('Suppliers/Index', [
-            'initialSearch' => request('search'),
-            'suppliers' => Supplier::filter(request()->only('search'))
+        return inertia("Suppliers/Index", [
+            "initialSearch" => request("search"),
+            "suppliers" => Supplier::filter(request()->only("search"))
                 ->latest()
                 ->paginate(10)
                 ->withQueryString()
-                ->through(fn($supplier) => [
-                    'id' => $supplier->id,
-                    'name' => $supplier->name,
-                    'address' => $supplier->address,
-                    'email' => $supplier->email,
-                    'phone' => $supplier->phone,
-                    'npwp' => $supplier->npwp,
-                    'isUsed' => $supplier->purchases()->exists()
-                ])
+                ->through(
+                    fn($supplier) => [
+                        "id" => $supplier->id,
+                        "name" => $supplier->name,
+                        "address" => $supplier->address,
+                        "email" => $supplier->email,
+                        "phone" => $supplier->phone,
+                        "npwp" => $supplier->npwp,
+                        "isUsed" => $supplier->purchases()->exists(),
+                    ]
+                ),
         ]);
     }
 
@@ -45,7 +47,7 @@ class SupplierController extends Controller
      */
     public function create()
     {
-        return inertia('Suppliers/Create');
+        return inertia("Suppliers/Create");
     }
 
     /**
@@ -58,7 +60,7 @@ class SupplierController extends Controller
     {
         Supplier::create($request->validated());
 
-        return back()->with('success', __('messages.success.store.supplier'));
+        return back()->with("success", __("messages.success.store.supplier"));
     }
 
     /**
@@ -80,7 +82,7 @@ class SupplierController extends Controller
      */
     public function edit(Supplier $supplier)
     {
-        return inertia('Suppliers/Edit', compact('supplier'));
+        return inertia("Suppliers/Edit", compact("supplier"));
     }
 
     /**
@@ -94,7 +96,7 @@ class SupplierController extends Controller
     {
         $supplier->update($request->validated());
 
-        return back()->with('success', __('messages.success.update.supplier'));
+        return back()->with("success", __("messages.success.update.supplier"));
     }
 
     /**
@@ -107,6 +109,6 @@ class SupplierController extends Controller
     {
         $supplier->delete();
 
-        return back()->with('success', __('messages.success.destroy.supplier'));
+        return back()->with("success", __("messages.success.destroy.supplier"));
     }
 }

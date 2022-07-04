@@ -11,22 +11,16 @@ export const optionStatus = [
 
 export const indexTable = [
   { field: 'updatedAt', header: 'Tanggal' },
-  { field: 'number', header: 'Nomor Penjualan' },
+  { field: 'name', header: 'Nama Pelanggan' },
+  { field: 'phone', header: 'No HP Pelanggan' },
+  { field: 'price', header: 'Total Harga' },
   { field: 'status', header: 'Status' },
-  { field: 'price', header: 'Harga' },
-  { field: 'qty', header: 'Kuantitas' },
-  { field: 'ppn', header: 'PPN' },
-  { field: 'productName', header: 'Nama Produk' },
-  { field: 'productNumber', header: 'Nomor Produk' },
 ]
 
-export const dialogStyle = {
-  style: {
-    width: '50vw',
-  },
-  breakpoints: {
-    '960px': '75vw',
-    '640px': '90vw',
-  },
-  modal: true,
-}
+export const cartTable = [
+  { field: 'number', header: 'Nomor Produk' },
+  { field: 'name', header: 'Produk' },
+  { field: 'price', header: 'Harga' },
+  { field: 'qty', header: 'Kuantitas' },
+  { field: 'unit', header: 'Satuan' },
+]

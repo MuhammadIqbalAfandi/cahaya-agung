@@ -24,11 +24,17 @@ class UpdateSupplierRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => 'required|string|max:50',
-            'address' => 'required|string',
-            'email' => 'required|string|email|unique:suppliers,email,' . $this->supplier->id,
-            'phone' => 'required|numeric|digits_between:12,15|unique:suppliers,phone,' . $this->supplier->id,
-            'npwp' => 'required|numeric|digits_between:15,20|unique:suppliers,npwp,' . $this->supplier->id
+            "name" => "required|string|max:50",
+            "address" => "required|string",
+            "email" =>
+                "required|string|email|unique:suppliers,email," .
+                $this->supplier->id,
+            "phone" =>
+                "required|numeric|digits_between:12,15|unique:suppliers,phone," .
+                $this->supplier->id,
+            "npwp" =>
+                "required|numeric|digits_between:15,20|unique:suppliers,npwp," .
+                $this->supplier->id,
         ];
     }
 }

@@ -10,16 +10,7 @@ class Ppn extends Model
 {
     use HasFactory;
 
-    protected $fillable = [
-        'ppn'
-    ];
+    protected $fillable = ["ppn"];
 
-    protected $hidden = ['created_at', 'updated_at'];
-
-    protected function ppn(): Attribute
-    {
-        return Attribute::make(
-            get:fn($value) => $value . '%'
-        );
-    }
+    protected $hidden = ["created_at", "updated_at"];
 }

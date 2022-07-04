@@ -1,4 +1,5 @@
 <script setup>
+import { Inertia } from '@inertiajs/inertia'
 import { optionStatus } from './config'
 import { cartTable } from './config'
 import Details from './Components/Details.vue'
@@ -26,20 +27,21 @@ const props = defineProps({
 })
 
 const form = useForm({
-  number: props.number,
   status: 'pending',
   price: null,
   qty: null,
   supplier: null,
   product: null,
   ppn: props.ppn,
+  checkedPpn: false,
 })
 
 const onSubmit = () => {
   form
     .transform((data) => ({
-      number: data.number,
+      number: props.number,
       status: data.status,
+      ppn: data.checkedPpn,
       supplier_id: data.supplier.id,
       products: productCart,
     }))
@@ -48,6 +50,8 @@ const onSubmit = () => {
         form.reset()
 
         onClearProduct()
+
+        Inertia.reload({ only: ['number'] })
       },
     })
 }
@@ -75,16 +79,6 @@ const { onShowCreateProduct, onShowCreateSupplier } = onShowDialog()
               <template #title> Pembeli </template>
               <template #content>
                 <div class="grid">
-                  <div class="col-12 md:col-6">
-                    <AppInputText
-                      disabled
-                      label="Nomor Pembelian"
-                      placeholder="nomor pembelian"
-                      :error="form.errors.number"
-                      v-model="form.number"
-                    />
-                  </div>
-
                   <div class="col-12 md:col-6">
                     <AppDropdown
                       label="Status"
@@ -217,8 +211,10 @@ const { onShowCreateProduct, onShowCreateSupplier } = onShowDialog()
           <div class="col-12">
             <Cart
               title="Keranjang Produk"
+              :ppn="ppn"
+              :value-table="productCart"
               :header-table="cartTable"
-              :value="productCart"
+              v-model:checked-ppn="form.checkedPpn"
               @delete="onDeleteProduct"
             />
           </div>

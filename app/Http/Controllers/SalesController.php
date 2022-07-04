@@ -26,23 +26,25 @@ class SalesController extends Controller
      */
     public function index()
     {
-        return inertia('Sales/Index', [
-            'initialSearch' => request('search'),
-            'sales' => Sale::filter(request()->only('search'))
+        return inertia("Sales/Index", [
+            "initialSearch" => request("search"),
+            "sales" => Sale::filter(request()->only("search"))
                 ->latest()
                 ->paginate(10)
                 ->withQueryString()
-                ->through(fn($sale) => [
-                    'id' => $sale->id,
-                    'updatedAt' => $sale->updated_at,
-                    'number' => $sale->number,
-                    'status' => $sale->status,
-                    'price' => $sale->saleDetail->price,
-                    'ppn' => $sale->saleDetail->ppn,
-                    'qty' => $sale->saleDetail->qty,
-                    'productName' => $sale->product->name,
-                    'productNumber' => $sale->product->number
-                ])
+                ->through(
+                    fn($sale) => [
+                        "id" => $sale->id,
+                        "updatedAt" => $sale->updated_at,
+                        "number" => $sale->number,
+                        "status" => $sale->status,
+                        "price" => $sale->saleDetail->price,
+                        "ppn" => $sale->saleDetail->ppn,
+                        "qty" => $sale->saleDetail->qty,
+                        "productName" => $sale->product->name,
+                        "productNumber" => $sale->product->number,
+                    ]
+                ),
         ]);
     }
 
@@ -53,26 +55,31 @@ class SalesController extends Controller
      */
     public function create()
     {
-        return inertia('Sales/Create', [
-            'number' => 'PJN' . now()->format('YmdHis'),
-            'ppn' => Ppn::first()->ppn,
-            'productNumber' => Inertia::lazy(
-                fn() => 'PDK' . now()->format('YmdHis')
+        return inertia("Sales/Create", [
+            "number" => "PJN" . now()->format("YmdHis"),
+            "ppn" => Ppn::first()->ppn,
+            "productNumber" => Inertia::lazy(
+                fn() => "PDK" . now()->format("YmdHis")
             ),
-            'customers' => Inertia::lazy(
-                fn() => Customer::filter(['search' => request('customer')])
-                    ->get()
+            "customers" => Inertia::lazy(
+                fn() => Customer::filter([
+                    "search" => request("customer"),
+                ])->get()
             ),
-            'stockProducts' => Inertia::lazy(
-                fn() => StockProduct::filter(['search' => request('stockProduct')])
+            "stockProducts" => Inertia::lazy(
+                fn() => StockProduct::filter([
+                    "search" => request("stockProduct"),
+                ])
                     ->get()
-                    ->transform(fn($stockProduct) => [
-                        'number' => $stockProduct->product_number,
-                        'name' => $stockProduct->product->name,
-                        'qty' => $stockProduct->qty,
-                        'unit' => $stockProduct->product->unit
-                    ])
-            )
+                    ->transform(
+                        fn($stockProduct) => [
+                            "number" => $stockProduct->product_number,
+                            "name" => $stockProduct->product->name,
+                            "qty" => $stockProduct->qty,
+                            "unit" => $stockProduct->product->unit,
+                        ]
+                    )
+            ),
         ]);
     }
 
@@ -87,10 +94,13 @@ class SalesController extends Controller
         DB::beginTransaction();
 
         try {
-            $validated = $request->safe()->merge([
-                'user_id' => auth()->user()->id,
-                'ppn' => Ppn::first()->getRawOriginal('ppn')
-            ])->all();
+            $validated = $request
+                ->safe()
+                ->merge([
+                    "user_id" => auth()->user()->id,
+                    "ppn" => Ppn::first()->ppn,
+                ])
+                ->all();
 
             $sale = Sale::create($validated);
 
@@ -98,11 +108,11 @@ class SalesController extends Controller
 
             DB::commit();
 
-            return back()->with('success', __('messages.success.store.sale'));
+            return back()->with("success", __("messages.success.store.sale"));
         } catch (QueryException $e) {
             DB::rollBack();
 
-            return back()->with('error', __('messages.error.store.sale'));
+            return back()->with("error", __("messages.error.store.sale"));
         }
     }
 
@@ -125,17 +135,17 @@ class SalesController extends Controller
      */
     public function edit(Sale $sale)
     {
-        return inertia('Sales/Edit', [
-            'sale' => [
-                'id' => $sale->id,
-                'number' => $sale->number,
-                'status' => $sale->status,
-                'price' => $sale->saleDetail->getRawOriginal('price'),
-                'qty' => $sale->saleDetail->qty,
-                'ppn' => $sale->saleDetail->ppn,
-                'customer' => $sale->customer,
-                'product' => $sale->product
-            ]
+        return inertia("Sales/Edit", [
+            "sale" => [
+                "id" => $sale->id,
+                "number" => $sale->number,
+                "status" => $sale->status,
+                "price" => $sale->saleDetail->price,
+                "qty" => $sale->saleDetail->qty,
+                "ppn" => $sale->saleDetail->ppn,
+                "customer" => $sale->customer,
+                "product" => $sale->product,
+            ],
         ]);
     }
 
@@ -148,28 +158,29 @@ class SalesController extends Controller
      */
     public function update(UpdateSaleRequest $request, Sale $sale)
     {
+        dd($sale);
         DB::beginTransaction();
 
         try {
             $sale->update($request->validated());
 
-            $sale->saleDetail()->update($request->safe()->except('status'));
+            $sale->saleDetail()->update($request->safe()->except("status"));
 
-            if ($request->status === 'success') {
+            if ($request->status === "success") {
                 StockProduct::create([
-                    'sale_number' => $sale->number,
-                    'qty' => -$request->qty,
-                    'product_number' => $sale->saleDetail->product_number
+                    "sale_number" => $sale->number,
+                    "qty" => -$request->qty,
+                    "product_number" => $sale->saleDetail->product_number,
                 ]);
             }
 
             DB::commit();
 
-            return back()->with('success', __('messages.success.update.sale'));
+            return back()->with("success", __("messages.success.update.sale"));
         } catch (QueryException $e) {
             DB::rollBack();
 
-            return back()->with('error', __('messages.error.update.sale'));
+            return back()->with("error", __("messages.error.update.sale"));
         }
     }
 

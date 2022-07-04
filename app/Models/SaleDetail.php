@@ -12,24 +12,10 @@ class SaleDetail extends Model
     use HasFactory;
 
     protected $fillable = [
-        'price',
-        'ppn',
-        'qty',
-        'sale_number',
-        'product_number'
+        "price",
+        "ppn",
+        "qty",
+        "sale_number",
+        "product_number",
     ];
-
-    protected function ppn(): Attribute
-    {
-        return Attribute::make(
-            get:fn($value) => $value . '%'
-        );
-    }
-
-    protected function price(): Attribute
-    {
-        return Attribute::make(
-            get:fn($value) => HelperService::setRupiahFormat($value, true)
-        );
-    }
 }

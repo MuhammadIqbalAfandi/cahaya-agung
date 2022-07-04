@@ -19,7 +19,7 @@ class StockProductController extends Controller
      */
     public function index()
     {
-        return inertia('StockProducts/Index');
+        return inertia("StockProducts/Index");
     }
 
     /**

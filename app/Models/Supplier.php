@@ -9,15 +9,9 @@ class Supplier extends Model
 {
     use HasFactory;
 
-    protected $fillable = [
-        'name',
-        'address',
-        'phone',
-        'email',
-        'npwp'
-    ];
+    protected $fillable = ["name", "address", "phone", "email", "npwp"];
 
-    protected $hidden = ['created_at', 'updated_at'];
+    protected $hidden = ["created_at", "updated_at"];
 
     public function purchases()
     {
@@ -26,11 +20,12 @@ class Supplier extends Model
 
     public function scopeFilter($query, array $filters)
     {
-        $query->when($filters['search'] ?? null, function ($query, $search) {
+        $query->when($filters["search"] ?? null, function ($query, $search) {
             $query->where(function ($query) use ($search) {
-                $query->where('name', 'like', '%' . $search . '%')
-                    ->orWhere('phone', 'like', '%' . $search . '%')
-                    ->orWhere('npwp', 'like', '%' . $search . '%');
+                $query
+                    ->where("name", "like", "%" . $search . "%")
+                    ->orWhere("phone", "like", "%" . $search . "%")
+                    ->orWhere("npwp", "like", "%" . $search . "%");
             });
         });
     }
