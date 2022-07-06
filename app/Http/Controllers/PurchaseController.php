@@ -64,9 +64,7 @@ class PurchaseController extends Controller
         return inertia("Purchases/Create", [
             "number" => "PBN" . now()->format("YmdHis"),
             "ppn" => Ppn::first()->ppn,
-            "productNumber" => Inertia::lazy(
-                fn() => "PDK" . now()->format("YmdHis")
-            ),
+            "productNumber" => "PDK" . now()->format("YmdHis"),
             "suppliers" => Inertia::lazy(
                 fn() => Supplier::filter([
                     "search" => request("supplier"),

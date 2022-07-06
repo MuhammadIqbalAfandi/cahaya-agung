@@ -8,14 +8,18 @@ const props = defineProps({
 })
 
 const form = useForm({
-  number: props.number,
   name: null,
   unit: null,
   profit: 0,
 })
 
 const onSubmit = () => {
-  form.post(route('products.store'), { onSuccess: () => form.reset() })
+  form
+    .transform((data) => ({
+      number: props.number,
+      ...data,
+    }))
+    .post(route('products.store'), { onSuccess: () => form.reset() })
 }
 </script>
 
@@ -33,7 +37,7 @@ const onSubmit = () => {
                   label="Nomor Produk"
                   placeholder="nomor produk"
                   :error="form.errors.number"
-                  v-model="form.number"
+                  v-model="number"
                 />
               </div>
 

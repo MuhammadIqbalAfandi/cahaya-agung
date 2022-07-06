@@ -83,39 +83,23 @@ const onSubmit = () => {
           </template>
 
           <template #footer>
-            <div class="grid">
-              <div
-                class="col-12 md:col-6 flex flex-column md:flex-row justify-content-center md:justify-content-start"
-              >
-                <Button
-                  v-if="$page.props.auth.user.role_id !== user.role_id"
-                  label="Hapus"
-                  icon="pi pi-trash"
-                  class="p-button-outlined p-button-danger"
-                  @click="onDeleteUser"
-                />
-              </div>
+            <div class="flex flex-column md:flex-row justify-content-end">
+              <AppButtonLink
+                v-if="user.role_id !== 1"
+                label="Blokir"
+                icon="pi pi-ban"
+                method="delete"
+                class="p-button-outlined p-button-danger md:mr-3 mb-3 md:mb-0"
+                :href="route('users.block', user.id)"
+              />
 
-              <div
-                class="col-12 md:col-6 flex flex-column md:flex-row justify-content-center md:justify-content-end"
-              >
-                <AppButtonLink
-                  v-if="user.role_id !== 1"
-                  label="Blokir"
-                  icon="pi pi-ban"
-                  method="delete"
-                  class="p-button-outlined p-button-danger md:mr-3 mb-3 md:mb-0"
-                  :href="route('users.block', user.id)"
-                />
-
-                <Button
-                  label="Simpan"
-                  class="p-button-outlined"
-                  icon="pi pi-check"
-                  :disabled="form.processing"
-                  @click="onSubmit"
-                />
-              </div>
+              <Button
+                label="Simpan"
+                class="p-button-outlined"
+                icon="pi pi-check"
+                :disabled="form.processing"
+                @click="onSubmit"
+              />
             </div>
           </template>
         </Card>

@@ -1,15 +1,7 @@
 <script setup>
-import { onMounted } from 'vue'
-import { Inertia } from '@inertiajs/inertia'
 import { usePage } from '@inertiajs/inertia-vue3'
 import { useForm } from '@/composables/useForm'
 import AppInputText from '@/components/AppInputText.vue'
-
-const getProductNumber = () => {
-  Inertia.reload({ only: ['productNumber'] })
-}
-
-onMounted(() => getProductNumber())
 
 const form = useForm({
   name: null,
@@ -22,10 +14,7 @@ const onSubmit = () => {
       number: usePage().props.value.productNumber,
       ...data,
     }))
-    .post(route('products.store'), {
-      onSuccess: () => form.reset(),
-      onFinish: () => getProductNumber(),
-    })
+    .post(route('products.store'), { onSuccess: () => form.reset() })
 }
 </script>
 

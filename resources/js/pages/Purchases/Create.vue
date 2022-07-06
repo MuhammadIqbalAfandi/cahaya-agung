@@ -1,5 +1,4 @@
 <script setup>
-import { Inertia } from '@inertiajs/inertia'
 import { optionStatus } from './config'
 import { cartTable } from './config'
 import Details from './Components/Details.vue'
@@ -50,8 +49,6 @@ const onSubmit = () => {
         form.reset()
 
         onClearProduct()
-
-        Inertia.reload({ only: ['number'] })
       },
     })
 }

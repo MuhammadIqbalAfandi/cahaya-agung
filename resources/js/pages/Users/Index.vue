@@ -28,6 +28,23 @@ const onResetPassword = (data) => {
     },
   })
 }
+
+const deleteConfirm = useConfirm()
+
+const onDelete = (data) => {
+  deleteConfirm.require({
+    message: `Yakin akan menghapus data (${data.name}) ?`,
+    header: 'Hapus User',
+    acceptLabel: 'Iya',
+    rejectLabel: 'Tidak',
+    accept: () => {
+      Inertia.delete(route('users.destroy', data.id))
+    },
+    reject: () => {
+      deleteConfirm.close()
+    },
+  })
+}
 </script>
 
 <template>
@@ -91,6 +108,14 @@ const onResetPassword = (data) => {
             class="p-button-icon-only p-button-rounded p-button-text"
             v-tooltip.bottom="'Reset Kata Sandi'"
             @click="onResetPassword(data)"
+          />
+
+          <Button
+            v-if="data.role_id !== 1"
+            icon="pi pi-trash"
+            class="p-button-icon-only p-button-rounded p-button-text"
+            v-tooltip.bottom="'Hapus User'"
+            @click="onDelete(data)"
           />
         </template>
       </Column>

@@ -31,9 +31,9 @@ const onDelete = (data) => {
 </script>
 
 <template>
-  <ConfirmDialog />
-
   <DashboardLayout title="Daftar Produk">
+    <ConfirmDialog />
+
     <DataTable
       responsiveLayout="scroll"
       columnResizeMode="expand"
@@ -84,11 +84,7 @@ const onDelete = (data) => {
             v-tooltip.bottom="'Ubah Produk'"
             :href="route('products.edit', data.id)"
           />
-        </template>
-      </Column>
 
-      <Column>
-        <template #body="{ data }">
           <Button
             v-if="!data.isUsed"
             icon="pi pi-trash"
