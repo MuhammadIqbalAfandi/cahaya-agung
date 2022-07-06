@@ -1,7 +1,7 @@
 import FormValidationError from '@/utils/FormValidationError'
 import { reactive } from 'vue'
 
-export function useProductCart(form) {
+export function useProductCart(form, initialProducts) {
   const productCart = reactive([])
 
   const productValidation = () => {
@@ -54,10 +54,17 @@ export function useProductCart(form) {
     return productPrices.reduce((prev, current) => prev + current, 0)
   }
 
+  const onEditProduct = (event) => {
+    const { newData, index } = event
+
+    productCart[index] = newData
+  }
+
   return {
     productCart,
     onAddProduct,
     onDeleteProduct,
+    onEditProduct,
     onClearProduct,
     totalProductPrice,
   }

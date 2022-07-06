@@ -64,7 +64,7 @@ defineProps({
         <div class="col-12">
           <div class="grid">
             <div v-if="price" class="col">
-              <h3 class="text-base">Harga</h3>
+              <h3 class="text-base">Total Harga</h3>
               <span>{{ IDRCurrencyFormat(price) }}</span>
             </div>
           </div>

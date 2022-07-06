@@ -57,6 +57,7 @@ const {
   productCart,
   onAddProduct,
   onDeleteProduct,
+  onEditProduct,
   onClearProduct,
   totalProductPrice,
 } = useProductCart(form)
@@ -208,11 +209,11 @@ const { onShowCreateProduct, onShowCreateSupplier } = onShowDialog()
           <div class="col-12">
             <Cart
               title="Keranjang Produk"
-              :ppn="ppn"
               :value-table="productCart"
               :header-table="cartTable"
               v-model:checked-ppn="form.checkedPpn"
               @delete="onDeleteProduct"
+              @edit="onEditProduct"
             />
           </div>
         </div>

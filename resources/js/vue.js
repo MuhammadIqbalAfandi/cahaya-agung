@@ -1,14 +1,14 @@
 import './bootstrap'
-import '../css/app.scss'
 import { createApp, h } from 'vue'
 import { createInertiaApp } from '@inertiajs/inertia-vue3'
 import { InertiaProgress } from '@inertiajs/progress'
 import { resolvePageComponent } from 'laravel-vite-plugin/inertia-helpers'
 
+import 'primeflex/primeflex.css'
 import 'primevue/resources/themes/mdc-light-indigo/theme.css'
 import 'primevue/resources/primevue.min.css'
-import 'primeflex/primeflex.css'
 import 'primeicons/primeicons.css'
+import '../css/app.scss'
 import PrimeVue from 'primevue/config'
 import StyleClass from 'primevue/styleclass'
 import AutoComplete from 'primevue/autocomplete'
@@ -18,6 +18,7 @@ import Calendar from 'primevue/calendar'
 import Card from 'primevue/card'
 import Chart from 'primevue/chart'
 import Column from 'primevue/column'
+import ColumnGroup from 'primevue/columngroup'
 import ConfirmationService from 'primevue/confirmationservice'
 import ConfirmDialog from 'primevue/confirmdialog'
 import DataTable from 'primevue/datatable'
@@ -30,6 +31,7 @@ import InputNumber from 'primevue/inputnumber'
 import InputText from 'primevue/inputtext'
 import Message from 'primevue/message'
 import Password from 'primevue/password'
+import Row from 'primevue/row'
 import TabView from 'primevue/tabview'
 import TabPanel from 'primevue/tabpanel'
 import Tooltip from 'primevue/tooltip'
@@ -43,13 +45,13 @@ createInertiaApp({
     ),
   setup({ el, App, props, plugin }) {
     createApp({ render: () => h(App, props) })
+      .mixin({ methods: { route } })
       .use(plugin)
       .use(PrimeVue, {
         ripple: true,
       })
       .use(ConfirmationService)
       .use(DialogService)
-      .mixin({ methods: { route } })
       .directive('styleclass', StyleClass)
       .directive('tooltip', Tooltip)
       .component('AutoComplete', AutoComplete)
@@ -59,6 +61,7 @@ createInertiaApp({
       .component('Calendar', Calendar)
       .component('Chart', Chart)
       .component('Column', Column)
+      .component('ColumnGroup', ColumnGroup)
       .component('ConfirmDialog', ConfirmDialog)
       .component('DataTable', DataTable)
       .component('Divider', Divider)
@@ -69,6 +72,7 @@ createInertiaApp({
       .component('InputText', InputText)
       .component('Message', Message)
       .component('Password', Password)
+      .component('Row', Row)
       .component('TabView', TabView)
       .component('TabPanel', TabPanel)
       .mount(el)
