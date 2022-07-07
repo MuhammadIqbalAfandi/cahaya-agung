@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use App\Http\Requests\Purchase\StorePurchaseRequest;
 use App\Http\Requests\Purchase\UpdatePurchaseRequest;
 use App\Models\Ppn;
-use App\Models\Price;
 use App\Models\Product;
 use App\Models\Purchase;
 use App\Models\StockProduct;
@@ -44,9 +43,7 @@ class PurchaseController extends Controller
                         "name" => $purchase->supplier->name,
                         "phone" => $purchase->supplier->phone,
                         "price" => HelperService::setRupiahFormat(
-                            PurchaseService::totalPrice(
-                                $purchase->purchaseDetail
-                            )
+                            PurchaseService::totalPrice($purchase)
                         ),
                         "status" => $purchase->status,
                     ]
@@ -93,36 +90,20 @@ class PurchaseController extends Controller
                 ->safe()
                 ->merge([
                     "user_id" => auth()->user()->id,
+                    "ppn" => $request->ppn ? $ppn : 0,
                 ])
                 ->all();
 
             $purchase = Purchase::create($validated);
 
             foreach ($request->products as $product) {
-                $validated = $request
-                    ->safe()
-                    ->merge([
-                        "product_number" => $product["number"],
-                        "name" => $product["name"],
-                        "price" => $product["price"],
-                        "qty" => $product["qty"],
-                        "ppn" => $request->ppn ? $ppn : 0,
-                    ])
-                    ->all();
+                $validated = [
+                    "product_number" => $product["number"],
+                    "price" => $product["price"],
+                    "qty" => $product["qty"],
+                ];
 
                 $purchase->purchaseDetail()->create($validated);
-
-                $validated = $request
-                    ->safe()
-                    ->merge([
-                        "product_number" => $product["number"],
-                        "price" => $request->ppn
-                            ? PurchaseService::priceWithPpn($product["price"])
-                            : 0,
-                    ])
-                    ->all();
-
-                Price::create($validated);
             }
 
             DB::commit();
@@ -157,7 +138,27 @@ class PurchaseController extends Controller
      */
     public function edit(Purchase $purchase)
     {
-        return inertia("Purchases/Edit");
+        return inertia("Purchases/Edit", [
+            "id" => $purchase->id,
+            "number" => $purchase->number,
+            "ppn" => Ppn::first()->ppn,
+            "productNumber" => "PDK" . now()->format("YmdHis"),
+            "ppnChecked" => $purchase->ppn ? true : false,
+            "supplier" => $purchase->supplier,
+            "products" => Inertia::lazy(
+                fn() => Product::filter(["search" => request("product")])->get()
+            ),
+            "purchaseDetail" => $purchase->purchaseDetail->transform(
+                fn($purchase) => [
+                    "id" => $purchase->id,
+                    "number" => $purchase->product_number,
+                    "name" => $purchase->product->name,
+                    "price" => $purchase->price,
+                    "qty" => $purchase->qty,
+                    "unit" => $purchase->product->unit,
+                ]
+            ),
+        ]);
     }
 
     /**
@@ -169,24 +170,44 @@ class PurchaseController extends Controller
      */
     public function update(UpdatePurchaseRequest $request, Purchase $purchase)
     {
-        dd($request->validated);
-
         DB::beginTransaction();
 
         try {
-            $purchase->update($request->validated());
+            $ppn = Ppn::first()->ppn;
 
-            $purchase
-                ->purchaseDetail()
-                ->update($request->safe()->except("status"));
+            $validated = $request
+                ->safe()
+                ->merge([
+                    "ppn" => $request->ppn ? $ppn : 0,
+                ])
+                ->all();
 
-            if ($request->status === "success") {
-                StockProduct::create([
+            $purchase->update($validated);
+
+            foreach ($request->products as $product) {
+                $validated = [
+                    "product_number" => $product["number"],
+                    "price" => $product["price"],
+                    "qty" => $product["qty"],
+                ];
+
+                if (empty($product["id"])) {
+                    $purchase->purchaseDetail()->create($validated);
+                } else {
+                    $purchase->purchaseDetail
+                        ->find($product["id"])
+                        ->update($validated);
+                }
+
+                $validated = [
                     "purchase_number" => $purchase->number,
-                    "qty" => $request->qty,
-                    "product_number" =>
-                        $purchase->purchaseDetail->product_number,
-                ]);
+                    "qty" => $product["qty"],
+                    "product_number" => $product["number"],
+                ];
+
+                if ($request->status === "success") {
+                    StockProduct::create($validated);
+                }
             }
 
             DB::commit();

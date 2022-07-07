@@ -11,7 +11,7 @@ class Purchase extends Model
 {
     use HasFactory;
 
-    protected $fillable = ["number", "status", "supplier_id", "user_id"];
+    protected $fillable = ["number", "ppn", "status", "supplier_id", "user_id"];
 
     protected function updatedAt(): Attribute
     {
@@ -28,18 +28,6 @@ class Purchase extends Model
             PurchaseDetail::class,
             "purchase_number",
             "number"
-        );
-    }
-
-    public function product()
-    {
-        return $this->hasOneThrough(
-            Product::class,
-            PurchaseDetail::class,
-            "purchase_number",
-            "number",
-            "number",
-            "product_number"
         );
     }
 

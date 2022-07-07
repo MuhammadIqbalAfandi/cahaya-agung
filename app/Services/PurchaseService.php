@@ -2,21 +2,20 @@
 namespace App\Services;
 
 use App\Models\Ppn;
-use Illuminate\Database\Eloquent\Collection;
+use App\Models\Purchase;
 
 class PurchaseService
 {
-    public static function totalPrice(Collection $purchaseDetail)
+    public static function totalPrice(Purchase $purchase)
     {
-        return $purchaseDetail->sum(function ($purchase) {
-            return self::priceWithPpn($purchase->price);
+        return $purchase->purchaseDetail->sum(function ($purchaseDetail) use (
+            $purchase
+        ) {
+            $ppn = Ppn::first()->ppn;
+
+            return $purchase->ppn
+                ? $purchaseDetail->price + $purchaseDetail->price * ($ppn / 100)
+                : $purchaseDetail->price;
         });
-    }
-
-    public static function priceWithPpn(int $price)
-    {
-        $ppn = Ppn::first()->ppn;
-
-        return $price + $price * ($ppn / 100);
     }
 }

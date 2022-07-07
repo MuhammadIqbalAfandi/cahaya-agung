@@ -11,11 +11,10 @@ class PurchaseDetail extends Model
 {
     use HasFactory;
 
-    protected $fillable = [
-        "price",
-        "ppn",
-        "qty",
-        "purchase_number",
-        "product_number",
-    ];
+    protected $fillable = ["price", "qty", "purchase_number", "product_number"];
+
+    public function product()
+    {
+        return $this->belongsTo(Product::class, "product_number", "number");
+    }
 }

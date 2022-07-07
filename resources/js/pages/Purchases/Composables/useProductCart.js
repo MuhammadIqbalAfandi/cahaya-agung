@@ -1,8 +1,8 @@
 import FormValidationError from '@/utils/FormValidationError'
 import { reactive } from 'vue'
 
-export function useProductCart(form, initialProducts) {
-  const productCart = reactive([])
+export function useProductCart(form, initialProducts = []) {
+  const productCart = reactive(initialProducts)
 
   const productValidation = () => {
     const existProduct = productCart.find(

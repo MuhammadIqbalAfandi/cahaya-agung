@@ -11,7 +11,7 @@ class Sale extends Model
 {
     use HasFactory;
 
-    protected $fillable = ["number", "status", "customer_id", "user_id"];
+    protected $fillable = ["number", "ppn", "status", "customer_id", "user_id"];
 
     protected function updatedAt(): Attribute
     {
