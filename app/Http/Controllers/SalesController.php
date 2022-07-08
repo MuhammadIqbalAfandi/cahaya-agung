@@ -166,7 +166,7 @@ class SalesController extends Controller
 
             $sale->saleDetail()->update($request->safe()->except("status"));
 
-            if ($request->status === "success") {
+            if ($request->status == "success") {
                 StockProduct::create([
                     "sale_number" => $sale->number,
                     "qty" => -$request->qty,

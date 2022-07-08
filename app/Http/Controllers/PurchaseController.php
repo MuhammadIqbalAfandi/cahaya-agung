@@ -191,21 +191,31 @@ class PurchaseController extends Controller
                     "qty" => $product["qty"],
                 ];
 
-                if (empty($product["id"])) {
-                    $purchase->purchaseDetail()->create($validated);
-                } else {
-                    $purchase->purchaseDetail
-                        ->find($product["id"])
-                        ->update($validated);
+                if (!empty($product["label"])) {
+                    if ($product["label"] == "add") {
+                        $purchase->purchaseDetail()->create($validated);
+                    }
+
+                    if ($product["label"] == "edit") {
+                        $purchase->purchaseDetail
+                            ->find($product["id"])
+                            ->update($validated);
+                    }
+
+                    if ($product["label"] == "delete") {
+                        $purchase->purchaseDetail
+                            ->find($product["id"])
+                            ->delete();
+                    }
                 }
 
-                $validated = [
-                    "purchase_number" => $purchase->number,
-                    "qty" => $product["qty"],
-                    "product_number" => $product["number"],
-                ];
+                if ($request->status == "success") {
+                    $validated = [
+                        "purchase_number" => $purchase->number,
+                        "qty" => $product["qty"],
+                        "product_number" => $product["number"],
+                    ];
 
-                if ($request->status === "success") {
                     StockProduct::create($validated);
                 }
             }

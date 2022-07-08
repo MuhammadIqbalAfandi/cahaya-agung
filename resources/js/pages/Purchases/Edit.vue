@@ -40,13 +40,14 @@ const onSubmit = () => {
     .transform((data) => ({
       status: data.status,
       ppn: data.checkedPpn,
-      products: productCart,
+      products: [...productCart, ...productCartDeleted],
     }))
     .put(route('purchases.update', props.id))
 }
 
 const {
   productCart,
+  productCartDeleted,
   onAddProduct,
   onDeleteProduct,
   onEditProduct,
@@ -177,7 +178,7 @@ const { onShowCreateProduct } = onShowDialog()
           <div class="col-12">
             <Cart
               title="Keranjang Produk"
-              :value-table="productCart"
+              :product-cart="productCart"
               :header-table="cartTable"
               v-model:checked-ppn="form.checkedPpn"
               @delete="onDeleteProduct"

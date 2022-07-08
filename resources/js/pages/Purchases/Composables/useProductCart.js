@@ -1,8 +1,10 @@
-import FormValidationError from '@/utils/FormValidationError'
 import { reactive } from 'vue'
+import FormValidationError from '@/utils/FormValidationError'
 
 export function useProductCart(form, initialProducts = []) {
   const productCart = reactive(initialProducts)
+
+  const productCartDeleted = reactive([])
 
   const productValidation = () => {
     const existProduct = productCart.find(
@@ -21,6 +23,7 @@ export function useProductCart(form, initialProducts = []) {
       productValidation()
 
       productCart.push({
+        label: 'add',
         number: form.product.number,
         name: form.product.name,
         price: form.price,
@@ -35,6 +38,13 @@ export function useProductCart(form, initialProducts = []) {
   }
 
   const onDeleteProduct = (index) => {
+    if (productCart[index]?.id) {
+      productCartDeleted.push({
+        ...productCart[index],
+        label: 'delete',
+      })
+    }
+
     productCart.splice(index, 1)
   }
 
@@ -57,11 +67,15 @@ export function useProductCart(form, initialProducts = []) {
   const onEditProduct = (event) => {
     const { newData, index } = event
 
-    productCart[index] = newData
+    productCart[index] = {
+      ...newData,
+      label: 'edit',
+    }
   }
 
   return {
     productCart,
+    productCartDeleted,
     onAddProduct,
     onDeleteProduct,
     onEditProduct,

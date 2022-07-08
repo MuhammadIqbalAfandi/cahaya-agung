@@ -50,7 +50,7 @@ defineProps({
       :key="value.field"
     >
       <template #body="{ data, field }">
-        <template v-if="field === 'price'">
+        <template v-if="field == 'price'">
           {{ IDRCurrencyFormat(data[field]) }}
         </template>
 

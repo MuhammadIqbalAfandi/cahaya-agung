@@ -10,7 +10,7 @@ defineProps({
     required: true,
     type: Array,
   },
-  valueTable: {
+  productCart: {
     required: true,
     type: Array,
   },
@@ -26,7 +26,7 @@ const editingRows = ref([])
     columnResizeMode="expand"
     edit-mode="row"
     data-key="number"
-    :value="valueTable"
+    :value="productCart"
     :rowHover="true"
     :stripedRows="true"
     v-model:editing-rows="editingRows"
@@ -55,7 +55,7 @@ const editingRows = ref([])
       :header="value.header"
     >
       <template #body="{ data, field }">
-        <template v-if="field === 'price'">
+        <template v-if="field == 'price'">
           {{ IDRCurrencyFormat(data[field]) }}
         </template>
 
@@ -64,14 +64,14 @@ const editingRows = ref([])
 
       <template #editor="{ data, field }">
         <AppInputNumber
-          v-if="field === 'price'"
+          v-if="field == 'price'"
           label="Harga"
           placeholder="harga"
           v-model="data[field]"
         />
 
         <AppInputText
-          v-if="field === 'qty'"
+          v-if="field == 'qty'"
           label="Kuantitas"
           placeholder="kuantitas"
           type="number"

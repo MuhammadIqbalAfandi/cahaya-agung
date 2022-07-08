@@ -209,7 +209,7 @@ const { onShowCreateProduct, onShowCreateSupplier } = onShowDialog()
           <div class="col-12">
             <Cart
               title="Keranjang Produk"
-              :value-table="productCart"
+              :product-cart="productCart"
               :header-table="cartTable"
               v-model:checked-ppn="form.checkedPpn"
               @delete="onDeleteProduct"
