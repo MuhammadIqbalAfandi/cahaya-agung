@@ -1,90 +1,224 @@
 <script setup>
-import { useForm } from '@/composables/useForm'
 import { optionStatus } from './config'
-import AppDropdown from '@/components/AppDropdown.vue'
-import AppInputNumber from '@/components/AppInputNumber.vue'
-import AppInputText from '@/components/AppInputText.vue'
+import { cartTable } from './config'
 import Details from './Components/Details.vue'
+import Cart from './Components/Cart.vue'
+import { useProductCart } from './Composables/useProductCart'
+import { useForm } from '@/composables/useForm'
+import AppInputText from '@/components/AppInputText.vue'
+import AppInputNumber from '@/components/AppInputNumber.vue'
+import AppDropdown from '@/components/AppDropdown.vue'
+import AppAutoComplete from '@/components/AppAutoComplete.vue'
 import DashboardLayout from '@/layouts/Dashboard/DashboardLayout.vue'
 
 const props = defineProps({
-  sale: Object,
+  id: Number,
+  number: String,
+  ppn: Number,
+  status: String,
+  ppnChecked: Boolean,
+  customer: Object,
+  stockProducts: {
+    type: Array,
+    default: [],
+  },
+  saleDetail: Array,
 })
 
 const form = useForm({
-  status: props.sale.status,
-  price: props.sale.price,
-  qty: props.sale.qty,
+  status: props.status,
+  price: null,
+  qty: null,
+  customer: props.customer,
+  product: null,
+  ppn: props.ppn,
+  checkedPpn: props.ppnChecked,
 })
 
 const onSubmit = () => {
-  form.put(route('sales.update', props.sale.id))
+  form
+    .transform((data) => ({
+      status: data.status,
+      ppn: data.checkedPpn,
+      products: [...productCart, ...productCartDeleted],
+    }))
+    .post(route('sales.store'), {
+      onSuccess: () => {
+        form.reset()
+
+        onClearProduct()
+      },
+    })
 }
+
+const {
+  productCart,
+  productCartDeleted,
+  onAddProduct,
+  onDeleteProduct,
+  onEditProduct,
+  totalProductPrice,
+} = useProductCart(form, props.saleDetail)
 </script>
 
 <template>
   <DashboardLayout title="Ubah Penjualan">
+    <DynamicDialog />
+
     <div class="grid">
-      <div class="col-12 lg:col-8">
-        <Card>
-          <template #title> Ubah Penjualan </template>
-          <template #content>
-            <div class="grid">
-              <div class="col-12 md:col-6">
-                <AppDropdown
-                  label="Status"
-                  placeholder="status"
-                  :options="optionStatus"
-                  :error="form.errors.status"
-                  v-model="form.status"
-                />
-              </div>
+      <div class="col-12 md:col-8">
+        <div class="grid">
+          <div class="col-12">
+            <Card>
+              <template #title> Pembeli </template>
+              <template #content>
+                <div class="grid">
+                  <div class="col-12 md:col-6">
+                    <AppDropdown
+                      label="Status"
+                      placeholder="status"
+                      :options="optionStatus"
+                      :error="form.errors.status"
+                      v-model="form.status"
+                    />
+                  </div>
 
-              <div class="col-12 md:col-6">
-                <AppInputNumber
-                  label="Harga"
-                  placeholder="harga"
-                  :error="form.errors.price"
-                  v-model="form.price"
-                />
-              </div>
+                  <div class="col-12 md:col-6">
+                    <AppInputText
+                      disabled
+                      label="Customer"
+                      placeholder="customer"
+                      v-model="customer.name"
+                    />
+                  </div>
+                </div>
+              </template>
+            </Card>
+          </div>
 
-              <div class="col-12 md:col-6">
-                <AppInputText
-                  label="Kuantitas"
-                  placeholder="kuantitas"
-                  type="number"
-                  :error="form.errors.qty"
-                  v-model="form.qty"
-                />
-              </div>
-            </div>
-          </template>
+          <div class="col-12">
+            <Card>
+              <template #title>Produk</template>
+              <template #content>
+                <div class="grid">
+                  <div class="col-12 md:col-6">
+                    <AppAutoComplete
+                      :disabled="!form.customer?.id"
+                      empty
+                      label="Produk"
+                      placeholder="produk"
+                      field="name"
+                      refresh-data="stockProducts"
+                      v-model="form.product"
+                      :error="form.errors.products"
+                      :suggestions="stockProducts"
+                    >
+                      <template #item="slotProps">
+                        <template v-if="slotProps.item">
+                          <div class="flex flex-column">
+                            <span>{{ slotProps.item.number }}</span>
+                            <span>{{ slotProps.item.name }}</span>
+                          </div>
+                        </template>
+                      </template>
+                    </AppAutoComplete>
+                  </div>
 
-          <template #footer>
-            <div class="flex flex-column md:flex-row justify-content-end">
-              <Button
-                label="Simpan"
-                icon="pi pi-check"
-                class="p-button-outlined"
-                :disabled="form.processing"
-                @click="onSubmit"
-              />
-            </div>
-          </template>
-        </Card>
+                  <div class="col-12 md:col-6">
+                    <AppInputText
+                      disabled
+                      label="Satuan"
+                      placeholder="satuan"
+                      :value="form.product?.unit"
+                    />
+                  </div>
+
+                  <div class="col-12 md:col-6">
+                    <AppInputNumber
+                      disabled
+                      label="Harga Beli"
+                      placeholder="harga beli produk"
+                      :value="form.product?.price"
+                    />
+                  </div>
+
+                  <div class="col-12 md:col-6">
+                    <AppInputText
+                      disabled
+                      label="Stok Tersedia"
+                      placeholder="stok tersedia"
+                      type="number"
+                      :value="form.product?.qty"
+                    />
+                  </div>
+
+                  <Divider type="dashed" />
+
+                  <div class="col-12 md:col-6">
+                    <AppInputNumber
+                      :disabled="!form.customer?.id"
+                      label="Harga Jual"
+                      placeholder="harga jual"
+                      v-model="form.price"
+                    />
+                  </div>
+
+                  <div class="col-12 md:col-6">
+                    <AppInputText
+                      :disabled="!form.customer?.id"
+                      label="Kuantitas"
+                      placeholder="kuantitas"
+                      type="number"
+                      v-model="form.qty"
+                    />
+                  </div>
+                </div>
+              </template>
+              <template #footer>
+                <div class="flex flex-column md:flex-row justify-content-end">
+                  <Button
+                    label="Tambah Produk"
+                    icon="pi pi-check"
+                    class="p-button-outlined"
+                    :disabled="
+                      !form.price || !form.qty || !form.product?.number
+                    "
+                    @click="onAddProduct"
+                  />
+                </div>
+              </template>
+            </Card>
+          </div>
+
+          <div class="col-12">
+            <Cart
+              title="Keranjang Produk"
+              :product-cart="productCart"
+              :header-table="cartTable"
+              v-model:checked-ppn="form.checkedPpn"
+              @delete="onDeleteProduct"
+              @edit="onEditProduct"
+            />
+          </div>
+        </div>
       </div>
 
-      <div class="col-12 lg:col-4">
+      <div class="col-12 md:col-4">
         <Details
           title="Detail Penjualan"
-          :number="sale.number"
-          :price="form.price"
-          :qty="form.qty"
-          :ppn="sale.ppn"
+          message="Pastikan semua produk sudah benar"
+          :number="number"
           :status="form.status"
-          :person="sale.customer"
-          :product="sale.product"
+          :person="form.customer"
+          :product="form.product"
+          :price="totalProductPrice()"
+          :disabled="
+            form.processing ||
+            !form.status ||
+            !form.customer?.id ||
+            productCart.length === 0
+          "
+          @submit="onSubmit"
         />
       </div>
     </div>

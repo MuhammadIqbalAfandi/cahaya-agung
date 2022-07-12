@@ -2,15 +2,17 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\Sales\StoreSaleRequest;
-use App\Http\Requests\Sales\UpdateSaleRequest;
-use App\Models\Customer;
 use App\Models\Ppn;
 use App\Models\Sale;
-use App\Models\StockProduct;
-use Illuminate\Database\QueryException;
-use Illuminate\Support\Facades\DB;
 use Inertia\Inertia;
+use App\Models\Customer;
+use App\Models\SaleDetail;
+use App\Models\StockProduct;
+use App\Services\HelperService;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Database\QueryException;
+use App\Http\Requests\Sales\StoreSaleRequest;
+use App\Http\Requests\Sales\UpdateSaleRequest;
 
 class SalesController extends Controller
 {
@@ -36,13 +38,13 @@ class SalesController extends Controller
                     fn($sale) => [
                         "id" => $sale->id,
                         "updatedAt" => $sale->updated_at,
-                        "number" => $sale->number,
+                        "name" => $sale->customer->name,
+                        "phone" => $sale->customer->phone,
+                        "email" => $sale->customer->email,
+                        "price" => HelperService::setRupiahFormat(
+                            SaleDetail::totalPrice($sale)
+                        ),
                         "status" => $sale->status,
-                        "price" => $sale->saleDetail->price,
-                        "ppn" => $sale->saleDetail->ppn,
-                        "qty" => $sale->saleDetail->qty,
-                        "productName" => $sale->product->name,
-                        "productNumber" => $sale->product->number,
                     ]
                 ),
         ]);
@@ -58,9 +60,6 @@ class SalesController extends Controller
         return inertia("Sales/Create", [
             "number" => "PJN" . now()->format("YmdHis"),
             "ppn" => Ppn::first()->ppn,
-            "productNumber" => Inertia::lazy(
-                fn() => "PDK" . now()->format("YmdHis")
-            ),
             "customers" => Inertia::lazy(
                 fn() => Customer::filter([
                     "search" => request("customer"),
@@ -75,6 +74,7 @@ class SalesController extends Controller
                         fn($stockProduct) => [
                             "number" => $stockProduct->product_number,
                             "name" => $stockProduct->product->name,
+                            "price" => $stockProduct->price,
                             "qty" => $stockProduct->qty,
                             "unit" => $stockProduct->product->unit,
                         ]
@@ -91,20 +91,43 @@ class SalesController extends Controller
      */
     public function store(StoreSaleRequest $request)
     {
+        dd($request->validated());
+
         DB::beginTransaction();
 
         try {
+            $ppn = Ppn::first()->ppn;
+
             $validated = $request
                 ->safe()
                 ->merge([
                     "user_id" => auth()->user()->id,
-                    "ppn" => Ppn::first()->ppn,
+                    "ppn" => $request->ppn ? $ppn : 0,
                 ])
                 ->all();
 
             $sale = Sale::create($validated);
 
-            $sale->saleDetail()->create($validated);
+            foreach ($request->products as $product) {
+                $validated = [
+                    "product_number" => $product["number"],
+                    "price" => $product["price"],
+                    "qty" => $product["qty"],
+                ];
+
+                $sale->saleDetail()->create($validated);
+
+                if ($request->status == "success") {
+                    $validated = [
+                        "sale_number" => $sale->number,
+                        "price" => $product["price"],
+                        "qty" => $product["qty"],
+                        "product_number" => $product["number"],
+                    ];
+
+                    StockProduct::create($validated);
+                }
+            }
 
             DB::commit();
 
@@ -136,16 +159,38 @@ class SalesController extends Controller
     public function edit(Sale $sale)
     {
         return inertia("Sales/Edit", [
-            "sale" => [
-                "id" => $sale->id,
-                "number" => $sale->number,
-                "status" => $sale->status,
-                "price" => $sale->saleDetail->price,
-                "qty" => $sale->saleDetail->qty,
-                "ppn" => $sale->saleDetail->ppn,
-                "customer" => $sale->customer,
-                "product" => $sale->product,
-            ],
+            "id" => $sale->id,
+            "number" => $sale->number,
+            "ppn" => Ppn::first()->ppn,
+            "status" => $sale->status,
+            "ppnChecked" => $sale->ppn ? true : false,
+            "customer" => $sale->customer,
+            "stockProducts" => Inertia::lazy(
+                fn() => StockProduct::filter([
+                    "search" => request("stockProduct"),
+                ])
+                    ->get()
+                    ->transform(
+                        fn($stockProduct) => [
+                            "number" => $stockProduct->product_number,
+                            "name" => $stockProduct->product->name,
+                            "price" => $stockProduct->price,
+                            "qty" => $stockProduct->qty,
+                            "unit" => $stockProduct->product->unit,
+                            "profit" => $stockProduct->product->profit,
+                        ]
+                    )
+            ),
+            "saleDetail" => $sale->saleDetail->transform(
+                fn($sale) => [
+                    "id" => $sale->id,
+                    "number" => $sale->product_number,
+                    "name" => $sale->product->name,
+                    "price" => $sale->price,
+                    "qty" => $sale->qty,
+                    "unit" => $sale->product->unit,
+                ]
+            ),
         ]);
     }
 
@@ -159,19 +204,54 @@ class SalesController extends Controller
     public function update(UpdateSaleRequest $request, Sale $sale)
     {
         dd($sale);
+
         DB::beginTransaction();
 
         try {
-            $sale->update($request->validated());
+            $ppn = Ppn::first()->ppn;
 
-            $sale->saleDetail()->update($request->safe()->except("status"));
+            $validated = $request
+                ->safe()
+                ->merge([
+                    "ppn" => $request->ppn ? $ppn : 0,
+                ])
+                ->all();
 
-            if ($request->status == "success") {
-                StockProduct::create([
-                    "sale_number" => $sale->number,
-                    "qty" => -$request->qty,
-                    "product_number" => $sale->saleDetail->product_number,
-                ]);
+            $sale->update($validated);
+
+            foreach ($request->products as $product) {
+                $validated = [
+                    "product_number" => $product["number"],
+                    "price" => $product["price"],
+                    "qty" => $product["qty"],
+                ];
+
+                if (!empty($product["label"])) {
+                    if ($product["label"] == "add") {
+                        $sale->saleDetail()->create($validated);
+                    }
+
+                    if ($product["label"] == "edit") {
+                        $sale->saleDetail
+                            ->find($product["id"])
+                            ->update($validated);
+                    }
+
+                    if ($product["label"] == "delete") {
+                        $sale->saleDetail->find($product["id"])->delete();
+                    }
+                }
+
+                if ($request->status == "success") {
+                    $validated = [
+                        "sale_number" => $sale->number,
+                        "price" => $product["price"],
+                        "qty" => $product["qty"],
+                        "product_number" => $product["number"],
+                    ];
+
+                    StockProduct::create($validated);
+                }
             }
 
             DB::commit();

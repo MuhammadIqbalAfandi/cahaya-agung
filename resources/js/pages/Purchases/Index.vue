@@ -58,7 +58,7 @@ defineProps({
           <AppButtonLink
             icon="pi pi-pencil"
             class="p-button-icon-only p-button-rounded p-button-text"
-            v-tooltip.bottom="'Ubah Penjualan'"
+            v-tooltip.bottom="'Ubah Pembelian'"
             :href="route('purchases.edit', data.id)"
           />
         </template>

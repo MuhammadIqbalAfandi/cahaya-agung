@@ -48,8 +48,14 @@ export function useProductCart(form, initialProducts = []) {
     productCart.splice(index, 1)
   }
 
-  const onClearProduct = () => {
+  const onClearProductCart = () => {
     productCart.splice(0)
+  }
+
+  const onClearProductCartDelete = () => {
+    productCartDeleted.splice(0)
+
+    console.info('this is running')
   }
 
   const totalProductPrice = () => {
@@ -76,10 +82,11 @@ export function useProductCart(form, initialProducts = []) {
   return {
     productCart,
     productCartDeleted,
+    onClearProductCart,
+    onClearProductCartDelete,
     onAddProduct,
     onDeleteProduct,
     onEditProduct,
-    onClearProduct,
     totalProductPrice,
   }
 }

@@ -24,7 +24,7 @@ class Sale extends Model
 
     public function saleDetail()
     {
-        return $this->hasOne(SaleDetail::class, "sale_number", "number");
+        return $this->hasMany(SaleDetail::class, "sale_number", "number");
     }
 
     public function customer()

@@ -25,8 +25,8 @@ class UpdateSaleRequest extends FormRequest
     {
         return [
             "status" => "required|string",
-            "price" => "required|numeric",
-            "qty" => "required|numeric",
+            "products" => "required",
+            "ppn" => "required|boolean",
         ];
     }
 }

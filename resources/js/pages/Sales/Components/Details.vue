@@ -23,12 +23,12 @@ defineProps({
         <div class="col-12">
           <div class="grid">
             <div class="col">
-              <h3 class="text-base">Nomor Penjualan</h3>
+              <h3 class="text-base">Nomor Pembelian</h3>
               <span>{{ number }}</span>
             </div>
 
             <div class="col">
-              <h3 class="text-base">Status Penjualan</h3>
+              <h3 class="text-base">Status Pembelian</h3>
               <span>{{ status }}</span>
             </div>
 
@@ -61,10 +61,11 @@ defineProps({
         </div>
 
         <Divider type="dashed" />
+
         <div class="col-12">
           <div class="grid">
             <div v-if="price" class="col">
-              <h3 class="text-base">Harga</h3>
+              <h3 class="text-base">Total Harga</h3>
               <span>{{ IDRCurrencyFormat(price) }}</span>
             </div>
           </div>

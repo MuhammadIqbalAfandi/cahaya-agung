@@ -1,5 +1,4 @@
 <script setup>
-import { Inertia } from '@inertiajs/inertia'
 import { optionStatus } from './config'
 import { cartTable } from './config'
 import Details from './Components/Details.vue'
@@ -45,13 +44,11 @@ const onSubmit = () => {
       customer_id: data.customer.id,
       products: productCart,
     }))
-    .post(route('purchases.store'), {
+    .post(route('sales.store'), {
       onSuccess: () => {
         form.reset()
 
         onClearProduct()
-
-        Inertia.reload({ only: ['number'] })
       },
     })
 }
@@ -60,6 +57,7 @@ const {
   productCart,
   onAddProduct,
   onDeleteProduct,
+  onEditProduct,
   onClearProduct,
   totalProductPrice,
 } = useProductCart(form)
@@ -76,7 +74,7 @@ const { onShowCustomerCreate } = onShowDialog()
         <div class="grid">
           <div class="col-12">
             <Card>
-              <template #title> Penjual </template>
+              <template #title> Pembeli </template>
               <template #content>
                 <div class="grid">
                   <div class="col-12 md:col-6">
@@ -104,7 +102,7 @@ const { onShowCustomerCreate } = onShowDialog()
                         <template v-if="slotProps.item">
                           <div class="flex flex-column">
                             <span>{{ slotProps.item.name }}</span>
-                            <span>{{ slotProps.item.npwp }}</span>
+                            <span>{{ slotProps.item.phone }}</span>
                           </div>
                         </template>
                       </template>
@@ -139,7 +137,7 @@ const { onShowCustomerCreate } = onShowDialog()
                       field="name"
                       refresh-data="stockProducts"
                       v-model="form.product"
-                      :error="form.errors.product"
+                      :error="form.errors.products"
                       :suggestions="stockProducts"
                     >
                       <template #item="slotProps">
@@ -150,35 +148,52 @@ const { onShowCustomerCreate } = onShowDialog()
                           </div>
                         </template>
                       </template>
-
-                      <template #empty>
-                        <span
-                          class="cursor-pointer"
-                          style="color: var(--primary-color)"
-                          @click="onShowCreateProduct"
-                        >
-                          Tambah Produk
-                        </span>
-                      </template>
                     </AppAutoComplete>
                   </div>
 
-                  <div v-if="form.product?.unit" class="col-12 md:col-6">
-                    <AppInputText
-                      disabled
-                      label="Satuan"
-                      placeholder="satuan"
-                      v-model="form.product.unit"
-                    />
-                  </div>
+                  <template v-if="form.product?.number">
+                    <div class="col-12 md:col-6">
+                      <AppInputText
+                        disabled
+                        label="Satuan"
+                        placeholder="satuan"
+                        v-model="form.product.unit"
+                      />
+                    </div>
+
+                    <div class="col-12 md:col-6">
+                      <AppInputNumber
+                        disabled
+                        label="Harga Beli"
+                        placeholder="harga beli produk"
+                        v-model="form.product.price"
+                      />
+                    </div>
+
+                    <div class="col-12 md:col-6">
+                      <AppInputText
+                        disabled
+                        label="Stok Tersedia"
+                        placeholder="stok tersedia"
+                        type="number"
+                        v-model="form.product.qty"
+                      />
+                    </div>
+                  </template>
+
+                  <Divider type="dashed" />
 
                   <div class="col-12 md:col-6">
                     <AppInputNumber
+                      class="m-0"
                       :disabled="!form.customer?.id"
-                      label="Harga"
-                      placeholder="harga"
+                      label="Harga Jual"
+                      placeholder="harga jual"
                       v-model="form.price"
                     />
+                    <span v-if="form.product?.number" class="text-xs">
+                      Sudah termasuk profit 30%
+                    </span>
                   </div>
 
                   <div class="col-12 md:col-6">
@@ -211,11 +226,11 @@ const { onShowCustomerCreate } = onShowDialog()
           <div class="col-12">
             <Cart
               title="Keranjang Produk"
-              :ppn="ppn"
-              :value-table="productCart"
+              :product-cart="productCart"
               :header-table="cartTable"
               v-model:checked-ppn="form.checkedPpn"
               @delete="onDeleteProduct"
+              @edit="onEditProduct"
             />
           </div>
         </div>
@@ -223,7 +238,7 @@ const { onShowCustomerCreate } = onShowDialog()
 
       <div class="col-12 md:col-4">
         <Details
-          title="Detail Pembelian"
+          title="Detail Penjualan"
           message="Pastikan semua produk sudah benar"
           :number="number"
           :status="form.status"

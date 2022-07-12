@@ -142,6 +142,7 @@ class PurchaseController extends Controller
             "id" => $purchase->id,
             "number" => $purchase->number,
             "ppn" => Ppn::first()->ppn,
+            "status" => $purchase->status,
             "productNumber" => "PDK" . now()->format("YmdHis"),
             "ppnChecked" => $purchase->ppn ? true : false,
             "supplier" => $purchase->supplier,
@@ -212,6 +213,7 @@ class PurchaseController extends Controller
                 if ($request->status == "success") {
                     $validated = [
                         "purchase_number" => $purchase->number,
+                        "price" => $product["price"],
                         "qty" => $product["qty"],
                         "product_number" => $product["number"],
                     ];

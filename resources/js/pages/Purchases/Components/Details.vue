@@ -61,6 +61,7 @@ defineProps({
         </div>
 
         <Divider type="dashed" />
+
         <div class="col-12">
           <div class="grid">
             <div v-if="price" class="col">

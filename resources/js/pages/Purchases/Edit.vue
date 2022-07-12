@@ -16,6 +16,7 @@ const props = defineProps({
   id: Number,
   number: String,
   ppn: Number,
+  status: String,
   ppnChecked: Boolean,
   supplier: Object,
   products: {
@@ -26,7 +27,7 @@ const props = defineProps({
 })
 
 const form = useForm({
-  status: 'pending',
+  status: props.status,
   price: null,
   qty: null,
   supplier: props.supplier,
@@ -42,12 +43,15 @@ const onSubmit = () => {
       ppn: data.checkedPpn,
       products: [...productCart, ...productCartDeleted],
     }))
-    .put(route('purchases.update', props.id))
+    .put(route('purchases.update', props.id), {
+      onSuccess: () => onClearProductCartDelete(),
+    })
 }
 
 const {
   productCart,
   productCartDeleted,
+  onClearProductCartDelete,
   onAddProduct,
   onDeleteProduct,
   onEditProduct,
@@ -66,7 +70,7 @@ const { onShowCreateProduct } = onShowDialog()
         <div class="grid">
           <div class="col-12">
             <Card>
-              <template #title> Pembeli </template>
+              <template #title> Penjual </template>
               <template #content>
                 <div class="grid">
                   <div class="col-12 md:col-6">
@@ -106,7 +110,7 @@ const { onShowCreateProduct } = onShowDialog()
                       field="name"
                       refresh-data="products"
                       v-model="form.product"
-                      :error="form.errors.product"
+                      :error="form.errors.products"
                       :suggestions="products"
                     >
                       <template #item="slotProps">
@@ -130,7 +134,7 @@ const { onShowCreateProduct } = onShowDialog()
                     </AppAutoComplete>
                   </div>
 
-                  <div v-if="form.product?.unit" class="col-12 md:col-6">
+                  <div v-if="form.product?.number" class="col-12 md:col-6">
                     <AppInputText
                       disabled
                       label="Satuan"

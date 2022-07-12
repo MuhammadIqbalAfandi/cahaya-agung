@@ -35,4 +35,9 @@ class HelperService
             }
         }
     }
+
+    public static function addPPN(int $price, int $ppn)
+    {
+        return $price + $price * ($ppn / 100);
+    }
 }

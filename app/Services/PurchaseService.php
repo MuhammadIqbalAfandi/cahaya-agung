@@ -14,7 +14,7 @@ class PurchaseService
             $ppn = Ppn::first()->ppn;
 
             return $purchase->ppn
-                ? $purchaseDetail->price + $purchaseDetail->price * ($ppn / 100)
+                ? HelperService::addPPN($purchaseDetail->price, $ppn)
                 : $purchaseDetail->price;
         });
     }

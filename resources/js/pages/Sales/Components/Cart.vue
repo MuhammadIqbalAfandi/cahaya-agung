@@ -1,38 +1,43 @@
 <script setup>
+import { ref } from 'vue'
 import { IDRCurrencyFormat } from '@/utils/currencyFormat'
+import AppInputNumber from '@/components/AppInputNumber.vue'
+import AppInputText from '@/components/AppInputText.vue'
 
 defineProps({
   title: String,
-  ppn: {
-    required: true,
-    type: Number,
-  },
   headerTable: {
     required: true,
     type: Array,
   },
-  valueTable: {
+  productCart: {
     required: true,
     type: Array,
   },
   checkedPpn: Boolean,
 })
+
+const editingRows = ref([])
 </script>
 
 <template>
   <DataTable
     responsiveLayout="scroll"
     columnResizeMode="expand"
-    :value="valueTable"
+    edit-mode="row"
+    data-key="number"
+    :value="productCart"
     :rowHover="true"
     :stripedRows="true"
+    v-model:editing-rows="editingRows"
+    @row-edit-save="$emit('edit', $event)"
   >
     <template #header>
       <h2 class="text-2xl font-bold">{{ title }}</h2>
 
       <div class="field-checkbox flex justify-content-end gap-2">
         <label class="text-sm" for="ppn">
-          Semua produk dikenakan PPN {{ ppn }}%
+          Semua produk dikenakan PPN {{ $page.props.ppn }}%
         </label>
         <input
           type="checkbox"
@@ -45,9 +50,9 @@ defineProps({
 
     <Column
       v-for="value in headerTable"
+      :key="value.field"
       :field="value.field"
       :header="value.header"
-      :key="value.field"
     >
       <template #body="{ data, field }">
         <template v-if="field == 'price'">
@@ -56,7 +61,26 @@ defineProps({
 
         <template v-else> {{ data[field] }} </template>
       </template>
+
+      <template #editor="{ data, field }">
+        <AppInputNumber
+          v-if="field == 'price'"
+          label="Harga"
+          placeholder="harga"
+          v-model="data[field]"
+        />
+
+        <AppInputText
+          v-if="field == 'qty'"
+          label="Kuantitas"
+          placeholder="kuantitas"
+          type="number"
+          v-model="data[field]"
+        />
+      </template>
     </Column>
+
+    <Column :row-editor="true" />
 
     <Column>
       <template #body="{ index }">

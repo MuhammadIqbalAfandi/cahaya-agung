@@ -11,6 +11,7 @@ import AppInputNumber from '@/components/AppInputNumber.vue'
 import AppDropdown from '@/components/AppDropdown.vue'
 import AppAutoComplete from '@/components/AppAutoComplete.vue'
 import DashboardLayout from '@/layouts/Dashboard/DashboardLayout.vue'
+import { computed } from '@vue/reactivity'
 
 const props = defineProps({
   number: String,
@@ -53,6 +54,10 @@ const onSubmit = () => {
     })
 }
 
+const dropdownStatus = computed(() => {
+  return optionStatus.filter((val) => val.value != 'success')
+})
+
 const {
   productCart,
   onAddProduct,
@@ -74,14 +79,14 @@ const { onShowCreateProduct, onShowCreateSupplier } = onShowDialog()
         <div class="grid">
           <div class="col-12">
             <Card>
-              <template #title> Pembeli </template>
+              <template #title> Penjual </template>
               <template #content>
                 <div class="grid">
                   <div class="col-12 md:col-6">
                     <AppDropdown
                       label="Status"
                       placeholder="status"
-                      :options="optionStatus"
+                      :options="dropdownStatus"
                       :error="form.errors.status"
                       v-model="form.status"
                     />
@@ -102,7 +107,7 @@ const { onShowCreateProduct, onShowCreateSupplier } = onShowDialog()
                         <template v-if="slotProps.item">
                           <div class="flex flex-column">
                             <span>{{ slotProps.item.name }}</span>
-                            <span>{{ slotProps.item.npwp }}</span>
+                            <span>{{ slotProps.item.phone }}</span>
                           </div>
                         </template>
                       </template>
@@ -137,7 +142,7 @@ const { onShowCreateProduct, onShowCreateSupplier } = onShowDialog()
                       field="name"
                       refresh-data="products"
                       v-model="form.product"
-                      :error="form.errors.product"
+                      :error="form.errors.products"
                       :suggestions="products"
                     >
                       <template #item="slotProps">
@@ -161,7 +166,7 @@ const { onShowCreateProduct, onShowCreateSupplier } = onShowDialog()
                     </AppAutoComplete>
                   </div>
 
-                  <div v-if="form.product?.unit" class="col-12 md:col-6">
+                  <div v-if="form.product?.number" class="col-12 md:col-6">
                     <AppInputText
                       disabled
                       label="Satuan"

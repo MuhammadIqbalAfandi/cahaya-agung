@@ -22,6 +22,7 @@ return new class extends Migration {
                 ->string("sale_number")
                 ->nullable()
                 ->default(null);
+            $table->unsignedInteger("price");
             $table->integer("qty");
             $table->string("product_number");
             $table
