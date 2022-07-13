@@ -13,17 +13,9 @@ return new class extends Migration {
     public function up()
     {
         Schema::create("stock_products", function (Blueprint $table) {
-            $table->id();
-            $table
-                ->string("purchase_number")
-                ->nullable()
-                ->default(null);
-            $table
-                ->string("sale_number")
-                ->nullable()
-                ->default(null);
             $table->unsignedInteger("price");
             $table->integer("qty");
+            $table->unsignedTinyInteger("ppn");
             $table->string("product_number");
             $table
                 ->foreign("product_number")

@@ -49,7 +49,7 @@ const onSubmit = () => {
       onSuccess: () => {
         form.reset()
 
-        onClearProduct()
+        onClearProductCart()
       },
     })
 }
@@ -60,10 +60,10 @@ const dropdownStatus = computed(() => {
 
 const {
   productCart,
+  onClearProductCart,
   onAddProduct,
   onDeleteProduct,
   onEditProduct,
-  onClearProduct,
   totalProductPrice,
 } = useProductCart(form)
 

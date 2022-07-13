@@ -84,13 +84,11 @@ class PurchaseController extends Controller
         DB::beginTransaction();
 
         try {
-            $ppn = Ppn::first()->ppn;
-
             $validated = $request
                 ->safe()
                 ->merge([
                     "user_id" => auth()->user()->id,
-                    "ppn" => $request->ppn ? $ppn : 0,
+                    "ppn" => $request->ppn ? true : false,
                 ])
                 ->all();
 
@@ -190,12 +188,10 @@ class PurchaseController extends Controller
         DB::beginTransaction();
 
         try {
-            $ppn = Ppn::first()->ppn;
-
             $validated = $request
                 ->safe()
                 ->merge([
-                    "ppn" => $request->ppn ? $ppn : 0,
+                    "ppn" => $request->ppn ? true : false,
                 ])
                 ->all();
 
@@ -227,23 +223,52 @@ class PurchaseController extends Controller
                 }
 
                 if ($request->status == "success") {
-                    $validated = [
-                        "purchase_number" => $purchase->number,
-                        "price" => $product["price"],
-                        "qty" => $product["qty"],
-                        "product_number" => $product["number"],
-                    ];
+                    $stockProduct = StockProduct::where(
+                        "product_number",
+                        $product["number"]
+                    );
 
-                    StockProduct::create($validated);
+                    if ($stockProduct->exists()) {
+                        $validated = [
+                            "price" =>
+                                $stockProduct->first()->price >
+                                $product["price"]
+                                    ? $stockProduct->first()->price
+                                    : $product["price"],
+                            "ppn" => $request->ppn ? true : false,
+                        ];
+
+                        $stockProduct->increment(
+                            "qty",
+                            $product["qty"],
+                            $validated
+                        );
+                    } else {
+                        $validated = [
+                            "price" => $product["price"],
+                            "ppn" => $request->ppn ? true : false,
+                            "qty" => $product["qty"],
+                            "product_number" => $product["number"],
+                        ];
+
+                        StockProduct::create($validated);
+                    }
                 }
             }
 
             DB::commit();
 
-            return back()->with(
-                "success",
-                __("messages.success.update.purchase")
-            );
+            if ($request->status == "success") {
+                return to_route("purchases.show", $purchase)->with(
+                    "success",
+                    __("messages.success.update.purchase")
+                );
+            } else {
+                return back()->with(
+                    "success",
+                    __("messages.success.update.purchase")
+                );
+            }
         } catch (QueryException $e) {
             DB::rollBack();
 
