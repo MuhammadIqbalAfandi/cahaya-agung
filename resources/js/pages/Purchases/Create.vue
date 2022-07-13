@@ -1,4 +1,6 @@
 <script setup>
+import { watch, computed } from 'vue'
+import { Inertia } from '@inertiajs/inertia'
 import { optionStatus } from './config'
 import { cartTable } from './config'
 import Details from './Components/Details.vue'
@@ -11,7 +13,6 @@ import AppInputNumber from '@/components/AppInputNumber.vue'
 import AppDropdown from '@/components/AppDropdown.vue'
 import AppAutoComplete from '@/components/AppAutoComplete.vue'
 import DashboardLayout from '@/layouts/Dashboard/DashboardLayout.vue'
-import { computed } from '@vue/reactivity'
 
 const props = defineProps({
   number: String,
@@ -24,6 +25,7 @@ const props = defineProps({
     type: Array,
     default: [],
   },
+  historyProductPurchase: Object,
 })
 
 const form = useForm({
@@ -56,6 +58,25 @@ const onSubmit = () => {
 
 const dropdownStatus = computed(() => {
   return optionStatus.filter((val) => val.value != 'success')
+})
+
+watch(
+  () => form.product,
+  () => {
+    if (form.product.id) {
+      Inertia.reload({
+        data: {
+          productNumber: form.product.number,
+          supplierId: form.supplier.id,
+        },
+        only: ['historyProductPurchase'],
+      })
+    }
+  }
+)
+
+const historyProductPrice = computed(() => {
+  return props.historyProductPurchase?.price
 })
 
 const {
@@ -174,6 +195,17 @@ const { onShowCreateProduct, onShowCreateSupplier } = onShowDialog()
                       v-model="form.product.unit"
                     />
                   </div>
+
+                  <div class="col-12 md:col-6">
+                    <AppInputNumber
+                      disabled
+                      label="Harga Sebelumya"
+                      placeholder="harga sebelumnya"
+                      v-model="historyProductPrice"
+                    />
+                  </div>
+
+                  <Divider type="dashed" />
 
                   <div class="col-12 md:col-6">
                     <AppInputNumber

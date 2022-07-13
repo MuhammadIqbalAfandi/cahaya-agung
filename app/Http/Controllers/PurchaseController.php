@@ -7,6 +7,7 @@ use App\Http\Requests\Purchase\UpdatePurchaseRequest;
 use App\Models\Ppn;
 use App\Models\Product;
 use App\Models\Purchase;
+use App\Models\PurchaseDetail;
 use App\Models\StockProduct;
 use App\Models\Supplier;
 use App\Services\HelperService;
@@ -69,6 +70,11 @@ class PurchaseController extends Controller
             ),
             "products" => Inertia::lazy(
                 fn() => Product::filter(["search" => request("product")])->get()
+            ),
+            "historyProductPurchase" => Inertia::lazy(
+                fn() => PurchaseDetail::historyProductPurchase(
+                    request()->only("productNumber", "supplierId")
+                )->first()
             ),
         ]);
     }
