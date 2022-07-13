@@ -56,10 +56,19 @@ defineProps({
       <Column>
         <template #body="{ data }">
           <AppButtonLink
+            v-if="data.status == 'pending'"
             icon="pi pi-pencil"
             class="p-button-icon-only p-button-rounded p-button-text"
             v-tooltip.bottom="'Ubah Pembelian'"
             :href="route('purchases.edit', data.id)"
+          />
+
+          <AppButtonLink
+            v-else
+            icon="pi pi-eye"
+            class="p-button-icon-only p-button-rounded p-button-text"
+            v-tooltip.bottom="'Lihat Pembelian'"
+            :href="route('purchases.show', data.id)"
           />
         </template>
       </Column>

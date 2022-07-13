@@ -79,7 +79,7 @@ const { onShowCreateProduct, onShowCreateSupplier } = onShowDialog()
         <div class="grid">
           <div class="col-12">
             <Card>
-              <template #title> Penjual </template>
+              <template #title> Transaksi </template>
               <template #content>
                 <div class="grid">
                   <div class="col-12 md:col-6">

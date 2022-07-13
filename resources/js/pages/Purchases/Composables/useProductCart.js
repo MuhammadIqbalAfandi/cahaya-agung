@@ -54,8 +54,6 @@ export function useProductCart(form, initialProducts = []) {
 
   const onClearProductCartDelete = () => {
     productCartDeleted.splice(0)
-
-    console.info('this is running')
   }
 
   const totalProductPrice = () => {

@@ -43,17 +43,14 @@ const onSubmit = () => {
       products: [...productCart, ...productCartDeleted],
     }))
     .post(route('sales.store'), {
-      onSuccess: () => {
-        form.reset()
-
-        onClearProduct()
-      },
+      onSuccess: () => onClearProductCartDelete(),
     })
 }
 
 const {
   productCart,
   productCartDeleted,
+  onClearProductCartDelete,
   onAddProduct,
   onDeleteProduct,
   onEditProduct,
@@ -70,7 +67,7 @@ const {
         <div class="grid">
           <div class="col-12">
             <Card>
-              <template #title> Pembeli </template>
+              <template #title> Transaksi </template>
               <template #content>
                 <div class="grid">
                   <div class="col-12 md:col-6">

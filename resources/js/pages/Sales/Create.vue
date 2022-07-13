@@ -74,7 +74,7 @@ const { onShowCustomerCreate } = onShowDialog()
         <div class="grid">
           <div class="col-12">
             <Card>
-              <template #title> Pembeli </template>
+              <template #title> Transaksi </template>
               <template #content>
                 <div class="grid">
                   <div class="col-12 md:col-6">

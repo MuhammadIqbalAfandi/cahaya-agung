@@ -127,7 +127,23 @@ class PurchaseController extends Controller
      */
     public function show(Purchase $purchase)
     {
-        //
+        return inertia("Purchases/Show", [
+            "id" => $purchase->id,
+            "number" => $purchase->number,
+            "ppn" => Ppn::first()->ppn,
+            "status" => $purchase->status,
+            "ppnChecked" => $purchase->ppn ? true : false,
+            "purchaseDetail" => $purchase->purchaseDetail->transform(
+                fn($purchase) => [
+                    "id" => $purchase->id,
+                    "number" => $purchase->product_number,
+                    "name" => $purchase->product->name,
+                    "price" => $purchase->price,
+                    "qty" => $purchase->qty,
+                    "unit" => $purchase->product->unit,
+                ]
+            ),
+        ]);
     }
 
     /**
