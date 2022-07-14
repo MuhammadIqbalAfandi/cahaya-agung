@@ -2,8 +2,10 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use App\Services\HelperService;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Casts\Attribute;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class PurchaseDetail extends Model
 {
@@ -11,21 +13,27 @@ class PurchaseDetail extends Model
 
     protected $fillable = ["price", "qty", "purchase_number", "product_number"];
 
+    protected function price(): Attribute
+    {
+        return Attribute::make(
+            get: function ($value) {
+                $ppn = Ppn::first()->ppn;
+
+                return $this->purchase->ppn
+                    ? HelperService::addPPN($value, $ppn)
+                    : $value;
+            }
+        );
+    }
+
     public function product()
     {
         return $this->belongsTo(Product::class, "product_number", "number");
     }
 
-    public function supplier()
+    public function purchase()
     {
-        return $this->hasOneThrough(
-            Supplier::class,
-            Purchase::class,
-            "number",
-            "id",
-            "purchase_number",
-            "supplier_id"
-        );
+        return $this->belongsTo(Purchase::class, "purchase_number", "number");
     }
 
     public function scopeHistoryProductPurchase($query, array $filters)
@@ -38,7 +46,9 @@ class PurchaseDetail extends Model
                 $query->whereRelation("product", "number", $search);
             })
             ->when($filters["supplierId"] ?? null, function ($query, $search) {
-                $query->whereHas("supplier");
+                $query->whereHas("purchase", function ($query) use ($search) {
+                    $query->where("supplier_id", $search);
+                });
             });
     }
 }

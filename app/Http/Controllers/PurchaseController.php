@@ -11,7 +11,6 @@ use App\Models\PurchaseDetail;
 use App\Models\StockProduct;
 use App\Models\Supplier;
 use App\Services\HelperService;
-use App\Services\PurchaseService;
 use Illuminate\Database\QueryException;
 use Illuminate\Support\Facades\DB;
 use Inertia\Inertia;
@@ -40,11 +39,11 @@ class PurchaseController extends Controller
                     fn($purchase) => [
                         "id" => $purchase->id,
                         "updatedAt" => $purchase->updated_at,
-                        "email" => $purchase->supplier->email,
                         "name" => $purchase->supplier->name,
                         "phone" => $purchase->supplier->phone,
+                        "email" => $purchase->supplier->email,
                         "price" => HelperService::setRupiahFormat(
-                            PurchaseService::totalPrice($purchase)
+                            $purchase->purchaseDetail->sum("price")
                         ),
                         "status" => $purchase->status,
                     ]
@@ -74,7 +73,18 @@ class PurchaseController extends Controller
             "historyProductPurchase" => Inertia::lazy(
                 fn() => PurchaseDetail::historyProductPurchase(
                     request()->only("productNumber", "supplierId")
-                )->first()
+                )
+                    ->orderBy("price", "desc")
+                    ->get()
+                    ->transform(
+                        fn($purchaseDetail) => [
+                            "id" => $purchaseDetail->id,
+                            "price" => $purchaseDetail->price,
+                            "qty" => $purchaseDetail->qty,
+                            "ppn" => $purchaseDetail->purchase->ppn,
+                        ]
+                    )
+                    ->first()
             ),
         ]);
     }
@@ -142,7 +152,7 @@ class PurchaseController extends Controller
                     "id" => $purchase->id,
                     "number" => $purchase->product_number,
                     "name" => $purchase->product->name,
-                    "price" => $purchase->price,
+                    "price" => $purchase->getRawOriginal("price"),
                     "qty" => $purchase->qty,
                     "unit" => $purchase->product->unit,
                 ]
@@ -174,10 +184,26 @@ class PurchaseController extends Controller
                     "id" => $purchase->id,
                     "number" => $purchase->product_number,
                     "name" => $purchase->product->name,
-                    "price" => $purchase->price,
+                    "price" => $purchase->getRawOriginal("price"),
                     "qty" => $purchase->qty,
                     "unit" => $purchase->product->unit,
                 ]
+            ),
+            "historyProductPurchase" => Inertia::lazy(
+                fn() => PurchaseDetail::historyProductPurchase(
+                    request()->only("productNumber", "supplierId")
+                )
+                    ->orderBy("price", "desc")
+                    ->get()
+                    ->transform(
+                        fn($purchaseDetail) => [
+                            "id" => $purchaseDetail->id,
+                            "price" => $purchaseDetail->price,
+                            "qty" => $purchaseDetail->qty,
+                            "ppn" => $purchaseDetail->purchase->ppn,
+                        ]
+                    )
+                    ->first()
             ),
         ]);
     }

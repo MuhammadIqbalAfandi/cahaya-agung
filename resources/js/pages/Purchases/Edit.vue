@@ -3,6 +3,7 @@ import { optionStatus } from './config'
 import { cartTable } from './config'
 import Details from './Components/Details.vue'
 import Cart from './Components/Cart.vue'
+import HistoryProduct from './Components/HistoryProduct.vue'
 import { useProductCart } from './Composables/useProductCart'
 import { onShowDialog } from './Composables/onShowDialog'
 import { useForm } from '@/composables/useForm'
@@ -24,6 +25,7 @@ const props = defineProps({
     default: [],
   },
   purchaseDetail: Array,
+  historyProductPurchase: Object,
 })
 
 const form = useForm({
@@ -142,6 +144,13 @@ const { onShowCreateProduct } = onShowDialog()
                       v-model="form.product.unit"
                     />
                   </div>
+
+                  <HistoryProduct
+                    :product="form.product"
+                    :supplier="form.supplier"
+                  />
+
+                  <Divider type="dashed" />
 
                   <div class="col-12 md:col-6">
                     <AppInputNumber

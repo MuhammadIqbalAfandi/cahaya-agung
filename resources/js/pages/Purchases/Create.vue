@@ -1,10 +1,10 @@
 <script setup>
-import { watch, computed } from 'vue'
-import { Inertia } from '@inertiajs/inertia'
+import { computed } from 'vue'
 import { optionStatus } from './config'
 import { cartTable } from './config'
 import Details from './Components/Details.vue'
 import Cart from './Components/Cart.vue'
+import HistoryProduct from './Components/HistoryProduct.vue'
 import { useProductCart } from './Composables/useProductCart'
 import { onShowDialog } from './Composables/onShowDialog'
 import { useForm } from '@/composables/useForm'
@@ -58,25 +58,6 @@ const onSubmit = () => {
 
 const dropdownStatus = computed(() => {
   return optionStatus.filter((val) => val.value != 'success')
-})
-
-watch(
-  () => form.product,
-  () => {
-    if (form.product.id) {
-      Inertia.reload({
-        data: {
-          productNumber: form.product.number,
-          supplierId: form.supplier.id,
-        },
-        only: ['historyProductPurchase'],
-      })
-    }
-  }
-)
-
-const historyProductPrice = computed(() => {
-  return props.historyProductPurchase?.price
 })
 
 const {
@@ -196,14 +177,10 @@ const { onShowCreateProduct, onShowCreateSupplier } = onShowDialog()
                     />
                   </div>
 
-                  <div class="col-12 md:col-6">
-                    <AppInputNumber
-                      disabled
-                      label="Harga Sebelumya"
-                      placeholder="harga sebelumnya"
-                      v-model="historyProductPrice"
-                    />
-                  </div>
+                  <HistoryProduct
+                    :product="form.product"
+                    :supplier="form.supplier"
+                  />
 
                   <Divider type="dashed" />
 

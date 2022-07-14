@@ -77,7 +77,7 @@ defineProps({
       <div
         class="flex flex-column md:flex-row gap-2 md:gap-0 md:justify-content-between md:align-items-center"
       >
-        <small>{{ message }}</small>
+        <span class="text-xs">{{ message }}</span>
 
         <Button
           label="Simpan"
