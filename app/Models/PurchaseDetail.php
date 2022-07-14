@@ -43,7 +43,7 @@ class PurchaseDetail extends Model
                 $query,
                 $search
             ) {
-                $query->whereRelation("product", "number", $search);
+                $query->where("product_number", $search);
             })
             ->when($filters["supplierId"] ?? null, function ($query, $search) {
                 $query->whereHas("purchase", function ($query) use ($search) {

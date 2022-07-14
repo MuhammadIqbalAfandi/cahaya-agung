@@ -14,6 +14,18 @@ defineProps({
     required: true,
     type: Array,
   },
+  btnEditShow: {
+    default: true,
+    type: Boolean,
+  },
+  btnDeleteShow: {
+    default: true,
+    type: Boolean,
+  },
+  btnPpnDisabled: {
+    default: false,
+    type: Boolean,
+  },
   checkedPpn: Boolean,
 })
 
@@ -42,6 +54,7 @@ const editingRows = ref([])
         <input
           type="checkbox"
           id="ppn"
+          :disabled="btnPpnDisabled"
           :checked="checkedPpn"
           @input="$emit('update:checkedPpn', $event.target.checked)"
         />
@@ -80,11 +93,12 @@ const editingRows = ref([])
       </template>
     </Column>
 
-    <Column :row-editor="true" />
+    <Column v-if="btnEditShow" :row-editor="true" />
 
     <Column>
       <template #body="{ index }">
         <Button
+          v-if="btnDeleteShow"
           icon="pi pi-trash"
           class="p-button-icon-only p-button-rounded p-button-text"
           v-tooltip.bottom="'hapus'"

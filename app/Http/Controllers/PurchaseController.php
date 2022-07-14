@@ -147,6 +147,7 @@ class PurchaseController extends Controller
             "ppn" => Ppn::first()->ppn,
             "status" => $purchase->status,
             "ppnChecked" => $purchase->ppn ? true : false,
+            "supplier" => $purchase->supplier,
             "purchaseDetail" => $purchase->purchaseDetail->transform(
                 fn($purchase) => [
                     "id" => $purchase->id,

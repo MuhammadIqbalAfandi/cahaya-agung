@@ -30,11 +30,12 @@ watch(
     <div class="col-12">
       <h3 class="text-lg">Riwayat Produk Sebelumnya</h3>
     </div>
+
     <div class="col-12 md:col-6">
       <AppInputNumber
         disabled
         class="mb-0"
-        label="Harga"
+        label="Harga "
         placeholder="harga"
         v-model="$page.props.historyProductPurchase.price"
       />

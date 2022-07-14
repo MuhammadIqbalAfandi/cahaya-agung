@@ -1,4 +1,5 @@
 <script setup>
+import { computed } from 'vue'
 import { optionStatus } from './config'
 import { cartTable } from './config'
 import Details from './Components/Details.vue'
@@ -26,7 +27,7 @@ const props = defineProps({
 })
 
 const form = useForm({
-  status: 'pending',
+  status: 'success',
   price: null,
   qty: null,
   customer: null,
@@ -48,17 +49,21 @@ const onSubmit = () => {
       onSuccess: () => {
         form.reset()
 
-        onClearProduct()
+        onClearProductCart()
       },
     })
 }
 
+const dropdownStatus = computed(() => {
+  return optionStatus.filter((val) => val.value != 'pending')
+})
+
 const {
   productCart,
   onAddProduct,
+  onClearProductCart,
   onDeleteProduct,
   onEditProduct,
-  onClearProduct,
   totalProductPrice,
 } = useProductCart(form)
 
@@ -81,7 +86,7 @@ const { onShowCustomerCreate } = onShowDialog()
                     <AppDropdown
                       label="Status"
                       placeholder="status"
-                      :options="optionStatus"
+                      :options="dropdownStatus"
                       :error="form.errors.status"
                       v-model="form.status"
                     />
@@ -151,7 +156,13 @@ const { onShowCustomerCreate } = onShowDialog()
                     </AppAutoComplete>
                   </div>
 
+                  <Divider type="dashed" />
+
                   <template v-if="form.product?.number">
+                    <div class="col-12">
+                      <h3 class="text-lg">Riwayat Pembelian Sebelumnya</h3>
+                    </div>
+
                     <div class="col-12 md:col-6">
                       <AppInputText
                         disabled
@@ -164,10 +175,15 @@ const { onShowCustomerCreate } = onShowDialog()
                     <div class="col-12 md:col-6">
                       <AppInputNumber
                         disabled
-                        label="Harga Beli"
-                        placeholder="harga beli produk"
+                        class="mb-0"
+                        label="Harga"
+                        placeholder="harga"
                         v-model="form.product.price"
                       />
+
+                      <span v-if="form.product.ppn" class="text-xs">
+                        Harga sudah termasuk PPN {{ ppn }} %
+                      </span>
                     </div>
 
                     <div class="col-12 md:col-6">

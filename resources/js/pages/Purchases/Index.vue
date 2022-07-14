@@ -67,7 +67,7 @@ defineProps({
             v-else
             icon="pi pi-eye"
             class="p-button-icon-only p-button-rounded p-button-text"
-            v-tooltip.bottom="'Lihat Pembelian'"
+            v-tooltip.bottom="'Lihat Detail Pembelian'"
             :href="route('purchases.show', data.id)"
           />
         </template>

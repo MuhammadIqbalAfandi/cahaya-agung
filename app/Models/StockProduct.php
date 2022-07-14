@@ -2,14 +2,30 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use App\Models\Ppn;
+use App\Services\HelperService;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Casts\Attribute;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class StockProduct extends Model
 {
     use HasFactory;
 
     protected $fillable = ["price", "qty", "ppn", "product_number"];
+
+    protected function price(): Attribute
+    {
+        return Attribute::make(
+            get: function ($value) {
+                $ppn = Ppn::first()->ppn;
+
+                return $this->ppn
+                    ? HelperService::addPPN($value, $ppn)
+                    : $value;
+            }
+        );
+    }
 
     public function product()
     {

@@ -11,20 +11,20 @@ const props = defineProps({
   ppn: Number,
   status: String,
   ppnChecked: Boolean,
-  supplier: Object,
-  purchaseDetail: Array,
+  customer: Object,
+  saleDetail: Array,
 })
 
 const form = useForm({
   status: props.status,
-  supplier: props.supplier,
+  customer: props.customer,
   ppn: props.ppn,
   checkedPpn: props.ppnChecked,
 })
 
 const { productCart, totalProductPrice } = useProductCart(
   form,
-  props.purchaseDetail
+  props.saleDetail
 )
 </script>
 
@@ -46,19 +46,19 @@ const { productCart, totalProductPrice } = useProductCart(
                     <div class="grid">
                       <div class="col">
                         <h3 class="text-base">Nama</h3>
-                        <span>{{ supplier.name }}</span>
+                        <span>{{ customer.name }}</span>
                       </div>
                       <div class="col">
                         <h3 class="text-base">Alamat</h3>
-                        <span>{{ supplier.address }}</span>
+                        <span>{{ customer.address }}</span>
                       </div>
                       <div class="col">
                         <h3 class="text-base">No HP</h3>
-                        <span>{{ supplier.phone }}</span>
+                        <span>{{ customer.phone }}</span>
                       </div>
                       <div class="col">
                         <h3 class="text-base">NPWP</h3>
-                        <span>{{ supplier.npwp }}</span>
+                        <span>{{ customer.npwp }}</span>
                       </div>
                     </div>
                   </div>

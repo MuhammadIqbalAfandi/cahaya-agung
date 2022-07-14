@@ -6,7 +6,6 @@ use App\Models\Ppn;
 use App\Models\Sale;
 use Inertia\Inertia;
 use App\Models\Customer;
-use App\Models\SaleDetail;
 use App\Models\StockProduct;
 use App\Services\HelperService;
 use Illuminate\Support\Facades\DB;
@@ -42,7 +41,7 @@ class SalesController extends Controller
                         "phone" => $sale->customer->phone,
                         "email" => $sale->customer->email,
                         "price" => HelperService::setRupiahFormat(
-                            SaleDetail::totalPrice($sale)
+                            $sale->saleDetail->sum("price")
                         ),
                         "status" => $sale->status,
                     ]
@@ -75,6 +74,7 @@ class SalesController extends Controller
                             "number" => $stockProduct->product_number,
                             "name" => $stockProduct->product->name,
                             "price" => $stockProduct->price,
+                            "ppn" => $stockProduct->ppn,
                             "qty" => $stockProduct->qty,
                             "unit" => $stockProduct->product->unit,
                         ]
@@ -91,8 +91,6 @@ class SalesController extends Controller
      */
     public function store(StoreSaleRequest $request)
     {
-        dd($request->validated());
-
         DB::beginTransaction();
 
         try {
@@ -118,20 +116,19 @@ class SalesController extends Controller
                 $sale->saleDetail()->create($validated);
 
                 if ($request->status == "success") {
-                    $validated = [
-                        "sale_number" => $sale->number,
-                        "price" => $product["price"],
-                        "qty" => $product["qty"],
-                        "product_number" => $product["number"],
-                    ];
-
-                    StockProduct::create($validated);
+                    StockProduct::where(
+                        "product_number",
+                        $product["number"]
+                    )->decrement("qty", $product["qty"]);
                 }
             }
 
             DB::commit();
 
-            return back()->with("success", __("messages.success.store.sale"));
+            return to_route("sales.show", $sale)->with(
+                "success",
+                __("messages.success.store.sale")
+            );
         } catch (QueryException $e) {
             DB::rollBack();
 
@@ -147,7 +144,24 @@ class SalesController extends Controller
      */
     public function show(Sale $sale)
     {
-        //
+        return inertia("Sales/Show", [
+            "id" => $sale->id,
+            "number" => $sale->number,
+            "ppn" => Ppn::first()->ppn,
+            "status" => $sale->status,
+            "ppnChecked" => $sale->ppn ? true : false,
+            "customer" => $sale->customer,
+            "saleDetail" => $sale->saleDetail->transform(
+                fn($sale) => [
+                    "id" => $sale->id,
+                    "number" => $sale->product_number,
+                    "name" => $sale->product->name,
+                    "price" => $sale->getRawOriginal("price"),
+                    "qty" => $sale->qty,
+                    "unit" => $sale->product->unit,
+                ]
+            ),
+        ]);
     }
 
     /**
@@ -158,40 +172,7 @@ class SalesController extends Controller
      */
     public function edit(Sale $sale)
     {
-        return inertia("Sales/Edit", [
-            "id" => $sale->id,
-            "number" => $sale->number,
-            "ppn" => Ppn::first()->ppn,
-            "status" => $sale->status,
-            "ppnChecked" => $sale->ppn ? true : false,
-            "customer" => $sale->customer,
-            "stockProducts" => Inertia::lazy(
-                fn() => StockProduct::filter([
-                    "search" => request("stockProduct"),
-                ])
-                    ->get()
-                    ->transform(
-                        fn($stockProduct) => [
-                            "number" => $stockProduct->product_number,
-                            "name" => $stockProduct->product->name,
-                            "price" => $stockProduct->price,
-                            "qty" => $stockProduct->qty,
-                            "unit" => $stockProduct->product->unit,
-                            "profit" => $stockProduct->product->profit,
-                        ]
-                    )
-            ),
-            "saleDetail" => $sale->saleDetail->transform(
-                fn($sale) => [
-                    "id" => $sale->id,
-                    "number" => $sale->product_number,
-                    "name" => $sale->product->name,
-                    "price" => $sale->price,
-                    "qty" => $sale->qty,
-                    "unit" => $sale->product->unit,
-                ]
-            ),
-        ]);
+        //
     }
 
     /**
@@ -203,65 +184,7 @@ class SalesController extends Controller
      */
     public function update(UpdateSaleRequest $request, Sale $sale)
     {
-        dd($sale);
-
-        DB::beginTransaction();
-
-        try {
-            $ppn = Ppn::first()->ppn;
-
-            $validated = $request
-                ->safe()
-                ->merge([
-                    "ppn" => $request->ppn ? $ppn : 0,
-                ])
-                ->all();
-
-            $sale->update($validated);
-
-            foreach ($request->products as $product) {
-                $validated = [
-                    "product_number" => $product["number"],
-                    "price" => $product["price"],
-                    "qty" => $product["qty"],
-                ];
-
-                if (!empty($product["label"])) {
-                    if ($product["label"] == "add") {
-                        $sale->saleDetail()->create($validated);
-                    }
-
-                    if ($product["label"] == "edit") {
-                        $sale->saleDetail
-                            ->find($product["id"])
-                            ->update($validated);
-                    }
-
-                    if ($product["label"] == "delete") {
-                        $sale->saleDetail->find($product["id"])->delete();
-                    }
-                }
-
-                if ($request->status == "success") {
-                    $validated = [
-                        "sale_number" => $sale->number,
-                        "price" => $product["price"],
-                        "qty" => $product["qty"],
-                        "product_number" => $product["number"],
-                    ];
-
-                    StockProduct::create($validated);
-                }
-            }
-
-            DB::commit();
-
-            return back()->with("success", __("messages.success.update.sale"));
-        } catch (QueryException $e) {
-            DB::rollBack();
-
-            return back()->with("error", __("messages.error.update.sale"));
-        }
+        //
     }
 
     /**

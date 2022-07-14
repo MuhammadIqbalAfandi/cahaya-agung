@@ -58,10 +58,10 @@ defineProps({
       <Column>
         <template #body="{ data }">
           <AppButtonLink
-            icon="pi pi-pencil"
+            icon="pi pi-eye"
             class="p-button-icon-only p-button-rounded p-button-text"
-            v-tooltip.bottom="'Ubah Penjualan'"
-            :href="route('sales.edit', data.id)"
+            v-tooltip.bottom="'Lihat Detail Penjualan'"
+            :href="route('sales.show', data.id)"
           />
         </template>
       </Column>

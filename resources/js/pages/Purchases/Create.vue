@@ -177,6 +177,8 @@ const { onShowCreateProduct, onShowCreateSupplier } = onShowDialog()
                     />
                   </div>
 
+                  <Divider type="dashed" />
+
                   <HistoryProduct
                     :product="form.product"
                     :supplier="form.supplier"
@@ -187,8 +189,8 @@ const { onShowCreateProduct, onShowCreateSupplier } = onShowDialog()
                   <div class="col-12 md:col-6">
                     <AppInputNumber
                       :disabled="!form.supplier?.id"
-                      label="Harga"
-                      placeholder="harga"
+                      label="Harga Terbaru"
+                      placeholder="harga terbaru"
                       v-model="form.price"
                     />
                   </div>
