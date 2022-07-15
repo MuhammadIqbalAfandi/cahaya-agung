@@ -77,6 +77,7 @@ class SalesController extends Controller
                             "ppn" => $stockProduct->ppn,
                             "qty" => $stockProduct->qty,
                             "unit" => $stockProduct->product->unit,
+                            "profit" => $stockProduct->product->profit,
                         ]
                     )
             ),

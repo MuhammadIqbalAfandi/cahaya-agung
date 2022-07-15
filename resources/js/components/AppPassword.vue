@@ -53,6 +53,7 @@ const ariaDescribedbyLabel = computed(
     <Password
       class="w-full"
       input-class="w-full"
+      :class="{ 'p-invalid': isError }"
       :promptLabel="promptLabel"
       :weakLabel="weakLabel"
       :mediumLabel="mediumLabel"

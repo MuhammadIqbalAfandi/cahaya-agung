@@ -1,5 +1,5 @@
 <script setup>
-import { IDRCurrencyFormat } from '@/utils/currencyFormat'
+import { IDRCurrencyFormat } from '@/utils/helpers'
 
 defineProps({
   title: String,

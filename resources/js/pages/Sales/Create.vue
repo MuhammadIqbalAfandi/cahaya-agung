@@ -1,11 +1,12 @@
 <script setup>
-import { computed } from 'vue'
+import { computed, watchEffect } from 'vue'
+import { profit } from '@/utils/helpers'
 import { optionStatus } from './config'
 import { cartTable } from './config'
 import Details from './Components/Details.vue'
 import Cart from './Components/Cart.vue'
 import { useProductCart } from './Composables/useProductCart'
-import { onShowDialog } from './Composables/onShowDialog'
+import { useDialog } from './Composables/useDialog'
 import { useForm } from '@/composables/useForm'
 import AppInputText from '@/components/AppInputText.vue'
 import AppInputNumber from '@/components/AppInputNumber.vue'
@@ -54,20 +55,34 @@ const onSubmit = () => {
     })
 }
 
+watchEffect(() => {
+  if (form.product?.number) {
+    form.price = profit(form.product.price, form.product.profit)
+
+    form.qty = 1
+  }
+})
+
 const dropdownStatus = computed(() => {
   return optionStatus.filter((val) => val.value != 'pending')
 })
 
+const profitDescription = computed(() => {
+  const priceProfit = profit(form.product?.price, form.product?.profit)
+
+  return form.price === priceProfit ? true : false
+})
+
 const {
   productCart,
+  productErrors,
   onAddProduct,
   onClearProductCart,
   onDeleteProduct,
-  onEditProduct,
   totalProductPrice,
 } = useProductCart(form)
 
-const { onShowCustomerCreate } = onShowDialog()
+const { onShowCustomerCreate } = useDialog()
 </script>
 
 <template>
@@ -142,7 +157,7 @@ const { onShowCustomerCreate } = onShowDialog()
                       field="name"
                       refresh-data="stockProducts"
                       v-model="form.product"
-                      :error="form.errors.products"
+                      :error="form.errors.product"
                       :suggestions="stockProducts"
                     >
                       <template #item="slotProps">
@@ -202,22 +217,23 @@ const { onShowCustomerCreate } = onShowDialog()
                   <div class="col-12 md:col-6">
                     <AppInputNumber
                       class="m-0"
-                      :disabled="!form.customer?.id"
+                      :disabled="!form.product?.number"
                       label="Harga Jual"
                       placeholder="harga jual"
                       v-model="form.price"
                     />
-                    <span v-if="form.product?.number" class="text-xs">
-                      Sudah termasuk profit 30%
+                    <span v-if="profitDescription" class="text-xs">
+                      Sudah termasuk profit {{ form.product.profit }} %
                     </span>
                   </div>
 
                   <div class="col-12 md:col-6">
                     <AppInputText
-                      :disabled="!form.customer?.id"
+                      :disabled="!form.product?.number"
                       label="Kuantitas"
                       placeholder="kuantitas"
                       type="number"
+                      :error="form.errors.qty"
                       v-model="form.qty"
                     />
                   </div>
@@ -229,6 +245,7 @@ const { onShowCustomerCreate } = onShowDialog()
                     label="Tambah Produk"
                     icon="pi pi-check"
                     class="p-button-outlined"
+                    :class="{ 'p-button-danger': productErrors.length }"
                     :disabled="
                       !form.price || !form.qty || !form.product?.number
                     "
@@ -244,9 +261,9 @@ const { onShowCustomerCreate } = onShowDialog()
               title="Keranjang Produk"
               :product-cart="productCart"
               :header-table="cartTable"
+              :btn-edit-show="false"
               v-model:checked-ppn="form.checkedPpn"
               @delete="onDeleteProduct"
-              @edit="onEditProduct"
             />
           </div>
         </div>

@@ -1,8 +1,8 @@
-import { useDialog } from 'primevue/usedialog'
+import { useDialog as usePrimeDialog } from 'primevue/usedialog'
 import CustomerCreate from '../Components/CustomerCreate.vue'
 
-export function onShowDialog() {
-  const dialog = useDialog()
+export function useDialog() {
+  const dialog = usePrimeDialog()
 
   const dialogStyle = {
     style: {

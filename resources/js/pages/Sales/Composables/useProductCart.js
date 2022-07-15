@@ -1,39 +1,63 @@
 import { reactive } from 'vue'
-import FormValidationError from '@/utils/FormValidationError'
+import { FormValidationError } from '@/utils/helpers'
 
 export function useProductCart(form, initialProducts = []) {
   const productCart = reactive(initialProducts)
 
   const productCartDeleted = reactive([])
 
-  const productValidation = () => {
-    const existProduct = productCart.find(
-      (product) => product.number === form.product.number
-    )
+  const productErrors = reactive([])
 
-    if (existProduct) {
-      throw new FormValidationError('Produk sudah ada dikeranjang', 'product')
+  const productValidation = () => {
+    onClearProductErrors()
+
+    productCart.find((product) => {
+      if (product.number === form.product.number) {
+        // productErrors.push({
+        //   message: 'Produk sudah ada dikeranjang',
+        //   field: 'product',
+        // })
+
+        if (form.qty + product.qty > form.product.qty) {
+          productErrors.push({
+            message: 'Stok tidak mencukupi',
+            field: 'qty',
+          })
+        }
+      }
+    })
+
+    if (productErrors.length) {
+      throw new FormValidationError('form error', productErrors)
     }
   }
 
   const onAddProduct = () => {
     try {
-      form.clearErrors('product', 'price', 'qty')
+      form.clearErrors('product', 'qty')
 
       productValidation()
 
-      productCart.push({
-        label: 'add',
-        number: form.product.number,
-        name: form.product.name,
-        price: form.price,
-        qty: form.qty,
-        unit: form.product.unit,
+      productCart.find((product) => {
+        if (product.number === form.product.number) {
+          product.qty += form.qty
+        } else {
+          productCart.push({
+            label: 'add',
+            number: form.product.number,
+            name: form.product.name,
+            price: form.price,
+            qty: form.qty,
+            unit: form.product.unit,
+          })
+        }
       })
 
-      form.reset('product', 'price', 'qty')
+      form.reset('product', 'qty')
     } catch (e) {
-      form.setError(e.field, e.message)
+      e.errors.forEach((error) => {
+        form.setError(error.field, error.message)
+      })
     }
   }
 
@@ -56,6 +80,10 @@ export function useProductCart(form, initialProducts = []) {
     productCartDeleted.splice(0)
   }
 
+  const onClearProductErrors = () => {
+    productErrors.splice(0)
+  }
+
   const totalProductPrice = () => {
     const productPrices = productCart.map((product) => {
       if (form.checkedPpn) {
@@ -65,7 +93,10 @@ export function useProductCart(form, initialProducts = []) {
       }
     })
 
-    return productPrices.reduce((prev, current) => prev + current, 0)
+    return productPrices.reduce(
+      (prevPrice, currentPrice) => prevPrice + currentPrice,
+      0
+    )
   }
 
   const onEditProduct = (event) => {
@@ -80,6 +111,7 @@ export function useProductCart(form, initialProducts = []) {
   return {
     productCart,
     productCartDeleted,
+    productErrors,
     onClearProductCart,
     onClearProductCartDelete,
     onAddProduct,

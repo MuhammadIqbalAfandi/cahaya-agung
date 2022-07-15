@@ -1,6 +1,6 @@
 <script setup>
 import { ref } from 'vue'
-import { IDRCurrencyFormat } from '@/utils/currencyFormat'
+import { IDRCurrencyFormat } from '@/utils/helpers'
 import AppInputNumber from '@/components/AppInputNumber.vue'
 import AppInputText from '@/components/AppInputText.vue'
 
