@@ -1,8 +1,6 @@
 <script setup>
 import { computed, watch, watchEffect } from 'vue'
 import { Inertia } from '@inertiajs/inertia'
-import { once } from 'lodash'
-import { ppn } from '@/utils/helpers'
 import { optionStatus } from './config'
 import { cartTable } from './config'
 import Details from './Components/Details.vue'
