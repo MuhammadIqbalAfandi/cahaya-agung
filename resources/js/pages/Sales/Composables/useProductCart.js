@@ -96,15 +96,6 @@ export function useProductCart(form, initialProducts = []) {
     )
   }
 
-  const onEditProduct = (event) => {
-    const { newData, index } = event
-
-    productCart[index] = {
-      ...newData,
-      label: 'edit',
-    }
-  }
-
   return {
     productCart,
     productCartDeleted,
@@ -113,7 +104,6 @@ export function useProductCart(form, initialProducts = []) {
     onClearProductCartDelete,
     onAddProduct,
     onDeleteProduct,
-    onEditProduct,
     totalProductPrice,
   }
 }

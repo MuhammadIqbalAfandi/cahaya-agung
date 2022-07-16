@@ -67,6 +67,7 @@ const onSelect = (event) => {
     <label :for="forLabel">{{ label }}</label>
 
     <AutoComplete
+      forceSelection
       class="w-full"
       inputClass="w-full"
       :model-value="modelValue"

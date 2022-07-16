@@ -1,12 +1,14 @@
 <script setup>
-import { computed } from 'vue'
+import { computed, watch, watchEffect } from 'vue'
+import { Inertia } from '@inertiajs/inertia'
+import { once } from 'lodash'
+import { ppn } from '@/utils/helpers'
 import { optionStatus } from './config'
 import { cartTable } from './config'
 import Details from './Components/Details.vue'
 import Cart from './Components/Cart.vue'
-import HistoryProduct from './Components/HistoryProduct.vue'
 import { useProductCart } from './Composables/useProductCart'
-import { onShowDialog } from './Composables/onShowDialog'
+import { useDialog } from './Composables/useDialog'
 import { useForm } from '@/composables/useForm'
 import AppInputText from '@/components/AppInputText.vue'
 import AppInputNumber from '@/components/AppInputNumber.vue'
@@ -25,7 +27,7 @@ const props = defineProps({
     type: Array,
     default: [],
   },
-  historyProductPurchase: Object,
+  productPurchase: Object,
 })
 
 const form = useForm({
@@ -56,20 +58,53 @@ const onSubmit = () => {
     })
 }
 
+watchEffect(() => {
+  if (props.productPurchase?.number) {
+    form.price = props.productPurchase.price
+
+    form.qty = props.productPurchase.qty
+  } else {
+    form.price = null
+  }
+})
+
+watch(
+  () => form.product,
+  () => {
+    if (form.product?.number) {
+      Inertia.reload({
+        data: {
+          productNumber: form.product.number,
+          supplierId: form.supplier.id,
+        },
+        only: ['productPurchase'],
+      })
+    }
+  }
+)
+
+const productUnit = computed(() => form.product?.unit)
+
+const productPurchasePrice = computed(() => props.productPurchase?.price)
+
+const productPurchasePpn = computed(() => props.productPurchase?.ppn)
+
+const productPurchaseQty = computed(() => props.productPurchase?.qty)
+
 const dropdownStatus = computed(() => {
   return optionStatus.filter((val) => val.value != 'success')
 })
 
 const {
   productCart,
+  productErrors,
   onClearProductCart,
   onAddProduct,
   onDeleteProduct,
-  onEditProduct,
   totalProductPrice,
 } = useProductCart(form)
 
-const { onShowCreateProduct, onShowCreateSupplier } = onShowDialog()
+const { onShowCreateProduct, onShowCreateSupplier } = useDialog()
 </script>
 
 <template>
@@ -144,7 +179,7 @@ const { onShowCreateProduct, onShowCreateSupplier } = onShowDialog()
                       field="name"
                       refresh-data="products"
                       v-model="form.product"
-                      :error="form.errors.products"
+                      :error="form.errors.product"
                       :suggestions="products"
                     >
                       <template #item="slotProps">
@@ -168,27 +203,50 @@ const { onShowCreateProduct, onShowCreateSupplier } = onShowDialog()
                     </AppAutoComplete>
                   </div>
 
-                  <div v-if="form.product?.number" class="col-12 md:col-6">
+                  <div class="col-12 md:col-6">
                     <AppInputText
                       disabled
                       label="Satuan"
                       placeholder="satuan"
-                      v-model="form.product.unit"
+                      v-model="productUnit"
                     />
                   </div>
 
                   <Divider type="dashed" />
 
-                  <HistoryProduct
-                    :product="form.product"
-                    :supplier="form.supplier"
-                  />
+                  <div class="col-12">
+                    <h3 class="text-lg">Riwayat Produk Sebelumnya</h3>
+                  </div>
+
+                  <div class="col-12 md:col-6">
+                    <AppInputNumber
+                      disabled
+                      class="mb-0"
+                      label="Harga "
+                      placeholder="harga"
+                      v-model="productPurchasePrice"
+                    />
+
+                    <span v-if="productPurchasePpn" class="text-xs">
+                      Harga sudah termasuk PPN {{ ppn }} %
+                    </span>
+                  </div>
+
+                  <div class="col-12 md:col-6">
+                    <AppInputText
+                      disabled
+                      label="Kuantitas"
+                      placeholder="kuantitas"
+                      type="number"
+                      v-model="productPurchaseQty"
+                    />
+                  </div>
 
                   <Divider type="dashed" />
 
                   <div class="col-12 md:col-6">
                     <AppInputNumber
-                      :disabled="!form.supplier?.id"
+                      :disabled="!form.product?.id"
                       label="Harga Terbaru"
                       placeholder="harga terbaru"
                       v-model="form.price"
@@ -197,7 +255,7 @@ const { onShowCreateProduct, onShowCreateSupplier } = onShowDialog()
 
                   <div class="col-12 md:col-6">
                     <AppInputText
-                      :disabled="!form.supplier?.id"
+                      :disabled="!form.product?.id"
                       label="Kuantitas"
                       placeholder="kuantitas"
                       type="number"
@@ -212,8 +270,12 @@ const { onShowCreateProduct, onShowCreateSupplier } = onShowDialog()
                     label="Tambah Produk"
                     icon="pi pi-check"
                     class="p-button-outlined"
+                    :class="{ 'p-button-danger': productErrors.length }"
                     :disabled="
-                      !form.price || !form.qty || !form.product?.number
+                      !form.price ||
+                      !Number(form.qty) ||
+                      !form.product?.number ||
+                      productErrors.length
                     "
                     @click="onAddProduct"
                   />
@@ -227,9 +289,9 @@ const { onShowCreateProduct, onShowCreateSupplier } = onShowDialog()
               title="Keranjang Produk"
               :product-cart="productCart"
               :header-table="cartTable"
+              :btn-edit-show="false"
               v-model:checked-ppn="form.checkedPpn"
               @delete="onDeleteProduct"
-              @edit="onEditProduct"
             />
           </div>
         </div>

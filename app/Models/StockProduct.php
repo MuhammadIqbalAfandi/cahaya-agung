@@ -35,11 +35,13 @@ class StockProduct extends Model
     public function scopeFilter($query, array $filters)
     {
         $query->when($filters["search"] ?? null, function ($query, $search) {
-            $query->whereHas("product", function ($query) use ($search) {
-                $query
-                    ->where("number", "like", "%" . $search . "%")
-                    ->orWhere("name", "like", "%" . $search . "%");
-            });
+            $query
+                ->whereHas("product", function ($query) use ($search) {
+                    $query
+                        ->where("number", "like", "%" . $search . "%")
+                        ->orWhere("name", "like", "%" . $search . "%");
+                })
+                ->where("qty", ">", 0);
         });
     }
 }

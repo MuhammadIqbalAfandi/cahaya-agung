@@ -1,24 +1,35 @@
 import { reactive } from 'vue'
-import FormValidationError from '@/utils/FormValidationError'
+import { FormValidationError } from '@/utils/helpers'
 
 export function useProductCart(form, initialProducts = []) {
   const productCart = reactive(initialProducts)
 
   const productCartDeleted = reactive([])
 
+  const productErrors = reactive([])
+
   const productValidation = () => {
-    const existProduct = productCart.find(
+    onClearProductErrors()
+
+    const productExists = productCart.find(
       (product) => product.number === form.product.number
     )
 
-    if (existProduct) {
-      throw new FormValidationError('Produk sudah ada dikeranjang', 'product')
+    if (productExists) {
+      productErrors.push({
+        message: 'Produk sudah ada dikeranjang',
+        field: 'product',
+      })
+    }
+
+    if (productErrors.length) {
+      throw new FormValidationError('form error', productErrors)
     }
   }
 
   const onAddProduct = () => {
     try {
-      form.clearErrors('product', 'price', 'qty')
+      form.clearErrors('product', 'qty')
 
       productValidation()
 
@@ -27,13 +38,15 @@ export function useProductCart(form, initialProducts = []) {
         number: form.product.number,
         name: form.product.name,
         price: form.price,
-        qty: form.qty,
+        qty: Number(form.qty),
         unit: form.product.unit,
       })
 
       form.reset('product', 'price', 'qty')
     } catch (e) {
-      form.setError(e.field, e.message)
+      e.errors.forEach((error) => {
+        form.setError(error.field, error.message)
+      })
     }
   }
 
@@ -54,6 +67,10 @@ export function useProductCart(form, initialProducts = []) {
 
   const onClearProductCartDelete = () => {
     productCartDeleted.splice(0)
+  }
+
+  const onClearProductErrors = () => {
+    productErrors.splice(0)
   }
 
   const totalProductPrice = () => {
@@ -80,6 +97,7 @@ export function useProductCart(form, initialProducts = []) {
   return {
     productCart,
     productCartDeleted,
+    productErrors,
     onClearProductCart,
     onClearProductCartDelete,
     onAddProduct,

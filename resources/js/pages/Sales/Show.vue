@@ -1,6 +1,6 @@
 <script setup>
 import { useForm } from '@/composables/useForm'
-import { IDRCurrencyFormat } from '@/utils/currencyFormat'
+import { IDRCurrencyFormat } from '@/utils/helpers'
 import { cartTable } from './config'
 import Cart from './Components/Cart.vue'
 import { useProductCart } from './Composables/useProductCart'
