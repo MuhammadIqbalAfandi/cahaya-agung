@@ -2,8 +2,6 @@
 import { usePage } from '@inertiajs/inertia-vue3'
 
 const onClose = () => {
-  usePage().props.value.errors = {}
-
   usePage().props.value.flash.success = null
 
   usePage().props.value.flash.error = null
@@ -11,24 +9,23 @@ const onClose = () => {
 </script>
 
 <template>
-  <Message v-if="$page.props.flash.success" severity="success" @close="onClose">
+  <Message
+    v-if="$page.props.flash.success"
+    severity="success"
+    :life="3000"
+    :sticky="false"
+    @close="onClose"
+  >
     {{ $page.props.flash.success }}
   </Message>
 
-  <Message v-if="$page.props.flash.error" severity="error" @close="onClose">
-    {{ $page.props.flash.error }}
-  </Message>
-
   <Message
-    v-if="Object.keys($page.props.errors).length > 0"
+    v-if="$page.props.flash.error"
     severity="error"
+    :life="3000"
+    :sticky="false"
     @close="onClose"
   >
-    <div v-if="Object.keys($page.props.errors).length === 1">
-      Ditemukan satu error pada form
-    </div>
-    <div v-else>
-      Ditemukan {{ Object.keys($page.props.errors).length }} error pada form
-    </div>
+    {{ $page.props.flash.error }}
   </Message>
 </template>

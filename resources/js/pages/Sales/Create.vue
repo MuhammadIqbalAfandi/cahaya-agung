@@ -247,7 +247,7 @@ const { onShowCustomerCreate } = useDialog()
                     class="p-button-outlined"
                     :class="{ 'p-button-danger': productErrors.length }"
                     :disabled="
-                      !form.price || !form.qty || !form.product?.number
+                      !form.price || !Number(form.qty) || !form.product?.number
                     "
                     @click="onAddProduct"
                   />

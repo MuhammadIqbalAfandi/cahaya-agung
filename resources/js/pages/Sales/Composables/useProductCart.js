@@ -11,21 +11,16 @@ export function useProductCart(form, initialProducts = []) {
   const productValidation = () => {
     onClearProductErrors()
 
-    productCart.find((product) => {
-      if (product.number === form.product.number) {
-        // productErrors.push({
-        //   message: 'Produk sudah ada dikeranjang',
-        //   field: 'product',
-        // })
+    const productExists = productCart.find(
+      (product) => product.number === form.product.number
+    )
 
-        if (form.qty + product.qty > form.product.qty) {
-          productErrors.push({
-            message: 'Stok tidak mencukupi',
-            field: 'qty',
-          })
-        }
-      }
-    })
+    if (Number(form.qty) + (productExists?.qty ?? 0) > form.product.qty) {
+      productErrors.push({
+        message: 'Stok tidak mencukupi',
+        field: 'qty',
+      })
+    }
 
     if (productErrors.length) {
       throw new FormValidationError('form error', productErrors)
@@ -38,22 +33,24 @@ export function useProductCart(form, initialProducts = []) {
 
       productValidation()
 
-      productCart.find((product) => {
-        if (product.number === form.product.number) {
-          product.qty += form.qty
-        } else {
-          productCart.push({
-            label: 'add',
-            number: form.product.number,
-            name: form.product.name,
-            price: form.price,
-            qty: form.qty,
-            unit: form.product.unit,
-          })
-        }
-      })
+      const productExists = productCart.find(
+        (product) => product.number === form.product.number
+      )
 
-      form.reset('product', 'qty')
+      if (productExists) {
+        productExists.qty += Number(form.qty)
+      } else {
+        productCart.push({
+          label: 'add',
+          number: form.product.number,
+          name: form.product.name,
+          price: form.price,
+          qty: Number(form.qty),
+          unit: form.product.unit,
+        })
+      }
+
+      form.reset('product', 'price', 'qty')
     } catch (e) {
       e.errors.forEach((error) => {
         form.setError(error.field, error.message)
