@@ -9,23 +9,11 @@ const onClose = () => {
 </script>
 
 <template>
-  <Message
-    v-if="$page.props.flash.success"
-    severity="success"
-    :life="3000"
-    :sticky="false"
-    @close="onClose"
-  >
+  <Message v-if="$page.props.flash.success" severity="success" @close="onClose">
     {{ $page.props.flash.success }}
   </Message>
 
-  <Message
-    v-if="$page.props.flash.error"
-    severity="error"
-    :life="3000"
-    :sticky="false"
-    @close="onClose"
-  >
+  <Message v-if="$page.props.flash.error" severity="error" @close="onClose">
     {{ $page.props.flash.error }}
   </Message>
 </template>
