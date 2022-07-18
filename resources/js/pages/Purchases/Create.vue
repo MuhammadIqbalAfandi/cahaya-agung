@@ -1,6 +1,5 @@
 <script setup>
-import { computed, watch, watchEffect } from 'vue'
-import { Inertia } from '@inertiajs/inertia'
+import { computed, provide } from 'vue'
 import { optionStatus } from './config'
 import { cartTable } from './config'
 import Details from './Components/Details.vue'
@@ -8,6 +7,7 @@ import Cart from './Components/Cart.vue'
 import { useProductCart } from './Composables/useProductCart'
 import { useDialog } from './Composables/useDialog'
 import { useForm } from '@/composables/useForm'
+import HistoryProduct from './Components/HistoryProduct.vue'
 import AppInputText from '@/components/AppInputText.vue'
 import AppInputNumber from '@/components/AppInputNumber.vue'
 import AppDropdown from '@/components/AppDropdown.vue'
@@ -56,38 +56,9 @@ const onSubmit = () => {
     })
 }
 
-watchEffect(() => {
-  if (props.productPurchase?.number) {
-    form.price = props.productPurchase.price
-
-    form.qty = props.productPurchase.qty
-  } else {
-    form.price = null
-  }
-})
-
-watch(
-  () => form.product,
-  () => {
-    if (form.product?.number) {
-      Inertia.reload({
-        data: {
-          productNumber: form.product.number,
-          supplierId: form.supplier.id,
-        },
-        only: ['productPurchase'],
-      })
-    }
-  }
-)
+provide('form', form)
 
 const productUnit = computed(() => form.product?.unit)
-
-const productPurchasePrice = computed(() => props.productPurchase?.price)
-
-const productPurchasePpn = computed(() => props.productPurchase?.ppn)
-
-const productPurchaseQty = computed(() => props.productPurchase?.qty)
 
 const dropdownStatus = computed(() => {
   return optionStatus.filter((val) => val.value != 'success')
@@ -212,33 +183,7 @@ const { onShowCreateProduct, onShowCreateSupplier } = useDialog()
 
                   <Divider type="dashed" />
 
-                  <div class="col-12">
-                    <h3 class="text-lg">Riwayat Produk Sebelumnya</h3>
-                  </div>
-
-                  <div class="col-12 md:col-6">
-                    <AppInputNumber
-                      disabled
-                      class="mb-0"
-                      label="Harga "
-                      placeholder="harga"
-                      v-model="productPurchasePrice"
-                    />
-
-                    <span v-if="productPurchasePpn" class="text-xs">
-                      Harga sudah termasuk PPN {{ ppn }} %
-                    </span>
-                  </div>
-
-                  <div class="col-12 md:col-6">
-                    <AppInputText
-                      disabled
-                      label="Kuantitas"
-                      placeholder="kuantitas"
-                      type="number"
-                      v-model="productPurchaseQty"
-                    />
-                  </div>
+                  <HistoryProduct :product-purchase="productPurchase" />
 
                   <Divider type="dashed" />
 

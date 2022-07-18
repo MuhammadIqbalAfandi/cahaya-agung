@@ -1,17 +1,19 @@
 <script setup>
+import { computed } from 'vue'
 import { optionStatus } from './config'
 import { cartTable } from './config'
 import Details from './Components/Details.vue'
 import Cart from './Components/Cart.vue'
-import HistoryProduct from './Components/HistoryProduct.vue'
 import { useProductCart } from './Composables/useProductCart'
-import { onShowDialog } from './Composables/onShowDialog'
+import { useDialog } from './Composables/useDialog'
 import { useForm } from '@/composables/useForm'
+import HistoryProduct from './Components/HistoryProduct.vue'
 import AppInputText from '@/components/AppInputText.vue'
 import AppInputNumber from '@/components/AppInputNumber.vue'
 import AppDropdown from '@/components/AppDropdown.vue'
 import AppAutoComplete from '@/components/AppAutoComplete.vue'
 import DashboardLayout from '@/layouts/Dashboard/DashboardLayout.vue'
+import { provide } from 'vue'
 
 const props = defineProps({
   id: Number,
@@ -25,7 +27,7 @@ const props = defineProps({
     default: [],
   },
   purchaseDetail: Array,
-  historyProductPurchase: Object,
+  productPurchase: Object,
 })
 
 const form = useForm({
@@ -50,6 +52,10 @@ const onSubmit = () => {
     })
 }
 
+provide('form', form)
+
+const productUnit = computed(() => form.product?.unit)
+
 const {
   productCart,
   productCartDeleted,
@@ -60,7 +66,7 @@ const {
   totalProductPrice,
 } = useProductCart(form, props.purchaseDetail)
 
-const { onShowCreateProduct } = onShowDialog()
+const { onShowCreateProduct } = useDialog()
 </script>
 
 <template>
@@ -112,7 +118,7 @@ const { onShowCreateProduct } = onShowDialog()
                       field="name"
                       refresh-data="products"
                       v-model="form.product"
-                      :error="form.errors.products"
+                      :error="form.errors.product"
                       :suggestions="products"
                     >
                       <template #item="slotProps">
@@ -141,20 +147,19 @@ const { onShowCreateProduct } = onShowDialog()
                       disabled
                       label="Satuan"
                       placeholder="satuan"
-                      v-model="form.product.unit"
+                      v-model="productUnit"
                     />
                   </div>
 
-                  <HistoryProduct
-                    :product="form.product"
-                    :supplier="form.supplier"
-                  />
+                  <Divider type="dashed" />
+
+                  <HistoryProduct :product-purchase="productPurchase" />
 
                   <Divider type="dashed" />
 
                   <div class="col-12 md:col-6">
                     <AppInputNumber
-                      :disabled="!form.supplier?.id"
+                      :disabled="!form.product?.id"
                       label="Harga"
                       placeholder="harga"
                       v-model="form.price"
@@ -163,7 +168,7 @@ const { onShowCreateProduct } = onShowDialog()
 
                   <div class="col-12 md:col-6">
                     <AppInputText
-                      :disabled="!form.supplier?.id"
+                      :disabled="!form.product?.id"
                       label="Kuantitas"
                       placeholder="kuantitas"
                       type="number"

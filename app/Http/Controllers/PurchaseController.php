@@ -190,7 +190,7 @@ class PurchaseController extends Controller
                     "unit" => $purchase->product->unit,
                 ]
             ),
-            "historyProductPurchase" => Inertia::lazy(
+            "productPurchase" => Inertia::lazy(
                 fn() => PurchaseDetail::historyProductPurchase(
                     request()->only("productNumber", "supplierId")
                 )
@@ -198,7 +198,7 @@ class PurchaseController extends Controller
                     ->get()
                     ->transform(
                         fn($purchaseDetail) => [
-                            "id" => $purchaseDetail->id,
+                            "number" => $purchaseDetail->product_number,
                             "price" => $purchaseDetail->price,
                             "qty" => $purchaseDetail->qty,
                             "ppn" => $purchaseDetail->purchase->ppn,
