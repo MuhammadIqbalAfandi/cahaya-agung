@@ -14,8 +14,8 @@ defineProps({
 <template>
   <DashboardLayout title="Daftar Penjualan">
     <DataTable
-      responsiveLayout="scroll"
-      columnResizeMode="expand"
+      responsive-layout="scroll"
+      column-resize-mode="expand"
       :value="sales.data"
       :rowHover="true"
       :stripedRows="true"

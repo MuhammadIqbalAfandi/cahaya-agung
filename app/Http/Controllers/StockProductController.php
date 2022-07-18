@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\StockProduct;
+use App\Services\HelperService;
 use Illuminate\Http\Request;
 
 class StockProductController extends Controller
@@ -19,7 +20,25 @@ class StockProductController extends Controller
      */
     public function index()
     {
-        return inertia("StockProducts/Index");
+        return inertia("StockProducts/Index", [
+            "initialSearch" => request("search"),
+            "stockProducts" => StockProduct::filter(request()->only("search"))
+                ->latest()
+                ->paginate(10)
+                ->withQueryString()
+                ->through(
+                    fn($stockProduct) => [
+                        "id" => $stockProduct->id,
+                        "updatedAt" => $stockProduct->updated_at,
+                        "name" => $stockProduct->product->name,
+                        "price" => HelperService::setRupiahFormat(
+                            $stockProduct->price
+                        ),
+                        "qty" => $stockProduct->qty,
+                        "unit" => $stockProduct->product->unit,
+                    ]
+                ),
+        ]);
     }
 
     /**
