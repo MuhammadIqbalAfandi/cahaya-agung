@@ -3,7 +3,7 @@ import { useForm } from '@/composables/useForm'
 import { IDRCurrencyFormat } from '@/utils/helpers'
 import { cartTable } from './config'
 import Cart from './Components/Cart.vue'
-import { useProductCart } from './Composables/useProductCart'
+import { useCart } from './Composables/useCart'
 import DashboardLayout from '@/layouts/Dashboard/DashboardLayout.vue'
 
 const props = defineProps({
@@ -22,10 +22,7 @@ const form = useForm({
   checkedPpn: props.ppnChecked,
 })
 
-const { productCart, totalProductPrice } = useProductCart(
-  form,
-  props.purchaseDetail
-)
+const { cart, totalCartPrice } = useCart(form, props.purchaseDetail)
 </script>
 
 <template>
@@ -74,9 +71,7 @@ const { productCart, totalProductPrice } = useProductCart(
                       </div>
                       <div class="col">
                         <h3 class="text-base">Total Harga</h3>
-                        <span>{{
-                          IDRCurrencyFormat(totalProductPrice())
-                        }}</span>
+                        <span>{{ IDRCurrencyFormat(totalCartPrice()) }}</span>
                       </div>
                       <div class="col"></div>
                     </div>
@@ -88,7 +83,7 @@ const { productCart, totalProductPrice } = useProductCart(
           <div class="col-12">
             <Cart
               title="Keranjang Produk"
-              :product-cart="productCart"
+              :cart="cart"
               :header-table="cartTable"
               :btn-ppn-disabled="true"
               :btn-delete-show="false"

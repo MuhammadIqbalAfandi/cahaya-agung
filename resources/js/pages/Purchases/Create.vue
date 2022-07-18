@@ -4,7 +4,7 @@ import { optionStatus } from './config'
 import { cartTable } from './config'
 import Details from './Components/Details.vue'
 import Cart from './Components/Cart.vue'
-import { useProductCart } from './Composables/useProductCart'
+import { useCart } from './Composables/useCart'
 import { useDialog } from './Composables/useDialog'
 import { useForm } from '@/composables/useForm'
 import HistoryProduct from './Components/HistoryProduct.vue'
@@ -45,13 +45,13 @@ const onSubmit = () => {
       status: data.status,
       ppn: data.checkedPpn,
       supplier_id: data.supplier.id,
-      products: productCart,
+      cart,
     }))
     .post(route('purchases.store'), {
       onSuccess: () => {
         form.reset()
 
-        onClearProductCart()
+        onClearCart()
       },
     })
 }
@@ -65,13 +65,13 @@ const dropdownStatus = computed(() => {
 })
 
 const {
-  productCart,
-  productErrors,
-  onClearProductCart,
-  onAddProduct,
-  onDeleteProduct,
-  totalProductPrice,
-} = useProductCart(form)
+  cart,
+  cartErrors,
+  onClearCart,
+  onAddCart,
+  onDeleteCart,
+  totalCartPrice,
+} = useCart(form)
 
 const { onShowCreateProduct, onShowCreateSupplier } = useDialog()
 </script>
@@ -105,9 +105,9 @@ const { onShowCreateProduct, onShowCreateSupplier } = useDialog()
                       placeholder="supplier"
                       field="name"
                       refresh-data="suppliers"
-                      v-model="form.supplier"
                       :error="form.errors.suppliers_id"
                       :suggestions="suppliers"
+                      v-model="form.supplier"
                     >
                       <template #item="slotProps">
                         <template v-if="slotProps.item">
@@ -141,15 +141,15 @@ const { onShowCreateProduct, onShowCreateSupplier } = useDialog()
                 <div class="grid">
                   <div class="col-12 md:col-6">
                     <AppAutoComplete
-                      :disabled="!form.supplier?.id"
                       empty
                       label="Produk"
                       placeholder="produk"
                       field="name"
                       refresh-data="products"
-                      v-model="form.product"
+                      :disabled="!form.supplier?.id"
                       :error="form.errors.product"
                       :suggestions="products"
+                      v-model="form.product"
                     >
                       <template #item="slotProps">
                         <template v-if="slotProps.item">
@@ -189,19 +189,19 @@ const { onShowCreateProduct, onShowCreateSupplier } = useDialog()
 
                   <div class="col-12 md:col-6">
                     <AppInputNumber
-                      :disabled="!form.product?.id"
                       label="Harga Terbaru"
                       placeholder="harga terbaru"
+                      :disabled="!form.product?.id"
                       v-model="form.price"
                     />
                   </div>
 
                   <div class="col-12 md:col-6">
                     <AppInputText
-                      :disabled="!form.product?.id"
                       label="Kuantitas"
                       placeholder="kuantitas"
                       type="number"
+                      :disabled="!form.product?.id"
                       v-model="form.qty"
                     />
                   </div>
@@ -213,14 +213,11 @@ const { onShowCreateProduct, onShowCreateSupplier } = useDialog()
                     label="Tambah Produk"
                     icon="pi pi-check"
                     class="p-button-outlined"
-                    :class="{ 'p-button-danger': productErrors.length }"
+                    :class="{ 'p-button-danger': cartErrors.length }"
                     :disabled="
-                      !form.price ||
-                      !Number(form.qty) ||
-                      !form.product?.number ||
-                      productErrors.length
+                      !form.price || form.qty <= 0 || !form.product?.number
                     "
-                    @click="onAddProduct"
+                    @click="onAddCart"
                   />
                 </div>
               </template>
@@ -230,11 +227,11 @@ const { onShowCreateProduct, onShowCreateSupplier } = useDialog()
           <div class="col-12">
             <Cart
               title="Keranjang Produk"
-              :product-cart="productCart"
+              :cart="cart"
               :header-table="cartTable"
               :btn-edit-show="false"
               v-model:checked-ppn="form.checkedPpn"
-              @delete="onDeleteProduct"
+              @delete="onDeleteCart"
             />
           </div>
         </div>
@@ -248,12 +245,12 @@ const { onShowCreateProduct, onShowCreateSupplier } = useDialog()
           :status="form.status"
           :person="form.supplier"
           :product="form.product"
-          :price="totalProductPrice()"
+          :price="totalCartPrice()"
           :disabled="
             form.processing ||
             !form.status ||
             !form.supplier?.id ||
-            productCart.length === 0
+            cart.length === 0
           "
           @submit="onSubmit"
         />

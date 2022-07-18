@@ -10,7 +10,7 @@ defineProps({
     required: true,
     type: Array,
   },
-  productCart: {
+  cart: {
     required: true,
     type: Array,
   },
@@ -38,7 +38,7 @@ const editingRows = ref([])
     columnResizeMode="expand"
     edit-mode="row"
     data-key="number"
-    :value="productCart"
+    :value="cart"
     :rowHover="true"
     :stripedRows="true"
     v-model:editing-rows="editingRows"

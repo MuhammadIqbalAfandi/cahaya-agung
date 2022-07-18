@@ -4,7 +4,7 @@ import { optionStatus } from './config'
 import { cartTable } from './config'
 import Details from './Components/Details.vue'
 import Cart from './Components/Cart.vue'
-import { useProductCart } from './Composables/useProductCart'
+import { useCart } from './Composables/useCart'
 import { useDialog } from './Composables/useDialog'
 import { useForm } from '@/composables/useForm'
 import HistoryProduct from './Components/HistoryProduct.vue'
@@ -45,10 +45,10 @@ const onSubmit = () => {
     .transform((data) => ({
       status: data.status,
       ppn: data.checkedPpn,
-      products: [...productCart, ...productCartDeleted],
+      products: [...cart, ...cartDeleted],
     }))
     .put(route('purchases.update', props.id), {
-      onSuccess: () => onClearProductCartDelete(),
+      onSuccess: () => onClearCartDelete(),
     })
 }
 
@@ -57,14 +57,14 @@ provide('form', form)
 const productUnit = computed(() => form.product?.unit)
 
 const {
-  productCart,
-  productCartDeleted,
-  onClearProductCartDelete,
-  onAddProduct,
-  onDeleteProduct,
-  onEditProduct,
-  totalProductPrice,
-} = useProductCart(form, props.purchaseDetail)
+  cart,
+  cartDeleted,
+  cartErrors,
+  onClearCartDelete,
+  onAddCart,
+  onDeleteCart,
+  totalCartPrice,
+} = useCart(form, props.purchaseDetail)
 
 const { onShowCreateProduct } = useDialog()
 </script>
@@ -111,15 +111,15 @@ const { onShowCreateProduct } = useDialog()
                 <div class="grid">
                   <div class="col-12 md:col-6">
                     <AppAutoComplete
-                      :disabled="!form.supplier?.id"
                       empty
                       label="Produk"
                       placeholder="produk"
                       field="name"
                       refresh-data="products"
-                      v-model="form.product"
+                      :disabled="!form.supplier?.id"
                       :error="form.errors.product"
                       :suggestions="products"
+                      v-model="form.product"
                     >
                       <template #item="slotProps">
                         <template v-if="slotProps.item">
@@ -159,19 +159,19 @@ const { onShowCreateProduct } = useDialog()
 
                   <div class="col-12 md:col-6">
                     <AppInputNumber
-                      :disabled="!form.product?.id"
                       label="Harga"
                       placeholder="harga"
+                      :disabled="!form.product?.id"
                       v-model="form.price"
                     />
                   </div>
 
                   <div class="col-12 md:col-6">
                     <AppInputText
-                      :disabled="!form.product?.id"
                       label="Kuantitas"
                       placeholder="kuantitas"
                       type="number"
+                      :disabled="!form.product?.id"
                       v-model="form.qty"
                     />
                   </div>
@@ -183,10 +183,11 @@ const { onShowCreateProduct } = useDialog()
                     label="Tambah Produk"
                     icon="pi pi-check"
                     class="p-button-outlined"
+                    :class="{ 'p-button-danger': cartErrors.length }"
                     :disabled="
-                      !form.price || !form.qty || !form.product?.number
+                      !form.price || form.qty <= 0 || !form.product?.number
                     "
-                    @click="onAddProduct"
+                    @click="onAddCart"
                   />
                 </div>
               </template>
@@ -196,11 +197,11 @@ const { onShowCreateProduct } = useDialog()
           <div class="col-12">
             <Cart
               title="Keranjang Produk"
-              :product-cart="productCart"
+              :cart="cart"
               :header-table="cartTable"
+              :btn-edit-show="false"
               v-model:checked-ppn="form.checkedPpn"
-              @delete="onDeleteProduct"
-              @edit="onEditProduct"
+              @delete="onDeleteCart"
             />
           </div>
         </div>
@@ -214,12 +215,12 @@ const { onShowCreateProduct } = useDialog()
           :status="form.status"
           :person="form.supplier"
           :product="form.product"
-          :price="totalProductPrice()"
+          :price="totalCartPrice()"
           :disabled="
             form.processing ||
             !form.status ||
             !form.supplier?.id ||
-            productCart.length === 0
+            cart.length === 0
           "
           @submit="onSubmit"
         />

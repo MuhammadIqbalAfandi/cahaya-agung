@@ -5,7 +5,7 @@ import { optionStatus } from './config'
 import { cartTable } from './config'
 import Details from './Components/Details.vue'
 import Cart from './Components/Cart.vue'
-import { useProductCart } from './Composables/useProductCart'
+import { useCart } from './Composables/useCart'
 import { useDialog } from './Composables/useDialog'
 import { useForm } from '@/composables/useForm'
 import AppInputText from '@/components/AppInputText.vue'
@@ -44,13 +44,13 @@ const onSubmit = () => {
       status: data.status,
       ppn: data.checkedPpn,
       customer_id: data.customer.id,
-      products: productCart,
+      products: cart,
     }))
     .post(route('sales.store'), {
       onSuccess: () => {
         form.reset()
 
-        onClearProductCart()
+        onClearCart()
       },
     })
 }
@@ -67,6 +67,14 @@ const dropdownStatus = computed(() => {
   return optionStatus.filter((val) => val.value != 'pending')
 })
 
+const productProductUnit = computed(() => form.product?.unit)
+
+const productProductPrice = computed(() => form.product?.price)
+
+const productProductPpn = computed(() => form.product?.ppn)
+
+const productProductQty = computed(() => form.product?.qty)
+
 const profitDescription = computed(() => {
   const priceProfit = profit(form.product?.price, form.product?.profit)
 
@@ -74,13 +82,13 @@ const profitDescription = computed(() => {
 })
 
 const {
-  productCart,
-  productErrors,
-  onAddProduct,
-  onClearProductCart,
-  onDeleteProduct,
-  totalProductPrice,
-} = useProductCart(form)
+  cart,
+  cartErrors,
+  onAddCart,
+  onClearCart,
+  onDeleteCart,
+  totalCartPrice,
+} = useCart(form)
 
 const { onShowCustomerCreate } = useDialog()
 </script>
@@ -173,44 +181,42 @@ const { onShowCustomerCreate } = useDialog()
 
                   <Divider type="dashed" />
 
-                  <template v-if="form.product?.number">
-                    <div class="col-12">
-                      <h3 class="text-lg">Riwayat Pembelian Sebelumnya</h3>
-                    </div>
+                  <div class="col-12">
+                    <h3 class="text-lg">Riwayat Pembelian Sebelumnya</h3>
+                  </div>
 
-                    <div class="col-12 md:col-6">
-                      <AppInputText
-                        disabled
-                        label="Satuan"
-                        placeholder="satuan"
-                        v-model="form.product.unit"
-                      />
-                    </div>
+                  <div class="col-12 md:col-6">
+                    <AppInputText
+                      disabled
+                      label="Satuan"
+                      placeholder="satuan"
+                      v-model="productProductUnit"
+                    />
+                  </div>
 
-                    <div class="col-12 md:col-6">
-                      <AppInputNumber
-                        disabled
-                        class="mb-0"
-                        label="Harga"
-                        placeholder="harga"
-                        v-model="form.product.price"
-                      />
+                  <div class="col-12 md:col-6">
+                    <AppInputNumber
+                      disabled
+                      class="mb-0"
+                      label="Harga"
+                      placeholder="harga"
+                      v-model="productProductPrice"
+                    />
 
-                      <span v-if="form.product.ppn" class="text-xs">
-                        Harga sudah termasuk PPN {{ ppn }} %
-                      </span>
-                    </div>
+                    <span v-if="productProductPpn" class="text-xs">
+                      Harga sudah termasuk PPN {{ ppn }} %
+                    </span>
+                  </div>
 
-                    <div class="col-12 md:col-6">
-                      <AppInputText
-                        disabled
-                        label="Stok Tersedia"
-                        placeholder="stok tersedia"
-                        type="number"
-                        v-model="form.product.qty"
-                      />
-                    </div>
-                  </template>
+                  <div class="col-12 md:col-6">
+                    <AppInputText
+                      disabled
+                      label="Stok Tersedia"
+                      placeholder="stok tersedia"
+                      type="number"
+                      v-model="productProductQty"
+                    />
+                  </div>
 
                   <Divider type="dashed" />
 
@@ -245,11 +251,11 @@ const { onShowCustomerCreate } = useDialog()
                     label="Tambah Produk"
                     icon="pi pi-check"
                     class="p-button-outlined"
-                    :class="{ 'p-button-danger': productErrors.length }"
+                    :class="{ 'p-button-danger': cartErrors.length }"
                     :disabled="
-                      !form.price || !Number(form.qty) || !form.product?.number
+                      !form.price || form.qty <= 0 || !form.product?.number
                     "
-                    @click="onAddProduct"
+                    @click="onAddCart"
                   />
                 </div>
               </template>
@@ -259,11 +265,11 @@ const { onShowCustomerCreate } = useDialog()
           <div class="col-12">
             <Cart
               title="Keranjang Produk"
-              :product-cart="productCart"
+              :cart="cart"
               :header-table="cartTable"
               :btn-edit-show="false"
               v-model:checked-ppn="form.checkedPpn"
-              @delete="onDeleteProduct"
+              @delete="onDeleteCart"
             />
           </div>
         </div>
@@ -277,12 +283,12 @@ const { onShowCustomerCreate } = useDialog()
           :status="form.status"
           :person="form.customer"
           :product="form.product"
-          :price="totalProductPrice()"
+          :price="totalCartPrice()"
           :disabled="
             form.processing ||
             !form.status ||
             !form.customer?.id ||
-            productCart.length === 0
+            cart.length === 0
           "
           @submit="onSubmit"
         />

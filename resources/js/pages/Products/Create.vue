@@ -10,7 +10,7 @@ const props = defineProps({
 const form = useForm({
   name: null,
   unit: null,
-  profit: 0,
+  profit: null,
 })
 
 const onSubmit = () => {
