@@ -45,7 +45,7 @@ const onSubmit = () => {
       status: data.status,
       ppn: data.checkedPpn,
       supplier_id: data.supplier.id,
-      cart,
+      products: cart,
     }))
     .post(route('purchases.store'), {
       onSuccess: () => {
