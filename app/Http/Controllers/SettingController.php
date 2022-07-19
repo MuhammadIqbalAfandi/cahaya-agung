@@ -2,11 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\Ppn\StorePpnRequest as PpnStorePpnRequest;
 use App\Models\Ppn;
 use Illuminate\Http\Request;
 
-class PpnController extends Controller
+class SettingController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,7 +14,9 @@ class PpnController extends Controller
      */
     public function index()
     {
-        //
+        return inertia("Settings/Index", [
+            "ppn" => Ppn::first()->ppn,
+        ]);
     }
 
     /**
@@ -34,22 +35,18 @@ class PpnController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(PpnStorePpnRequest $request)
+    public function store(Request $request)
     {
-        Ppn::truncate();
-
-        Ppn::create($request->validated());
-
-        return back()->with("success", __("messages.success.update.ppn"));
+        //
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  Ppn $ppn
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($ppn)
+    public function show($id)
     {
         //
     }
@@ -57,10 +54,10 @@ class PpnController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  Ppn $ppn
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($ppn)
+    public function edit($id)
     {
         //
     }
@@ -69,10 +66,10 @@ class PpnController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  Ppn $ppn
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $ppn)
+    public function update(Request $request, $id)
     {
         //
     }
@@ -80,10 +77,10 @@ class PpnController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  Ppn $ppn
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($ppn)
+    public function destroy($id)
     {
         //
     }

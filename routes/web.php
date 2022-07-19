@@ -6,6 +6,7 @@ use App\Http\Controllers\PpnController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\PurchaseController;
 use App\Http\Controllers\SalesController;
+use App\Http\Controllers\SettingController;
 use App\Http\Controllers\StockProductController;
 use App\Http\Controllers\SupplierController;
 use App\Http\Controllers\UserController;
@@ -45,6 +46,8 @@ Route::middleware(["auth", "verified"])->group(function () {
     Route::resource("/users", UserController::class);
 
     Route::resource("/ppn", PpnController::class);
+
+    Route::resource("/settings", SettingController::class);
 
     Route::resource("/customers", CustomerController::class);
 

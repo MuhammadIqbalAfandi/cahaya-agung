@@ -1,5 +1,5 @@
 export default {
-  // Admin
+  // Owner
   1: [
     {
       label: 'Home',
@@ -31,16 +31,16 @@ export default {
       label: 'Pengaturan',
       items: [
         {
-          label: 'PPN',
-          icon: 'pi pi-percentage',
-          to: '/ppn',
-          component: 'PPN/Index',
+          label: 'Profil Perusahaan',
+          icon: 'pi pi-cog',
+          to: '/settings',
+          component: 'Settigs/Index',
         },
       ],
     },
   ],
 
-  // Supervisor
+  // Admin 1
   2: [
     {
       label: 'Home',
@@ -78,7 +78,7 @@ export default {
     },
   ],
 
-  // Operator
+  // Admin 2
   3: [
     {
       label: 'Home',
