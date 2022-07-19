@@ -13,6 +13,10 @@
             width: 100%;
         }
 
+        tr {
+            vertical-align: super;
+        }
+
         tfoot tr td {
             font-weight: bold;
             font-size: x-small;
@@ -27,9 +31,14 @@
             left: 0px;
             top: -180px;
             right: 0px;
-            height: 110px;
+            height: 140px;
             text-align: center;
-            padding-top: 40px;
+            padding-top: 20px;
+        }
+
+        #content {
+            position: relative;
+            height: 100%;
         }
 
         #footer {
@@ -47,17 +56,20 @@
 
 <body>
     <div id="header">
+        <h1 style="text-align: right; margin: 0; margin-right: 15%;"><strong
+                style="text-transform: uppercase; font-size: medium">INVOICE</strong></h1>
+
         <table>
             <tr>
                 <td style="width: 65%;">
                     <table>
                         <tr>
-                            <td style="vertical-align: super;"><strong>To</strong></td>
-                            <td style="vertical-align: super;">:</td>
+                            <td><strong>Kepada</strong></td>
+                            <td>:</td>
                             <td style="padding: 0;">
                                 <table style="border-spacing: 0;">
                                     <tr>
-                                        <td>Cahaya Agung</td>
+                                        <td>Your Company</td>
                                     </tr>
                                     <tr>
                                         <td>Anonym</td>
@@ -66,8 +78,8 @@
                             </td>
                         </tr>
                         <tr>
-                            <td style="vertical-align: super"><strong>NPWP</strong></td>
-                            <td style="vertical-align: super">:</td>
+                            <td><strong>NPWP</strong></td>
+                            <td>:</td>
                             <td style="padding: 0">
                                 <table style="border-spacing: 0">
                                     <tr>
@@ -80,9 +92,6 @@
                 </td>
                 <td style="width: 35%;">
                     <table>
-                        <tr style="text-align: center">
-                            <td> <strong style="text-transform: uppercase; font-size: medium">INVOICE</strong></td>
-                        </tr>
                         <tr>
                             <td>
                                 <table>
@@ -92,9 +101,14 @@
                                         <td>Anonym</td>
                                     </tr>
                                     <tr>
+                                        <td>NPWP</td>
+                                        <td>:</td>
+                                        <td>XXXXXXXXXXXXXXX</td>
+                                    </tr>
+                                    <tr>
                                         <td>No HP</td>
                                         <td>:</td>
-                                        <td>08XXXXXXXXXX</td>
+                                        <td>XXXXXXXXXXXX</td>
                                     </tr>
                                     <tr>
                                         <td>Alamat</td>
@@ -171,37 +185,39 @@
             </tfoot>
         </table>
 
-        <table>
-            <tbody>
-                <tr>
-                    <td style="width: 40%;"></td>
-                    <td style="width: 60%;">
-                        <table style="width: 100%; text-align: right;">
-                            <thead style="margin-bottom: 20px;">
-                                <tr>
-                                    <td></td>
-                                    <td colspan="1">
-                                        <p style="margin-bottom: 75px; margin-top: 70px;">Cahaya Agung</p>
-                                    </td>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>
-                                        <span
-                                            style="border-top: 1px solid black; width: 150px;display: inline-block; text-align: left;">Diterima</span>
-                                    </td>
-                                    <td>
-                                        <span
-                                            style="border-top: 1px solid black; width: 120px;display: inline-block; text-align: center;">Penjual</span>
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
+        <div style="position: absolute; bottom: 0; left: 0; right: 0;">
+            <table>
+                <tbody>
+                    <tr>
+                        <td style="width: 40%;"></td>
+                        <td style="width: 60%;">
+                            <table style="width: 100%; text-align: right;">
+                                <thead style="margin-bottom: 20px;">
+                                    <tr>
+                                        <td></td>
+                                        <td colspan="1">
+                                            <p style="margin-bottom: 75px; margin-top: 70px;">Your Company</p>
+                                        </td>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>
+                                            <span
+                                                style="border-top: 1px solid black; width: 150px;display: inline-block; text-align: left;">Diterima</span>
+                                        </td>
+                                        <td>
+                                            <span
+                                                style="border-top: 1px solid black; width: 120px;display: inline-block; text-align: center;">Penjual</span>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
     </div>
 </body>
 
