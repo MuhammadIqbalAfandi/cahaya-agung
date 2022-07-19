@@ -2,18 +2,19 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\Purchase\StorePurchaseRequest;
-use App\Http\Requests\Purchase\UpdatePurchaseRequest;
 use App\Models\Ppn;
+use Inertia\Inertia;
 use App\Models\Product;
 use App\Models\Purchase;
-use App\Models\PurchaseDetail;
-use App\Models\StockProduct;
 use App\Models\Supplier;
+use App\Models\StockProduct;
+use App\Models\PurchaseDetail;
 use App\Services\HelperService;
-use Illuminate\Database\QueryException;
+use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Support\Facades\DB;
-use Inertia\Inertia;
+use Illuminate\Database\QueryException;
+use App\Http\Requests\Purchase\StorePurchaseRequest;
+use App\Http\Requests\Purchase\UpdatePurchaseRequest;
 
 class PurchaseController extends Controller
 {
@@ -318,5 +319,11 @@ class PurchaseController extends Controller
     public function destroy(Purchase $purchase)
     {
         //
+    }
+
+    public function pdf(Purchase $purchase)
+    {
+        $pdf = Pdf::loadView("pdf.purchases", compact("purchase"));
+        return $pdf->stream();
     }
 }

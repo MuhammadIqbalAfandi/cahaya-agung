@@ -27,9 +27,9 @@
             left: 0px;
             top: -180px;
             right: 0px;
-            height: 110px;
+            height: 140px;
             text-align: center;
-            padding-top: 40px;
+            padding-top: 20px;
         }
 
         #footer {
@@ -89,7 +89,12 @@
                                     <tr>
                                         <td>Nama</td>
                                         <td>:</td>
-                                        <td>Anonym</td>
+                                        <td>XXXXXXXXXXXXXXX</td>
+                                    </tr>
+                                    <tr>
+                                        <td>NPWP</td>
+                                        <td>:</td>
+                                        <td>XXXXXXXXXXXXXXX</td>
                                     </tr>
                                     <tr>
                                         <td>No HP</td>
@@ -97,17 +102,17 @@
                                         <td>08XXXXXXXXXX</td>
                                     </tr>
                                     <tr>
-                                        <td>Alamat</td>
+                                        <td>Email</td>
                                         <td>:</td>
                                         <td>Anonym</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Nomor Penjualan</td>
+                                        <td>:</td>
+                                        <td>08XXXXXXXXXX</td>
                                     </tr>
                                     <tr>
                                         <td>Tanggal</td>
-                                        <td>:</td>
-                                        <td>Anonym</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Nomor Pembelian</td>
                                         <td>:</td>
                                         <td>Anonym</td>
                                     </tr>

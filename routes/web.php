@@ -9,7 +9,6 @@ use App\Http\Controllers\SalesController;
 use App\Http\Controllers\StockProductController;
 use App\Http\Controllers\SupplierController;
 use App\Http\Controllers\UserController;
-use App\Models\Sale;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -50,6 +49,11 @@ Route::middleware(["auth", "verified"])->group(function () {
     Route::resource("/customers", CustomerController::class);
 
     Route::resource("/purchases", PurchaseController::class);
+
+    Route::get("/purchases/pdf/{purchase}", [
+        PurchaseController::class,
+        "pdf",
+    ])->name("purchases.pdf");
 
     Route::resource("/sales", SalesController::class);
 
