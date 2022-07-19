@@ -1,12 +1,15 @@
 <script setup>
+import { Inertia } from '@inertiajs/inertia'
 import { useForm } from '@/composables/useForm'
 import { IDRCurrencyFormat } from '@/utils/helpers'
 import { cartTable } from './config'
 import Cart from './Components/Cart.vue'
 import { useCart } from './Composables/useCart'
+import AppButtonLink from '@/components/AppButtonLink.vue'
 import DashboardLayout from '@/layouts/Dashboard/DashboardLayout.vue'
 
 const props = defineProps({
+  id: Number,
   number: String,
   ppn: Number,
   status: String,
@@ -92,6 +95,16 @@ const { cart, totalCartPrice } = useCart(form, props.saleDetail)
             />
           </div>
         </div>
+      </div>
+
+      <div class="col-12 md:col-8 flex justify-content-end">
+        <AppButtonLink
+          label="Cetak"
+          icon="pi pi-print"
+          target="_blank"
+          :inertia-link="false"
+          :href="route('sales.pdf', id)"
+        />
       </div>
     </div>
   </DashboardLayout>

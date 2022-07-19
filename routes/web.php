@@ -9,6 +9,7 @@ use App\Http\Controllers\SalesController;
 use App\Http\Controllers\StockProductController;
 use App\Http\Controllers\SupplierController;
 use App\Http\Controllers\UserController;
+use App\Models\Sale;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -22,35 +23,45 @@ use Illuminate\Support\Facades\Route;
 |
  */
 
-Route::middleware(['auth', 'verified'])->group(function () {
-    Route::get('/', DashboardController::class);
+Route::middleware(["auth", "verified"])->group(function () {
+    Route::get("/", DashboardController::class);
 
-    Route::get('/dashboards', DashboardController::class);
+    Route::get("/dashboards", DashboardController::class);
 
-    Route::put('/users/reset-password/{user}', [UserController::class, 'resetPassword'])
-        ->name('users.reset-password');
+    Route::put("/users/reset-password/{user}", [
+        UserController::class,
+        "resetPassword",
+    ])->name("users.reset-password");
 
-    Route::delete('/users/block/{user}', [UserController::class, 'block'])
-        ->name('users.block');
+    Route::delete("/users/block/{user}", [
+        UserController::class,
+        "block",
+    ])->name("users.block");
 
-    Route::post('/users/change-password/{user}', [UserController::class, 'changePassword'])
-        ->name('users.change-password');
+    Route::post("/users/change-password/{user}", [
+        UserController::class,
+        "changePassword",
+    ])->name("users.change-password");
 
-    Route::resource('/users', UserController::class);
+    Route::resource("/users", UserController::class);
 
-    Route::resource('/ppn', PpnController::class);
+    Route::resource("/ppn", PpnController::class);
 
-    Route::resource('/customers', CustomerController::class);
+    Route::resource("/customers", CustomerController::class);
 
-    Route::resource('/purchases', PurchaseController::class);
+    Route::resource("/purchases", PurchaseController::class);
 
-    Route::resource('/sales', SalesController::class);
+    Route::resource("/sales", SalesController::class);
 
-    Route::resource('/suppliers', SupplierController::class);
+    Route::get("/sales/pdf/{sale}", [SalesController::class, "pdf"])->name(
+        "sales.pdf"
+    );
 
-    Route::resource('/stock-products', StockProductController::class);
+    Route::resource("/suppliers", SupplierController::class);
 
-    Route::resource('/products', ProductController::class);
+    Route::resource("/stock-products", StockProductController::class);
+
+    Route::resource("/products", ProductController::class);
 });
 
-require __DIR__ . '/auth.php';
+require __DIR__ . "/auth.php";

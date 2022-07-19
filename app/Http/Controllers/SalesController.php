@@ -12,6 +12,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Database\QueryException;
 use App\Http\Requests\Sales\StoreSaleRequest;
 use App\Http\Requests\Sales\UpdateSaleRequest;
+use Barryvdh\DomPDF\Facade\Pdf;
 
 class SalesController extends Controller
 {
@@ -197,5 +198,11 @@ class SalesController extends Controller
     public function destroy(Sale $sale)
     {
         //
+    }
+
+    public function pdf(Sale $sale)
+    {
+        $pdf = Pdf::loadView("pdf.sales", compact("sale"));
+        return $pdf->stream();
     }
 }
