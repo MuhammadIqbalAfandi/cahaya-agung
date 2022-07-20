@@ -1,9 +1,7 @@
 <script setup>
 import { useForm } from '@/composables/useForm'
 import { useState } from '../Composables/useState'
-import Invoice from './Invoice.vue'
 import AppInputText from '@/components/AppInputText.vue'
-import { provide } from 'vue'
 
 const props = defineProps({
   company: Object,
@@ -17,8 +15,6 @@ const form = useForm({
   email: props.company?.email,
   npwp: props.company?.npwp,
 })
-
-provide('form', form)
 
 const { state, setState } = useState()
 
@@ -99,12 +95,6 @@ const onSubmit = () => {
           @click="onSubmit"
         />
       </div>
-    </div>
-
-    <Divider />
-
-    <div class="col-12 hidden sm:block">
-      <Invoice />
     </div>
   </div>
 </template>
