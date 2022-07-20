@@ -4,7 +4,6 @@ import { useConfirm } from 'primevue/useconfirm'
 import { useForm } from '@/composables/useForm'
 import AppInputText from '@/components/AppInputText.vue'
 import AppDropdown from '@/components/AppDropdown.vue'
-import AppButtonLink from '@/components/AppButtonLink.vue'
 import DashboardLayout from '@/layouts/Dashboard/DashboardLayout.vue'
 
 const props = defineProps({
@@ -12,19 +11,19 @@ const props = defineProps({
   roles: Array,
 })
 
-const deleteConfirm = useConfirm()
+const blockConfirm = useConfirm()
 
-const onDeleteUser = () => {
-  deleteConfirm.require({
-    message: `Yakin akan menghapus (${props.user.username}) ?`,
-    header: 'Hapus User',
-    acceptLabel: 'Hapus',
+const onBlockConfirm = () => {
+  blockConfirm.require({
+    message: `Yakin akan memblokir (${props.user.username}) ?`,
+    header: 'Blokir User',
+    acceptLabel: props.user.status ? 'Blokir' : 'Aktifkan',
     rejectLabel: 'Batalkan',
     accept: () => {
-      Inertia.delete(route('users.destroy', props.user.id))
+      Inertia.delete(route('users.block', props.user.id))
     },
     reject: () => {
-      deleteConfirm.close()
+      blockConfirm.close()
     },
   })
 }
@@ -84,13 +83,13 @@ const onSubmit = () => {
 
           <template #footer>
             <div class="flex flex-column md:flex-row justify-content-end">
-              <AppButtonLink
+              <Button
                 v-if="user.role_id !== 1"
-                label="Blokir"
                 icon="pi pi-ban"
-                method="delete"
-                class="p-button-outlined p-button-danger md:mr-3 mb-3 md:mb-0"
-                :href="route('users.block', user.id)"
+                class="p-button-outlined md:mr-3 mb-3 md:mb-0"
+                :class="[user.status ? 'p-button-danger' : 'p-button-success']"
+                :label="user.status ? 'Blokir' : 'Aktifkan'"
+                @click="onBlockConfirm"
               />
 
               <Button

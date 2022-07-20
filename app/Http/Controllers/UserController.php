@@ -105,7 +105,13 @@ class UserController extends Controller
     public function edit(User $user)
     {
         return inertia("Users/Edit", [
-            "user" => $user,
+            "user" => [
+                "id" => $user->id,
+                "name" => $user->name,
+                "username" => $user->username,
+                "role_id" => $user->role_id,
+                "status" => $user->getRawOriginal("status"),
+            ],
             "roles" => Role::whereNotIn("id", [1])
                 ->get()
                 ->transform(

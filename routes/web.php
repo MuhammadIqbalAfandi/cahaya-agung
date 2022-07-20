@@ -24,7 +24,7 @@ use Illuminate\Support\Facades\Route;
 |
  */
 
-Route::middleware(["auth", "verified"])->group(function () {
+Route::middleware(["auth", "verified", "checkBlocked"])->group(function () {
     Route::get("/", DashboardController::class);
 
     Route::get("/dashboards", DashboardController::class);

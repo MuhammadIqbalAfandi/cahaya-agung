@@ -14,6 +14,7 @@ return [
     "user" => [
         "active_user" => "Successfully active the user",
         "no_active_user" => "Successfully block user",
+        "blocked_user" => "Oops your are account blocked",
     ],
 
     "success" => [

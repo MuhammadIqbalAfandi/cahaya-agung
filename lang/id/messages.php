@@ -14,6 +14,7 @@ return [
     "user" => [
         "active_user" => "Sukses mengaktifkan user",
         "no_active_user" => "Sukses memblokir user",
+        "blocked_user" => "Oops akun kamu telah diblokir",
     ],
 
     "success" => [
