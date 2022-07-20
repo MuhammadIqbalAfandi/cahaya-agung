@@ -30,7 +30,7 @@ const form = inject('form')
                   <td>Partner Company</td>
                 </tr>
                 <tr>
-                  <td>Anonym</td>
+                  <td>XXXXXXXXXXXX</td>
                 </tr>
               </table>
             </td>
@@ -41,7 +41,7 @@ const form = inject('form')
             <td style="padding: 0">
               <table style="border-spacing: 0">
                 <tr>
-                  <td>XXXXXXXXXXXXXXX</td>
+                  <td>XXXXXXXXXXXX</td>
                 </tr>
               </table>
             </td>
@@ -56,32 +56,32 @@ const form = inject('form')
                 <tr>
                   <td>Nama</td>
                   <td>:</td>
-                  <td>{{ form.name }}</td>
+                  <td>{{ form.name ?? 'Your Company' }}</td>
                 </tr>
                 <tr>
                   <td>NPWP</td>
                   <td>:</td>
-                  <td>{{ form.npwp }}</td>
+                  <td>{{ form.npwp ?? 'XXXXXXXXXXXX' }}</td>
                 </tr>
                 <tr>
                   <td>Email</td>
                   <td>:</td>
-                  <td>{{ form.email }}</td>
+                  <td>{{ form.email ?? 'XXXXXXXXXXXX' }}</td>
                 </tr>
                 <tr>
                   <td>No Telepon</td>
                   <td>:</td>
-                  <td>{{ form.telephone }}</td>
+                  <td>{{ form.telephone ?? 'XXXXXXXXXXXX' }}</td>
                 </tr>
                 <tr>
                   <td>Alamat</td>
                   <td>:</td>
-                  <td>{{ form.address }}</td>
+                  <td>{{ form.address ?? 'XXXXXXXXXXXX' }}</td>
                 </tr>
                 <tr>
                   <td>Tanggal</td>
                   <td>:</td>
-                  <td>Anonym</td>
+                  <td>XXXXXXXXXXXX</td>
                 </tr>
                 <tr>
                   <td>Nomor Pembelian</td>

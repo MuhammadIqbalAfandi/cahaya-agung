@@ -71,10 +71,10 @@
                             <td style="padding: 0;">
                                 <table style="border-spacing: 0;">
                                     <tr>
-                                        <td>Your Company</td>
+                                        <td>Partner Company</td>
                                     </tr>
                                     <tr>
-                                        <td>Anonym</td>
+                                        <td>XXXXXXXXXXXX</td>
                                     </tr>
                                 </table>
                             </td>
@@ -100,7 +100,7 @@
                                     <tr>
                                         <td>Nama</td>
                                         <td>:</td>
-                                        <td>Anonym</td>
+                                        <td>Your Company</td>
                                     </tr>
                                     <tr>
                                         <td>NPWP</td>
@@ -120,17 +120,17 @@
                                     <tr>
                                         <td>Alamat</td>
                                         <td>:</td>
-                                        <td>Anonym</td>
+                                        <td>XXXXXXXXXXXX</td>
                                     </tr>
                                     <tr>
                                         <td>Tanggal</td>
                                         <td>:</td>
-                                        <td>Anonym</td>
+                                        <td>XXXXXXXXXXXX</td>
                                     </tr>
                                     <tr>
                                         <td>Nomor Penjualan</td>
                                         <td>:</td>
-                                        <td>XXXXXXXXXXXX</td>
+                                        <td>PBN20220720115908</td>
                                     </tr>
                                     <tr>
                                         <td>Halaman</td>
