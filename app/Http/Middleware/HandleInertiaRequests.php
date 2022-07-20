@@ -2,6 +2,7 @@
 
 namespace App\Http\Middleware;
 
+use App\Models\Company;
 use Illuminate\Http\Request;
 use Inertia\Middleware;
 
@@ -13,7 +14,7 @@ class HandleInertiaRequests extends Middleware
      * @see https://inertiajs.com/server-side-setup#root-template
      * @var string
      */
-    protected $rootView = 'app';
+    protected $rootView = "app";
 
     /**
      * Determines the current asset version.
@@ -37,14 +38,17 @@ class HandleInertiaRequests extends Middleware
     public function share(Request $request): array
     {
         return array_merge(parent::share($request), [
-            'auth.user' => fn() => $request->user() ? $request->user()->only('id', 'name', 'username', 'role_id') : null,
-            'flash' => function () use ($request) {
+            "auth.user" => fn() => $request->user()
+                ? $request->user()->only("id", "name", "username", "role_id")
+                : null,
+            "company.name" => fn() => Company::first()->name,
+            "flash" => function () use ($request) {
                 return [
-                    'success' => $request->session()->get('success'),
-                    'error' => $request->session()->get('error'),
-                    'warning' => $request->session()->get('warning')
+                    "success" => $request->session()->get("success"),
+                    "error" => $request->session()->get("error"),
+                    "warning" => $request->session()->get("warning"),
                 ];
-            }
+            },
         ]);
     }
 }

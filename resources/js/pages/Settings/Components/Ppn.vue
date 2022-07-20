@@ -34,7 +34,7 @@ const onSubmit = () => {
 
     <div class="col-12">
       <AppInputText
-        label="PPN"
+        label="PPN %"
         placeholder="ppn"
         type="number"
         :disabled="state.disable"
