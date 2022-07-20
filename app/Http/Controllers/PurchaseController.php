@@ -80,7 +80,7 @@ class PurchaseController extends Controller
                     ->transform(
                         fn($purchaseDetail) => [
                             "number" => $purchaseDetail->product_number,
-                            "price" => $purchaseDetail->price,
+                            "price" => $purchaseDetail->getRawOriginal("price"),
                             "qty" => $purchaseDetail->qty,
                             "ppn" => $purchaseDetail->purchase->ppn,
                         ]

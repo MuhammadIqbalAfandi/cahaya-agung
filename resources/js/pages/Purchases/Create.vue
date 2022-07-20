@@ -183,14 +183,17 @@ const { onShowCreateProduct, onShowCreateSupplier } = useDialog()
 
                   <Divider type="dashed" />
 
-                  <HistoryProduct :product-purchase="productPurchase" />
+                  <HistoryProduct
+                    :ppn="ppn"
+                    :product-purchase="productPurchase"
+                  />
 
                   <Divider type="dashed" />
 
                   <div class="col-12 md:col-6">
                     <AppInputNumber
-                      label="Harga Terbaru"
-                      placeholder="harga terbaru"
+                      label="Harga"
+                      placeholder="harga"
                       :disabled="!form.product?.id"
                       v-model="form.price"
                     />

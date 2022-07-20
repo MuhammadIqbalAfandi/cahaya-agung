@@ -20,8 +20,8 @@ class PurchaseDetail extends Model
                 $ppn = Ppn::first()->ppn;
 
                 return $this->purchase->ppn
-                    ? HelperService::addPPN($value, $ppn)
-                    : $value;
+                    ? HelperService::addPPN($value, $ppn) * $this->qty
+                    : $value * $this->qty;
             }
         );
     }

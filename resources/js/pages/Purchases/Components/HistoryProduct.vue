@@ -1,10 +1,12 @@
 <script setup>
 import { watchEffect, watch, computed, inject } from 'vue'
 import { Inertia } from '@inertiajs/inertia'
+import { ppn as ppnUtils } from '@/utils/helpers'
 import AppInputText from '@/components/AppInputText.vue'
 import AppInputNumber from '@/components/AppInputNumber.vue'
 
 const props = defineProps({
+  ppn: Number,
   productPurchase: Object,
 })
 
@@ -35,7 +37,14 @@ watch(
   }
 )
 
-const productPurchasePrice = computed(() => props.productPurchase?.price)
+const productPurchasePrice = computed(() => {
+  if (props.productPurchase?.number) {
+    return ppnUtils(
+      props.productPurchase.price,
+      props.productPurchase?.ppn ?? 0
+    )
+  }
+})
 
 const productPurchasePpn = computed(() => props.productPurchase?.ppn)
 
