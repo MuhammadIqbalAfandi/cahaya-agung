@@ -53,6 +53,8 @@
             content: counter(page, numeric);
         }
     </style>
+    <title>Sale Invoice</title>
+</head>
 
 <body>
     <div id="header">

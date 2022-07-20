@@ -54,6 +54,9 @@
         }
     </style>
 
+    <title>Sale Invoice</title>
+</head>
+
 <body>
     <div id="header">
         <h1 style="text-align: right; margin: 0; margin-right: 15%;"><strong
