@@ -36,6 +36,8 @@ return [
             "product" => "Product successfully added",
             "sale" => "Sale successfully",
             "purchase" => "Purchase successfully added",
+            "company" => "Company Profile successfully changed",
+            "ppn" => "Tax successfully changed",
         ],
         "update" => [
             "type_vehicle" => "Type vehicle successfully changed",
@@ -49,7 +51,6 @@ return [
             "supplier" => "Supplier successfully changed",
             "product" => "Product successfully changed",
             "sale" => "Sale successfully changed",
-            "ppn" => "Tax successfully changed",
             "purchase" => "Purchase successfully added",
         ],
         "destroy" => [

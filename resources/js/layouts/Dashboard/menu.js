@@ -31,7 +31,7 @@ export default {
       label: 'Pengaturan',
       items: [
         {
-          label: 'Profil Perusahaan',
+          label: 'Pengaturan',
           icon: 'pi pi-cog',
           to: '/settings',
           component: 'Settigs/Index',

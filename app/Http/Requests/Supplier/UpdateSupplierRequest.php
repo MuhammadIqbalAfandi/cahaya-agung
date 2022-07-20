@@ -27,7 +27,7 @@ class UpdateSupplierRequest extends FormRequest
             "name" => "required|string|max:50",
             "address" => "required|string",
             "email" =>
-                "required|string|email|unique:suppliers,email," .
+                "string|email|nullable|unique:suppliers,email," .
                 $this->supplier->id,
             "phone" =>
                 "required|numeric|digits_between:12,15|unique:suppliers,phone," .

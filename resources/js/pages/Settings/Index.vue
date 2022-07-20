@@ -1,10 +1,11 @@
 <script setup>
-import DashboardLayout from '@/layouts/Dashboard/DashboardLayout.vue'
-import Ppn from './Components/Ppn.vue'
 import CompanyProfile from './Components/CompanyProfile.vue'
+import Ppn from './Components/Ppn.vue'
+import DashboardLayout from '@/layouts/Dashboard/DashboardLayout.vue'
 
 defineProps({
-  ppn: Number,
+  ppn: Object,
+  company: Object,
 })
 </script>
 
@@ -15,9 +16,9 @@ defineProps({
         <Card>
           <template #title> Pengaturan </template>
           <template #content>
-            <CompanyProfile />
+            <CompanyProfile :company="company" />
 
-            <divider />
+            <Divider />
 
             <Ppn :ppn="ppn" />
           </template>

@@ -108,6 +108,11 @@
                                         <td>XXXXXXXXXXXXXXX</td>
                                     </tr>
                                     <tr>
+                                        <td>Email</td>
+                                        <td>:</td>
+                                        <td>XXXXXXXXXXXX</td>
+                                    </tr>
+                                    <tr>
                                         <td>No HP</td>
                                         <td>:</td>
                                         <td>XXXXXXXXXXXX</td>

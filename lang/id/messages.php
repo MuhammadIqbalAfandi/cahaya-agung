@@ -36,6 +36,8 @@ return [
             "product" => "Produk berhasil ditambahkan",
             "sale" => "Penjualan berhasil",
             "purchase" => "Pembelian berhasil ditambahkan",
+            "company" => "Profile Perusahaan berhasil diubah",
+            "ppn" => "Pajak pertambahan nilai berhasil diubah",
         ],
         "update" => [
             "type_vehicle" => "Jenis kendaraan berhasil diubah",
@@ -49,7 +51,6 @@ return [
             "supplier" => "Supplier berhasil diubah",
             "product" => "Produk berhasil diubah",
             "sale" => "Penjualan berhasil diubah",
-            "ppn" => "Pajak pertambahan nilai berhasil diubah",
             "purchase" => "Pembelian berhasil diubah",
         ],
         "destroy" => [

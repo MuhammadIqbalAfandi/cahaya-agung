@@ -1,34 +1,25 @@
 <script setup>
-import { ref } from 'vue'
+import { useState } from '../Composables/useState'
 import { useForm } from '@/composables/useForm'
 import AppInputText from '@/components/AppInputText.vue'
-import DashboardLayout from '@/layouts/Dashboard/DashboardLayout.vue'
 
 const props = defineProps({
-  ppn: Number,
+  ppn: Object,
 })
 
 const form = useForm({
-  ppn: props.ppn,
+  ppn: props.ppn.ppn,
 })
 
-const inputDisable = ref(true)
-
-const buttonLabel = ref('Ubah')
+const { state, setState } = useState()
 
 const onSubmit = () => {
-  if (inputDisable.value) {
-    buttonLabel.value = 'Simpan'
+  setState()
 
-    inputDisable.value = false
-  } else {
+  if (state.disable) {
     if (!form.ppn) {
       form.ppn = 0
     }
-
-    buttonLabel.value = 'Ubah'
-
-    inputDisable.value = true
 
     form.post(route('ppn.store'))
   }
@@ -38,20 +29,26 @@ const onSubmit = () => {
 <template>
   <div class="grid">
     <div class="col-12">
+      <h1 class="text-lg">Pajak Pertambahan Nilai</h1>
+    </div>
+
+    <div class="col-12">
       <AppInputText
         label="PPN"
         placeholder="ppn"
         type="number"
-        :disabled="inputDisable"
+        :disabled="state.disable"
         :error="form.errors.ppn"
         v-model="form.ppn"
       />
+    </div>
 
+    <div class="col-12">
       <div class="flex flex-column md:flex-row justify-content-end">
         <Button
-          icon="pi pi-check"
           class="p-button-outlined"
-          :label="buttonLabel"
+          :icon="state.icon"
+          :label="state.label"
           :disabled="form.processing"
           @click="onSubmit"
         />

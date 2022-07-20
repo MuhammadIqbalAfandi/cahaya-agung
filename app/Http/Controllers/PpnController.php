@@ -40,7 +40,7 @@ class PpnController extends Controller
 
         Ppn::create($request->validated());
 
-        return back()->with("success", __("messages.success.update.ppn"));
+        return back()->with("success", __("messages.success.store.ppn"));
     }
 
     /**

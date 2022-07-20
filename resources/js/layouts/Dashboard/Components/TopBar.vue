@@ -6,7 +6,7 @@ import { Link } from '@inertiajs/inertia-vue3'
   <div class="layout-topbar">
     <Link href="/" class="layout-topbar-logo">
       <img alt="Brand Logo" src="/images/logo.svg" class="md:mr-3" />
-      <span>Cahaya Agung</span>
+      <span>{{ $page.props.company.name }}</span>
     </Link>
 
     <button

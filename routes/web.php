@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CompanyController;
 use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\PpnController;
@@ -46,6 +47,8 @@ Route::middleware(["auth", "verified"])->group(function () {
     Route::resource("/users", UserController::class);
 
     Route::resource("/ppn", PpnController::class);
+
+    Route::resource("/companies", CompanyController::class);
 
     Route::resource("/settings", SettingController::class);
 
