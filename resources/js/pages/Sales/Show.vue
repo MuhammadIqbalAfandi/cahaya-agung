@@ -99,11 +99,21 @@ const { cart, totalCartPrice } = useCart(form, props.saleDetail)
 
       <div class="col-12 md:col-8 flex justify-content-end">
         <AppButtonLink
-          label="Cetak"
+          label="Cetak Invoice"
           icon="pi pi-print"
           target="_blank"
           :inertia-link="false"
-          :href="route('sales.pdf', id)"
+          :href="route('sales.invoice', id)"
+        />
+      </div>
+
+      <div class="col-12 md:col-8 flex justify-content-end">
+        <AppButtonLink
+          label="Cetak Delivery Order"
+          icon="pi pi-print"
+          target="_blank"
+          :inertia-link="false"
+          :href="route('sales.do', id)"
         />
       </div>
     </div>

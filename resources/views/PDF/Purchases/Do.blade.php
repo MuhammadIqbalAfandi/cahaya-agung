@@ -53,25 +53,26 @@
             content: counter(page, numeric);
         }
     </style>
-    <title>Sale Invoice</title>
+
+    <title>Sale Delivery Order</title>
 </head>
 
 <body>
     <div id="header">
-        <h1 style="text-align: right; margin: 0; margin-right: 15%;"><strong
-                style="text-transform: uppercase; font-size: medium">INVOICE</strong></h1>
+        <h1 style="text-align: right; margin: 0; margin-right: 10%;"><strong
+                style="text-transform: uppercase; font-size: medium">DELIVERY ORDER</strong></h1>
 
         <table>
             <tr>
                 <td style="width: 65%;">
                     <table>
                         <tr>
-                            <td><strong>Kepada</strong></td>
+                            <td><strong>TO</strong></td>
                             <td>:</td>
                             <td style="padding: 0;">
                                 <table style="border-spacing: 0;">
                                     <tr>
-                                        <td>Partner Company</td>
+                                        <td>XXXXXXXXXXXX</td>
                                     </tr>
                                     <tr>
                                         <td>XXXXXXXXXXXX</td>
@@ -80,12 +81,23 @@
                             </td>
                         </tr>
                         <tr>
-                            <td><strong>NPWP</strong></td>
+                            <td><strong>Attn</strong></td>
                             <td>:</td>
                             <td style="padding: 0">
                                 <table style="border-spacing: 0">
                                     <tr>
-                                        <td>XXXXXXXXXXXXXXX</td>
+                                        <td>XXXXXXXXXXXX</td>
+                                    </tr>
+                                </table>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><strong>Tlp</strong></td>
+                            <td>:</td>
+                            <td style="padding: 0">
+                                <table style="border-spacing: 0">
+                                    <tr>
+                                        <td>XXXXXXXXXXXX</td>
                                     </tr>
                                 </table>
                             </td>
@@ -98,42 +110,27 @@
                             <td>
                                 <table>
                                     <tr>
-                                        <td>Nama</td>
-                                        <td>:</td>
-                                        <td>Your Company</td>
-                                    </tr>
-                                    <tr>
-                                        <td>NPWP</td>
-                                        <td>:</td>
-                                        <td>XXXXXXXXXXXXXXX</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Email</td>
+                                        <td>DO NO</td>
                                         <td>:</td>
                                         <td>XXXXXXXXXXXX</td>
                                     </tr>
                                     <tr>
-                                        <td>No HP</td>
+                                        <td>DATE</td>
                                         <td>:</td>
                                         <td>XXXXXXXXXXXX</td>
                                     </tr>
                                     <tr>
-                                        <td>Alamat</td>
+                                        <td>PO NO</td>
                                         <td>:</td>
                                         <td>XXXXXXXXXXXX</td>
                                     </tr>
                                     <tr>
-                                        <td>Tanggal</td>
+                                        <td>TTB NO</td>
                                         <td>:</td>
                                         <td>XXXXXXXXXXXX</td>
                                     </tr>
                                     <tr>
-                                        <td>Nomor Penjualan</td>
-                                        <td>:</td>
-                                        <td>PBN20220720115908</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Halaman</td>
+                                        <td>PAGE</td>
                                         <td>:</td>
                                         <td class="page"></td>
                                     </tr>
@@ -150,60 +147,43 @@
     </div>
 
     <div id="content">
-        <table>
-            <thead style="border-top: 1px solid black; border-bottom: 1px solid black;">
-                <tr>
-                    <th>No</th>
-                    <th>Keterangan</th>
-                    <th>QTY</th>
-                    <th>Satuan</th>
-                    <th>Harga Satuan</th>
-                    <th>Jumlah</th>
+        <table style="border: 1px solid black;">
+            <thead style="border: 1px solid black;">
+                <tr style="border: 1px solid black;">
+                    <th style="border-left: 1px solid black;">ITEM</th>
+                    <th style="border-left: 1px solid black;">DESCRIPTION</th>
+                    <th style="border-left: 1px solid black;">QTY</th>
+                    <th style="border-left: 1px solid black;">UOM</th>
+                    <th style="border-left: 1px solid black;">REMAKS</th>
                 </tr>
             </thead>
             <tbody style="text-align: center;">
                 @for ($i = 0; $i < 150; $i++)
                     <tr>
-                        <th>1</th>
-                        <td style="text-align: left;">Playstation IV - Black</td>
-                        <td>1</td>
-                        <td>pc</td>
-                        <td style="text-align: right;">1400.00</td>
-                        <td style="text-align: right;">1400.00</td>
+                        <td style="border-left: 1px solid black;">1</td>
+                        <td style="border-left: 1px solid black; text-align: left;">IMPORTA KURSI OFFICE</td>
+                        <td style="border-left: 1px solid black;">1</td>
+                        <td style="border-left: 1px solid black;">UNIT</td>
+                        <td style="border-left: 1px solid black;"></td>
                     </tr>
                 @endfor
             </tbody>
-            <tfoot style="border-top: 1px solid black; border-bottom: 1px solid black; text-align: right;">
-                <tr>
-                    <td colspan="4"></td>
-                    <td>Subtotal Rp</td>
-                    <td>1635.00</td>
-                </tr>
-                <tr>
-                    <td colspan="4"></td>
-                    <td>PPN 11%</td>
-                    <td>1929.3</td>
-                </tr>
-                <tr>
-                    <td colspan="4"></td>
-                    <td>Total Rp</td>
-                    <td>1929.3</td>
-                </tr>
-            </tfoot>
         </table>
+
+        <p>RECEIVED IN GOOD ORDER & CONDITION</p>
 
         <div style="position: absolute; bottom: 0; left: 0; right: 0;">
             <table>
                 <tbody>
                     <tr>
-                        <td style="width: 40%;"></td>
-                        <td style="width: 60%;">
-                            <table style="width: 100%; text-align: right;">
+                        <td>
+                            <table style="width: 100%; text-align: center">
                                 <thead style="margin-bottom: 20px;">
                                     <tr>
                                         <td></td>
+                                        <td></td>
                                         <td colspan="1">
-                                            <p style="margin-bottom: 75px; margin-top: 70px;">Your Company</p>
+                                            <p style="margin-bottom: 75px; margin-top: 70px;">XXXXXXXXXXXX</p>
                                         </td>
                                     </tr>
                                 </thead>
@@ -211,11 +191,16 @@
                                     <tr>
                                         <td>
                                             <span
-                                                style="border-top: 1px solid black; width: 150px;display: inline-block; text-align: left;">Diterima</span>
+                                                style="border-top: 1px solid black; width: 120px;display: inline-block; text-align: center;">CHOP
+                                                & SIGN</span>
                                         </td>
                                         <td>
                                             <span
-                                                style="border-top: 1px solid black; width: 120px;display: inline-block; text-align: center;">Disahkan</span>
+                                                style="border-top: 1px solid black; width: 120px;display: inline-block; text-align: center;">DELIVERY</span>
+                                        </td>
+                                        <td>
+                                            <span
+                                                style="border-top: 1px solid black; width: 150px;display: inline-block; text-align: center;">XXXXXXXXXXXX</span>
                                         </td>
                                     </tr>
                                 </tbody>

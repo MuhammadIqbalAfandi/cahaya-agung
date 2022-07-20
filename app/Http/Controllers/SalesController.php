@@ -200,9 +200,16 @@ class SalesController extends Controller
         //
     }
 
-    public function pdf(Sale $sale)
+    public function invoice(Sale $sale)
     {
-        $pdf = Pdf::loadView("pdf.sales", compact("sale"));
+        $pdf = Pdf::loadView("PDF.Sales.Invoice", compact("sale"));
+        return $pdf->stream();
+    }
+
+    public function deliveryOrder(Sale $sale)
+    {
+        $pdf = Pdf::loadView("PDF.Sales.Do", compact("sale"));
+        $pdf->setPaper("a3", "landscape");
         return $pdf->stream();
     }
 }

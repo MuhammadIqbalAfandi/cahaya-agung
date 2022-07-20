@@ -321,9 +321,16 @@ class PurchaseController extends Controller
         //
     }
 
-    public function pdf(Purchase $purchase)
+    public function invoice(Purchase $purchase)
     {
-        $pdf = Pdf::loadView("pdf.purchases", compact("purchase"));
+        $pdf = Pdf::loadView("PDF.Purchases.Invoice", compact("purchase"));
+        return $pdf->stream();
+    }
+
+    public function deliveryOrder(Purchase $purchase)
+    {
+        $pdf = Pdf::loadView("PDF.Purchases.Do", compact("purchase"));
+        $pdf->setPaper("a3", "landscape");
         return $pdf->stream();
     }
 }

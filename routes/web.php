@@ -56,16 +56,27 @@ Route::middleware(["auth", "verified"])->group(function () {
 
     Route::resource("/purchases", PurchaseController::class);
 
-    Route::get("/purchases/pdf/{purchase}", [
+    Route::get("/purchases/pdf/invoice/{purchase}", [
         PurchaseController::class,
-        "pdf",
-    ])->name("purchases.pdf");
+        "invoice",
+    ])->name("purchases.invoice");
+
+    Route::get("/purchases/pdf/do/{sale}", [
+        PurchaseController::class,
+        "deliveryOrder",
+    ])->name("purchases.do");
 
     Route::resource("/sales", SalesController::class);
 
-    Route::get("/sales/pdf/{sale}", [SalesController::class, "pdf"])->name(
-        "sales.pdf"
-    );
+    Route::get("/sales/pdf/invoice/{sale}", [
+        SalesController::class,
+        "invoice",
+    ])->name("sales.invoice");
+
+    Route::get("/sales/pdf/do/{sale}", [
+        SalesController::class,
+        "deliveryOrder",
+    ])->name("sales.do");
 
     Route::resource("/suppliers", SupplierController::class);
 
