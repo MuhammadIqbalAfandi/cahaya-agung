@@ -267,9 +267,13 @@ class PurchaseController extends Controller
                     if ($stockProduct->exists()) {
                         $validated = [
                             "price" =>
-                                $stockProduct->first()->price >
+                                $stockProduct
+                                    ->first()
+                                    ->getRawOriginal("price") >=
                                 $product["price"]
-                                    ? $stockProduct->first()->price
+                                    ? $stockProduct
+                                        ->first()
+                                        ->getRawOriginal("price")
                                     : $product["price"],
                             "ppn" => $request->ppn ? true : false,
                         ];
