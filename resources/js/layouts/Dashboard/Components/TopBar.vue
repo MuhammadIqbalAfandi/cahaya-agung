@@ -1,5 +1,24 @@
 <script setup>
+import { Inertia } from '@inertiajs/inertia'
 import { Link } from '@inertiajs/inertia-vue3'
+import { useConfirm } from 'primevue/useconfirm'
+
+const logoutConfirm = useConfirm()
+
+const logout = () => {
+  logoutConfirm.require({
+    message: 'Ingin keluar dari aplikasi',
+    header: 'Keluar',
+    acceptLabel: 'Iya',
+    rejectLabel: 'Tidak',
+    accept: () => {
+      Inertia.post(route('logout'))
+    },
+    reject: () => {
+      logoutConfirm.close()
+    },
+  })
+}
 </script>
 
 <template>
@@ -48,19 +67,17 @@ import { Link } from '@inertiajs/inertia-vue3'
         </Link>
       </li>
       <li>
-        <Link
-          :href="route('logout')"
-          as="button"
-          method="post"
+        <button
           class="p-link layout-topbar-button"
           v-tooltip.bottom="{
             value: 'Keluar',
             class: 'layout-topbar-menu-tooltip',
           }"
+          @click="logout"
         >
           <i class="pi pi-sign-out"></i>
           <span>Keluar</span>
-        </Link>
+        </button>
       </li>
     </ul>
   </div>

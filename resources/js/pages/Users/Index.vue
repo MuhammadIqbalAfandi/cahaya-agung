@@ -49,8 +49,6 @@ const onDelete = (data) => {
 
 <template>
   <DashboardLayout title="Daftar User">
-    <ConfirmDialog />
-
     <DataTable
       responsiveLayout="scroll"
       columnResizeMode="expand"

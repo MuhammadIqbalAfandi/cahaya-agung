@@ -32,8 +32,6 @@ const onDelete = (data) => {
 
 <template>
   <DashboardLayout title="Daftar Pelanggan">
-    <ConfirmDialog />
-
     <DataTable
       responsiveLayout="scroll"
       columnResizeMode="expand"

@@ -53,6 +53,8 @@ const onMenuToggle = (event) => {
 <template>
   <Head :title="title" />
 
+  <ConfirmDialog />
+
   <div :class="containerClass" @click="onWrapperClick">
     <TopBar @menu-toggle="onMenuToggle" />
 

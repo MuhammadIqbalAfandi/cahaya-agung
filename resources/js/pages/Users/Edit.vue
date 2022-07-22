@@ -41,8 +41,6 @@ const onSubmit = () => {
 
 <template>
   <DashboardLayout title="Ubah User">
-    <ConfirmDialog />
-
     <div class="grid">
       <div class="col-12 lg:col-8">
         <Card>
