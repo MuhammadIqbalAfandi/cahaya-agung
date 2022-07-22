@@ -14,7 +14,7 @@ class SaleService
             $ppn = Ppn::first()->ppn;
 
             return $sale->ppn
-                ? HelperService::addPPN($saleDetail->price, $ppn)
+                ? HelperService::ppn($saleDetail->price, $ppn)
                 : $saleDetail->price;
         });
     }

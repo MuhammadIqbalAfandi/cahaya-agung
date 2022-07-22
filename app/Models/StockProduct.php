@@ -30,9 +30,7 @@ class StockProduct extends Model
             get: function ($value) {
                 $ppn = Ppn::first()->ppn;
 
-                return $this->ppn
-                    ? HelperService::addPPN($value, $ppn)
-                    : $value;
+                return $this->ppn ? HelperService::ppn($value, $ppn) : $value;
             }
         );
     }

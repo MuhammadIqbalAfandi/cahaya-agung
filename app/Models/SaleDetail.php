@@ -20,7 +20,7 @@ class SaleDetail extends Model
                 $ppn = Ppn::first()->ppn;
 
                 return $this->sale->ppn
-                    ? HelperService::addPPN($value, $ppn) * $this->qty
+                    ? HelperService::ppn($value, $ppn) * $this->qty
                     : $value * $this->qty;
             }
         );

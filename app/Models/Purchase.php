@@ -13,6 +13,8 @@ class Purchase extends Model
 
     protected $fillable = ["number", "ppn", "status", "supplier_id", "user_id"];
 
+    protected $with = ["purchaseDetail.product", "supplier"];
+
     protected function updatedAt(): Attribute
     {
         return Attribute::make(

@@ -41,7 +41,7 @@ class SalesController extends Controller
                         "name" => $sale->customer->name,
                         "phone" => $sale->customer->phone,
                         "email" => $sale->customer->email,
-                        "price" => HelperService::setRupiahFormat(
+                        "price" => HelperService::rupiahFormat(
                             $sale->saleDetail->sum("price")
                         ),
                         "status" => $sale->status,

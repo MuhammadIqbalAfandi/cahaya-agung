@@ -54,7 +54,7 @@
         }
     </style>
 
-    <title>Sale Delivery Order</title>
+    <title>Purchase Delivery Order</title>
 </head>
 
 <body>
@@ -72,10 +72,10 @@
                             <td style="padding: 0;">
                                 <table style="border-spacing: 0;">
                                     <tr>
-                                        <td>XXXXXXXXXXXX</td>
+                                        <td>{{ $purchase->supplier->name }}</td>
                                     </tr>
                                     <tr>
-                                        <td>XXXXXXXXXXXX</td>
+                                        <td>{{ $purchase->supplier->address }}</td>
                                     </tr>
                                 </table>
                             </td>
@@ -97,7 +97,7 @@
                             <td style="padding: 0">
                                 <table style="border-spacing: 0">
                                     <tr>
-                                        <td>XXXXXXXXXXXX</td>
+                                        <td>{{ $purchase->supplier->phone }}</td>
                                     </tr>
                                 </table>
                             </td>
@@ -117,12 +117,12 @@
                                     <tr>
                                         <td>DATE</td>
                                         <td>:</td>
-                                        <td>XXXXXXXXXXXX</td>
+                                        <td>{{ $purchase->updated_at }}</td>
                                     </tr>
                                     <tr>
                                         <td>PO NO</td>
                                         <td>:</td>
-                                        <td>XXXXXXXXXXXX</td>
+                                        <td>{{ $purchase->number }}</td>
                                     </tr>
                                     <tr>
                                         <td>TTB NO</td>
@@ -158,15 +158,16 @@
                 </tr>
             </thead>
             <tbody style="text-align: center;">
-                @for ($i = 0; $i < 150; $i++)
+                @foreach ($purchase->purchaseDetail as $purchaseDetail)
                     <tr>
                         <td style="border-left: 1px solid black;">1</td>
-                        <td style="border-left: 1px solid black; text-align: left;">IMPORTA KURSI OFFICE</td>
-                        <td style="border-left: 1px solid black;">1</td>
+                        <td style="border-left: 1px solid black; text-align: left;">
+                            {{ $purchaseDetail->product->name }}</td>
+                        <td style="border-left: 1px solid black;">{{ $purchaseDetail->qty }}</td>
                         <td style="border-left: 1px solid black;">UNIT</td>
                         <td style="border-left: 1px solid black;"></td>
                     </tr>
-                @endfor
+                @endforeach
             </tbody>
         </table>
 
@@ -183,7 +184,8 @@
                                         <td></td>
                                         <td></td>
                                         <td colspan="1">
-                                            <p style="margin-bottom: 75px; margin-top: 70px;">XXXXXXXXXXXX</p>
+                                            <p style="margin-bottom: 75px; margin-top: 70px;">
+                                                {{ $company->name ?? '-' }}</p>
                                         </td>
                                     </tr>
                                 </thead>
@@ -200,7 +202,7 @@
                                         </td>
                                         <td>
                                             <span
-                                                style="border-top: 1px solid black; width: 150px;display: inline-block; text-align: center;">XXXXXXXXXXXX</span>
+                                                style="border-top: 1px solid black; width: 150px;display: inline-block; text-align: center;"></span>
                                         </td>
                                     </tr>
                                 </tbody>

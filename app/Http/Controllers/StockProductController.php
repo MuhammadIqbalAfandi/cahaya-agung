@@ -31,7 +31,7 @@ class StockProductController extends Controller
                         "id" => $stockProduct->id,
                         "updatedAt" => $stockProduct->updated_at,
                         "name" => $stockProduct->product->name,
-                        "price" => HelperService::setRupiahFormat(
+                        "price" => HelperService::rupiahFormat(
                             $stockProduct->price
                         ),
                         "qty" => $stockProduct->qty,

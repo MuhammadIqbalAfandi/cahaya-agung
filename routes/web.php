@@ -61,7 +61,7 @@ Route::middleware(["auth", "verified", "checkBlocked"])->group(function () {
         "invoice",
     ])->name("purchases.invoice");
 
-    Route::get("/purchases/pdf/do/{sale}", [
+    Route::get("/purchases/pdf/do/{purchase}", [
         PurchaseController::class,
         "deliveryOrder",
     ])->name("purchases.do");

@@ -19,7 +19,7 @@ class HelperService
         return $i;
     }
 
-    public static function setRupiahFormat(int $num, bool $sign = true)
+    public static function rupiahFormat(int $num, bool $sign = true)
     {
         if ($sign) {
             if ($num < 0) {
@@ -36,7 +36,7 @@ class HelperService
         }
     }
 
-    public static function addPPN(int $price, int $ppn)
+    public static function ppn(int $price, int $ppn)
     {
         return $price + $price * ($ppn / 100);
     }

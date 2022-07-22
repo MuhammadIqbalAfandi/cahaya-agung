@@ -15,6 +15,8 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Database\QueryException;
 use App\Http\Requests\Purchase\StorePurchaseRequest;
 use App\Http\Requests\Purchase\UpdatePurchaseRequest;
+use App\Models\Company;
+use App\Services\PurchaseService;
 
 class PurchaseController extends Controller
 {
@@ -43,8 +45,8 @@ class PurchaseController extends Controller
                         "name" => $purchase->supplier->name,
                         "phone" => $purchase->supplier->phone,
                         "email" => $purchase->supplier->email,
-                        "price" => HelperService::setRupiahFormat(
-                            $purchase->purchaseDetail->sum("price")
+                        "price" => HelperService::rupiahFormat(
+                            PurchaseService::totalPrice($purchase)
                         ),
                         "status" => $purchase->status,
                     ]
@@ -323,14 +325,29 @@ class PurchaseController extends Controller
 
     public function invoice(Purchase $purchase)
     {
-        $pdf = Pdf::loadView("PDF.Purchases.Invoice", compact("purchase"));
+        $ppn = Ppn::first()->ppn;
+
+        $company = Company::first();
+
+        $pdf = Pdf::loadView(
+            "PDF.Purchases.Invoice",
+            compact("purchase", "company", "ppn")
+        );
+
         return $pdf->stream();
     }
 
     public function deliveryOrder(Purchase $purchase)
     {
-        $pdf = Pdf::loadView("PDF.Purchases.Do", compact("purchase"));
+        $company = Company::first();
+
+        $pdf = Pdf::loadView(
+            "PDF.Purchases.Do",
+            compact("purchase", "company")
+        );
+
         $pdf->setPaper("a3", "landscape");
+
         return $pdf->stream();
     }
 }
