@@ -80,7 +80,10 @@ export function useCart(form, initialProducts = []) {
         : product.price * product.qty
     })
 
-    return itemPrices.reduce((prev, current) => prev + current, 0)
+    return itemPrices.reduce(
+      (prevPrice, currentPrice) => prevPrice + currentPrice,
+      0
+    )
   }
 
   const onEditCart = (event) => {

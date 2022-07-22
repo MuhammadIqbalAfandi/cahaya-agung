@@ -1,6 +1,6 @@
 <script setup>
 import { computed, watchEffect } from 'vue'
-import { profit } from '@/utils/helpers'
+import { profit, ppn as ppnUtils } from '@/utils/helpers'
 import { optionStatus } from './config'
 import { cartTable } from './config'
 import Details from './Components/Details.vue'
@@ -69,7 +69,11 @@ const dropdownStatus = computed(() => {
 
 const productProductUnit = computed(() => form.product?.unit)
 
-const productProductPrice = computed(() => form.product?.price)
+const productProductPrice = computed(() => {
+  if (form.product?.number) {
+    return ppnUtils(form.product.price, form.product.ppn ? form.ppn : 0)
+  }
+})
 
 const productProductPpn = computed(() => form.product?.ppn)
 
