@@ -41,7 +41,7 @@ const productPurchasePrice = computed(() => {
   if (props.productPurchase?.number) {
     return ppnUtils(
       props.productPurchase.price,
-      props.productPurchase?.ppn ?? 0
+      props.productPurchase?.ppn ? form.ppn : 0
     )
   }
 })
