@@ -13,6 +13,8 @@ class Sale extends Model
 
     protected $fillable = ["number", "ppn", "status", "customer_id", "user_id"];
 
+    protected $with = ["saleDetail.product", "customer"];
+
     protected function updatedAt(): Attribute
     {
         return Attribute::make(

@@ -158,9 +158,9 @@
                 </tr>
             </thead>
             <tbody style="text-align: center;">
-                @foreach ($purchase->purchaseDetail as $purchaseDetail)
+                @foreach ($purchase->purchaseDetail as $key => $purchaseDetail)
                     <tr>
-                        <td style="border-left: 1px solid black;">1</td>
+                        <td style="border-left: 1px solid black;">{{ $key + 1 }}</td>
                         <td style="border-left: 1px solid black; text-align: left;">
                             {{ $purchaseDetail->product->name }}</td>
                         <td style="border-left: 1px solid black;">{{ $purchaseDetail->qty }}</td>

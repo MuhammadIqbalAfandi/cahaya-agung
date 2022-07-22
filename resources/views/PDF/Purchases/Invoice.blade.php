@@ -153,9 +153,9 @@
                 </tr>
             </thead>
             <tbody style="text-align: center;">
-                @foreach ($purchase->purchaseDetail as $purchaseDetail)
+                @foreach ($purchase->purchaseDetail as $key => $purchaseDetail)
                     <tr>
-                        <th>1</th>
+                        <th>{{ $key + 1 }}</th>
                         <td style="text-align: left;">{{ $purchaseDetail->product->name }}</td>
                         <td>{{ $purchaseDetail->qty }}</td>
                         <td>UNIT</td>
@@ -193,8 +193,8 @@
             </tfoot>
         </table>
 
-        <p style="margin: 0; font-size: x-small; font-weight: bold; text-align: right;">Semua produk dikenapan ppn
-            sebebar
+        <p style="margin: 0; font-size: x-small; font-weight: bold; text-align: right;">Semua produk dikenakan ppn
+            sebesar
             {{ $purchase->ppn ? $ppn : 0 }} %
         </p>
 

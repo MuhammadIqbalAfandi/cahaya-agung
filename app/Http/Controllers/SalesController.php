@@ -12,6 +12,8 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Database\QueryException;
 use App\Http\Requests\Sales\StoreSaleRequest;
 use App\Http\Requests\Sales\UpdateSaleRequest;
+use App\Models\Company;
+use App\Services\SaleService;
 use Barryvdh\DomPDF\Facade\Pdf;
 
 class SalesController extends Controller
@@ -42,7 +44,7 @@ class SalesController extends Controller
                         "phone" => $sale->customer->phone,
                         "email" => $sale->customer->email,
                         "price" => HelperService::rupiahFormat(
-                            $sale->saleDetail->sum("price")
+                            SaleService::totalPrice($sale)
                         ),
                         "status" => $sale->status,
                     ]
@@ -74,7 +76,7 @@ class SalesController extends Controller
                         fn($stockProduct) => [
                             "number" => $stockProduct->product_number,
                             "name" => $stockProduct->product->name,
-                            "price" => $stockProduct->price,
+                            "price" => $stockProduct->getRawOriginal("price"),
                             "ppn" => $stockProduct->ppn,
                             "qty" => $stockProduct->qty,
                             "unit" => $stockProduct->product->unit,
@@ -202,14 +204,26 @@ class SalesController extends Controller
 
     public function invoice(Sale $sale)
     {
-        $pdf = Pdf::loadView("PDF.Sales.Invoice", compact("sale"));
+        $ppn = Ppn::first()->ppn;
+
+        $company = Company::first();
+
+        $pdf = Pdf::loadView(
+            "PDF.Sales.Invoice",
+            compact("sale", "company", "ppn")
+        );
+
         return $pdf->stream();
     }
 
     public function deliveryOrder(Sale $sale)
     {
-        $pdf = Pdf::loadView("PDF.Sales.Do", compact("sale"));
+        $company = Company::first();
+
+        $pdf = Pdf::loadView("PDF.Sales.Do", compact("sale", "company"));
+
         $pdf->setPaper("a3", "landscape");
+
         return $pdf->stream();
     }
 }

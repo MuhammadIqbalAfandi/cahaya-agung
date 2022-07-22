@@ -72,10 +72,10 @@
                             <td style="padding: 0;">
                                 <table style="border-spacing: 0;">
                                     <tr>
-                                        <td>XXXXXXXXXXXX</td>
+                                        <td>{{ $sale->customer->name }}</td>
                                     </tr>
                                     <tr>
-                                        <td>XXXXXXXXXXXX</td>
+                                        <td>{{ $sale->customer->address }}</td>
                                     </tr>
                                 </table>
                             </td>
@@ -86,7 +86,7 @@
                             <td style="padding: 0">
                                 <table style="border-spacing: 0">
                                     <tr>
-                                        <td>XXXXXXXXXXXX</td>
+                                        <td>{{ $sale->customer->npwp }}</td>
                                     </tr>
                                 </table>
                             </td>
@@ -101,7 +101,7 @@
                                     <tr>
                                         <td>NPWP</td>
                                         <td>:</td>
-                                        <td>XXXXXXXXXXXXXXX</td>
+                                        <td>{{ $company->npwp }}</td>
                                     </tr>
                                     <tr>
                                         <td>Invoice No</td>
@@ -111,12 +111,12 @@
                                     <tr>
                                         <td>Date</td>
                                         <td>:</td>
-                                        <td>XXXXXXXXXXXX</td>
+                                        <td>{{ $sale->updated_at }}</td>
                                     </tr>
                                     <tr>
                                         <td>PO No</td>
                                         <td>:</td>
-                                        <td>XXXXXXXXXXXX</td>
+                                        <td>{{ $sale->number }}</td>
                                     </tr>
                                     <tr>
                                         <td>DO No</td>
@@ -153,19 +153,28 @@
                 </tr>
             </thead>
             <tbody style="text-align: center;">
-                @for ($i = 0; $i < 150; $i++)
+                @foreach ($sale->saleDetail as $key => $saleDetail)
                     <tr>
-                        <th>1</th>
-                        <td style="text-align: left;">IMPORT KURSI OFFICE</td>
-                        <td>1</td>
+                        <th>{{ $key + 1 }}</th>
+                        <td style="text-align: left;">{{ $saleDetail->product->name }}</td>
+                        <td>{{ $saleDetail->qty }}</td>
                         <td>UNIT</td>
-                        <td style="text-align: right;">800.000</td>
-                        <td style="text-align: right;">800.000</td>
+                        <td style="text-align: right;">
+                            {{ App\Services\HelperService::rupiahFormat($saleDetail->price) }}</td>
+                        <td style="text-align: right;">
+                            {{ App\Services\HelperService::rupiahFormat($saleDetail->price * $saleDetail->qty) }}
+                        </td>
                     </tr>
-                @endfor
+                @endforeach
             </tbody>
             <tfoot style="border-top: 1px solid black; border-bottom: 1px solid black; text-align: right;">
                 <tr>
+                    <td colspan="4"></td>
+                    <td>TOTAL</td>
+                    <td>{{ App\Services\HelperService::rupiahFormat(App\Services\SaleService::totalPrice($sale)) }}
+                    </td>
+                </tr>
+                {{-- <tr>
                     <td colspan="4"></td>
                     <td>SUB. TOTAL</td>
                     <td>800.000</td>
@@ -179,9 +188,14 @@
                     <td colspan="4"></td>
                     <td>TOTAL IDR</td>
                     <td>888.000</td>
-                </tr>
+                </tr> --}}
             </tfoot>
         </table>
+
+        <p style="margin: 0; font-size: x-small; font-weight: bold; text-align: right;">Semua produk dikenakan ppn
+            sebesar
+            {{ $sale->ppn ? $ppn : 0 }} %
+        </p>
 
         <div style="position: absolute; bottom: 0; left: 0; right: 0;">
             <table>
@@ -194,7 +208,7 @@
                                     <tr>
                                         <td></td>
                                         <td colspan="1">
-                                            <p style="margin-bottom: 75px; margin-top: 70px;">XXXXXXXXXXXX</p>
+                                            <p style="margin-bottom: 75px; margin-top: 70px;">{{ $company->name }}</p>
                                         </td>
                                     </tr>
                                 </thead>
