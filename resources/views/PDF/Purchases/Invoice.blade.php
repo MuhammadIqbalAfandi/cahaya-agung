@@ -193,8 +193,7 @@
             </tfoot>
         </table>
 
-        <p style="margin: 0; font-size: x-small; font-weight: bold; text-align: right;">Semua produk dikenakan ppn
-            sebesar
+        <p style="margin: 0; font-size: x-small; font-weight: bold; text-align: right;">Semua produk sudah dikenakan ppn
             {{ $purchase->ppn ? $ppn : 0 }} %
         </p>
 
