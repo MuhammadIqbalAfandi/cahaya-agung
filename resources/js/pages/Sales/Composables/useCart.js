@@ -1,5 +1,5 @@
 import { reactive } from 'vue'
-import { FormValidationError } from '@/utils/helpers'
+import { FormValidationError, ppn } from '@/utils/helpers'
 
 export function useCart(form, initialProducts = []) {
   const cart = reactive(initialProducts)
@@ -83,11 +83,9 @@ export function useCart(form, initialProducts = []) {
 
   const totalCartPrice = () => {
     const itemPrices = cart.map((product) => {
-      if (form.checkedPpn) {
-        return product.price + product.price * (form.ppn / 100)
-      } else {
-        return product.price
-      }
+      return form.checkedPpn
+        ? ppn(product.price, form.ppn) * product.qty
+        : product.price * product.qty
     })
 
     return itemPrices.reduce(
