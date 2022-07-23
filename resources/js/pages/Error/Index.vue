@@ -65,7 +65,7 @@ const description = computed(() => {
   </div>
 </template>
 
-<style lang="scss" scoped>
+<style scoped>
 .border-gradient {
   border-radius: 4px;
   padding: 0.3rem;

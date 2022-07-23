@@ -7,8 +7,8 @@
     <link rel="icon" type="image/x-icon" href="{{ asset('images/favicon.ico') }}">
 
     @routes
-    @vite(['resources/js/vue.js'])
     @inertiaHead
+    @vite('resources/js/vue.js')
 </head>
 
 <body>
