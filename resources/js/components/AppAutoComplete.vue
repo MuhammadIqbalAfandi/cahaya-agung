@@ -7,6 +7,9 @@ const props = defineProps({
     type: String,
     required: true,
   },
+  labelClass: {
+    type: String,
+  },
   disabled: {
     type: Boolean,
     default: false,
@@ -64,7 +67,7 @@ const onSelect = (event) => {
 
 <template>
   <div class="field">
-    <label :for="forLabel">{{ label }}</label>
+    <label :for="forLabel" :class="labelClass">{{ label }}</label>
 
     <AutoComplete
       forceSelection

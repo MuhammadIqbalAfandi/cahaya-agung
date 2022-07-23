@@ -34,9 +34,9 @@ defineProps({
   </div>
 </template>
 
-<style lang="scss" scoped>
+<style scoped>
 .border-gradient {
-  border-radius: 4px;
+  border-radius: 56px;
   padding: 0.3rem;
   background: linear-gradient(
     180deg,
@@ -46,7 +46,7 @@ defineProps({
 }
 
 .bg-gradient {
-  border-radius: 3px;
+  border-radius: 53px;
   background: linear-gradient(
     180deg,
     var(--surface-50) 38.9%,

@@ -6,6 +6,9 @@ const props = defineProps({
     type: String,
     required: true,
   },
+  labelClass: {
+    type: String,
+  },
   disabled: {
     type: Boolean,
     default: false,
@@ -68,7 +71,7 @@ const selectedDropdownLabel = (value) => {
 
 <template>
   <div class="field">
-    <label v-if="label" :for="forLabel">{{ label }}</label>
+    <label v-if="label" :for="forLabel" :class="labelClass">{{ label }}</label>
 
     <Dropdown
       class="w-full"

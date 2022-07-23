@@ -4,11 +4,11 @@ import { createInertiaApp } from '@inertiajs/inertia-vue3'
 import { InertiaProgress } from '@inertiajs/progress'
 import { resolvePageComponent } from 'laravel-vite-plugin/inertia-helpers'
 
-import 'primeflex/primeflex.css'
-import 'primevue/resources/themes/mdc-light-indigo/theme.css'
 import 'primevue/resources/primevue.min.css'
+import 'primeflex/primeflex.css'
 import 'primeicons/primeicons.css'
-import '../css/app.scss'
+import 'primevue/resources/themes/lara-light-indigo/theme.css'
+import '../css/layout.scss'
 import PrimeVue from 'primevue/config'
 import StyleClass from 'primevue/styleclass'
 import AutoComplete from 'primevue/autocomplete'
@@ -32,6 +32,7 @@ import InputText from 'primevue/inputtext'
 import Message from 'primevue/message'
 import Password from 'primevue/password'
 import Row from 'primevue/row'
+import Ripple from 'primevue/ripple'
 import TabView from 'primevue/tabview'
 import TabPanel from 'primevue/tabpanel'
 import Tooltip from 'primevue/tooltip'
@@ -54,6 +55,7 @@ createInertiaApp({
       .use(DialogService)
       .directive('styleclass', StyleClass)
       .directive('tooltip', Tooltip)
+      .directive('ripple', Ripple)
       .component('AutoComplete', AutoComplete)
       .component('Button', Button)
       .component('Badge', Badge)

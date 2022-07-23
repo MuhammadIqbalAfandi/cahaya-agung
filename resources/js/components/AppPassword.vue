@@ -6,6 +6,9 @@ const props = defineProps({
     type: String,
     required: true,
   },
+  labelClass: {
+    type: String,
+  },
   disabled: {
     type: Boolean,
     default: false,
@@ -48,7 +51,7 @@ const ariaDescribedbyLabel = computed(
 
 <template>
   <div class="field">
-    <label :for="forLabel">{{ label }}</label>
+    <label :for="forLabel" :class="labelClass">{{ label }}</label>
 
     <Password
       class="w-full"

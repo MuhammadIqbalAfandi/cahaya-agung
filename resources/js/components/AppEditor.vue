@@ -6,6 +6,9 @@ const props = defineProps({
     type: String,
     required: true,
   },
+  labelClass: {
+    type: String,
+  },
   readOnly: {
     type: Boolean,
     required: false,
@@ -35,7 +38,7 @@ const ariaDescribedbyLabel = computed(
 
 <template>
   <div class="field">
-    <label v-if="label" :for="forLabel">{{ label }}</label>
+    <label v-if="label" :for="forLabel" :class="labelClass">{{ label }}</label>
 
     <Editor
       :read-only="readOnly"
