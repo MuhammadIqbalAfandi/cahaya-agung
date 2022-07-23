@@ -81,7 +81,7 @@ const { onShowCreateProduct, onShowCreateSupplier } = useDialog()
     <DynamicDialog />
 
     <div class="grid">
-      <div class="col-12 md:col-8">
+      <div class="col-12 xl:col-8">
         <div class="grid">
           <div class="col-12">
             <Card>
@@ -240,7 +240,7 @@ const { onShowCreateProduct, onShowCreateSupplier } = useDialog()
         </div>
       </div>
 
-      <div class="col-12 md:col-4">
+      <div class="col-12 xl:col-4">
         <Details
           title="Detail Pembelian"
           message="Pastikan semua produk sudah benar"

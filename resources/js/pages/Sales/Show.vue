@@ -33,7 +33,7 @@ const { cart, totalCartPrice } = useCart(form, props.saleDetail)
     <DynamicDialog />
 
     <div class="grid">
-      <div class="col-12 md:col-8">
+      <div class="col-12">
         <div class="grid">
           <div class="col-12">
             <Card>
@@ -97,7 +97,7 @@ const { cart, totalCartPrice } = useCart(form, props.saleDetail)
         </div>
       </div>
 
-      <div class="col-12 md:col-8 flex justify-content-end">
+      <div class="col-12 flex justify-content-end">
         <AppButtonLink
           label="Cetak Invoice"
           icon="pi pi-print"
@@ -107,7 +107,7 @@ const { cart, totalCartPrice } = useCart(form, props.saleDetail)
         />
       </div>
 
-      <div class="col-12 md:col-8 flex justify-content-end">
+      <div class="col-12 flex justify-content-end">
         <AppButtonLink
           label="Cetak Delivery Order"
           icon="pi pi-print"

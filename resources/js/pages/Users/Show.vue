@@ -35,7 +35,7 @@ const onChangePassword = () => {
 <template>
   <DashboardLayout title="Profil Saya">
     <div class="grid">
-      <div class="col-12 md:col-8">
+      <div class="col-12">
         <Card>
           <template #title>Profil Saya</template>
 

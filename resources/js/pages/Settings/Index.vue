@@ -12,7 +12,7 @@ defineProps({
 <template>
   <DashboardLayout title="Pengaturan">
     <div class="grid">
-      <div class="col-12 md:col-8">
+      <div class="col-12">
         <Card>
           <template #title> Pengaturan </template>
           <template #content>

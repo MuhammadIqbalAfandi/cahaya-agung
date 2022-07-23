@@ -102,7 +102,7 @@ const { onShowCustomerCreate } = useDialog()
     <DynamicDialog />
 
     <div class="grid">
-      <div class="col-12 md:col-8">
+      <div class="col-12 xl:col-8">
         <div class="grid">
           <div class="col-12">
             <Card>
@@ -279,7 +279,7 @@ const { onShowCustomerCreate } = useDialog()
         </div>
       </div>
 
-      <div class="col-12 md:col-4">
+      <div class="col-12 xl:col-4">
         <Details
           title="Detail Penjualan"
           message="Pastikan semua produk sudah benar"

@@ -18,7 +18,7 @@ const onSubmit = () => {
 <template>
   <DashboardLayout title="Tambah Pelanggan">
     <div class="grid">
-      <div class="col-12 lg:col-8">
+      <div class="col-12">
         <Card>
           <template #title> Tambah Pelanggan </template>
           <template #content>
