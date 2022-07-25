@@ -9,7 +9,7 @@
     "@inertiajs/inertia": "^0.11.0",
     "@inertiajs/inertia-vue3": "^0.6.0",
     "@inertiajs/progress": "^0.2.7",
-    "@vitejs/plugin-vue": "^2.3.3",
+    "@vitejs/plugin-vue": "^3.0.1",
     "axios": "^0.25",
     "chart.js": "^3.7.1",
     "dayjs": "^1.11.0",
