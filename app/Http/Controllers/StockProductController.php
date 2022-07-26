@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\StockProduct;
-use App\Services\HelperService;
+use App\Services\FunctionService;
 use Illuminate\Http\Request;
 
 class StockProductController extends Controller
@@ -31,7 +31,7 @@ class StockProductController extends Controller
                         "id" => $stockProduct->id,
                         "updatedAt" => $stockProduct->updated_at,
                         "name" => $stockProduct->product->name,
-                        "price" => HelperService::rupiahFormat(
+                        "price" => FunctionService::rupiahFormat(
                             $stockProduct->price
                         ),
                         "qty" => $stockProduct->qty,

@@ -38,5 +38,9 @@ return [
     'top_up_rank' => 'Top Up',
     'top_up_number_rank' => 'Peringkat :number Top Up',
     'user' => 'User',
+    'sale' => 'Penjualan',
+    'purchase' => 'Pembelian',
+    'product' => 'Produk',
+    'stock_product' => 'Stok Produk'
 
 ];

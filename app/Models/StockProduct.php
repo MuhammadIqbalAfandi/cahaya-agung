@@ -3,7 +3,7 @@
 namespace App\Models;
 
 use App\Models\Ppn;
-use App\Services\HelperService;
+use App\Services\FunctionService;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Casts\Attribute;
@@ -30,7 +30,7 @@ class StockProduct extends Model
             get: function ($value) {
                 $ppn = Ppn::first()->ppn;
 
-                return $this->ppn ? HelperService::ppn($value, $ppn) : $value;
+                return $this->ppn ? FunctionService::ppn($value, $ppn) : $value;
             }
         );
     }

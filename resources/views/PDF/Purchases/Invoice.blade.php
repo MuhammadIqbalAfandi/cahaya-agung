@@ -160,10 +160,10 @@
                         <td>{{ $purchaseDetail->qty }}</td>
                         <td>UNIT</td>
                         <td style="text-align: right;">
-                            {{ App\Services\HelperService::rupiahFormat($purchaseDetail->price) }}
+                            {{ App\Services\FunctionService::rupiahFormat($purchaseDetail->price) }}
                         </td>
                         <td style="text-align: right;">
-                            {{ App\Services\HelperService::rupiahFormat($purchaseDetail->price * $purchaseDetail->qty) }}
+                            {{ App\Services\FunctionService::rupiahFormat($purchaseDetail->price * $purchaseDetail->qty) }}
                         </td>
                     </tr>
                 @endforeach
@@ -172,7 +172,7 @@
                 <tr>
                     <td colspan="4"></td>
                     <td>TOTAL</td>
-                    <td>{{ App\Services\HelperService::rupiahFormat(App\Services\PurchaseService::totalPrice($purchase)) }}
+                    <td>{{ App\Services\FunctionService::rupiahFormat(App\Services\PurchaseService::totalPrice($purchase)) }}
                     </td>
                 </tr>
                 {{-- <tr>

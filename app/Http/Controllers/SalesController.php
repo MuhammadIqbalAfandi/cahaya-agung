@@ -7,12 +7,12 @@ use App\Models\Sale;
 use Inertia\Inertia;
 use App\Models\Customer;
 use App\Models\StockProduct;
-use App\Services\HelperService;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Database\QueryException;
 use App\Http\Requests\Sales\StoreSaleRequest;
 use App\Http\Requests\Sales\UpdateSaleRequest;
 use App\Models\Company;
+use App\Services\FunctionService;
 use App\Services\SaleService;
 use Barryvdh\DomPDF\Facade\Pdf;
 
@@ -43,7 +43,7 @@ class SalesController extends Controller
                         "name" => $sale->customer->name,
                         "phone" => $sale->customer->phone,
                         "email" => $sale->customer->email,
-                        "price" => HelperService::rupiahFormat(
+                        "price" => FunctionService::rupiahFormat(
                             SaleService::totalPrice($sale)
                         ),
                         "status" => $sale->status,

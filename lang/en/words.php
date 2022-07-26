@@ -38,5 +38,9 @@ return [
     'top_up_rank' => 'Top Up',
     'top_up_number_rank' => 'Top Up :number Rank',
     'user' => 'User',
+    'sale' => 'Sale',
+    'purchase' => 'Purchase',
+    'product' => 'Product',
+    'stock_product' => 'Stock Product'
 
 ];

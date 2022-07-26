@@ -13,9 +13,4 @@ class PurchaseService
             return $purchaseDetail->price * $purchaseDetail->qty;
         });
     }
-
-    public static function purchaseAmount()
-    {
-        return QueryService::queryAmount("purchases", "Pembelian");
-    }
 }

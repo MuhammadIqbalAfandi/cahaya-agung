@@ -2,47 +2,49 @@
 import CardCount from './Components/CardCount.vue'
 import CardProductFavorite from './Components/CardProductFavorite.vue'
 import DashboardLayout from '@/layouts/Dashboard/DashboardLayout.vue'
+import { computed } from '@vue/reactivity'
 
 const props = defineProps([
-  'productCounts',
+  'productAmount',
   'productFavorites',
-  'saleStatistic',
+  'salePurchaseStatistic',
 ])
 
-const purchaseAndSale = {
-  labels: [
-    'Jan',
-    'Feb',
-    'Mar',
-    'Apr',
-    'May',
-    'Jun',
-    'Jul',
-    'Aug',
-    'Sep',
-    'Oct',
-    'Nov',
-    'Dec',
-  ],
-  datasets: [
-    {
-      label: 'Pembelian',
-      data: [65, 59, 80, 81, 56, 55, 40],
-      fill: false,
-      backgroundColor: '#2f4860',
-      borderColor: '#2f4860',
-      tension: 0.4,
-    },
-    {
-      label: 'Penjualan',
-      data: [28, 48, 40, 19, 86, 27, 90],
-      fill: false,
-      backgroundColor: '#00bb7e',
-      borderColor: '#00bb7e',
-      tension: 0.4,
-    },
-  ],
-}
+const salePurchase = computed(() => {
+  const data = {
+    datasets: [
+      {
+        label: null,
+        data: null,
+        fill: false,
+        backgroundColor: '#2f4860',
+        borderColor: '#2f4860',
+        tension: 0.4,
+      },
+      {
+        label: null,
+        data: null,
+        fill: false,
+        backgroundColor: '#00bb7e',
+        borderColor: '#00bb7e',
+        tension: 0.4,
+      },
+    ],
+  }
+
+  let index = 0
+
+  for (const key in props.salePurchaseStatistic) {
+    data.datasets[index].label = key
+    data.datasets[index].data = props.salePurchaseStatistic[key]
+
+    console.info(props.salePurchaseStatistic[key])
+
+    index++
+  }
+
+  return data
+})
 
 const barData = {
   labels: [
@@ -84,10 +86,6 @@ const barData = {
     },
   ],
 }
-
-const lineOptions = null
-
-const productCounts = props.productCounts
 </script>
 
 <template>
@@ -95,7 +93,7 @@ const productCounts = props.productCounts
     <div class="grid">
       <div class="col-12">
         <div class="grid">
-          <CardCount :products="productCounts" />
+          <CardCount :products="productAmount" />
         </div>
       </div>
 
@@ -105,11 +103,7 @@ const productCounts = props.productCounts
             <div class="card">
               <h5>Pembelian dan Penjualan</h5>
 
-              <Chart
-                type="line"
-                :data="purchaseAndSale"
-                :options="lineOptions"
-              />
+              <Chart type="line" :data="salePurchase" />
             </div>
           </div>
 
@@ -125,7 +119,7 @@ const productCounts = props.productCounts
             <div class="card">
               <h5>Pembelian</h5>
 
-              <Chart type="bar" :data="barData" :options="lineOptions" />
+              <Chart type="bar" :data="barData" />
             </div>
           </div>
 
@@ -133,7 +127,7 @@ const productCounts = props.productCounts
             <div class="card">
               <h5>Pendapatan</h5>
 
-              <Chart type="bar" :data="barData" :options="lineOptions" />
+              <Chart type="bar" :data="barData" />
             </div>
           </div>
         </div>

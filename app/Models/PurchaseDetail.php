@@ -2,7 +2,7 @@
 
 namespace App\Models;
 
-use App\Services\HelperService;
+use App\Services\FunctionService;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -20,7 +20,7 @@ class PurchaseDetail extends Model
                 $ppn = Ppn::first()->ppn;
 
                 return $this->purchase->ppn
-                    ? HelperService::ppn($value, $ppn)
+                    ? FunctionService::ppn($value, $ppn)
                     : $value;
             }
         );

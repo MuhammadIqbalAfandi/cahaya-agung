@@ -2,7 +2,7 @@
 
 namespace App\Services;
 
-class HelperService
+class FunctionService
 {
     public static function addPrevValue(array $array)
     {

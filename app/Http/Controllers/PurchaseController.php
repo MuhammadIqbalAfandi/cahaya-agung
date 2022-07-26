@@ -9,13 +9,13 @@ use App\Models\Purchase;
 use App\Models\Supplier;
 use App\Models\StockProduct;
 use App\Models\PurchaseDetail;
-use App\Services\HelperService;
 use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Database\QueryException;
 use App\Http\Requests\Purchase\StorePurchaseRequest;
 use App\Http\Requests\Purchase\UpdatePurchaseRequest;
 use App\Models\Company;
+use App\Services\FunctionService;
 use App\Services\PurchaseService;
 
 class PurchaseController extends Controller
@@ -45,7 +45,7 @@ class PurchaseController extends Controller
                         "name" => $purchase->supplier->name,
                         "phone" => $purchase->supplier->phone,
                         "email" => $purchase->supplier->email,
-                        "price" => HelperService::rupiahFormat(
+                        "price" => FunctionService::rupiahFormat(
                             PurchaseService::totalPrice($purchase)
                         ),
                         "status" => $purchase->status,
