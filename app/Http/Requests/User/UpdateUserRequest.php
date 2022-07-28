@@ -26,7 +26,7 @@ class UpdateUserRequest extends FormRequest
         return [
             "name" => "required|string|max:50",
             "username" =>
-                "required|string|min:5|unique:users,username," .
+                "required|string|regex:/^\S*$/u|min:5|unique:users,username," .
                 $this->user->id,
             "role_id" => "required|numeric",
         ];
