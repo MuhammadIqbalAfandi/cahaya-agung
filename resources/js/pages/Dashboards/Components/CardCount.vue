@@ -1,14 +1,14 @@
 <script setup>
 defineProps({
-  products: {
+  data: {
     required: true,
-    type: Array,
+    type: Object,
   },
 })
 </script>
 
 <template>
-  <div v-for="product in products" class="col-12 lg:col-6 xl:col-3">
+  <div v-for="product in data.data" class="col-12 lg:col-6 xl:col-3">
     <div class="card mb-0">
       <div class="flex justify-content-between mb-3">
         <div>
@@ -26,10 +26,14 @@ defineProps({
           <i class="pi pi-th-large text-blue-500 text-xl"></i>
         </div>
       </div>
-      <span class="text-green-500 font-medium"
-        >{{ product.amountToday }} {{ product.title.toLowerCase() }}
+
+      <span class="text-green-500 font-medium">
+        {{ product.amountToday }} {{ product.title.toLowerCase() }} {{ ' ' }}
       </span>
-      <span class="text-500"> hari ini</span>
+
+      <span class="text-500">
+        {{ product.amountTodayDescription.toLowerCase() }}
+      </span>
     </div>
   </div>
 </template>

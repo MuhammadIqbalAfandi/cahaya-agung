@@ -1,8 +1,8 @@
 <script setup>
 defineProps({
-  products: {
+  data: {
     required: true,
-    type: Array,
+    type: Object,
   },
 })
 </script>
@@ -10,12 +10,12 @@ defineProps({
 <template>
   <div class="card">
     <div class="flex justify-content-between align-items-center">
-      <h5>Produk Terlaris</h5>
+      <h5>{{ data.title }}</h5>
     </div>
 
     <ul class="list-none p-0 m-0">
       <li
-        v-for="product in products"
+        v-for="product in data.data"
         class="flex flex-column md:flex-row md:align-items-center md:justify-content-between mb-4"
       >
         <span class="text-900 font-medium mr-2 mb-1 md:mb-0">{{

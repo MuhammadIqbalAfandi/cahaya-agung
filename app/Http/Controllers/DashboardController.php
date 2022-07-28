@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Services\DashboardService;
-use App\Services\QueryService;
 use Illuminate\Http\Request;
 
 class DashboardController extends Controller
@@ -16,12 +15,14 @@ class DashboardController extends Controller
      */
     public function __invoke(Request $request)
     {
-        // dd(QueryService::statisticDualYear("purchase_details", "purchases"));
+        // DashboardService::dump();
 
         return inertia("Dashboards/Index", [
             "productAmount" => DashboardService::productAmount(),
-            "productFavorites" => DashboardService::productFavorites(),
-            "salePurchaseStatistic" => DashboardService::salePurchaseStatistic(),
+            "productBestSelling" => DashboardService::productBestSelling(),
+            "salePurchaseAmountStatistic" => DashboardService::salePurchaseAmountStatistic(),
+            "salePriceStatistic" => DashboardService::salePriceStatistic(),
+            "purchasePriceStatistic" => DashboardService::purchasePriceStatistic(),
         ]);
     }
 }
