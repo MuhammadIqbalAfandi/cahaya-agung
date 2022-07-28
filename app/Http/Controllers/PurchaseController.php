@@ -354,4 +354,14 @@ class PurchaseController extends Controller
 
         return $pdf->stream();
     }
+
+    public function report()
+    {
+        return inertia("Purchases/Report");
+    }
+
+    public function reportExcel()
+    {
+        //
+    }
 }

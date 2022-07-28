@@ -14,7 +14,20 @@ export default {
     },
     {
       label: 'Laporan',
-      items: [],
+      items: [
+        {
+          label: 'Penjualan',
+          icon: 'pi pi-circle',
+          to: '/sales/report',
+          component: 'Sales/Report',
+        },
+        {
+          label: 'Pembelian',
+          icon: 'pi pi-circle',
+          to: '/purchases/report',
+          component: 'Purchases/Report',
+        },
+      ],
     },
     {
       label: 'Master',

@@ -102,7 +102,7 @@ const { cart, totalCartPrice } = useCart(form, props.purchaseDetail)
           icon="pi pi-print"
           target="_blank"
           :inertia-link="false"
-          :href="route('purchases.invoice', id)"
+          :href="route('purchases.pdf.invoice', id)"
         />
       </div>
 
@@ -112,7 +112,7 @@ const { cart, totalCartPrice } = useCart(form, props.purchaseDetail)
           icon="pi pi-print"
           target="_blank"
           :inertia-link="false"
-          :href="route('purchases.do', id)"
+          :href="route('purchases.pdf.do', id)"
         />
       </div>
     </div>

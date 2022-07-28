@@ -226,4 +226,14 @@ class SalesController extends Controller
 
         return $pdf->stream();
     }
+
+    public function report()
+    {
+        return inertia("Sales/Report");
+    }
+
+    public function reportExcel()
+    {
+        //
+    }
 }

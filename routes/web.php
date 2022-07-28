@@ -59,24 +59,38 @@ Route::middleware(["auth", "verified", "checkBlocked"])->group(function () {
     Route::get("/purchases/pdf/invoice/{purchase}", [
         PurchaseController::class,
         "invoice",
-    ])->name("purchases.invoice");
+    ])->name("purchases.pdf.invoice");
 
     Route::get("/purchases/pdf/do/{purchase}", [
         PurchaseController::class,
         "deliveryOrder",
-    ])->name("purchases.do");
+    ])->name("purchases.pdf.do");
+
+    Route::get("/purchases/excel/report", [
+        PurchaseController::class,
+        "reportExcel",
+    ])->name("purchases.excel.report");
+
+    Route::get("/purchases/report", [PurchaseController::class, "report"]);
 
     Route::resource("/sales", SalesController::class);
 
     Route::get("/sales/pdf/invoice/{sale}", [
         SalesController::class,
         "invoice",
-    ])->name("sales.invoice");
+    ])->name("sales.pdf.invoice");
 
     Route::get("/sales/pdf/do/{sale}", [
         SalesController::class,
         "deliveryOrder",
-    ])->name("sales.do");
+    ])->name("sales.pdf.do");
+
+    Route::get("/sales/excel/report", [
+        SalesController::class,
+        "reportExcel",
+    ])->name("sales.excel.report");
+
+    Route::get("/sales/report", [SalesController::class, "report"]);
 
     Route::resource("/suppliers", SupplierController::class);
 
