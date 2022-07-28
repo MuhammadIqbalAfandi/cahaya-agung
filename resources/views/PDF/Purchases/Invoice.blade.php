@@ -67,7 +67,7 @@
                 <td style="width: 65%;">
                     <table>
                         <tr>
-                            <td><strong>To</strong></td>
+                            <td><strong>TO</strong></td>
                             <td>:</td>
                             <td style="padding: 0;">
                                 <table style="border-spacing: 0;">
@@ -104,27 +104,17 @@
                                         <td>{{ $company->npwp ?? '-' }}</td>
                                     </tr>
                                     <tr>
-                                        <td>Invoice No</td>
-                                        <td>:</td>
-                                        <td>XXXXXXXXXXXX</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Date</td>
+                                        <td>DATE</td>
                                         <td>:</td>
                                         <td>{{ $purchase->updated_at }}</td>
                                     </tr>
                                     <tr>
-                                        <td>PO No</td>
+                                        <td>PURCHASE NO</td>
                                         <td>:</td>
                                         <td>{{ $purchase->number }}</td>
                                     </tr>
                                     <tr>
-                                        <td>DO No</td>
-                                        <td>:</td>
-                                        <td>XXXXXXXXXXXX</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Halaman</td>
+                                        <td>PAGE</td>
                                         <td>:</td>
                                         <td class="page"></td>
                                     </tr>

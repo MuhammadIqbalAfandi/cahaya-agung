@@ -81,18 +81,7 @@
                             </td>
                         </tr>
                         <tr>
-                            <td><strong>Attn</strong></td>
-                            <td>:</td>
-                            <td style="padding: 0">
-                                <table style="border-spacing: 0">
-                                    <tr>
-                                        <td>XXXXXXXXXXXX</td>
-                                    </tr>
-                                </table>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td><strong>Tlp</strong></td>
+                            <td><strong>TLP</strong></td>
                             <td>:</td>
                             <td style="padding: 0">
                                 <table style="border-spacing: 0">
@@ -110,24 +99,14 @@
                             <td>
                                 <table>
                                     <tr>
-                                        <td>DO NO</td>
-                                        <td>:</td>
-                                        <td>XXXXXXXXXXXX</td>
-                                    </tr>
-                                    <tr>
                                         <td>DATE</td>
                                         <td>:</td>
                                         <td>{{ $sale->updated_at }}</td>
                                     </tr>
                                     <tr>
-                                        <td>PO NO</td>
+                                        <td>SALE NO</td>
                                         <td>:</td>
                                         <td>{{ $sale->number }}</td>
-                                    </tr>
-                                    <tr>
-                                        <td>TTB NO</td>
-                                        <td>:</td>
-                                        <td>XXXXXXXXXXXX</td>
                                     </tr>
                                     <tr>
                                         <td>PAGE</td>
