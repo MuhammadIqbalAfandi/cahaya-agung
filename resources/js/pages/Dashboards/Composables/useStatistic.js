@@ -30,5 +30,9 @@ export function useStatistic(chartData) {
     index++
   }
 
-  return { title: chartData.title, data: chartSettings }
+  return {
+    title: chartData.title,
+    description: chartData.description,
+    data: chartSettings,
+  }
 }

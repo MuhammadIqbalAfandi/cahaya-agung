@@ -43,4 +43,5 @@ return [
     "stock_product" => "Stok Produk",
     "best_product" => "Produk Terlaris",
     "sale_and_purchase" => "Penjualan dan Pembelian",
+    "period" => "Periode :number",
 ];

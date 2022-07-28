@@ -1,7 +1,9 @@
 <script setup>
 defineProps({
   title: {
-    required: true,
+    type: String,
+  },
+  description: {
     type: String,
   },
 })
@@ -9,7 +11,8 @@ defineProps({
 
 <template>
   <div class="card">
-    <h5>{{ title }}</h5>
+    <h5 class="mb-1">{{ title }}</h5>
+    <span>{{ description }}</span>
 
     <Chart v-bind="$attrs" />
   </div>

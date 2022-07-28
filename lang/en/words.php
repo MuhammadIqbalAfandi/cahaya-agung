@@ -43,4 +43,5 @@ return [
     "stock_product" => "Stock Product",
     "best_product" => "Best Product",
     "sale_and_purchase" => "Sale and Purchase",
+    "period" => "Period :number",
 ];

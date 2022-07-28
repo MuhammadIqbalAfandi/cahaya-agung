@@ -20,7 +20,7 @@ class QueryService
                  FROM
                     products
                  WHERE
-                    DATE(updated_at) = CURDATE()) AS amountToday"
+                    DATE(created_at) = CURDATE()) AS amountToday"
             )
             ->get()
             ->transform(
@@ -41,6 +41,7 @@ class QueryService
                 "COUNT(*) AS amount,
                  DATE_FORMAT(created_at, '%b') AS month"
             )
+            ->whereRaw("YEAR(created_at) = YEAR(CURDATE())")
             ->groupByRaw("month")
             ->orderByRaw("created_at")
             ->get()

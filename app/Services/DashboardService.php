@@ -63,6 +63,9 @@ class DashboardService
     {
         return [
             "title" => __("words.sale_and_purchase"),
+            "description" => __("words.period", [
+                "number" => now()->translatedFormat("Y"),
+            ]),
             "data" => [
                 __("words.sale") => QueryService::amountStatistic("sales"),
                 __("words.purchase") => QueryService::amountStatistic(

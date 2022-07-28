@@ -10,7 +10,8 @@ defineProps({
 <template>
   <div class="card">
     <div class="flex justify-content-between align-items-center">
-      <h5>{{ data.title }}</h5>
+      <h5 class="mb-1">{{ data.title }}</h5>
+      <span>{{ data.description }}</span>
     </div>
 
     <ul class="list-none p-0 m-0">
