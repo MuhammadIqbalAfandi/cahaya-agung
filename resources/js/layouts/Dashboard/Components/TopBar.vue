@@ -25,7 +25,7 @@ const logout = () => {
   <div class="layout-topbar">
     <Link href="/" class="layout-topbar-logo">
       <img alt="Brand Logo" src="/images/logo.svg" />
-      <span>{{ $page.props.company?.name ?? 'Your Company' }}</span>
+      <span>{{ $page.props.app.company.name }}</span>
     </Link>
 
     <button
