@@ -22,7 +22,7 @@ class StockProductController extends Controller
     {
         return inertia("StockProducts/Index", [
             "initialSearch" => request("search"),
-            "stockProducts" => StockProduct::filter(request()->only("search"))
+            "stockProducts" => StockProduct::search(request()->only("search"))
                 ->latest()
                 ->paginate(10)
                 ->withQueryString()

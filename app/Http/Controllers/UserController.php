@@ -26,7 +26,7 @@ class UserController extends Controller
     {
         return inertia("Users/Index", [
             "initialSearch" => request("search"),
-            "users" => User::filter(request()->only("search"))
+            "users" => User::search(request()->only("search"))
                 ->latest()
                 ->paginate(10)
                 ->withQueryString()

@@ -34,7 +34,7 @@ class PurchaseController extends Controller
     {
         return inertia("Purchases/Index", [
             "initialSearch" => request("search"),
-            "purchases" => Purchase::filter(request()->only("search"))
+            "purchases" => Purchase::search(request()->only("search"))
                 ->latest()
                 ->paginate(10)
                 ->withQueryString()
@@ -66,12 +66,12 @@ class PurchaseController extends Controller
             "ppn" => Ppn::first()->ppn,
             "productNumber" => "PDK" . now()->format("YmdHis"),
             "suppliers" => Inertia::lazy(
-                fn() => Supplier::filter([
+                fn() => Supplier::search([
                     "search" => request("supplier"),
                 ])->get()
             ),
             "products" => Inertia::lazy(
-                fn() => Product::filter(["search" => request("product")])->get()
+                fn() => Product::search(["search" => request("product")])->get()
             ),
             "productPurchase" => Inertia::lazy(
                 fn() => PurchaseDetail::historyProductPurchase(
@@ -181,7 +181,7 @@ class PurchaseController extends Controller
             "ppnChecked" => $purchase->ppn ? true : false,
             "supplier" => $purchase->supplier,
             "products" => Inertia::lazy(
-                fn() => Product::filter(["search" => request("product")])->get()
+                fn() => Product::search(["search" => request("product")])->get()
             ),
             "purchaseDetail" => $purchase->purchaseDetail->transform(
                 fn($purchase) => [

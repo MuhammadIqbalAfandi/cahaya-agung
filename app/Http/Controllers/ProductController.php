@@ -23,7 +23,7 @@ class ProductController extends Controller
     {
         return inertia("Products/Index", [
             "initialSearch" => request("search"),
-            "products" => Product::filter(request()->only("search"))
+            "products" => Product::search(request()->only("search"))
                 ->latest()
                 ->paginate(10)
                 ->withQueryString()

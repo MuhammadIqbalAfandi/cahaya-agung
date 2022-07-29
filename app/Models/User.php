@@ -45,7 +45,7 @@ class User extends Authenticatable
         return $this->belongsTo(Role::class);
     }
 
-    public function scopeFilter($query, array $filters)
+    public function scopeSearch($query, array $filters)
     {
         $query->when($filters["search"] ?? null, function ($query, $search) {
             $query->where(function ($query) use ($search) {

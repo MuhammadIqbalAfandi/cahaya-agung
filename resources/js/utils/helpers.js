@@ -22,6 +22,14 @@ export const IDRCurrencyFormat = (number, decimal = false) => {
   }
 }
 
+export function removeParams(...params) {
+  const urlParams = new URLSearchParams(location.search)
+
+  params.forEach((value) => urlParams.delete(value))
+
+  window.history.replaceState({}, '', `${location.pathname}?${urlParams}`)
+}
+
 export class FormValidationError extends Error {
   constructor(message, errors) {
     super(message)

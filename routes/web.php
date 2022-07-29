@@ -54,8 +54,6 @@ Route::middleware(["auth", "verified", "checkBlocked"])->group(function () {
 
     Route::resource("/customers", CustomerController::class);
 
-    Route::resource("/purchases", PurchaseController::class);
-
     Route::get("/purchases/pdf/invoice/{purchase}", [
         PurchaseController::class,
         "invoice",
@@ -73,7 +71,7 @@ Route::middleware(["auth", "verified", "checkBlocked"])->group(function () {
 
     Route::get("/purchases/report", [PurchaseController::class, "report"]);
 
-    Route::resource("/sales", SalesController::class);
+    Route::resource("/purchases", PurchaseController::class);
 
     Route::get("/sales/pdf/invoice/{sale}", [
         SalesController::class,
@@ -91,6 +89,8 @@ Route::middleware(["auth", "verified", "checkBlocked"])->group(function () {
     ])->name("sales.excel.report");
 
     Route::get("/sales/report", [SalesController::class, "report"]);
+
+    Route::resource("/sales", SalesController::class);
 
     Route::resource("/suppliers", SupplierController::class);
 

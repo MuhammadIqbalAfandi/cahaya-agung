@@ -18,7 +18,7 @@ class Customer extends Model
         return $this->hasMany(Sale::class);
     }
 
-    public function scopeFilter($query, array $filters)
+    public function scopeSearch($query, array $filters)
     {
         $query->when($filters["search"] ?? null, function ($query, $search) {
             $query->where(function ($query) use ($search) {

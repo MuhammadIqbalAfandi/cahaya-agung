@@ -12,6 +12,7 @@ use Illuminate\Database\QueryException;
 use App\Http\Requests\Sales\StoreSaleRequest;
 use App\Http\Requests\Sales\UpdateSaleRequest;
 use App\Models\Company;
+use App\Models\SaleDetail;
 use App\Services\FunctionService;
 use App\Services\SaleService;
 use Barryvdh\DomPDF\Facade\Pdf;
@@ -32,7 +33,7 @@ class SalesController extends Controller
     {
         return inertia("Sales/Index", [
             "initialSearch" => request("search"),
-            "sales" => Sale::filter(request()->only("search"))
+            "sales" => Sale::search(request()->only("search"))
                 ->latest()
                 ->paginate(10)
                 ->withQueryString()
@@ -63,12 +64,12 @@ class SalesController extends Controller
             "number" => "PJN" . now()->format("YmdHis"),
             "ppn" => Ppn::first()->ppn,
             "customers" => Inertia::lazy(
-                fn() => Customer::filter([
+                fn() => Customer::search([
                     "search" => request("customer"),
                 ])->get()
             ),
             "stockProducts" => Inertia::lazy(
-                fn() => StockProduct::filter([
+                fn() => StockProduct::search([
                     "search" => request("stockProduct"),
                 ])
                     ->get()
@@ -229,7 +230,47 @@ class SalesController extends Controller
 
     public function report()
     {
-        return inertia("Sales/Report");
+        return inertia("Sales/Report", [
+            "params" => [
+                "filters" => request()->only("start_date", "end_date"),
+            ],
+            "sales" => Inertia::lazy(
+                fn() => SaleDetail::filter(
+                    request()->only("start_date", "end_date")
+                )
+                    ->latest()
+                    ->paginate(10)
+                    ->withQueryString()
+                    ->through(
+                        fn($saleDetail) => [
+                            "updatedAt" => $saleDetail->updated_at,
+                            "totalPrice" => FunctionService::rupiahFormat(
+                                $saleDetail->price * $saleDetail->qty
+                            ),
+                            "status" => $saleDetail->sale->status,
+                        ]
+                    )
+            ),
+            // "data" => [
+            //     "sales" => Inertia::lazy(
+            //         fn() => SaleDetail::filter(
+            //             request()->only("start_date", "end_date")
+            //         )
+            //             ->latest()
+            //             ->paginate(10)
+            //             ->withQueryString()
+            //             ->through(
+            //                 fn($saleDetail) => [
+            //                     "updatedAt" => $saleDetail->updated_at,
+            //                     "totalPrice" => FunctionService::rupiahFormat(
+            //                         $saleDetail->price * $saleDetail->qty
+            //                     ),
+            //                     "status" => $saleDetail->sale->status,
+            //                 ]
+            //             )
+            //     ),
+            // ],
+        ]);
     }
 
     public function reportExcel()

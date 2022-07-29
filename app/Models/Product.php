@@ -35,7 +35,7 @@ class Product extends Model
         return $this->hasMany(SaleDetail::class, "product_number", "number");
     }
 
-    public function scopeFilter($query, array $filters)
+    public function scopeSearch($query, array $filters)
     {
         $query->when($filters["search"] ?? null, function ($query, $search) {
             $query->where(function ($query) use ($search) {

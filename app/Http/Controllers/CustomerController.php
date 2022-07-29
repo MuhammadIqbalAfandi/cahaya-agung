@@ -22,7 +22,7 @@ class CustomerController extends Controller
     {
         return inertia("Customers/Index", [
             "initialSearch" => request("search"),
-            "customers" => Customer::filter(request()->only("search"))
+            "customers" => Customer::search(request()->only("search"))
                 ->latest()
                 ->paginate(10)
                 ->withQueryString()
