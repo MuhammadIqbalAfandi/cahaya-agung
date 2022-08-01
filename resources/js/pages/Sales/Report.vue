@@ -1,12 +1,25 @@
 <script setup>
 import { reportTable } from './config'
 import AppFilterDateRange from '@/components/AppFilterDateRange.vue'
+import AppButtonLink from '@/components/AppButtonLink.vue'
+import AppPagination from '@/components/AppPagination.vue'
 import DashboardLayout from '@/layouts/Dashboard/DashboardLayout.vue'
 
 defineProps({
-  params: Object,
-  sales: Object,
+  filters: Object,
+  sales: {
+    type: Object,
+    default: {
+      data: [],
+      links: [],
+      total: 0,
+    },
+  },
 })
+
+const exportExcel = () => {
+  return `/sales/excel/report${location.search}`
+}
 </script>
 
 <template>
@@ -14,6 +27,7 @@ defineProps({
     <DataTable
       responsive-layout="scroll"
       column-resize-mode="expand"
+      :value="sales.data"
       :rowHover="true"
       :stripedRows="true"
     >
@@ -25,7 +39,18 @@ defineProps({
             <AppFilterDateRange
               placeholder="filter waktu..."
               refresh-data="sales"
-              :initial-filter="params.filters"
+              :initial-filter="filters"
+            />
+          </div>
+
+          <div class="col-12">
+            <AppButtonLink
+              v-if="sales.total"
+              label="Export excel"
+              class-button="p-button-outlined md:w-16rem"
+              icon="pi pi-file-excel"
+              :inertia-link="false"
+              :href="exportExcel()"
             />
           </div>
         </div>
@@ -38,5 +63,7 @@ defineProps({
         :key="value.field"
       />
     </DataTable>
+
+    <AppPagination :links="sales.links" />
   </DashboardLayout>
 </template>

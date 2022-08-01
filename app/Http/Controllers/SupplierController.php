@@ -22,7 +22,7 @@ class SupplierController extends Controller
     {
         return inertia("Suppliers/Index", [
             "initialSearch" => request("search"),
-            "suppliers" => Supplier::filter(request()->only("search"))
+            "suppliers" => Supplier::search(request()->only("search"))
                 ->latest()
                 ->paginate(10)
                 ->withQueryString()

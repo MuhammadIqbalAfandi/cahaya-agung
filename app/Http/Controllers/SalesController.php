@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Exports\SaleDetailsExport;
 use App\Models\Ppn;
 use App\Models\Sale;
 use Inertia\Inertia;
@@ -231,19 +232,17 @@ class SalesController extends Controller
     public function report()
     {
         return inertia("Sales/Report", [
-            "params" => [
-                "filters" => request()->only("start_date", "end_date"),
-            ],
+            "filters" => request()->only("start_date", "end_date"),
             "sales" => Inertia::lazy(
                 fn() => SaleDetail::filter(
                     request()->only("start_date", "end_date")
                 )
                     ->latest()
-                    ->paginate(10)
+                    ->paginate(3)
                     ->withQueryString()
                     ->through(
                         fn($saleDetail) => [
-                            "updatedAt" => $saleDetail->updated_at,
+                            "createdAt" => $saleDetail->created_at,
                             "totalPrice" => FunctionService::rupiahFormat(
                                 $saleDetail->price * $saleDetail->qty
                             ),
@@ -251,30 +250,25 @@ class SalesController extends Controller
                         ]
                     )
             ),
-            // "data" => [
-            //     "sales" => Inertia::lazy(
-            //         fn() => SaleDetail::filter(
-            //             request()->only("start_date", "end_date")
-            //         )
-            //             ->latest()
-            //             ->paginate(10)
-            //             ->withQueryString()
-            //             ->through(
-            //                 fn($saleDetail) => [
-            //                     "updatedAt" => $saleDetail->updated_at,
-            //                     "totalPrice" => FunctionService::rupiahFormat(
-            //                         $saleDetail->price * $saleDetail->qty
-            //                     ),
-            //                     "status" => $saleDetail->sale->status,
-            //                 ]
-            //             )
-            //     ),
-            // ],
         ]);
     }
 
     public function reportExcel()
     {
-        //
+        return new SaleDetailsExport([
+            "sales" => SaleDetail::filter(
+                request()->only("start_date", "end_date")
+            )
+                ->latest()
+                ->get()
+                ->map(
+                    fn($saleDetail) => [
+                        "createdAt" => $saleDetail->created_at,
+                        "qty" => $saleDetail->qty,
+                        "status" => $saleDetail->sale->status,
+                        "price" => $saleDetail->price * $saleDetail->qty,
+                    ]
+                ),
+        ]);
     }
 }

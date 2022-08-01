@@ -67,7 +67,7 @@ Route::middleware(["auth", "verified", "checkBlocked"])->group(function () {
     Route::get("/purchases/excel/report", [
         PurchaseController::class,
         "reportExcel",
-    ])->name("purchases.excel.report");
+    ]);
 
     Route::get("/purchases/report", [PurchaseController::class, "report"]);
 
@@ -83,10 +83,7 @@ Route::middleware(["auth", "verified", "checkBlocked"])->group(function () {
         "deliveryOrder",
     ])->name("sales.pdf.do");
 
-    Route::get("/sales/excel/report", [
-        SalesController::class,
-        "reportExcel",
-    ])->name("sales.excel.report");
+    Route::get("/sales/excel/report", [SalesController::class, "reportExcel"]);
 
     Route::get("/sales/report", [SalesController::class, "report"]);
 

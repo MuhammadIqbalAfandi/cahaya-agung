@@ -45,8 +45,6 @@ watch(
       filters.startDate = dayjs(filters.dates[0]).format('YYYY-MM-DD')
 
       filters.endDate = null
-
-      removeParams('end_date')
     }
 
     Inertia.reload({
@@ -66,6 +64,14 @@ const removeParams = (...params) => {
 
   window.history.replaceState({}, '', `${location.pathname}?${urlParams}`)
 }
+
+const dateSelect = () => {
+  if (filters.dates[0]) {
+    removeParams('end_date')
+  }
+
+  removeParams('page')
+}
 </script>
 
 <template>
@@ -74,6 +80,7 @@ const removeParams = (...params) => {
     selection-mode="range"
     date-format="dd/mm/yy"
     :manual-input="false"
+    @date-select="dateSelect"
     v-model="filters.dates"
   />
 </template>

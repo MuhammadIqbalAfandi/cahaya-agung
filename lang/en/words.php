@@ -44,4 +44,10 @@ return [
     "best_product" => "Best Product",
     "sale_and_purchase" => "Sale and Purchase",
     "period" => "Period :number",
+    "report_sale" => "Sale Report",
+    "report_purchase" => "Purchase Report",
+    "date" => "Date",
+    "total_price" => "Total Price",
+    "status" => "Status",
+    "quantity" => "Quantity",
 ];

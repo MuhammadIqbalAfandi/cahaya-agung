@@ -26,7 +26,7 @@ export const cartTable = [
 ]
 
 export const reportTable = [
-  { field: 'updatedAt', header: 'Tanggal' },
+  { field: 'createdAt', header: 'Tanggal' },
   { field: 'totalPrice', header: 'Total Harga' },
   { field: 'status', header: 'Status' },
 ]

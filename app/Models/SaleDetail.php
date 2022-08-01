@@ -14,7 +14,7 @@ class SaleDetail extends Model
 
     protected $fillable = ["price", "qty", "sale_number", "product_number"];
 
-    protected function updatedAt(): Attribute
+    protected function createdAt(): Attribute
     {
         return Attribute::make(
             get: fn($value) => Carbon::parse($value)->translatedFormat(

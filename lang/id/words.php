@@ -44,4 +44,10 @@ return [
     "best_product" => "Produk Terlaris",
     "sale_and_purchase" => "Penjualan dan Pembelian",
     "period" => "Periode :number",
+    "report_sale" => "Laporan Penjualan",
+    "report_purchase" => "Laporan Pembelian",
+    "date" => "Tanggal",
+    "total_price" => "Total Harga",
+    "status" => "Status",
+    "quantity" => "Kuantitas",
 ];
