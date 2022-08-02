@@ -1,6 +1,6 @@
 <script setup>
 import { reportTable } from './config'
-import AppFilterDateRange from '@/components/AppFilterDateRange.vue'
+import AppDateRangeFilter from '@/components/AppDateRangeFilter.vue'
 import AppButtonLink from '@/components/AppButtonLink.vue'
 import AppPagination from '@/components/AppPagination.vue'
 import DashboardLayout from '@/layouts/Dashboard/DashboardLayout.vue'
@@ -36,7 +36,7 @@ const exportExcel = () => {
 
         <div class="grid">
           <div class="col-12 sm:col-6 lg:col-4">
-            <AppFilterDateRange
+            <AppDateRangeFilter
               placeholder="filter waktu..."
               refresh-data="sales"
               :initial-filter="filters"

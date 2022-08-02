@@ -1,6 +1,6 @@
 <script setup>
 import { indexTable } from './config'
-import AppSearch from '@/components/AppSearch.vue'
+import AppSearchFilter from '@/components/AppSearchFilter.vue'
 import AppPagination from '@/components/AppPagination.vue'
 import DashboardLayout from '@/layouts/Dashboard/DashboardLayout.vue'
 
@@ -22,7 +22,7 @@ defineProps({
       <template #header>
         <h1>Stok Produk</h1>
 
-        <AppSearch
+        <AppSearchFilter
           class="w-full md:w-27rem"
           placeholder="nama"
           url="/stock-products"

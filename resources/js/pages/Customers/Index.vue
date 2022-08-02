@@ -2,7 +2,7 @@
 import { Inertia } from '@inertiajs/inertia'
 import { useConfirm } from 'primevue/useconfirm'
 import { indexTable } from './config'
-import AppSearch from '@/components/AppSearch.vue'
+import AppSearchFilter from '@/components/AppSearchFilter.vue'
 import AppButtonLink from '@/components/AppButtonLink.vue'
 import AppPagination from '@/components/AppPagination.vue'
 import DashboardLayout from '@/layouts/Dashboard/DashboardLayout.vue'
@@ -45,7 +45,7 @@ const onDelete = (data) => {
         <div class="grid">
           <div class="col-12 md:col-8">
             <div class="flex align-items-center">
-              <AppSearch
+              <AppSearchFilter
                 class="w-full md:w-27rem"
                 placeholder="nama, no hp, npwp"
                 url="/customers"

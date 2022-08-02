@@ -62,7 +62,7 @@ const removeParams = (...params) => {
 
   params.forEach((value) => urlParams.delete(value))
 
-  window.history.replaceState({}, '', `${location.pathname}?${urlParams}`)
+  history.replaceState({}, '', `${location.pathname}?${urlParams}`)
 }
 
 const dateSelect = () => {
