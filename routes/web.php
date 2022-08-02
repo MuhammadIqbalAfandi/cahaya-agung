@@ -69,7 +69,10 @@ Route::middleware(["auth", "verified", "checkBlocked"])->group(function () {
         "reportExcel",
     ])->name("purchases.report.excel");
 
-    Route::get("/purchases/report", [PurchaseController::class, "report"]);
+    Route::get("/purchases/report", [
+        PurchaseController::class,
+        "report",
+    ])->name("purchases.report");
 
     Route::resource("/purchases", PurchaseController::class);
 

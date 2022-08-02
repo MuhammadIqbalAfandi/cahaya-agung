@@ -25,3 +25,10 @@ export const cartTable = [
   { field: 'qty', header: 'Kuantitas' },
   { field: 'unit', header: 'Satuan' },
 ]
+
+export const reportTable = [
+  { field: 'createdAt', header: 'Tanggal' },
+  { field: 'totalPrice', header: 'Total Harga' },
+  { field: 'qty', header: 'Kuantitas' },
+  { field: 'status', header: 'Status' },
+]

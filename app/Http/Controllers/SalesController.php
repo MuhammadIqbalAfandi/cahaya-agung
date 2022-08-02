@@ -232,24 +232,23 @@ class SalesController extends Controller
     public function report()
     {
         return inertia("Sales/Report", [
-            "filters" => request()->only("start_date", "end_date"),
-            "sales" => Inertia::lazy(
-                fn() => SaleDetail::filter(
-                    request()->only("start_date", "end_date")
-                )
-                    ->latest()
-                    ->paginate(3)
-                    ->withQueryString()
-                    ->through(
-                        fn($saleDetail) => [
-                            "createdAt" => $saleDetail->created_at,
-                            "totalPrice" => FunctionService::rupiahFormat(
-                                $saleDetail->price * $saleDetail->qty
-                            ),
-                            "status" => $saleDetail->sale->status,
-                        ]
-                    )
-            ),
+            "initialFilters" => request()->only("start_date", "end_date"),
+            "sales" => SaleDetail::filter(
+                request()->only("start_date", "end_date")
+            )
+                ->latest()
+                ->paginate(10)
+                ->withQueryString()
+                ->through(
+                    fn($saleDetail) => [
+                        "createdAt" => $saleDetail->created_at,
+                        "totalPrice" => FunctionService::rupiahFormat(
+                            $saleDetail->price * $saleDetail->qty
+                        ),
+                        "qty" => $saleDetail->qty,
+                        "status" => $saleDetail->sale->status,
+                    ]
+                ),
         ]);
     }
 

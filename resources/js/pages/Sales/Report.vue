@@ -7,7 +7,7 @@ import DashboardLayout from '@/layouts/Dashboard/DashboardLayout.vue'
 import AppResetFilter from '@/components/AppResetFilter.vue'
 
 defineProps({
-  filters: Object,
+  initialFilters: Object,
   sales: {
     type: Object,
     default: {
@@ -41,7 +41,7 @@ const exportExcel = () => {
               placeholder="filter waktu..."
               :url="route('sales.report')"
               :refresh-data="['sales']"
-              :initial-filter="filters"
+              :initial-filter="initialFilters"
             />
           </div>
 

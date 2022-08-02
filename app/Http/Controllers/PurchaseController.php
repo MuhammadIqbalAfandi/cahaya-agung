@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Exports\PurchaseDetailsExport;
 use App\Models\Ppn;
 use Inertia\Inertia;
 use App\Models\Product;
@@ -357,11 +358,44 @@ class PurchaseController extends Controller
 
     public function report()
     {
-        return inertia("Purchases/Report");
+        return inertia("Purchases/Report", [
+            "initialFilters" => request()->only("start_date", "end_date"),
+            "purchases" => PurchaseDetail::filter(
+                request()->only("start_date", "end_date")
+            )
+                ->latest()
+                ->paginate(10)
+                ->withQueryString()
+                ->through(
+                    fn($purchaseDetail) => [
+                        "createdAt" => $purchaseDetail->created_at,
+                        "totalPrice" => FunctionService::rupiahFormat(
+                            $purchaseDetail->price * $purchaseDetail->qty
+                        ),
+                        "qty" => $purchaseDetail->qty,
+                        "status" => $purchaseDetail->purchase->status,
+                    ]
+                ),
+        ]);
     }
 
     public function reportExcel()
     {
-        //
+        return new PurchaseDetailsExport([
+            "purchases" => PurchaseDetail::filter(
+                request()->only("start_date", "end_date")
+            )
+                ->latest()
+                ->get()
+                ->map(
+                    fn($purchaseDetail) => [
+                        "createdAt" => $purchaseDetail->created_at,
+                        "qty" => $purchaseDetail->qty,
+                        "status" => $purchaseDetail->purchase->status,
+                        "price" =>
+                            $purchaseDetail->price * $purchaseDetail->qty,
+                    ]
+                ),
+        ]);
     }
 }
