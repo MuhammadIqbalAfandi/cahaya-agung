@@ -4,6 +4,7 @@ import AppDateRangeFilter from '@/components/AppDateRangeFilter.vue'
 import AppButtonLink from '@/components/AppButtonLink.vue'
 import AppPagination from '@/components/AppPagination.vue'
 import DashboardLayout from '@/layouts/Dashboard/DashboardLayout.vue'
+import AppResetFilter from '@/components/AppResetFilter.vue'
 
 defineProps({
   filters: Object,
@@ -18,7 +19,7 @@ defineProps({
 })
 
 const exportExcel = () => {
-  return `/sales/excel/report${location.search}`
+  return route('sales.report.excel', location.search)
 }
 </script>
 
@@ -38,9 +39,14 @@ const exportExcel = () => {
           <div class="col-12 sm:col-6 lg:col-4">
             <AppDateRangeFilter
               placeholder="filter waktu..."
-              refresh-data="sales"
+              :url="route('sales.report')"
+              :refresh-data="['sales']"
               :initial-filter="filters"
             />
+          </div>
+
+          <div class="col-12 sm:col-6 lg:col-4">
+            <AppResetFilter :url="route('sales.report')" />
           </div>
 
           <div class="col-12">

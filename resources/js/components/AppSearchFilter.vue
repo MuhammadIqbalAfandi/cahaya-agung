@@ -4,20 +4,26 @@ import { Inertia } from '@inertiajs/inertia'
 import { pickBy } from 'lodash'
 
 const props = defineProps({
+  initialSearch: {
+    required: true,
+  },
   url: {
     type: String,
     required: true,
   },
-  initialSearch: {
-    required: true,
+  refreshData: {
+    type: Array,
+    default: [],
+    required: false,
   },
 })
 
 const search = ref(props.initialSearch)
 
-watch(search, () => {
-  Inertia.get(props.url, pickBy({ search: search.value }), {
+watch(search, (value) => {
+  Inertia.get(props.url, pickBy({ search: value }), {
     preserveState: true,
+    only: [...props.refreshData],
   })
 })
 </script>

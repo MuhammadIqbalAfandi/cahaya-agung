@@ -9,9 +9,14 @@ const props = defineProps({
     type: Object,
     required: true,
   },
-  refreshData: {
+  url: {
     type: String,
     required: true,
+  },
+  refreshData: {
+    type: Array,
+    default: [],
+    required: false,
   },
 })
 
@@ -47,31 +52,19 @@ watch(
       filters.endDate = null
     }
 
-    Inertia.reload({
-      data: pickBy({
+    Inertia.get(
+      props.url,
+      pickBy({
         start_date: filters.startDate,
         end_date: filters.endDate,
       }),
-      only: [props.refreshData],
-    })
+      {
+        preserveState: true,
+        only: [...props.refreshData],
+      }
+    )
   }
 )
-
-const removeParams = (...params) => {
-  const urlParams = new URLSearchParams(location.search)
-
-  params.forEach((value) => urlParams.delete(value))
-
-  history.replaceState({}, '', `${location.pathname}?${urlParams}`)
-}
-
-const dateSelect = () => {
-  if (filters.dates[0]) {
-    removeParams('end_date')
-  }
-
-  removeParams('page')
-}
 </script>
 
 <template>
@@ -80,7 +73,6 @@ const dateSelect = () => {
     selection-mode="range"
     date-format="dd/mm/yy"
     :manual-input="false"
-    @date-select="dateSelect"
     v-model="filters.dates"
   />
 </template>
