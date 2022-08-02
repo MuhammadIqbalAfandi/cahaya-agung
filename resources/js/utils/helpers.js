@@ -27,7 +27,7 @@ export function removeParams(...params) {
 
   params.forEach((value) => urlParams.delete(value))
 
-  window.history.replaceState({}, '', `${location.pathname}?${urlParams}`)
+  history.replaceState({}, '', `${location.pathname}?${urlParams}`)
 }
 
 export class FormValidationError extends Error {
