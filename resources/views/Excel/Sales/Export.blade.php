@@ -29,7 +29,7 @@
             </tr>
         @endforeach
         <tr>
-            <td colspan="4">Total</td>
+            <td colspan="4">{{ __('words.total') }}</td>
         </tr>
     </tbody>
 </table>
