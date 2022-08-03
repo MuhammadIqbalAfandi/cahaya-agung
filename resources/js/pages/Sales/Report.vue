@@ -39,8 +39,6 @@ const exportExcel = () => {
           <div class="col-12 sm:col-6 lg:col-4">
             <AppDateRangeFilter
               placeholder="filter waktu..."
-              :url="route('sales.report')"
-              :refresh-data="['sales']"
               :initial-filter="initialFilters"
             />
           </div>

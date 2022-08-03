@@ -1,9 +1,8 @@
 <script setup>
-import { reportTable, optionStatus } from './config'
+import { reportTable } from './config'
 import AppDateRangeFilter from '@/components/AppDateRangeFilter.vue'
 import AppButtonLink from '@/components/AppButtonLink.vue'
 import AppResetFilter from '@/components/AppResetFilter.vue'
-import AppDropdown from '@/components/AppDropdown.vue'
 import AppPagination from '@/components/AppPagination.vue'
 import DashboardLayout from '@/layouts/Dashboard/DashboardLayout.vue'
 
@@ -40,8 +39,6 @@ const exportExcel = () => {
           <div class="col-12 sm:col-6 lg:col-4">
             <AppDateRangeFilter
               placeholder="filter waktu..."
-              :url="route('purchases.report')"
-              :refresh-data="['purchases']"
               :initial-filter="initialFilters"
             />
           </div>
