@@ -2,9 +2,11 @@
 import { ref, watch } from 'vue'
 import { Inertia } from '@inertiajs/inertia'
 import { pickBy } from 'lodash'
+import AppDropdown from '@/components/AppDropdown.vue'
 
-const props = defineProps({
-  initialSearch: {
+defineProps({
+  options: {
+    type: Array,
     required: true,
   },
 })
@@ -17,20 +19,19 @@ const removeParams = (...params) => {
   history.replaceState({}, '', `${location.pathname}?${urlParams}`)
 }
 
-const search = ref(props.initialSearch)
+const status = ref()
 
-watch(search, (search) => {
-  removeParams('search')
+watch(status, (status) => {
+  removeParams('status')
 
   Inertia.reload({
-    data: pickBy({ search }),
+    data: pickBy({
+      status,
+    }),
   })
 })
 </script>
 
 <template>
-  <div class="flex align-items-center gap-3">
-    <InputText v-bind="$attrs" v-model="search" />
-    <i class="pi pi-search" />
-  </div>
+  <AppDropdown placeholder="status" :options="options" v-model="status" />
 </template>

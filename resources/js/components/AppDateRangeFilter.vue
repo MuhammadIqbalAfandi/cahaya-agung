@@ -10,15 +10,6 @@ const props = defineProps({
     type: Object,
     required: true,
   },
-  url: {
-    type: String,
-    required: true,
-  },
-  refreshData: {
-    type: Array,
-    default: [],
-    required: false,
-  },
 })
 
 const initialFilter = computed(() => {
@@ -34,6 +25,14 @@ const initialFilter = computed(() => {
   }
 })
 
+const removeParams = (...params) => {
+  const urlParams = new URLSearchParams(location.search)
+
+  params.forEach((value) => urlParams.delete(value))
+
+  history.replaceState({}, '', `${location.pathname}?${urlParams}`)
+}
+
 const dates = ref(initialFilter.value)
 
 watch(dates, (value) => {
@@ -47,17 +46,14 @@ watch(dates, (value) => {
     var end_date = null
   }
 
-  Inertia.get(
-    props.url,
-    pickBy({
+  removeParams('start_date', 'end_date')
+
+  Inertia.reload({
+    data: pickBy({
       start_date,
       end_date,
     }),
-    {
-      preserveState: true,
-      only: [...props.refreshData],
-    }
-  )
+  })
 })
 </script>
 

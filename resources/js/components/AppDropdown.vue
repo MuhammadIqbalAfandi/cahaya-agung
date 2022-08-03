@@ -4,7 +4,7 @@ import { computed } from 'vue'
 const props = defineProps({
   label: {
     type: String,
-    required: true,
+    required: false,
   },
   labelClass: {
     type: String,
@@ -59,9 +59,11 @@ const ariaDescribedbyLabel = computed(
 )
 
 const selectedDropdownLabel = (value) => {
-  const result = props.options.find(
-    (option) => option[props.optionValue] == value
-  )
+  const result = props.options.find((option) => {
+    if (option !== null) {
+      return option[props.optionValue] == value
+    }
+  })
 
   if (result) {
     return result[props.optionLabel]
@@ -92,14 +94,6 @@ const selectedDropdownLabel = (value) => {
         <div v-if="slotProps.value">
           {{ selectedDropdownLabel(slotProps.value) }}
         </div>
-
-        <div v-else>
-          {{ slotProps.placeholder }}
-        </div>
-      </template>
-
-      <template #option="{ option, index }">
-        <slot name="option" :option="option" :index="index" />
       </template>
     </Dropdown>
 
