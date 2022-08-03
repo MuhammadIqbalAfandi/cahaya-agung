@@ -22,7 +22,7 @@ const removeParams = (...params) => {
 const status = ref()
 
 watch(status, (status) => {
-  removeParams('status')
+  removeParams('status', 'page')
 
   Inertia.reload({
     data: pickBy({

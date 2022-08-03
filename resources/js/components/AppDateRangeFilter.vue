@@ -46,7 +46,7 @@ watch(dates, (value) => {
     var end_date = null
   }
 
-  removeParams('start_date', 'end_date')
+  removeParams('start_date', 'end_date', 'page')
 
   Inertia.reload({
     data: pickBy({

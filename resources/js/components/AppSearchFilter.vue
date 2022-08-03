@@ -20,7 +20,7 @@ const removeParams = (...params) => {
 const search = ref(props.initialSearch)
 
 watch(search, (search) => {
-  removeParams('search')
+  removeParams('search', 'page')
 
   Inertia.reload({
     data: pickBy({ search }),
