@@ -28,7 +28,6 @@ defineProps({
             <AppSearchFilter
               class="w-full md:w-27rem"
               placeholder="nama, email, no hp, status"
-              :url="route('purchases.index')"
               :initial-search="initialSearch"
             />
           </div>

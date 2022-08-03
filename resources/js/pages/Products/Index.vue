@@ -48,7 +48,6 @@ const onDelete = (data) => {
               <AppSearchFilter
                 class="w-full md:w-27rem"
                 placeholder="nomor, nama"
-                :url="route('products.index')"
                 :initial-search="initialSearch"
               />
             </div>
