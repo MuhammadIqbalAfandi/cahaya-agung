@@ -6,21 +6,28 @@ import { pickBy } from 'lodash'
 import { computed } from '@vue/reactivity'
 
 const props = defineProps({
-  initialFilter: {
+  initialDateRage: {
     type: Object,
+    required: true,
+  },
+  nameParam: {
+    type: Array,
     required: true,
   },
 })
 
-const initialFilter = computed(() => {
-  if (props.initialFilter.start_date || props.initialFilter.end_date) {
-    if (props.initialFilter.end_date) {
+const initialDateRage = computed(() => {
+  if (
+    props.initialDateRage[props.nameParam[0]] ||
+    props.initialDateRage[props.nameParam[1]]
+  ) {
+    if (props.initialDateRage[props.nameParam[1]]) {
       return [
-        new Date(props.initialFilter.start_date),
-        new Date(props.initialFilter.end_date),
+        new Date(props.initialDateRage[props.nameParam[0]]),
+        new Date(props.initialDateRage[props.nameParam[1]]),
       ]
     } else {
-      return [new Date(props.initialFilter.start_date), null]
+      return [new Date(props.initialDateRage[props.nameParam[0]]), null]
     }
   }
 })
@@ -33,25 +40,25 @@ const removeParams = (...params) => {
   history.replaceState({}, '', `${location.pathname}?${urlParams}`)
 }
 
-const dates = ref(initialFilter.value)
+const dates = ref(initialDateRage.value)
 
 watch(dates, (value) => {
   if (value[1]) {
-    var start_date = dayjs(value[0]).format('YYYY-MM-DD')
+    var start = dayjs(value[0]).format('YYYY-MM-DD')
 
-    var end_date = dayjs(value[1]).format('YYYY-MM-DD')
+    var end = dayjs(value[1]).format('YYYY-MM-DD')
   } else if (value[0]) {
-    var start_date = dayjs(value[0]).format('YYYY-MM-DD')
+    var start = dayjs(value[0]).format('YYYY-MM-DD')
 
-    var end_date = null
+    var end = null
   }
 
-  removeParams('start_date', 'end_date', 'page')
+  removeParams(props.nameParam[0], props.nameParam[1], 'page')
 
   Inertia.reload({
     data: pickBy({
-      start_date,
-      end_date,
+      [props.nameParam[0]]: start,
+      [props.nameParam[1]]: end,
     }),
   })
 })

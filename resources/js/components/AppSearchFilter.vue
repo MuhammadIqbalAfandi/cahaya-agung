@@ -5,6 +5,11 @@ import { pickBy } from 'lodash'
 
 const props = defineProps({
   initialSearch: {
+    type: Object,
+    required: true,
+  },
+  nameParam: {
+    type: String,
     required: true,
   },
 })
@@ -17,13 +22,15 @@ const removeParams = (...params) => {
   history.replaceState({}, '', `${location.pathname}?${urlParams}`)
 }
 
-const search = ref(props.initialSearch)
+const search = ref(props.initialSearch[props.nameParam])
 
-watch(search, (search) => {
-  removeParams('search', 'page')
+watch(search, (value) => {
+  removeParams(props.nameParam, 'page')
 
   Inertia.reload({
-    data: pickBy({ search }),
+    data: pickBy({
+      [props.nameParam]: value,
+    }),
   })
 })
 </script>
