@@ -6,7 +6,7 @@ import DashboardLayout from '@/layouts/Dashboard/DashboardLayout.vue'
 
 defineProps({
   stockProducts: Object,
-  initialSearch: String,
+  initialFilters: Object,
 })
 </script>
 
@@ -25,7 +25,8 @@ defineProps({
         <AppSearchFilter
           class="w-full md:w-27rem"
           placeholder="nama"
-          :initial-search="initialSearch"
+          name-param="search"
+          :initial-search="initialFilters"
         />
       </template>
 

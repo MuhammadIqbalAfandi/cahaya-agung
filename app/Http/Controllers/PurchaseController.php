@@ -34,7 +34,7 @@ class PurchaseController extends Controller
     public function index()
     {
         return inertia("Purchases/Index", [
-            "initialSearch" => request("search"),
+            "initialFilters" => request()->only("search"),
             "purchases" => Purchase::search(request()->only("search"))
                 ->latest()
                 ->paginate(10)
@@ -359,9 +359,13 @@ class PurchaseController extends Controller
     public function report()
     {
         return inertia("Purchases/Report", [
-            "initialFilters" => request()->only("start_date", "end_date"),
+            "initialFilters" => request()->only(
+                "start_date",
+                "end_date",
+                "status"
+            ),
             "purchases" => PurchaseDetail::filter(
-                request()->only("start_date", "end_date")
+                request()->only("start_date", "end_date", "status")
             )
                 ->latest()
                 ->paginate(10)
@@ -383,7 +387,7 @@ class PurchaseController extends Controller
     {
         return new PurchaseDetailsExport([
             "purchases" => PurchaseDetail::filter(
-                request()->only("start_date", "end_date")
+                request()->only("start_date", "end_date", "status")
             )
                 ->latest()
                 ->get()

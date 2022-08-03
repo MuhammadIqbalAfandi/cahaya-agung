@@ -8,8 +8,8 @@ import AppPagination from '@/components/AppPagination.vue'
 import DashboardLayout from '@/layouts/Dashboard/DashboardLayout.vue'
 
 defineProps({
+  initialFilters: Object,
   suppliers: Object,
-  initialSearch: String,
 })
 
 const deleteConfirm = useConfirm()
@@ -48,7 +48,8 @@ const onDelete = (data) => {
               <AppSearchFilter
                 class="w-full md:w-27rem"
                 placeholder="nama, no hp, npwp"
-                :initial-search="initialSearch"
+                name-param="search"
+                :initial-search="initialFilters"
               />
             </div>
           </div>

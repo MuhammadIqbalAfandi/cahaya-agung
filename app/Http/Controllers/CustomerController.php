@@ -21,7 +21,7 @@ class CustomerController extends Controller
     public function index()
     {
         return inertia("Customers/Index", [
-            "initialSearch" => request("search"),
+            "initialFilters" => request()->only("search"),
             "customers" => Customer::search(request()->only("search"))
                 ->latest()
                 ->paginate(10)

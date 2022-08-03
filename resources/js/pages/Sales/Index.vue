@@ -6,8 +6,8 @@ import AppPagination from '@/components/AppPagination.vue'
 import DashboardLayout from '@/layouts/Dashboard/DashboardLayout.vue'
 
 defineProps({
+  initialFilters: Object,
   sales: Object,
-  initialSearch: String,
 })
 </script>
 
@@ -29,7 +29,8 @@ defineProps({
               <AppSearchFilter
                 class="w-full md:w-27rem"
                 placeholder="nama, no hp, status"
-                :initial-search="initialSearch"
+                name-param="search"
+                :initial-search="initialFilters"
               />
             </div>
           </div>

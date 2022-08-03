@@ -21,7 +21,7 @@ class StockProductController extends Controller
     public function index()
     {
         return inertia("StockProducts/Index", [
-            "initialSearch" => request("search"),
+            "initialFilters" => request()->only("search"),
             "stockProducts" => StockProduct::search(request()->only("search"))
                 ->latest()
                 ->paginate(10)

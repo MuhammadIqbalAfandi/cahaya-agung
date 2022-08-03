@@ -33,7 +33,7 @@ class SalesController extends Controller
     public function index()
     {
         return inertia("Sales/Index", [
-            "initialSearch" => request("search"),
+            "initialFilters" => request()->only("search"),
             "sales" => Sale::search(request()->only("search"))
                 ->latest()
                 ->paginate(10)

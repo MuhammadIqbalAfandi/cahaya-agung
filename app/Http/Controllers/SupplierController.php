@@ -21,7 +21,7 @@ class SupplierController extends Controller
     public function index()
     {
         return inertia("Suppliers/Index", [
-            "initialSearch" => request("search"),
+            "initialFilters" => request()->only("search"),
             "suppliers" => Supplier::search(request()->only("search"))
                 ->latest()
                 ->paginate(10)

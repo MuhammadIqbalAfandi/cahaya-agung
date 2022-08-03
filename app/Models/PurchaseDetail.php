@@ -70,6 +70,11 @@ class PurchaseDetail extends Model
             })
             ->when($filters["end_date"] ?? null, function ($query, $search) {
                 $query->whereDate("created_at", "<=", $search);
+            })
+            ->when($filters["status"] ?? null, function ($query, $search) {
+                $query->whereHas("purchase", function ($query) use ($search) {
+                    $query->where("status", $search);
+                });
             });
     }
 }

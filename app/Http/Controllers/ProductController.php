@@ -22,7 +22,7 @@ class ProductController extends Controller
     public function index()
     {
         return inertia("Products/Index", [
-            "initialSearch" => request("search"),
+            "initialFilters" => request()->only("search"),
             "products" => Product::search(request()->only("search"))
                 ->latest()
                 ->paginate(10)
