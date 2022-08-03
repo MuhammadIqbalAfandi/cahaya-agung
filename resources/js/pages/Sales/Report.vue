@@ -19,7 +19,7 @@ defineProps({
 })
 
 const exportExcel = () => {
-  return route('sales.report.excel', location.search)
+  return '/sales/report/excel' + location.search
 }
 </script>
 
@@ -39,7 +39,8 @@ const exportExcel = () => {
           <div class="col-12 sm:col-6 lg:col-4">
             <AppDateRangeFilter
               placeholder="filter waktu..."
-              :initial-filter="initialFilters"
+              :name-param="['start_date', 'end_date']"
+              :initial-date-rage="initialFilters"
             />
           </div>
 

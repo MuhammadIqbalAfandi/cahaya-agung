@@ -9,6 +9,18 @@ export const optionStatus = [
   },
 ]
 
+export const filterOptionStatus = [
+  null,
+  {
+    label: 'pending',
+    value: 'pending',
+  },
+  {
+    label: 'success',
+    value: 'success',
+  },
+]
+
 export const indexTable = [
   { field: 'updatedAt', header: 'Tanggal' },
   { field: 'name', header: 'Nama Supplier' },

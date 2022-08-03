@@ -1,10 +1,11 @@
 <script setup>
-import { reportTable } from './config'
+import { reportTable, filterOptionStatus } from './config'
 import AppDateRangeFilter from '@/components/AppDateRangeFilter.vue'
 import AppButtonLink from '@/components/AppButtonLink.vue'
 import AppResetFilter from '@/components/AppResetFilter.vue'
 import AppPagination from '@/components/AppPagination.vue'
 import DashboardLayout from '@/layouts/Dashboard/DashboardLayout.vue'
+import AppDropdownFilter from '@/components/AppDropdownFilter.vue'
 
 defineProps({
   initialFilters: Object,
@@ -19,7 +20,7 @@ defineProps({
 })
 
 const exportExcel = () => {
-  return route('purchases.report.excel', location.search)
+  return '/purchases/report/excel' + location.search
 }
 </script>
 
@@ -39,7 +40,17 @@ const exportExcel = () => {
           <div class="col-12 sm:col-6 lg:col-4">
             <AppDateRangeFilter
               placeholder="filter waktu..."
-              :initial-filter="initialFilters"
+              :name-param="['start_date', 'end_date']"
+              :initial-date-rage="initialFilters"
+            />
+          </div>
+
+          <div class="col-12 sm:col-6 lg:col-4">
+            <AppDropdownFilter
+              placeholder="status"
+              name-param="status"
+              :initial-dropdown="initialFilters"
+              :options="filterOptionStatus"
             />
           </div>
 
