@@ -6,31 +6,13 @@ const props = defineProps({
     type: String,
     required: true,
   },
-  labelClass: {
-    type: String,
-  },
-  disabled: {
-    type: Boolean,
-    default: false,
-  },
-  placeholder: {
-    type: String,
-    required: true,
-  },
-  type: {
-    type: String,
-    default: 'text',
-  },
   error: {
     type: String,
     default: null,
   },
-  modelValue: null,
 })
 
 const isError = computed(() => (props.error ? true : false))
-
-const forLabel = computed(() => props.label.toLowerCase().replace(/\s+/g, '-'))
 
 const ariaDescribedbyLabel = computed(
   () => props.label.toLowerCase().replace(/\s+/g, '-') + '-error'
@@ -39,22 +21,18 @@ const ariaDescribedbyLabel = computed(
 
 <template>
   <div class="field">
-    <label :for="forLabel" :class="labelClass">{{ label }}</label>
+    <label>{{ label }}</label>
 
     <InputText
       class="w-full"
-      :type="type"
       :class="{ 'p-invalid': isError }"
-      :id="forLabel"
-      :model-value="modelValue"
-      :placeholder="placeholder"
-      :disabled="disabled"
+      v-bind="$attrs"
       @input="$emit('update:modelValue', $event.target.value)"
     />
 
     <small
       v-if="error"
-      :id="ariaDescribedbyLabel"
+      :aria-describedby="ariaDescribedbyLabel"
       :class="{ 'p-error': isError }"
     >
       {{ error }}

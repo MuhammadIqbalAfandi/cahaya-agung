@@ -6,35 +6,13 @@ const props = defineProps({
     type: String,
     required: true,
   },
-  labelClass: {
-    type: String,
-  },
-  disabled: {
-    type: Boolean,
-    default: false,
-  },
-  placeholder: {
-    type: String,
-    required: true,
-  },
   error: {
     type: String,
     default: null,
   },
-  rows: {
-    type: Number,
-    default: 5,
-  },
-  cols: {
-    type: Number,
-    default: 30,
-  },
-  modelValue: null,
 })
 
 const isError = computed(() => (props.error ? true : false))
-
-const forLabel = computed(() => props.label.toLowerCase().replace(/\s+/g, '-'))
 
 const ariaDescribedbyLabel = computed(
   () => props.label.toLowerCase().replace(/\s+/g, '-') + '-error'
@@ -43,24 +21,18 @@ const ariaDescribedbyLabel = computed(
 
 <template>
   <div class="field">
-    <label :for="forLabel" :class="labelClass">{{ label }}</label>
+    <label>{{ label }}</label>
 
     <Textarea
       class="w-full"
       :class="{ 'p-invalid': isError }"
-      :id="forLabel"
-      :model-value="modelValue"
-      :placeholder="placeholder"
-      :disabled="disabled"
-      :auto-resize="true"
-      :rows="rows"
-      :cols="cols"
+      v-bind="$attrs"
       @input="$emit('update:modelValue', $event.target.value)"
     />
 
     <small
       v-if="error"
-      :id="ariaDescribedbyLabel"
+      :aria-describedby="ariaDescribedbyLabel"
       :class="{ 'p-error': isError }"
     >
       {{ error }}

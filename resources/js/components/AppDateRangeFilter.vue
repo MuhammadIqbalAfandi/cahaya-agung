@@ -69,6 +69,7 @@ watch(dates, (value) => {
     class="w-full"
     selection-mode="range"
     date-format="dd/mm/yy"
+    :placeholder="$attrs.placeholder"
     :manual-input="false"
     v-model="dates"
   />

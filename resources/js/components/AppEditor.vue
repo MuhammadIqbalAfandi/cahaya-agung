@@ -6,30 +6,13 @@ const props = defineProps({
     type: String,
     required: true,
   },
-  labelClass: {
-    type: String,
-  },
-  readOnly: {
-    type: Boolean,
-    required: false,
-  },
-  placeholder: {
-    type: String,
-    required: true,
-  },
   error: {
     type: String,
     default: null,
   },
-  editorStyle: null,
-  modelValue: null,
 })
 
 const isError = computed(() => (props.error ? true : false))
-
-const forLabel = computed(() =>
-  props.label ? props.label.toLowerCase().replace(/\s+/g, '-') : null
-)
 
 const ariaDescribedbyLabel = computed(
   () => props.label.toLowerCase().replace(/\s+/g, '-') + '-error'
@@ -38,13 +21,10 @@ const ariaDescribedbyLabel = computed(
 
 <template>
   <div class="field">
-    <label v-if="label" :for="forLabel" :class="labelClass">{{ label }}</label>
+    <label v-if="label">{{ label }}</label>
 
     <Editor
-      :read-only="readOnly"
-      :model-value="modelValue"
-      :editor-style="editorStyle"
-      :placeholder="placeholder"
+      v-bind="$attrs"
       @text-change="$emit('update:modelValue', $event.htmlValue)"
     >
       <template #toolbar>
@@ -54,7 +34,7 @@ const ariaDescribedbyLabel = computed(
 
     <small
       v-if="error"
-      :id="ariaDescribedbyLabel"
+      :aria-describedby="ariaDescribedbyLabel"
       :class="{ 'p-error': isError }"
     >
       {{ error }}

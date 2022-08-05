@@ -14,5 +14,5 @@ const reset = () => {
 </script>
 
 <template>
-  <Button label="reset" class="p-button-link" @click="reset()" />
+  <Button label="reset" class="p-button-link" @click="reset" />
 </template>

@@ -1,30 +1,15 @@
 <script setup>
-import { computed } from 'vue'
+import { computed, onMounted } from 'vue'
 import { Inertia } from '@inertiajs/inertia'
 
 const props = defineProps({
   label: {
     type: String,
-    required: true,
-  },
-  labelClass: {
-    type: String,
-  },
-  disabled: {
-    type: Boolean,
-    default: false,
-  },
-  placeholder: {
-    type: String,
-    required: true,
+    required: false,
   },
   error: {
     type: String,
     default: null,
-  },
-  field: {
-    type: String,
-    required: true,
   },
   empty: {
     type: Boolean,
@@ -34,55 +19,56 @@ const props = defineProps({
     type: String,
     required: true,
   },
-  suggestions: {
-    type: Array,
-    required: true,
-  },
-  modelValue: null,
 })
 
 const emit = defineEmits(['update:modelValue'])
 
 const isError = computed(() => (props.error ? true : false))
 
-const forLabel = computed(() => props.label.toLowerCase().replace(/\s+/g, '-'))
-
 const ariaDescribedbyLabel = computed(
-  () => props.label.toLowerCase().replace(/\s+/g, '-') + '-error'
+  () => props.label?.toLowerCase().replace(/\s+/g, '-') + '-error'
 )
+
+let param = props.refreshData.slice(0, -1).replace('-', '_')
+
+const removeParams = (...params) => {
+  const urlParams = new URLSearchParams(location.search)
+
+  params.forEach((value) => urlParams.delete(value))
+
+  history.replaceState({}, '', `${location.pathname}?${urlParams}`)
+}
+
+const onInput = (event) => {
+  if (event.target.value === '') {
+    removeParams(param)
+  }
+
+  emit('update:modelValue', event.target.value)
+}
 
 const onComplete = (event) => {
   Inertia.reload({
     data: {
-      [props.refreshData.slice(0, -1)]: event.query,
+      [param]: event.query,
     },
     only: [props.refreshData],
   })
-}
-
-const onSelect = (event) => {
-  emit('update:modelValue', event.value)
 }
 </script>
 
 <template>
   <div class="field">
-    <label :for="forLabel" :class="labelClass">{{ label }}</label>
+    <label>{{ label }}</label>
 
     <AutoComplete
       forceSelection
       class="w-full"
       inputClass="w-full"
-      :model-value="modelValue"
-      :id="forLabel"
       :class="{ 'p-invalid': isError }"
-      :field="field"
-      :placeholder="placeholder"
-      :suggestions="suggestions"
-      :auto-highlight="true"
-      :disabled="disabled"
-      @input="$emit('update:modelValue', $event.target.value)"
-      @item-select="onSelect"
+      v-bind="$attrs"
+      @input="onInput"
+      @item-select="$emit('update:modelValue', $event.value)"
       @complete="onComplete"
     >
       <template #item="slotProps">
@@ -98,7 +84,7 @@ const onSelect = (event) => {
           'mb-2': empty,
           'p-error': isError,
         }"
-        :id="ariaDescribedbyLabel"
+        :aria-describedby="ariaDescribedbyLabel"
       >
         {{ error }}
       </small>
