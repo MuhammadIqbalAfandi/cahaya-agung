@@ -24,11 +24,11 @@ class StoreSaleRequest extends FormRequest
     public function rules()
     {
         return [
-            "number" => "required|string|unique:sales,number",
+            "number" => "required|string",
             "status" => "required|string",
-            "ppn" => "required|boolean",
             "customer_id" => "required|numeric",
             "products" => "required",
+            "ppn" => "required|boolean",
         ];
     }
 }

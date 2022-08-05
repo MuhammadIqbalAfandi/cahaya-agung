@@ -24,10 +24,10 @@ class StoreProductRequest extends FormRequest
     public function rules()
     {
         return [
-            "number" => "required|string|unique:products,number",
-            "name" => "required|string",
-            "unit" => "required|string",
-            "profit" => "numeric|digits_between:0,100",
+            "number" => "required|string",
+            "name" => "required|string|max:50",
+            "unit" => "required|string|max:25",
+            "profit" => "numeric|min:0|max:100",
         ];
     }
 }

@@ -41,7 +41,7 @@ class SalesController extends Controller
                 ->through(
                     fn($sale) => [
                         "id" => $sale->id,
-                        "updatedAt" => $sale->updated_at,
+                        "createdAt" => $sale->created_at,
                         "name" => $sale->customer->name,
                         "phone" => $sale->customer->phone,
                         "email" => $sale->customer->email,

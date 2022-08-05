@@ -26,7 +26,7 @@ class StoreUserRequest extends FormRequest
         return [
             "name" => "required|string|max:50",
             "username" =>
-                "required|string|regex:/^\S*$/u|min:5|unique:users,username",
+                "required|string|regex:/^\S*$/u|min:6|max:25|unique:users,username",
             "role_id" => "required|numeric",
         ];
     }

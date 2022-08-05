@@ -41,12 +41,7 @@ const purchasePriceStatistic = useStatisticDualYear(
           </div>
 
           <div class="col-12">
-            <CardCart
-              type="line"
-              :title="salePurchaseAmountStatistic.title"
-              :description="salePurchaseAmountStatistic.description"
-              :data="salePurchaseAmountStatistic.data"
-            />
+            <CardCart type="line" :data="salePurchaseAmountStatistic" />
           </div>
         </div>
       </div>
@@ -54,21 +49,11 @@ const purchasePriceStatistic = useStatisticDualYear(
       <div class="col-12 xl:col-6">
         <div class="grid">
           <div class="col-12">
-            <CardCart
-              type="bar"
-              :title="salePriceStatistic.title"
-              :description="salePriceStatistic.description"
-              :data="salePriceStatistic.data"
-            />
+            <CardCart type="bar" :data="salePriceStatistic" />
           </div>
 
           <div class="col-12">
-            <CardCart
-              type="bar"
-              :title="purchasePriceStatistic.title"
-              :description="purchasePriceStatistic.description"
-              :data="purchasePriceStatistic.data"
-            />
+            <CardCart type="bar" :data="purchasePriceStatistic" />
           </div>
         </div>
       </div>

@@ -16,13 +16,11 @@ const { state, setState } = useState()
 const onSubmit = () => {
   setState()
 
-  if (state.disable) {
-    if (!form.ppn) {
-      form.ppn = 0
-    }
-
-    form.post(route('ppn.store'))
+  if (!form.ppn) {
+    form.ppn = 0
   }
+
+  form.post(route('ppn.store'))
 }
 </script>
 

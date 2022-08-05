@@ -70,7 +70,12 @@ class UserController extends Controller
      */
     public function store(StoreUserRequest $request)
     {
-        User::create($request->validated());
+        $validated = $request
+            ->safe()
+            ->merge(["password" => bcrypt($request->username)])
+            ->all();
+
+        User::create($validated);
 
         return back()->with("success", __("messages.success.store.user"));
     }

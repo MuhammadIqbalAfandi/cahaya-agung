@@ -3,7 +3,6 @@
 namespace App\Services;
 
 use App\Models\Product;
-use Illuminate\Support\Facades\DB;
 
 class ProductService
 {

@@ -24,9 +24,7 @@ class UpdateSaleRequest extends FormRequest
     public function rules()
     {
         return [
-            "status" => "required|string",
-            "products" => "required",
-            "ppn" => "required|boolean",
+            //
         ];
     }
 }

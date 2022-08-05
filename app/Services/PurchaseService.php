@@ -3,7 +3,6 @@
 namespace App\Services;
 
 use App\Models\Purchase;
-use Illuminate\Support\Facades\DB;
 
 class PurchaseService
 {

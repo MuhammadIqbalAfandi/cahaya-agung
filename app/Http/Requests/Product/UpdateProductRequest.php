@@ -26,9 +26,9 @@ class UpdateProductRequest extends FormRequest
         return [
             "number" =>
                 "required|string|unique:products,number," . $this->product->id,
-            "name" => "required|string",
-            "unit" => "required|string",
-            "profit" => "numeric|digits_between:0,100",
+            "name" => "required|string|max:50",
+            "unit" => "required|string|max:25",
+            "profit" => "numeric|min:0|max:100",
         ];
     }
 }

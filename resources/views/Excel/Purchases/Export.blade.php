@@ -5,9 +5,9 @@
         </tr>
         <tr>
             <th colspan="5" rowspan="2">{{ __('words.period', ['number' => '']) }}
-                {{ $purchases->first()['createdAt'] }}
+                {{ $purchases->first()['updatedAt'] }}
                 -
-                {{ $purchases->last()['createdAt'] }} </th>
+                {{ $purchases->last()['updatedAt'] }} </th>
         </tr>
         <tr></tr>
         <tr>
@@ -22,7 +22,7 @@
         @foreach ($purchases as $index => $purchase)
             <tr>
                 <td>{{ ++$index }}</td>
-                <td>{{ $purchase['createdAt'] }}</td>
+                <td>{{ $purchase['updatedAt'] }}</td>
                 <td>{{ $purchase['qty'] }}</td>
                 <td>{{ $purchase['status'] }}</td>
                 <td>{{ $purchase['price'] }}</td>

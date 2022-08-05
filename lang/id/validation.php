@@ -18,7 +18,7 @@ return [
     'active_url' => 'Nilai is not a valid URL.',
     'after' => 'Tanggal harus setelah tanggal :date.',
     'after_or_equal' => 'Tanggal harus setelah atau sama dengan :date.',
-    'alpha' => 'Nilai harus only contain letters.',
+    'alpha' => 'Nilai hanya boleh berisi huruf.',
     'alpha_dash' => 'Nilai harus only contain letters, numbers, dashes and underscores.',
     'alpha_num' => 'Nilai harus only contain letters and numbers.',
     'array' => 'Nilai harus be an array.',
@@ -79,7 +79,7 @@ return [
         'array' => 'Nilai harus not have more than :value items.',
     ],
     'max' => [
-        'numeric' => 'Nilai harus :max angka.',
+        'numeric' => 'Nilai maksimal harus :max angka.',
         'file' => 'Nilai harus not be greater than :max kilobytes.',
         'string' => 'Nilai harus :max karakter.',
         'array' => 'Nilai harus not have more than :max items.',
@@ -87,7 +87,7 @@ return [
     'mimes' => 'Harus berupa file dengan format: :values.',
     'mimetypes' => 'Nilai harus be a file of type: :values.',
     'min' => [
-        'numeric' => 'Nilai harus :min angka.',
+        'numeric' => 'Nilai minimal harus :min angka.',
         'file' => 'Nilai harus be at least :min kilobytes.',
         'string' => 'Nilai harus :min karakter.',
         'array' => 'Nilai harus have at least :min items.',

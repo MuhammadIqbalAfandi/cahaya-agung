@@ -25,10 +25,10 @@ class StoreSupplierRequest extends FormRequest
     {
         return [
             "name" => "required|string|max:50",
-            "address" => "required|string",
+            "address" => "required|string|:max:200",
             "email" => "string|email|nullable|unique:suppliers,email",
             "phone" =>
-                "required|numeric|digits_between:12,15|unique:suppliers,phone",
+                "required|numeric|digits_between:12,20|unique:suppliers,phone",
             "npwp" =>
                 "required|numeric|digits_between:15,20|unique:suppliers,npwp",
         ];

@@ -25,9 +25,9 @@ class StoreCustomerRequest extends FormRequest
     {
         return [
             "name" => "required|string|max:50",
-            "address" => "required|string",
+            "address" => "required|string|max:200",
             "phone" =>
-                "required|numeric|digits_between:12,15|unique:customers,phone",
+                "required|numeric|digits_between:4,20|unique:customers,phone",
             "npwp" =>
                 "required|numeric|digits_between:15,20|unique:customers,npwp",
         ];

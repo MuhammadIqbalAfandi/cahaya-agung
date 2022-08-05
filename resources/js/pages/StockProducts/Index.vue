@@ -5,8 +5,8 @@ import AppPagination from '@/components/AppPagination.vue'
 import DashboardLayout from '@/layouts/Dashboard/DashboardLayout.vue'
 
 defineProps({
-  stockProducts: Object,
   initialFilters: Object,
+  stockProducts: Object,
 })
 </script>
 

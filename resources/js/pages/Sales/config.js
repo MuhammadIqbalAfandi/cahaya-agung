@@ -10,7 +10,7 @@ export const optionStatus = [
 ]
 
 export const indexTable = [
-  { field: 'updatedAt', header: 'Tanggal' },
+  { field: 'createdAt', header: 'Tanggal' },
   { field: 'name', header: 'Nama Pelanggan' },
   { field: 'phone', header: 'No HP Pelanggan' },
   { field: 'price', header: 'Total Harga' },

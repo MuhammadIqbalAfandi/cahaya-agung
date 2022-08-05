@@ -372,7 +372,7 @@ class PurchaseController extends Controller
                 ->withQueryString()
                 ->through(
                     fn($purchaseDetail) => [
-                        "createdAt" => $purchaseDetail->created_at,
+                        "updatedAt" => $purchaseDetail->updated_at,
                         "totalPrice" => FunctionService::rupiahFormat(
                             $purchaseDetail->price * $purchaseDetail->qty
                         ),
@@ -393,7 +393,7 @@ class PurchaseController extends Controller
                 ->get()
                 ->map(
                     fn($purchaseDetail) => [
-                        "createdAt" => $purchaseDetail->created_at,
+                        "updatedAt" => $purchaseDetail->updated_at,
                         "qty" => $purchaseDetail->qty,
                         "status" => $purchaseDetail->purchase->status,
                         "price" =>

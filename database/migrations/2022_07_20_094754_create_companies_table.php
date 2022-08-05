@@ -17,10 +17,7 @@ return new class extends Migration {
             $table->string("name");
             $table->string("address");
             $table->string("telephone");
-            $table
-                ->string("email")
-                ->unique()
-                ->nullable();
+            $table->string("email")->nullable();
             $table->string("npwp");
             $table->timestamps();
         });

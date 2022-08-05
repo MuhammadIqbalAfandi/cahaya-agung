@@ -17,7 +17,7 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->string('username')->unique();
-            $table->string('password')->default(bcrypt('12345678'));
+            $table->string('password');
             $table->boolean('status')->default(true); // true(active) false(not active)
             $table->foreignId('role_id')->constrained();
             $table->rememberToken();

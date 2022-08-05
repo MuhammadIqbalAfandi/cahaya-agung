@@ -24,16 +24,11 @@ class StoreCompanyRequest extends FormRequest
     public function rules()
     {
         return [
-            "name" => "required|string|max:25",
-            "address" => "required|string",
-            "telephone" =>
-                "required|numeric|digits_between:10,15|unique:companies,telephone," .
-                $this->id,
-            "email" =>
-                "string|email|nullable|unique:companies,email," . $this->id,
-            "npwp" =>
-                "required|numeric|digits_between:15,20|unique:companies,npwp," .
-                $this->id,
+            "name" => "required|string|max:50",
+            "address" => "required|string|max:200",
+            "telephone" => "required|numeric|digits_between:4,20",
+            "email" => "string|email|nullable",
+            "npwp" => "required|numeric|digits_between:15,20",
         ];
     }
 }
