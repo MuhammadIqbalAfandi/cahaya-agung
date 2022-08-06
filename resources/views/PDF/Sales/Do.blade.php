@@ -163,7 +163,8 @@
                                         <td></td>
                                         <td></td>
                                         <td colspan="1">
-                                            <p style="margin-bottom: 75px; margin-top: 70px;">{{ $company->name }}</p>
+                                            <p style="margin-bottom: 75px; margin-top: 70px;">
+                                                {{ $company->name ?? '-' }}</p>
                                         </td>
                                     </tr>
                                 </thead>
