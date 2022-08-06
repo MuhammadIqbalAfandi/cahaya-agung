@@ -16,6 +16,8 @@ use Illuminate\Database\QueryException;
 use App\Http\Requests\Purchase\StorePurchaseRequest;
 use App\Http\Requests\Purchase\UpdatePurchaseRequest;
 use App\Models\Company;
+use App\Models\User;
+use App\Policies\PurchasePolicy;
 use App\Services\FunctionService;
 use App\Services\PurchaseService;
 
@@ -330,6 +332,8 @@ class PurchaseController extends Controller
 
     public function invoice(Purchase $purchase)
     {
+        $this->authorize("viewAny", Purchase::class);
+
         $ppn = Ppn::first()->ppn;
 
         $company = Company::first();
@@ -344,6 +348,8 @@ class PurchaseController extends Controller
 
     public function deliveryOrder(Purchase $purchase)
     {
+        $this->authorize("viewAny", Purchase::class);
+
         $company = Company::first();
 
         $pdf = Pdf::loadView(
@@ -358,6 +364,8 @@ class PurchaseController extends Controller
 
     public function report()
     {
+        $this->authorize("viewAny", User::class);
+
         return inertia("Purchases/Report", [
             "initialFilters" => request()->only(
                 "start_date",
@@ -385,6 +393,8 @@ class PurchaseController extends Controller
 
     public function reportExcel()
     {
+        $this->authorize("viewAny", User::class);
+
         return new PurchaseDetailsExport([
             "purchases" => PurchaseDetail::filter(
                 request()->only("start_date", "end_date", "status")

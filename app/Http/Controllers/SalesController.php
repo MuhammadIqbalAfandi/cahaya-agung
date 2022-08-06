@@ -206,6 +206,8 @@ class SalesController extends Controller
 
     public function invoice(Sale $sale)
     {
+        $this->authorize("viewAny", Sale::class);
+
         $ppn = Ppn::first()->ppn;
 
         $company = Company::first();
@@ -220,6 +222,8 @@ class SalesController extends Controller
 
     public function deliveryOrder(Sale $sale)
     {
+        $this->authorize("viewAny", Sale::class);
+
         $company = Company::first();
 
         $pdf = Pdf::loadView("PDF.Sales.Do", compact("sale", "company"));
@@ -231,6 +235,8 @@ class SalesController extends Controller
 
     public function report()
     {
+        $this->authorize("viewAny", User::class);
+
         return inertia("Sales/Report", [
             "initialFilters" => request()->only("start_date", "end_date"),
             "sales" => SaleDetail::filter(
@@ -254,6 +260,8 @@ class SalesController extends Controller
 
     public function reportExcel()
     {
+        $this->authorize("viewAny", User::class);
+
         return new SaleDetailsExport([
             "sales" => SaleDetail::filter(
                 request()->only("start_date", "end_date")

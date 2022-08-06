@@ -15,6 +15,8 @@ class SettingController extends Controller
      */
     public function index()
     {
+        $this->authorize("viewAny", User::class);
+
         return inertia("Settings/Index", [
             "ppn" => Ppn::first(),
             "company" => Company::first(),
