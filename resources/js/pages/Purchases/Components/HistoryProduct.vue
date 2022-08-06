@@ -28,8 +28,8 @@ watch(
     if (form.product?.number) {
       Inertia.reload({
         data: {
-          productNumber: form.product.number,
-          supplierId: form.supplier.id,
+          product_number: form.product.number,
+          supplier_id: form.supplier.id,
         },
         only: ['productPurchase'],
       })

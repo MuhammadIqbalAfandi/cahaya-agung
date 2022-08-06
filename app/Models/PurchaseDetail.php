@@ -49,13 +49,13 @@ class PurchaseDetail extends Model
     public function scopeHistoryProductPurchase($query, array $filters)
     {
         $query
-            ->when($filters["productNumber"] ?? null, function (
+            ->when($filters["product_number"] ?? null, function (
                 $query,
                 $search
             ) {
                 $query->where("product_number", $search);
             })
-            ->when($filters["supplierId"] ?? null, function ($query, $search) {
+            ->when($filters["supplier_id"] ?? null, function ($query, $search) {
                 $query->whereHas("purchase", function ($query) use ($search) {
                     $query->where("supplier_id", $search);
                 });

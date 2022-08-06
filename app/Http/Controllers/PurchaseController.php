@@ -76,7 +76,7 @@ class PurchaseController extends Controller
             ),
             "productPurchase" => Inertia::lazy(
                 fn() => PurchaseDetail::historyProductPurchase(
-                    request()->only("productNumber", "supplierId")
+                    request()->only("product_number", "supplier_id")
                 )
                     ->orderBy("price", "desc")
                     ->get()
