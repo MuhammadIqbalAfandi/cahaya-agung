@@ -115,6 +115,7 @@ const { onShowCreateProduct } = useDialog()
                       label="Produk"
                       placeholder="produk"
                       field="name"
+                      param="product"
                       refresh-data="products"
                       :disabled="!form.supplier?.id"
                       :error="form.errors.product"

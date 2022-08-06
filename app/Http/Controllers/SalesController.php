@@ -71,7 +71,7 @@ class SalesController extends Controller
             ),
             "stockProducts" => Inertia::lazy(
                 fn() => StockProduct::search([
-                    "search" => request("stockProduct"),
+                    "search" => request("stock_product"),
                 ])
                     ->get()
                     ->transform(

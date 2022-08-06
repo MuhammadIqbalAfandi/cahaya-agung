@@ -125,6 +125,7 @@ const { onShowCustomerCreate } = useDialog()
                       label="Pelanggan"
                       placeholder="pelanggan"
                       field="name"
+                      param="customer"
                       refresh-data="customers"
                       v-model="form.customer"
                       :error="form.errors.customer_id"
@@ -162,13 +163,14 @@ const { onShowCustomerCreate } = useDialog()
                 <div class="grid">
                   <div class="col-12 md:col-6">
                     <AppAutoComplete
-                      :disabled="!form.customer?.id"
                       empty
                       label="Produk"
                       placeholder="produk"
                       field="name"
+                      param="stock_product"
                       refresh-data="stockProducts"
                       v-model="form.product"
+                      :disabled="!form.customer?.id"
                       :error="form.errors.product"
                       :suggestions="stockProducts"
                     >
