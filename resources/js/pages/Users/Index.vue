@@ -61,14 +61,11 @@ const onDelete = (data) => {
 
         <div class="grid">
           <div class="col-12 md:col-8">
-            <div class="flex align-items-center">
-              <AppSearchFilter
-                class="w-full md:w-27rem"
-                placeholder="nama, nama pengguna"
-                name-param="search"
-                :initialSearch="initialFilters"
-              />
-            </div>
+            <AppSearchFilter
+              placeholder="nama, nama pengguna"
+              name-param="search"
+              :initialSearch="initialFilters"
+            />
           </div>
 
           <div

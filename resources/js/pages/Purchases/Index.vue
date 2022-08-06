@@ -26,7 +26,6 @@ defineProps({
         <div class="grid">
           <div class="col-12 md:col-8">
             <AppSearchFilter
-              class="w-full md:w-27rem"
               placeholder="nama, email, no hp, status"
               name-param="search"
               :initial-search="initialFilters"

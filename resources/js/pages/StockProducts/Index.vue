@@ -23,7 +23,6 @@ defineProps({
         <h1>Stok Produk</h1>
 
         <AppSearchFilter
-          class="w-full md:w-27rem"
           placeholder="nama"
           name-param="search"
           :initial-search="initialFilters"

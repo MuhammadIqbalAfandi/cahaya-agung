@@ -37,7 +37,7 @@ watch(search, (value) => {
 
 <template>
   <div class="flex align-items-center gap-3">
-    <InputText v-bind="$attrs" v-model="search" />
+    <InputText class="w-full" v-bind="$attrs" v-model="search" />
     <i class="pi pi-search" />
   </div>
 </template>
