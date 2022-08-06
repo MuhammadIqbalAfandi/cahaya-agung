@@ -97,7 +97,7 @@ class DashboardService
                  SELECT
                     COUNT(*)
                  FROM
-                    products
+                    $table
                  WHERE
                     DATE(created_at) = CURDATE()) AS amountToday"
             )
