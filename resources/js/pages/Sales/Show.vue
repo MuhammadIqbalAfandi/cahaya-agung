@@ -29,7 +29,7 @@ const { cart, totalCartPrice } = useCart(form, props.saleDetail)
 </script>
 
 <template>
-  <DashboardLayout title="Lihat Pembelian">
+  <DashboardLayout title="Detail Penjualan">
     <DynamicDialog />
 
     <div class="grid">
@@ -38,7 +38,7 @@ const { cart, totalCartPrice } = useCart(form, props.saleDetail)
           <div class="col-12">
             <Card>
               <template #title>
-                <h2 class="text-2xl font-bold">Detail Pembelian</h2>
+                <h2 class="text-2xl font-bold">Detail Penjualan</h2>
               </template>
               <template #content>
                 <div class="grid">

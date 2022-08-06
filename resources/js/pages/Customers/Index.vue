@@ -76,20 +76,29 @@ const onDelete = (data) => {
 
       <Column>
         <template #body="{ data }">
-          <AppButtonLink
-            icon="pi pi-pencil"
-            class="p-button-icon-only p-button-rounded p-button-text"
-            v-tooltip.bottom="'Ubah Pelanggan'"
-            :href="route('customers.edit', data.id)"
-          />
+          <div class="grid gap-2">
+            <AppButtonLink
+              icon="pi pi-list"
+              class="p-button-icon-only p-button-rounded p-button-text"
+              v-tooltip.bottom="'History Pembelian'"
+              :href="route('customers.show', data.id)"
+            />
 
-          <Button
-            v-if="!data.isUsed"
-            icon="pi pi-trash"
-            class="p-button-icon-only p-button-rounded p-button-text"
-            v-tooltip.bottom="'Hapus Pelanggan'"
-            @click="onDelete(data)"
-          />
+            <AppButtonLink
+              icon="pi pi-pencil"
+              class="p-button-icon-only p-button-rounded p-button-text"
+              v-tooltip.bottom="'Ubah Pelanggan'"
+              :href="route('customers.edit', data.id)"
+            />
+
+            <Button
+              v-if="!data.isUsed"
+              icon="pi pi-trash"
+              class="p-button-icon-only p-button-rounded p-button-text"
+              v-tooltip.bottom="'Hapus Pelanggan'"
+              @click="onDelete(data)"
+            />
+          </div>
         </template>
       </Column>
     </DataTable>

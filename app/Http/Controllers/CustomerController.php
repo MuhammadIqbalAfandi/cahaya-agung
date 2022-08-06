@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Sale;
+use App\Models\Customer;
 use App\Http\Requests\Customer\StoreCustomerRequest;
 use App\Http\Requests\Customer\UpdateCustomerRequest;
-use App\Models\Customer;
 
 class CustomerController extends Controller
 {
@@ -70,7 +71,23 @@ class CustomerController extends Controller
      */
     public function show(Customer $customer)
     {
-        //
+        return inertia("Customers/Show", [
+            "customer" => $customer,
+            "historyPurchase" => $customer
+                ->sales()
+                ->latest()
+                ->paginate(10)
+                ->withQueryString()
+                ->through(
+                    fn($sale) => [
+                        "id" => $sale->id,
+                        "createdAt" => $sale->created_at,
+                        "number" => $sale->number,
+                        "status" => $sale->status,
+                        "ppn" => $sale->ppn,
+                    ]
+                ),
+        ]);
     }
 
     /**
