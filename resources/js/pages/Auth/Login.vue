@@ -19,7 +19,7 @@ const onSubmit = () => {
 
 <template>
   <AuthLayout title="Sign In">
-    <template #header> Masuk untuk melanjutkan </template>
+    <template #header> Selamat Datang Kembali! </template>
 
     <AppInputText
       v-model="form.username"
