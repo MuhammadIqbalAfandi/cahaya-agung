@@ -50,4 +50,7 @@ return [
     "total_price" => "Total Price",
     "status" => "Status",
     "quantity" => "Quantity",
+    "number" => "Number",
+    "product_name" => "Product Name",
+    "report_history_purchase" => "Report History Purchase",
 ];

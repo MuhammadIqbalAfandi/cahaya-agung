@@ -70,6 +70,14 @@ class SaleDetail extends Model
             })
             ->when($filters["end_date"] ?? null, function ($query, $search) {
                 $query->whereDate("created_at", "<=", $search);
+            })
+            ->when($filters["product_number"] ?? null, function (
+                $query,
+                $search
+            ) {
+                $query->whereHas("sale", function ($query) use ($search) {
+                    $query->where("number", "like", "%" . $search . "%");
+                });
             });
     }
 }

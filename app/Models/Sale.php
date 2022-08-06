@@ -48,4 +48,21 @@ class Sale extends Model
                 });
         });
     }
+
+    public function scopeFilter($query, array $filters)
+    {
+        $query
+            ->when($filters["start_date"] ?? null, function ($query, $search) {
+                $query->whereDate("created_at", ">=", $search);
+            })
+            ->when($filters["end_date"] ?? null, function ($query, $search) {
+                $query->whereDate("created_at", "<=", $search);
+            })
+            ->when($filters["product_number"] ?? null, function (
+                $query,
+                $search
+            ) {
+                $query->where("number", "like", "%" . $search . "%");
+            });
+    }
 }

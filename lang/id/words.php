@@ -50,4 +50,7 @@ return [
     "total_price" => "Total Harga",
     "status" => "Status",
     "quantity" => "Kuantitas",
+    "number" => "Nomor",
+    "name_product" => "Nama Produk",
+    "report_history_purchase" => "Laporan History Pembelian",
 ];

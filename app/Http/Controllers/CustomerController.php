@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Customer;
+use App\Models\SaleDetail;
+use App\Exports\CustomerHistoryExport;
 use App\Http\Requests\Customer\StoreCustomerRequest;
 use App\Http\Requests\Customer\UpdateCustomerRequest;
 
@@ -71,11 +73,19 @@ class CustomerController extends Controller
     public function show(Customer $customer)
     {
         return inertia("Customers/Show", [
+            "initialFilters" => request()->only(
+                "start_date",
+                "end_date",
+                "number_product"
+            ),
             "customer" => $customer,
             "historyPurchase" => $customer
                 ->sales()
+                ->filter(
+                    request()->only("start_date", "end_date", "product_number")
+                )
                 ->latest()
-                ->paginate(10)
+                ->paginate(1)
                 ->withQueryString()
                 ->through(
                     fn($sale) => [
@@ -125,5 +135,29 @@ class CustomerController extends Controller
         $customer->delete();
 
         return back()->with("success", __("messages.success.destroy.customer"));
+    }
+
+    public function historyPurchaseExcel()
+    {
+        $this->authorize("viewAny", Customer::class);
+
+        return new CustomerHistoryExport([
+            "sales" => SaleDetail::filter(
+                request()->only("start_date", "end_date", "product_number")
+            )
+                ->latest()
+                ->get()
+                ->map(
+                    fn($saleDetail) => [
+                        "createdAt" => $saleDetail->created_at,
+                        "name" => $saleDetail->product->name,
+                        "number" => $saleDetail->sale->number,
+                        "qty" => $saleDetail->qty,
+                        "status" => $saleDetail->sale->status,
+                        "ppn" => $saleDetail->sale->ppn,
+                        "price" => $saleDetail->price * $saleDetail->qty,
+                    ]
+                ),
+        ]);
     }
 }

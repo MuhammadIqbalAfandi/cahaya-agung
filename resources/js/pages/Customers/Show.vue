@@ -1,12 +1,28 @@
 <script setup>
 import { detailTable } from './config'
+import AppPagination from '@/components/AppPagination.vue'
+import AppDateRangeFilter from '@/components/AppDateRangeFilter.vue'
+import AppSearchFilter from '@/components/AppSearchFilter.vue'
 import AppButtonLink from '@/components/AppButtonLink.vue'
+import AppResetFilter from '@/components/AppResetFilter.vue'
 import DashboardLayout from '@/layouts/Dashboard/DashboardLayout.vue'
 
 defineProps({
+  initialFilters: Object,
   customer: Object,
-  historyPurchase: Object,
+  historyPurchase: {
+    type: Object,
+    default: {
+      data: [],
+      links: [],
+      total: 0,
+    },
+  },
 })
+
+const exportExcel = () => {
+  return '/customers/history-purchase/excel' + location.search
+}
 </script>
 
 <template>
@@ -51,8 +67,42 @@ defineProps({
           :value="historyPurchase.data"
           :rowHover="true"
           :stripedRows="true"
-          @row-click="detail($event.data)"
         >
+          <template #header>
+            <div class="grid">
+              <div class="col-12 sm:col-6 lg:col-4">
+                <AppDateRangeFilter
+                  placeholder="filter waktu..."
+                  :name-param="['start_date', 'end_date']"
+                  :initial-date-rage="initialFilters"
+                />
+              </div>
+
+              <div class="col-12 sm:col-6 lg:col-4">
+                <AppSearchFilter
+                  placeholder="Nomor Produk"
+                  name-param="product_number"
+                  :initial-search="initialFilters"
+                />
+              </div>
+
+              <div class="col-12 sm:col-6 lg:col-4">
+                <AppResetFilter :url="route('customers.show', customer.id)" />
+              </div>
+
+              <div class="col-12">
+                <AppButtonLink
+                  v-if="historyPurchase.total"
+                  label="Export excel"
+                  class-button="p-button-outlined md:w-16rem"
+                  icon="pi pi-file-excel"
+                  :inertia-link="false"
+                  :href="exportExcel()"
+                />
+              </div>
+            </div>
+          </template>
+
           <Column
             v-for="value in detailTable"
             :key="value.field"
@@ -73,5 +123,7 @@ defineProps({
         </DataTable>
       </div>
     </div>
+
+    <AppPagination :links="historyPurchase.links" />
   </DashboardLayout>
 </template>
