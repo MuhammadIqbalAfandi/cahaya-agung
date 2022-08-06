@@ -1,5 +1,5 @@
 <script setup>
-import { computed, onMounted } from 'vue'
+import { computed } from 'vue'
 import { Inertia } from '@inertiajs/inertia'
 
 const props = defineProps({
@@ -19,6 +19,10 @@ const props = defineProps({
     type: String,
     required: true,
   },
+  param: {
+    type: String,
+    required: true,
+  },
 })
 
 const emit = defineEmits(['update:modelValue'])
@@ -28,8 +32,6 @@ const isError = computed(() => (props.error ? true : false))
 const ariaDescribedbyLabel = computed(
   () => props.label?.toLowerCase().replace(/\s+/g, '-') + '-error'
 )
-
-let param = props.refreshData.slice(0, -1).replace('-', '_')
 
 const removeParams = (...params) => {
   const urlParams = new URLSearchParams(location.search)
@@ -41,7 +43,7 @@ const removeParams = (...params) => {
 
 const onInput = (event) => {
   if (event.target.value === '') {
-    removeParams(param)
+    removeParams(props.param)
   }
 
   emit('update:modelValue', event.target.value)
@@ -50,7 +52,7 @@ const onInput = (event) => {
 const onComplete = (event) => {
   Inertia.reload({
     data: {
-      [param]: event.query,
+      [props.param]: event.query,
     },
     only: [props.refreshData],
   })
