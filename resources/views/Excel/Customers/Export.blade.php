@@ -14,7 +14,7 @@
             <th>#</th>
             <th>{{ __('words.date') }}</th>
             <th>{{ __('words.number') }}</th>
-            <th>{{ __('words.name_product') }}</th>
+            <th>{{ __('words.product_name') }}</th>
             <th>{{ __('words.quantity') }}</th>
             <th>{{ __('words.status') }}</th>
             <th>PPN</th>
