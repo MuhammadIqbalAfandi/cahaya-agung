@@ -1,4 +1,5 @@
 <script setup>
+import { Link } from '@inertiajs/inertia-vue3'
 import { useForm } from '@/composables/useForm'
 import { IDRCurrencyFormat } from '@/utils/helpers'
 import { cartTable } from './config'
@@ -25,6 +26,8 @@ const form = useForm({
 })
 
 const { cart, totalCartPrice } = useCart(form, props.saleDetail)
+
+const back = () => history.back()
 </script>
 
 <template>
@@ -96,7 +99,7 @@ const { cart, totalCartPrice } = useCart(form, props.saleDetail)
         </div>
       </div>
 
-      <div class="col-12 flex justify-content-end">
+      <div class="col-12 flex flex-column sm:flex-row justify-content-end">
         <AppButtonLink
           label="Cetak Invoice"
           icon="pi pi-print"
@@ -106,8 +109,18 @@ const { cart, totalCartPrice } = useCart(form, props.saleDetail)
         />
       </div>
 
-      <div class="col-12 flex justify-content-end">
+      <div
+        class="col-12 flex flex-column sm:flex-row justify-content-between gap-3"
+      >
+        <Button
+          label="Kembali ke history pembelian"
+          class="p-button-text flex-order-2 sm:flex-order-1"
+          icon="pi pi-angle-left"
+          @click="back"
+        />
+
         <AppButtonLink
+          class="flex-order-1 sm:flex-order-2"
           label="Cetak Delivery Order"
           icon="pi pi-print"
           target="_blank"

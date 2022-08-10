@@ -64,7 +64,7 @@ defineProps({
 
           <AppButtonLink
             v-else
-            icon="pi pi-eye"
+            icon="pi pi-chevron-right"
             class="p-button-icon-only p-button-rounded p-button-text"
             v-tooltip.bottom="'Lihat Detail Pembelian'"
             :href="route('purchases.show', data.id)"
