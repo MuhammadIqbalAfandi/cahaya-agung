@@ -90,7 +90,7 @@ const exportExcel = () => {
                 <AppResetFilter :url="route('customers.show', customer.id)" />
               </div>
 
-              <div class="col-12">
+              <div class="col-12 flex flex-column sm:flex-row">
                 <AppButtonLink
                   v-if="historyPurchase.total"
                   label="Export excel"

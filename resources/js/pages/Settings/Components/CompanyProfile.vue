@@ -86,7 +86,7 @@ const onSubmit = () => {
     </div>
 
     <div class="col-12">
-      <div class="flex flex-column md:flex-row justify-content-end">
+      <div class="flex flex-column sm:flex-row justify-content-end">
         <Button
           class="p-button-outlined"
           :icon="state.icon"

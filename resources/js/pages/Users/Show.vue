@@ -61,7 +61,9 @@ const onChangePassword = () => {
                     />
                   </div>
 
-                  <div class="col-12 flex justify-content-end">
+                  <div
+                    class="col-12 flex flex-column sm:flex-row justify-content-end"
+                  >
                     <Button
                       label="Simpan"
                       icon="pi pi-check"
@@ -100,7 +102,9 @@ const onChangePassword = () => {
                     />
                   </div>
 
-                  <div class="col-12 flex justify-content-end">
+                  <div
+                    class="col-12 flex flex-column sm:flex-row justify-content-end"
+                  >
                     <Button
                       label="Simpan"
                       icon="pi pi-check"
