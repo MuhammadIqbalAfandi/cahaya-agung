@@ -25,15 +25,18 @@ const onSubmit = () => {
       v-model="form.username"
       label="Nama Pengguna"
       placeholder="nama pengguna"
-      label-class="text-900 text-xl font-medium mb-2"
       :error="form.errors.username"
     />
 
     <AppPassword
       v-model="form.password"
       label="Kata Sandi"
-      placeholder="Kata Sandi"
-      label-class="text-900 text-xl font-medium mb-2"
+      placeholder="kata sandi"
+      promptLabel="Masukan Kata Sandi"
+      weakLabel="Lemah"
+      mediumLabel="Sedang"
+      strongLabel="Sangat Kuat"
+      :toggleMask="true"
       :error="form.errors.password"
     />
 

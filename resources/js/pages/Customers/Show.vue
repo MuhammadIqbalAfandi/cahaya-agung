@@ -63,7 +63,6 @@ const exportExcel = () => {
       <div class="col-12">
         <DataTable
           responsiveLayout="scroll"
-          columnResizeMode="expand"
           :value="historyPurchase.data"
           :rowHover="true"
           :stripedRows="true"

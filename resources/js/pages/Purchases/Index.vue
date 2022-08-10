@@ -15,7 +15,6 @@ defineProps({
   <DashboardLayout title="Daftar Pembelian">
     <DataTable
       responsiveLayout="scroll"
-      columnResizeMode="expand"
       :value="purchases.data"
       :rowHover="true"
       :stripedRows="true"

@@ -34,7 +34,6 @@ const onDelete = (data) => {
   <DashboardLayout title="Daftar Supplier">
     <DataTable
       responsiveLayout="scroll"
-      columnResizeMode="expand"
       :value="suppliers.data"
       :rowHover="true"
       :stripedRows="true"

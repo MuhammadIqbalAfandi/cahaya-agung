@@ -11,7 +11,7 @@ defineProps({
   <Head :title="title" />
 
   <div
-    class="surface-0 flex align-items-center justify-content-center min-h-screen min-w-screen overflow-hidden bg-primary"
+    class="surface-0 flex align-items-center justify-content-center min-h-screen min-w-screen overflow-hidden bg-primary text-color"
   >
     <div
       class="grid flex-column align-items-center p-2 lg:p-0"

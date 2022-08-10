@@ -74,12 +74,17 @@ const onChangePassword = () => {
                   </div>
                 </div>
               </TabPanel>
-              <TabPanel header="Ubah Password">
+              <TabPanel header="Ubah Kata Sandi">
                 <div class="grid">
                   <div class="col-12">
                     <AppPassword
-                      label="Password Lama"
-                      placeholder="password lama"
+                      label="Kata Sandi Lama"
+                      placeholder="kata sandi lama"
+                      promptLabel="Masukan Kata Sandi"
+                      weakLabel="Lemah"
+                      mediumLabel="Sedang"
+                      strongLabel="Sangat Kuat"
+                      :toggleMask="true"
                       :error="formChangePassword.errors.old_password"
                       v-model="formChangePassword.old_password"
                     />
@@ -87,8 +92,13 @@ const onChangePassword = () => {
 
                   <div class="col-12">
                     <AppPassword
-                      label="Password Baru"
-                      placeholder="password baru"
+                      label="Kata Sandi Baru"
+                      placeholder="kata sandi baru"
+                      promptLabel="Masukan Kata Sandi"
+                      weakLabel="Lemah"
+                      mediumLabel="Sedang"
+                      strongLabel="Sangat Kuat"
+                      :toggleMask="true"
                       :error="formChangePassword.errors.new_password"
                       v-model="formChangePassword.new_password"
                     />
@@ -96,8 +106,13 @@ const onChangePassword = () => {
 
                   <div class="col-12">
                     <AppPassword
-                      label="Konfirmasi Password"
-                      placeholder="konfirmasi password"
+                      label="Konfirmasi Kata Sandi"
+                      placeholder="konfirmasi kata sandi"
+                      promptLabel="Masukan Kata Sandi"
+                      weakLabel="Lemah"
+                      mediumLabel="Sedang"
+                      strongLabel="Sangat Kuat"
+                      :toggleMask="true"
                       v-model="formChangePassword.new_password_confirmation"
                     />
                   </div>

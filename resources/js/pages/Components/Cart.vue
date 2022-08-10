@@ -35,7 +35,6 @@ const editingRows = ref([])
 <template>
   <DataTable
     responsiveLayout="scroll"
-    columnResizeMode="expand"
     edit-mode="row"
     data-key="number"
     :value="cart"

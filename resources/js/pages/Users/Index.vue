@@ -51,7 +51,6 @@ const onDelete = (data) => {
   <DashboardLayout title="Daftar User">
     <DataTable
       responsiveLayout="scroll"
-      columnResizeMode="expand"
       :value="users.data"
       :rowHover="true"
       :stripedRows="true"
