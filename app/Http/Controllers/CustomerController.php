@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Ppn;
+use App\Models\Sale;
 use App\Models\Customer;
 use App\Models\SaleDetail;
 use App\Exports\CustomerHistoryExport;
@@ -135,6 +137,28 @@ class CustomerController extends Controller
         $customer->delete();
 
         return back()->with("success", __("messages.success.destroy.customer"));
+    }
+
+    public function historyPurchase(Sale $sale)
+    {
+        return inertia("Customers/HistoryPurchase", [
+            "id" => $sale->id,
+            "number" => $sale->number,
+            "ppn" => Ppn::first()->ppn,
+            "status" => $sale->status,
+            "ppnChecked" => $sale->ppn ? true : false,
+            "customer" => $sale->customer,
+            "saleDetail" => $sale->saleDetail->transform(
+                fn($sale) => [
+                    "id" => $sale->id,
+                    "number" => $sale->product_number,
+                    "name" => $sale->product->name,
+                    "price" => $sale->getRawOriginal("price"),
+                    "qty" => $sale->qty,
+                    "unit" => $sale->product->unit,
+                ]
+            ),
+        ]);
     }
 
     public function historyPurchaseExcel()

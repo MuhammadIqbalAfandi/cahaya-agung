@@ -2,8 +2,8 @@
 import { useForm } from '@/composables/useForm'
 import { IDRCurrencyFormat } from '@/utils/helpers'
 import { cartTable } from './config'
-import Cart from './Components/Cart.vue'
-import { useCart } from './Composables/useCart'
+import Cart from '@/pages/Components/Cart.vue'
+import { useCart } from '@/pages/Composables/useCart'
 import AppButtonLink from '@/components/AppButtonLink.vue'
 import DashboardLayout from '@/layouts/Dashboard/DashboardLayout.vue'
 

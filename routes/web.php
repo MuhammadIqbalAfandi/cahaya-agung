@@ -57,6 +57,11 @@ Route::middleware(["auth", "verified", "checkBlocked"])->group(function () {
         "historyPurchaseExcel",
     ])->name("customers.history-purchase.excel");
 
+    Route::get("/customers/history-purchase/{sale}", [
+        CustomerController::class,
+        "historyPurchase",
+    ])->name("customers.history-purchases");
+
     Route::resource("/customers", CustomerController::class);
 
     Route::get("/purchases/pdf/invoice/{purchase}", [

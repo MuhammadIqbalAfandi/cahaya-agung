@@ -26,7 +26,7 @@ const exportExcel = () => {
 </script>
 
 <template>
-  <DashboardLayout title="">
+  <DashboardLayout title="Detail Pembelian">
     <div class="grid">
       <div class="col-12">
         <Card>
@@ -116,7 +116,7 @@ const exportExcel = () => {
                 icon="pi pi-eye"
                 class="p-button-icon-only p-button-rounded p-button-text"
                 v-tooltip.bottom="'Lihat Detail Penjualan'"
-                :href="route('sales.show', data.id)"
+                :href="route('customers.history-purchases', data.id)"
               />
             </template>
           </Column>

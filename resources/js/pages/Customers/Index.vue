@@ -75,7 +75,7 @@ const onDelete = (data) => {
         <template #body="{ data }">
           <div class="grid gap-2">
             <AppButtonLink
-              icon="pi pi-list"
+              icon="pi pi-eye"
               class="p-button-icon-only p-button-rounded p-button-text"
               v-tooltip.bottom="'History Pembelian'"
               :href="route('customers.show', data.id)"
