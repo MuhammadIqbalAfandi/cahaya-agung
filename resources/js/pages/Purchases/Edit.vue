@@ -14,6 +14,7 @@ import AppDropdown from '@/components/AppDropdown.vue'
 import AppAutoComplete from '@/components/AppAutoComplete.vue'
 import DashboardLayout from '@/layouts/Dashboard/DashboardLayout.vue'
 import { provide } from 'vue'
+import { Inertia } from '@inertiajs/inertia'
 
 const props = defineProps({
   id: Number,
@@ -48,7 +49,13 @@ const onSubmit = () => {
       products: [...cart, ...cartDeleted],
     }))
     .put(route('purchases.update', props.id), {
-      onSuccess: () => onClearCartDelete(),
+      onSuccess: () => {
+        onClearCartDelete()
+
+        Inertia.visit(route('purchases.edit', props.id), {
+          only: ['purchaseDetail'],
+        })
+      },
     })
 }
 

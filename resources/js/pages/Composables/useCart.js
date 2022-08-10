@@ -39,6 +39,10 @@ export function useCart(form, initialProducts = []) {
 
       if (itemExists) {
         itemExists.qty += Number(form.qty)
+
+        if (initialProducts.length && itemExists?.label === undefined) {
+          itemExists['label'] = 'edit'
+        }
       } else {
         cart.push({
           label: 'add',

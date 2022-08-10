@@ -17,7 +17,6 @@ use App\Http\Requests\Purchase\StorePurchaseRequest;
 use App\Http\Requests\Purchase\UpdatePurchaseRequest;
 use App\Models\Company;
 use App\Models\User;
-use App\Policies\PurchasePolicy;
 use App\Services\FunctionService;
 use App\Services\PurchaseService;
 
@@ -244,21 +243,17 @@ class PurchaseController extends Controller
                 ];
 
                 if (!empty($product["label"])) {
-                    if ($product["label"] == "add") {
-                        $purchase->purchaseDetail()->create($validated);
-                    }
-
-                    if ($product["label"] == "edit") {
-                        $purchase->purchaseDetail
+                    match ($product["label"]) {
+                        "add" => $purchase
+                            ->purchaseDetail()
+                            ->create($validated),
+                        "edit" => $purchase->purchaseDetail
                             ->find($product["id"])
-                            ->update($validated);
-                    }
-
-                    if ($product["label"] == "delete") {
-                        $purchase->purchaseDetail
+                            ->update($validated),
+                        "delete" => $purchase->purchaseDetail
                             ->find($product["id"])
-                            ->delete();
-                    }
+                            ->delete(),
+                    };
                 }
 
                 if ($request->status == "success") {
