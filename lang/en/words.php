@@ -33,7 +33,7 @@ return [
     "member" => "Member",
     "member_expired" => "Member has expired please Top Up again",
     "type_member" => "Type Member",
-    "type_vehicle" => "Type Kendaraan",
+    "type_vehicle" => "Type Vehicle",
     "top_up_rank" => "Top Up",
     "top_up_number_rank" => "Top Up :number Rank",
     "user" => "User",
