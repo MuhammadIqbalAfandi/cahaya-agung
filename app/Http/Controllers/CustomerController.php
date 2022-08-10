@@ -85,7 +85,7 @@ class CustomerController extends Controller
                     request()->only("start_date", "end_date", "product_number")
                 )
                 ->latest()
-                ->paginate(1)
+                ->paginate(10)
                 ->withQueryString()
                 ->through(
                     fn($sale) => [
