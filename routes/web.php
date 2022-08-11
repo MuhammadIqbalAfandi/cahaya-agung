@@ -109,6 +109,16 @@ Route::middleware(["auth", "verified", "checkBlocked"])->group(function () {
 
     Route::resource("/suppliers", SupplierController::class);
 
+    Route::get("/stock-products/history/excel", [
+        StockProductController::class,
+        "historyExcel",
+    ])->name("stock-products.history.excel");
+
+    Route::get("/stock-products/history/{product}", [
+        StockProductController::class,
+        "history",
+    ])->name("stock-products.history");
+
     Route::resource("/stock-products", StockProductController::class);
 
     Route::resource("/products", ProductController::class);

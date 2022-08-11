@@ -13,6 +13,8 @@ use Illuminate\Database\QueryException;
 use App\Http\Requests\Sales\StoreSaleRequest;
 use App\Http\Requests\Sales\UpdateSaleRequest;
 use App\Models\Company;
+use App\Models\HistoryStock;
+use App\Models\HistoryStockProduct;
 use App\Models\SaleDetail;
 use App\Services\FunctionService;
 use App\Services\SaleService;
@@ -126,6 +128,16 @@ class SalesController extends Controller
                         "product_number",
                         $product["number"]
                     )->decrement("qty", $product["qty"]);
+
+                    $validated = [
+                        "price" => $product["price"],
+                        "qty" => $product["qty"],
+                        "ppn" => $request->ppn ? true : false,
+                        "product_number" => $product["number"],
+                        "sale_number" => $sale->number,
+                    ];
+
+                    HistoryStockProduct::create($validated);
                 }
             }
 

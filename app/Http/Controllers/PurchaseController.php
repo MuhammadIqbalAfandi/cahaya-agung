@@ -16,6 +16,7 @@ use Illuminate\Database\QueryException;
 use App\Http\Requests\Purchase\StorePurchaseRequest;
 use App\Http\Requests\Purchase\UpdatePurchaseRequest;
 use App\Models\Company;
+use App\Models\HistoryStockProduct;
 use App\Models\User;
 use App\Services\FunctionService;
 use App\Services\PurchaseService;
@@ -291,6 +292,16 @@ class PurchaseController extends Controller
 
                         StockProduct::create($validated);
                     }
+
+                    $validated = [
+                        "price" => $product["price"],
+                        "ppn" => $request->ppn ? true : false,
+                        "qty" => $product["qty"],
+                        "product_number" => $product["number"],
+                        "purchase_number" => $purchase->number,
+                    ];
+
+                    HistoryStockProduct::create($validated);
                 }
             }
 

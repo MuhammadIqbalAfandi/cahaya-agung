@@ -2,9 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Ppn;
+use App\Models\Product;
 use App\Models\StockProduct;
-use App\Services\FunctionService;
 use Illuminate\Http\Request;
+use App\Services\FunctionService;
+use App\Models\HistoryStockProduct;
+use App\Exports\HistoryStockProductExport;
 
 class StockProductController extends Controller
 {
@@ -21,14 +25,18 @@ class StockProductController extends Controller
     public function index()
     {
         return inertia("StockProducts/Index", [
-            "initialFilters" => request()->only("search"),
-            "stockProducts" => StockProduct::search(request()->only("search"))
+            "initialFilters" => request()->only("search", "category"),
+            "stockProducts" => StockProduct::filter(
+                request()->only("search", "category")
+            )
                 ->latest()
                 ->paginate(10)
                 ->withQueryString()
                 ->through(
                     fn($stockProduct) => [
                         "id" => $stockProduct->id,
+                        "productId" => $stockProduct->product->id,
+                        "productNumber" => $stockProduct->product->number,
                         "updatedAt" => $stockProduct->updated_at,
                         "name" => $stockProduct->product->name,
                         "price" => FunctionService::rupiahFormat(
@@ -105,5 +113,74 @@ class StockProductController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function history(Product $product)
+    {
+        $ppn = Ppn::first()->ppn;
+
+        return inertia("StockProducts/Show", [
+            "initialFilters" => request()->only(
+                "start_date",
+                "end_date",
+                "category"
+            ),
+            "productId" => $product->id,
+            "productNumber" => $product->number,
+            "historyStockProducts" => HistoryStockProduct::where(
+                "product_number",
+                $product->number
+            )
+                ->filter(request()->only("start_date", "end_date", "category"))
+                ->latest()
+                ->paginate(10)
+                ->withQueryString()
+                ->through(
+                    fn($historyStockProduct) => [
+                        "createdAt" => $historyStockProduct->created_at,
+                        "name" => $historyStockProduct->product->name,
+                        "qty" => $historyStockProduct->qty,
+                        "ppn" => $historyStockProduct->ppn ? $ppn : 0,
+                        "unit" => $historyStockProduct->product->unit,
+                        "price" => FunctionService::rupiahFormat(
+                            $historyStockProduct->price *
+                                $historyStockProduct->qty
+                        ),
+                        "category" => $historyStockProduct->purchase_number
+                            ? __("words.addition")
+                            : __("words.reduction"),
+                    ]
+                ),
+        ]);
+    }
+
+    public function historyExcel()
+    {
+        $ppn = Ppn::first()->ppn;
+
+        return new HistoryStockProductExport([
+            "historyStockProducts" => HistoryStockProduct::where(
+                "product_number",
+                request("product_number")
+            )
+                ->filter(request()->only("start_date", "end_date", "category"))
+                ->latest()
+                ->get()
+                ->map(
+                    fn($historyStockProduct) => [
+                        "createdAt" => $historyStockProduct->created_at,
+                        "name" => $historyStockProduct->product->name,
+                        "qty" => $historyStockProduct->qty,
+                        "ppn" => $historyStockProduct->ppn ? $ppn : 0,
+                        "unit" => $historyStockProduct->product->unit,
+                        "price" =>
+                            $historyStockProduct->price *
+                            $historyStockProduct->qty,
+                        "category" => $historyStockProduct->purchase_number
+                            ? __("words.addition")
+                            : __("words.reduction"),
+                    ]
+                ),
+        ]);
     }
 }

@@ -53,4 +53,9 @@ return [
     "number" => "Nomor",
     "name_product" => "Nama Produk",
     "report_history_purchase" => "Laporan History Pembelian",
+    "addition" => "Penambahan",
+    "reduction" => "Pengurangan",
+    "report_history_stock_product" => "Laporan History Stok Produk",
+    "unit" => "Satuan",
+    "category" => "Kategory",
 ];

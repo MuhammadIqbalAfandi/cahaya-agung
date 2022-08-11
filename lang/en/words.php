@@ -53,4 +53,9 @@ return [
     "number" => "Number",
     "product_name" => "Product Name",
     "report_history_purchase" => "Report History Purchase",
+    "addition" => "Addition",
+    "reduction" => "Reduction",
+    "report_history_stock_product" => "Report History Stock Product",
+    "unit" => "Unit",
+    "category" => "Category",
 ];
